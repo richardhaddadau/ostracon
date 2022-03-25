@@ -68,13 +68,15 @@ const PostStackNavigator = () => {
 };
 
 const ChaptersStackNavigator = () => {
-  <Stack.Navigator
-    screenOptions={{
-      headerShown: false,
-    }}
-  >
-    <Stack.Screen name="Chapters" component={ChaptersScreen} />
-  </Stack.Navigator>;
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="Chapters" component={ChaptersScreen} />
+    </Stack.Navigator>
+  );
 };
 
 export {
