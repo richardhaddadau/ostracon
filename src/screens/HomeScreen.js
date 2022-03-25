@@ -1,9 +1,10 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-const HomeScreen = () => {
+const HomeScreen = ({ route }) => {
   return (
     <View>
+        <Text>{route.name}</Text>
       <Text>Home Screen</Text>
     </View>
   );

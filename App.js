@@ -3,7 +3,6 @@ import { StyleSheet, Text, View } from "react-native";
 
 // Import Navigation Libraries
 import { NavigationContainer } from "@react-navigation/native";
-import createStackNavigator from "react-native-screens/createNativeStackNavigator";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
@@ -52,7 +51,7 @@ export default function App() {
 
             let iconName = 1;
             let iconSize = 24;
-            let iconColor = focused ? "blue" : "black";
+            let iconColor = "white";
 
             if (route.name === "Profile") {
               return (
@@ -60,6 +59,7 @@ export default function App() {
                   name={ionsObj[route.name][iconName]}
                   size={iconSize}
                   color={iconColor}
+                  style={styles.bottomNavButton}
                 />
               );
             } else if (route.name === "New Post") {
@@ -77,11 +77,14 @@ export default function App() {
                   name={featherObj[route.name][iconName]}
                   size={iconSize}
                   color={iconColor}
+                  style={styles.bottomNavButton}
                 />
               );
             }
           },
           tabBarShowLabel: false,
+          tabBarInactiveBackgroundColor: "#2D2F46",
+          tabBarActiveBackgroundColor: "#937741",
         })}
       >
         <Tab.Screen name="Home" component={HomeScreen} />
@@ -100,5 +103,21 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  bottomNavButton: {
+    borderRadius: 100,
+  },
+  bigButton: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+
+    marginBottom: 55,
+
+    width: 70,
+    borderRadius: 100,
+    boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.35)",
+
+    aspectRatio: 1 / 1,
   },
 });
