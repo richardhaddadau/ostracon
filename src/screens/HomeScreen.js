@@ -1,12 +1,17 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { SafeAreaView, View, Text, ScrollView } from "react-native";
+import BigButton from "../navigation/BigButton";
+import CustomHeader from "../navigation/CustomHeader";
 
 const HomeScreen = ({ route }) => {
   return (
-    <View>
-        <Text>{route.name}</Text>
-      <Text>Home Screen</Text>
-    </View>
+    <SafeAreaView>
+      <CustomHeader />
+      <View>
+        <ScrollView style={{ flex: 1 }}></ScrollView>
+      </View>
+      <BigButton />
+    </SafeAreaView>
   );
 };
 
