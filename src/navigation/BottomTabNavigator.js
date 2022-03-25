@@ -2,7 +2,12 @@ import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-// Import Screens
+import HomeScreen from "../screens/HomeScreen";
+import SearchScreen from "../screens/SearchScreen";
+import MessagesScreen from "../screens/MessagesScreen";
+import ProfileScreen from "../screens/ProfileScreen";
+import PostNewScreen from "../screens/PostNewScreen";
+
 import {
   HomeStackNavigator,
   SearchStackNavigator,
@@ -13,7 +18,6 @@ import {
 
 // Import Icons
 import { Ionicons } from "@expo/vector-icons";
-import DrawerNavigator from "./DrawerNavigator";
 
 const Tab = createBottomTabNavigator();
 
@@ -35,8 +39,9 @@ const BottomTabNavigator = () => {
   // RETURN STATEMENT
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="Tab Home"
       screenOptions={{
+        headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: {
           position: "absolute",
@@ -58,10 +63,9 @@ const BottomTabNavigator = () => {
       }}
     >
       <Tab.Screen
-        name="Home"
+        name="Tab Home"
         component={HomeStackNavigator}
         options={{
-          headerShown: false,
           tabBarIcon: ({ focused }) => (
             <View style={focused ? styles.focusedStyle : styles.unFocusedStyle}>
               <Ionicons
@@ -77,7 +81,7 @@ const BottomTabNavigator = () => {
       />
 
       <Tab.Screen
-        name="Search"
+        name="Tab Search"
         component={SearchStackNavigator}
         options={{
           tabBarIcon: ({ focused }) => (
@@ -95,7 +99,7 @@ const BottomTabNavigator = () => {
       />
 
       <Tab.Screen
-        name="New Post"
+        name="Tab New Post"
         component={PostStackNavigator}
         options={{
           tabBarIcon: ({ focused }) => (
@@ -111,7 +115,12 @@ const BottomTabNavigator = () => {
 
                       backgroundColor: iconBackgroundColour["focused"],
                       borderRadius: 100,
-                      boxShadow: "0 5px 10px rgba(0, 0, 0, 0.5)",
+
+                      shadowColor: "black",
+                      shadowOpacity: 0.5,
+                      shadowOffset: { width: 0, height: 5 },
+                      shadowRadius: 10,
+                      elevation: 2,
                     }
                   : {
                       justifyContent: "center",
@@ -125,7 +134,12 @@ const BottomTabNavigator = () => {
                       // backgroundColor: iconBackgroundColour['bigButton'],
                       backgroundColor: "red",
                       borderRadius: 100,
-                      boxShadow: "0 5px 10px rgba(0, 0, 0, 0.5)",
+
+                      shadowColor: "black",
+                      shadowOpacity: 0.5,
+                      shadowOffset: { width: 0, height: 5 },
+                      shadowRadius: 10,
+                      elevation: 2,
                     }
               }
             >
@@ -140,7 +154,7 @@ const BottomTabNavigator = () => {
       />
 
       <Tab.Screen
-        name="Messages"
+        name="Tab Messages"
         component={MessagesStackNavigator}
         options={{
           tabBarIcon: ({ focused }) => (
@@ -158,7 +172,7 @@ const BottomTabNavigator = () => {
       />
 
       <Tab.Screen
-        name="Profile"
+        name="Tab Profile"
         component={ProfileStackNavigator}
         options={{
           tabBarIcon: ({ focused }) => (
@@ -188,7 +202,12 @@ const styles = StyleSheet.create({
 
     backgroundColor: iconBackgroundColour["focused"],
     borderRadius: 100,
-    boxShadow: "0 5px 10px rgba(0, 0, 0, 0.5)",
+
+    shadowColor: "black",
+    shadowOpacity: 0.5,
+    shadowOffset: { width: 0, height: 5 },
+    shadowRadius: 10,
+    elevation: 2,
   },
   unFocusedStyle: {
     justifyContent: "center",
@@ -199,7 +218,12 @@ const styles = StyleSheet.create({
 
     backgroundColor: iconBackgroundColour["unFocused"],
     borderRadius: 100,
-    boxShadow: "0 5px 10px rgba(0, 0, 0, 0.5)",
+
+    shadowColor: "black",
+    shadowOpacity: 0.5,
+    shadowOffset: { width: 0, height: 5 },
+    shadowRadius: 10,
+    elevation: 2,
   },
 });
 

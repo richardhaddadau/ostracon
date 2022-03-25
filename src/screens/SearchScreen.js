@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { SafeAreaView, View, TextInput, StyleSheet } from "react-native";
+import { View, TextInput, StyleSheet } from "react-native";
 import BigButton from "../navigation/BigButton";
 
 const SearchScreen = () => {
   const [searchText, setSearchText] = useState("");
 
   return (
-    <SafeAreaView style={styles.mainWrapper}>
+    <View style={styles.mainWrapper}>
       <BigButton />
       <View style={styles.searchBlock}>
         <TextInput
@@ -16,7 +16,7 @@ const SearchScreen = () => {
           placeholder="Search Ostracon"
         />
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

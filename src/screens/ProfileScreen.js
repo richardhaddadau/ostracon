@@ -1,15 +1,15 @@
 import React from "react";
-import { SafeAreaView, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import BigButton from "../navigation/BigButton";
 
 const ProfileScreen = () => {
   return (
-    <SafeAreaView>
+    <View>
       <BigButton send={"profile"} />
       <View>
         <Text>Profile Screen</Text>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

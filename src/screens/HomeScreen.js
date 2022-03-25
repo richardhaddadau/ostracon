@@ -1,14 +1,12 @@
 import React from "react";
 import { View, Text, ScrollView } from "react-native";
-import BigButton from "../navigation/BigButton";
 import CustomHeader from "../navigation/CustomHeader";
-import DrawerNavigator from "../navigation/DrawerNavigator";
+import BigButton from "../navigation/BigButton";
 
-const HomeScreen = ({ route }) => {
+const HomeScreen = ({ route, navigation }) => {
   return (
     <View>
-      <DrawerNavigator />
-      <CustomHeader screenName={route.name} />
+      <CustomHeader screenName={route.name} navigation={navigation} />
       <View>
         <ScrollView style={{ flex: 1 }}></ScrollView>
       </View>

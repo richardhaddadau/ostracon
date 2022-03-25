@@ -7,6 +7,7 @@ import SearchScreen from "../screens/SearchScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import MessagesScreen from "../screens/MessagesScreen";
 import PostNewScreen from "../screens/PostNewScreen";
+import ChaptersScreen from "../screens/ChaptersScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -14,10 +15,10 @@ const HomeStackNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        tabBarShowLabel: false,
+        headerShown: false,
       }}
     >
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Feed" component={HomeScreen} />
     </Stack.Navigator>
   );
 };
@@ -34,7 +35,7 @@ const MessagesStackNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        tabBarShowLabel: false,
+        headerShown: false,
       }}
     >
       <Stack.Screen name="Messages" component={MessagesScreen} />
@@ -46,7 +47,7 @@ const ProfileStackNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        tabBarShowLabel: false,
+        headerShown: false,
       }}
     >
       <Stack.Screen name="Profile" component={ProfileScreen} />
@@ -58,12 +59,22 @@ const PostStackNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        tabBarShowLabel: false,
+        headerShown: false,
       }}
     >
       <Stack.Screen name="New Post" component={PostNewScreen} />
     </Stack.Navigator>
   );
+};
+
+const ChaptersStackNavigator = () => {
+  <Stack.Navigator
+    screenOptions={{
+      headerShown: false,
+    }}
+  >
+    <Stack.Screen name="Chapters" component={ChaptersScreen} />
+  </Stack.Navigator>;
 };
 
 export {
@@ -72,4 +83,5 @@ export {
   MessagesStackNavigator,
   ProfileStackNavigator,
   PostStackNavigator,
+  ChaptersStackNavigator,
 };

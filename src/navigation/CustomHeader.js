@@ -1,20 +1,20 @@
 import React from "react";
-import { View, Image, Text, StyleSheet, useRoute } from "react-native";
+import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 // Import Icons
 import { Ionicons } from "@expo/vector-icons";
-import DrawerNavigator from "./DrawerNavigator";
 
 const CustomHeader = ({ screenName, navigation }) => {
   return (
     <View style={styles.headerWrapper}>
       <View style={styles.headerItem}>
-        <Image
-          source={require("../../assets/ostracon-o-logo.png")}
-          resizeMode="contain"
-          onPress={() => navigation.openDrawer()}
-          style={styles.logoImage}
-        />
+        <TouchableOpacity onPress={() => navigation.openDrawer()}>
+          <Image
+            source={require("../../assets/ostracon-o-logo.png")}
+            resizeMode="contain"
+            style={styles.logoImage}
+          />
+        </TouchableOpacity>
       </View>
 
       <View style={styles.headerItem}>
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     height: 50,
   },
   headerText: {
-    fontSize: "1.5rem",
+    fontSize: 20,
     fontWeight: "bold",
     color: "#fff",
   },
@@ -68,7 +68,12 @@ const styles = StyleSheet.create({
 
     backgroundColor: "#fff",
     borderRadius: 100,
-    boxShadow: "0 5px 10px rgba(0, 0, 0, 0.5)",
+
+    shadowColor: "black",
+    shadowOpacity: 0.5,
+    shadowOffset: { width: 0, height: 5 },
+    shadowRadius: 10,
+    elevation: 2,
   },
 });
 
