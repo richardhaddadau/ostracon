@@ -2,29 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6524c894-5099-4c6b-b2bd-67b5aa24d30b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/ostracon-o-logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/navigation/DrawerNav.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigation/BottomTabs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/BottomTabs.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/navigation/CustomHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/CustomHeader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/ChapterNewScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ChapterNewScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/ChapterSingleScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ChapterSingleScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigation/DrawerNav.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/DrawerNav.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/ChaptersScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ChaptersScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/ChatScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ChatScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/FollowersScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/FollowersScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/FollowingScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/FollowingScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/HelpScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/HelpScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/HomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/HomeScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/NotificationsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/NotificationsScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/PointsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/PointsScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/PostNewScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/PostNewScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/PostSingleScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/PostSingleScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/SettingsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SettingsScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/SignInScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SignInScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/SignOutScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SignOutScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/SignUpScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SignUpScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/SplashScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SplashScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/WelcomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/WelcomeScreen.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +56,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1648215174896</updated>
-      <workItem from="1648215176959" duration="17948000" />
+      <workItem from="1648215176959" duration="19889000" />
     </task>
     <servers />
   </component>

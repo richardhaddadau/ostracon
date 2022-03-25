@@ -11,6 +11,7 @@ import ProfileScreen from "../screens/ProfileScreen";
 
 // Import Icons
 import { Ionicons } from "@expo/vector-icons";
+import DrawerNav from "./DrawerNav";
 
 const Tab = createBottomTabNavigator();
 
@@ -32,6 +33,7 @@ const BottomTabs = () => {
   // RETURN STATEMENT
   return (
     <Tab.Navigator
+      initialRouteName="Home"
       screenOptions={{
         tabBarShowLabel: false,
         tabBarStyle: {
@@ -49,6 +51,7 @@ const BottomTabs = () => {
 
           WebkitMaskImage:
             "radial-gradient(circle 70px at 50% 0%, transparent 60px, white 61px)",
+          overflow: "hidden",
         },
       }}
     >

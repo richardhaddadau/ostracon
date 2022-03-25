@@ -13,7 +13,6 @@ import BottomTabs from "./src/navigation/BottomTabs";
 const App = () => {
   return (
     <NavigationContainer>
-      <DrawerNav />
       <BottomTabs />
     </NavigationContainer>
   );

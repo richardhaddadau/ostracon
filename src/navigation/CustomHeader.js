@@ -3,14 +3,16 @@ import { View, Image, Text, StyleSheet, useRoute } from "react-native";
 
 // Import Icons
 import { Ionicons } from "@expo/vector-icons";
+import DrawerNav from "./DrawerNav";
 
-const CustomHeader = ({ screenName }) => {
+const CustomHeader = ({ screenName, navigation }) => {
   return (
     <View style={styles.headerWrapper}>
       <View style={styles.headerItem}>
         <Image
           source={require("../../assets/ostracon-o-logo.png")}
           resizeMode="contain"
+          onPress={() => navigation.openDrawer()}
           style={styles.logoImage}
         />
       </View>
