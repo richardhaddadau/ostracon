@@ -2,12 +2,12 @@ import React from "react";
 import { View, Text, ScrollView } from "react-native";
 import BigButton from "../navigation/BigButton";
 import CustomHeader from "../navigation/CustomHeader";
-import DrawerNav from "../navigation/DrawerNav";
+import DrawerNavigator from "../navigation/DrawerNavigator";
 
 const HomeScreen = ({ route }) => {
   return (
     <View>
-      <DrawerNav />
+      <DrawerNavigator />
       <CustomHeader screenName={route.name} />
       <View>
         <ScrollView style={{ flex: 1 }}></ScrollView>

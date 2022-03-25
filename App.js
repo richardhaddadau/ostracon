@@ -1,5 +1,4 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import React from "react";
 
 // Import Navigation Libraries
 import { NavigationContainer } from "@react-navigation/native";
@@ -8,23 +7,14 @@ import { NavigationContainer } from "@react-navigation/native";
 import * as Notifications from "expo-notifications";
 
 // Import Custom Navigation
-import BottomTabs from "./src/navigation/BottomTabs";
+import DrawerNavigator from "./src/navigation/DrawerNavigator";
 
 const App = () => {
   return (
     <NavigationContainer>
-      <BottomTabs />
+      <DrawerNavigator />
     </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
 
 export default App;

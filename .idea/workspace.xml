@@ -2,13 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6524c894-5099-4c6b-b2bd-67b5aa24d30b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/navigation/BottomTabNavigator.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigation/BottomTabs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/BottomTabs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigation/BigButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/BigButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigation/BottomTabs.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/navigation/CustomHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/CustomHeader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigation/DrawerNav.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/DrawerNav.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/ChaptersScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ChaptersScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigation/DrawerNav.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/DrawerNavigator.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/HomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/HomeScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +39,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -56,12 +59,23 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1648215174896</updated>
-      <workItem from="1648215176959" duration="19889000" />
+      <workItem from="1648215176959" duration="21934000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

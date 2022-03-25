@@ -3,7 +3,7 @@ import { View, Image, Text, StyleSheet, useRoute } from "react-native";
 
 // Import Icons
 import { Ionicons } from "@expo/vector-icons";
-import DrawerNav from "./DrawerNav";
+import DrawerNavigator from "./DrawerNavigator";
 
 const CustomHeader = ({ screenName, navigation }) => {
   return (
