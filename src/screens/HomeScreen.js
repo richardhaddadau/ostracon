@@ -6,7 +6,7 @@ import CustomHeader from "../navigation/CustomHeader";
 const HomeScreen = ({ route }) => {
   return (
     <SafeAreaView>
-      <CustomHeader />
+      <CustomHeader screenName={route.name} />
       <View>
         <ScrollView style={{ flex: 1 }}></ScrollView>
       </View>

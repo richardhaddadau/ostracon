@@ -1,17 +1,25 @@
 import React from "react";
-import { View, Image, StyleSheet } from "react-native";
+import { View, Image, Text, StyleSheet, useRoute } from "react-native";
 
 // Import Icons
 import { Ionicons } from "@expo/vector-icons";
 
-const CustomHeader = () => {
+const CustomHeader = ({ screenName }) => {
   return (
     <View style={styles.headerWrapper}>
-      <View></View>
+      <View style={styles.headerItem}>
+        <Image
+          source={require("../../assets/ostracon-o-logo.png")}
+          resizeMode="contain"
+          style={styles.logoImage}
+        />
+      </View>
 
-      <Image></Image>
+      <View style={styles.headerItem}>
+        <Text style={styles.headerText}>{screenName}</Text>
+      </View>
 
-      <View style={styles.buttonWrapper}>
+      <View style={styles.headerItem}>
         <View style={styles.headerButton}>
           <Ionicons name="notifications" size={24} color="#2d2f46" />
         </View>
@@ -34,11 +42,20 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  buttonWrapper: {
+  headerItem: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     width: "20%",
+  },
+  logoImage: {
+    width: 50,
+    height: 50,
+  },
+  headerText: {
+    fontSize: "1.5rem",
+    fontWeight: "bold",
+    color: "#fff",
   },
   headerButton: {
     justifyContent: "center",
