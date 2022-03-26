@@ -1,12 +1,6 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
-import HomeScreen from "../screens/HomeScreen";
-import SearchScreen from "../screens/SearchScreen";
-import MessagesScreen from "../screens/MessagesScreen";
-import ProfileScreen from "../screens/ProfileScreen";
-import PostNewScreen from "../screens/PostNewScreen";
 
 import {
   HomeStackNavigator,
@@ -20,6 +14,12 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
+
+const BarGap = () => (
+  <TouchableOpacity style={{ width: "20%" }}>
+    <View style={{width: 1}}></View>
+  </TouchableOpacity>
+);
 
 const iconColour = {
   unFocused: "#2d2f46",
@@ -102,54 +102,9 @@ const BottomTabNavigator = () => {
         name="Tab New Post"
         component={PostStackNavigator}
         options={{
-          tabBarIcon: ({ focused }) => (
-            <View
-              style={
-                focused
-                  ? {
-                      justifyContent: "center",
-                      alignItems: "center",
-
-                      width: 70,
-                      height: 70,
-
-                      backgroundColor: iconBackgroundColour["focused"],
-                      borderRadius: 100,
-
-                      shadowColor: "black",
-                      shadowOpacity: 0.5,
-                      shadowOffset: { width: 0, height: 5 },
-                      shadowRadius: 10,
-                      elevation: 2,
-                    }
-                  : {
-                      justifyContent: "center",
-                      alignItems: "center",
-
-                      bottom: 45,
-
-                      width: 70,
-                      height: 70,
-
-                      // backgroundColor: iconBackgroundColour['bigButton'],
-                      backgroundColor: "red",
-                      borderRadius: 100,
-
-                      shadowColor: "black",
-                      shadowOpacity: 0.5,
-                      shadowOffset: { width: 0, height: 5 },
-                      shadowRadius: 10,
-                      elevation: 2,
-                    }
-              }
-            >
-              <Ionicons
-                name="pencil"
-                size={34}
-                color={iconColour["bigButton"]}
-              />
-            </View>
-          ),
+          tabBarButton: () => (
+            <BarGap />
+          )
         }}
       />
 
