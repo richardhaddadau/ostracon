@@ -8,6 +8,7 @@ import ProfileScreen from "../screens/ProfileScreen";
 import MessagesScreen from "../screens/MessagesScreen";
 import PostNewScreen from "../screens/PostNewScreen";
 import ChaptersScreen from "../screens/ChaptersScreen";
+import NotificationsScreen from "../screens/NotificationsScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,7 @@ const HomeStackNavigator = () => {
       }}
     >
       <Stack.Screen name="Feed" component={HomeScreen} />
+      <Stack.Screen name="Notifications" component={NotificationsScreen} />
     </Stack.Navigator>
   );
 };
@@ -67,6 +69,18 @@ const PostStackNavigator = () => {
   );
 };
 
+const NotificationsStackNavigator = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="Notifications" component={NotificationsScreen} />
+    </Stack.Navigator>
+  );
+};
+
 const ChaptersStackNavigator = () => {
   return (
     <Stack.Navigator
@@ -85,5 +99,6 @@ export {
   MessagesStackNavigator,
   ProfileStackNavigator,
   PostStackNavigator,
+  NotificationsStackNavigator,
   ChaptersStackNavigator,
 };

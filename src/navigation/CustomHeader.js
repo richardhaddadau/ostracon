@@ -3,6 +3,7 @@ import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 // Import Icons
 import { Ionicons } from "@expo/vector-icons";
+import { NotificationsStackNavigator } from "./StacksNavigator";
 
 const CustomHeader = ({ screenName, navigation }) => {
   return (
@@ -22,9 +23,32 @@ const CustomHeader = ({ screenName, navigation }) => {
       </View>
 
       <View style={styles.headerItem}>
-        <View style={styles.headerButton}>
-          <Ionicons name="notifications" size={24} color="#2d2f46" />
-        </View>
+        <TouchableOpacity
+          style={{
+            backgroundColor:
+              screenName === "Notifications" ? "#937741" : "#fff",
+            justifyContent: "center",
+            alignItems: "center",
+
+            width: 45,
+            height: 45,
+
+            borderRadius: 100,
+
+            shadowColor: "black",
+            shadowOpacity: 0.5,
+            shadowOffset: { width: 0, height: 5 },
+            shadowRadius: 10,
+            elevation: 2,
+          }}
+          onPress={() => navigation.navigate("Notifications")}
+        >
+          <Ionicons
+            name="notifications"
+            size={24}
+            color={screenName === "Notifications" ? "#fff" : "#2d2f46"}
+          />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -55,26 +79,11 @@ const styles = StyleSheet.create({
     height: 50,
   },
   headerText: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: "bold",
     color: "#fff",
   },
-  headerButton: {
-    justifyContent: "center",
-    alignItems: "center",
-
-    width: 45,
-    height: 45,
-
-    backgroundColor: "#fff",
-    borderRadius: 100,
-
-    shadowColor: "black",
-    shadowOpacity: 0.5,
-    shadowOffset: { width: 0, height: 5 },
-    shadowRadius: 10,
-    elevation: 2,
-  },
+  headerButton: {},
 });
 
 export default CustomHeader;
