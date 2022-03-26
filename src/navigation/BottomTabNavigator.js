@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import {
@@ -16,8 +16,10 @@ import { Ionicons } from "@expo/vector-icons";
 const Tab = createBottomTabNavigator();
 
 const BarGap = () => (
-  <TouchableOpacity style={{ width: "20%" }}>
-    <View style={{width: 1}}></View>
+  <TouchableOpacity style={{ width: "20%", opacity: 0 }}>
+    <View style={{ width: 1 }}>
+      <Text> </Text>
+    </View>
   </TouchableOpacity>
 );
 
@@ -36,7 +38,6 @@ const iconBackgroundColour = {
 const iconSize = 24;
 
 const BottomTabNavigator = () => {
-  // RETURN STATEMENT
   return (
     <Tab.Navigator
       initialRouteName="Tab Home"
@@ -102,9 +103,7 @@ const BottomTabNavigator = () => {
         name="Tab New Post"
         component={PostStackNavigator}
         options={{
-          tabBarButton: () => (
-            <BarGap />
-          )
+          tabBarButton: () => <BarGap />,
         }}
       />
 

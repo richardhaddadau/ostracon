@@ -1,9 +1,13 @@
 import React from "react";
 import { Text, View } from "react-native";
+import CustomHeader from "../navigation/CustomHeader";
+import BigButton from "../navigation/BigButton";
 
-const MessagesScreen = () => {
+const MessagesScreen = ({ route, navigation }) => {
   return (
     <View>
+      <CustomHeader screenName={"Messages"} navigation={navigation} />
+      <BigButton />
       <Text>Messages Screen</Text>
     </View>
   );

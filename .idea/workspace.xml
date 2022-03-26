@@ -3,9 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="6524c894-5099-4c6b-b2bd-67b5aa24d30b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigation/BottomTabNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/BottomTabNavigator.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/navigation/CustomHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/CustomHeader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigation/DrawerNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/DrawerNavigator.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/navigation/StacksNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/StacksNavigator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/HomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/HomeScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/MessagesScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/MessagesScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/NotificationsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/NotificationsScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/ProfileScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ProfileScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/SearchScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SearchScreen.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

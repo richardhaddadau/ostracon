@@ -1,10 +1,16 @@
 import React from "react";
 import { View, Text } from "react-native";
+import CustomHeader from "../navigation/CustomHeader";
+import BigButton from "../navigation/BigButton";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-const NotificationsScreen = () => {
+const Tab = createBottomTabNavigator();
+
+const NotificationsScreen = ({ route, navigation }) => {
   return (
     <View>
-      <Text>Hello</Text>
+      <CustomHeader screenName={"Notifications"} navigation={navigation} />
+      <BigButton />
     </View>
   );
 };

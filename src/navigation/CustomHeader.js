@@ -18,7 +18,7 @@ const CustomHeader = ({ screenName, navigation }) => {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.headerItem}>
+      <View style={styles.headerTitle}>
         <Text style={styles.headerText}>{screenName}</Text>
       </View>
 
@@ -73,6 +73,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     width: "20%",
+  },
+  headerTitle: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexGrow: 2,
   },
   logoImage: {
     width: 50,

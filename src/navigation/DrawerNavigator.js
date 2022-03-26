@@ -1,11 +1,17 @@
 import React from "react";
 
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList,
+} from "@react-navigation/drawer";
 
 import BottomTabNavigator from "./BottomTabNavigator";
 import { ProfileStackNavigator } from "./StacksNavigator";
+import { TouchableOpacity } from "react-native";
 
 import { Ionicons } from "@expo/vector-icons";
+import NotificationsScreen from "../screens/NotificationsScreen";
 
 const Drawer = createDrawerNavigator();
 
@@ -21,6 +27,15 @@ const DrawerNavigator = () => {
         component={BottomTabNavigator}
         options={{
           drawerIcon: () => <Ionicons name="home-sharp" size={24} />,
+          drawerItemStyle: { display: "none" },
+        }}
+      />
+      <Drawer.Screen
+        name="Notifications"
+        component={NotificationsScreen}
+        options={{
+          drawerIcon: () => <Ionicons name="home-sharp" size={24} />,
+          drawerItemStyle: { display: "none" },
         }}
       />
       <Drawer.Screen
