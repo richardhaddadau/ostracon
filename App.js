@@ -1,5 +1,4 @@
 import React from "react";
-import { Text } from "react-native";
 
 // Import Navigation Libraries
 import { NavigationContainer } from "@react-navigation/native";
@@ -8,11 +7,12 @@ import { NavigationContainer } from "@react-navigation/native";
 
 // Import Custom Navigation
 import DrawerNavigator from "./src/navigation/DrawerNavigator";
+import StacksNavigator from "./src/navigation/StacksNavigator";
 
 const App = () => {
   return (
     <NavigationContainer>
-      <DrawerNavigator />
+      <StacksNavigator />
     </NavigationContainer>
   );
 };

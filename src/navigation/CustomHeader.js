@@ -3,7 +3,7 @@ import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 // Import Icons
 import { Ionicons } from "@expo/vector-icons";
-import { NotificationsStackNavigator } from "./StacksNavigator";
+import { NotificationsStackNavigator } from "./_bak-StacksNavigator";
 
 const CustomHeader = ({ screenName, navigation }) => {
   return (
@@ -25,8 +25,7 @@ const CustomHeader = ({ screenName, navigation }) => {
       <View style={styles.headerItem}>
         <TouchableOpacity
           style={{
-            backgroundColor:
-              screenName === "Notifications" ? "#937741" : "#fff",
+            backgroundColor: "#fff",
             justifyContent: "center",
             alignItems: "center",
 
@@ -41,13 +40,9 @@ const CustomHeader = ({ screenName, navigation }) => {
             shadowRadius: 10,
             elevation: 2,
           }}
-          onPress={() => navigation.navigate("Notifications")}
+          onPress={() => navigation.navigate("Profile")}
         >
-          <Ionicons
-            name="notifications"
-            size={24}
-            color={screenName === "Notifications" ? "#fff" : "#2d2f46"}
-          />
+          <Ionicons name="person" size={24} color="#2d2f46" />
         </TouchableOpacity>
       </View>
     </View>

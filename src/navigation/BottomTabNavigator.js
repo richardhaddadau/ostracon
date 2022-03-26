@@ -2,16 +2,14 @@ import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import {
-  HomeStackNavigator,
-  SearchStackNavigator,
-  MessagesStackNavigator,
-  ProfileStackNavigator,
-  PostStackNavigator,
-} from "./StacksNavigator";
+import HomeScreen from "../screens/HomeScreen";
+import SearchScreen from "../screens/SearchScreen";
+import MessagesScreen from "../screens/MessagesScreen";
+import NotificationsScreen from "../screens/NotificationsScreen";
 
 // Import Icons
 import { Ionicons } from "@expo/vector-icons";
+import PostNewScreen from "../screens/PostNewScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -40,7 +38,7 @@ const iconSize = 24;
 const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
-      initialRouteName="Tab Home"
+      initialRouteName="Home"
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
@@ -58,14 +56,14 @@ const BottomTabNavigator = () => {
           backgroundColor: "#2d2f46",
 
           WebkitMaskImage:
-            "radial-gradient(circle 70px at 50% 0%, transparent 60px, white 61px)",
+            "radial-gradient(circle 60px at 50% 0%, transparent 50px, white 51px)",
           overflow: "hidden",
         },
       }}
     >
       <Tab.Screen
-        name="Tab Home"
-        component={HomeStackNavigator}
+        name="Home"
+        component={HomeScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={focused ? styles.focusedStyle : styles.unFocusedStyle}>
@@ -83,7 +81,7 @@ const BottomTabNavigator = () => {
 
       <Tab.Screen
         name="Tab Search"
-        component={SearchStackNavigator}
+        component={SearchScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={focused ? styles.focusedStyle : styles.unFocusedStyle}>
@@ -101,20 +99,20 @@ const BottomTabNavigator = () => {
 
       <Tab.Screen
         name="Tab New Post"
-        component={PostStackNavigator}
+        component={PostNewScreen}
         options={{
           tabBarButton: () => <BarGap />,
         }}
       />
 
       <Tab.Screen
-        name="Tab Messages"
-        component={MessagesStackNavigator}
+        name="Tab Profile"
+        component={NotificationsScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={focused ? styles.focusedStyle : styles.unFocusedStyle}>
               <Ionicons
-                name="chatbox-ellipses-sharp"
+                name="notifications"
                 size={iconSize}
                 color={
                   focused ? iconColour["focused"] : iconColour["unFocused"]
@@ -126,13 +124,13 @@ const BottomTabNavigator = () => {
       />
 
       <Tab.Screen
-        name="Tab Profile"
-        component={ProfileStackNavigator}
+        name="Tab Messages"
+        component={MessagesScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={focused ? styles.focusedStyle : styles.unFocusedStyle}>
               <Ionicons
-                name="person"
+                name="chatbox-ellipses-sharp"
                 size={iconSize}
                 color={
                   focused ? iconColour["focused"] : iconColour["unFocused"]

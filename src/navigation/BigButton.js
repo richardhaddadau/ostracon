@@ -13,13 +13,13 @@ const BigButton = ({ navigation }) => {
         justifyContent: "center",
         alignItems: "center",
 
-        bottom: 45,
+        bottom: 50,
         left: "50%",
 
         transform: "translateX(-50%)",
 
-        width: 90,
-        height: 90,
+        width: 80,
+        height: 80,
 
         backgroundColor: "#2d2f46",
         borderRadius: 100,
