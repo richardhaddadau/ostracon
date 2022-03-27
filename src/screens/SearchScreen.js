@@ -1,20 +1,23 @@
 import React, { useState } from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 import BigButton from "../navigation/BigButton";
+import CustomHeader from "../navigation/CustomHeader";
 
-const SearchScreen = () => {
+const SearchScreen = ({ route, navigation }) => {
   const [searchText, setSearchText] = useState("");
 
   return (
-    <View style={styles.mainWrapper}>
-      <BigButton />
-      <View style={styles.searchBlock}>
-        <TextInput
-          style={styles.search}
-          onChangeText={setSearchText}
-          value={searchText}
-          placeholder="Search Ostracon"
-        />
+    <View>
+      <CustomHeader screenName={"Search"} navigation={navigation} />
+      <View style={styles.mainWrapper}>
+        <View style={styles.searchBlock}>
+          <TextInput
+            style={styles.search}
+            onChangeText={setSearchText}
+            value={searchText}
+            placeholder="Search Ostracon"
+          />
+        </View>
       </View>
     </View>
   );

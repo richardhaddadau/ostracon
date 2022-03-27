@@ -6,11 +6,10 @@ import BigButton from "../navigation/BigButton";
 const HomeScreen = ({ route, navigation }) => {
   return (
     <View>
-      <CustomHeader screenName={route.name} navigation={navigation} />
+      <CustomHeader screenName={"Feed"} navigation={navigation} />
       <View>
         <ScrollView style={{ flex: 1 }}></ScrollView>
       </View>
-      <BigButton />
     </View>
   );
 };

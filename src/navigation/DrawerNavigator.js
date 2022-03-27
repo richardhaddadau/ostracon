@@ -1,17 +1,33 @@
 import React from "react";
+import { TouchableOpacity, Text } from "react-native";
 
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItem,
+} from "@react-navigation/drawer";
 
 import BottomTabNavigator from "./BottomTabNavigator";
-import { ProfileStackNavigator } from "./StacksNavigator";
 
 import { Ionicons } from "@expo/vector-icons";
+import StacksNavigator from "./StacksNavigator";
 
 const Drawer = createDrawerNavigator();
+
+const CustomDrawerItem = (props) => (
+  <DrawerContentScrollView {...props}>
+    <TouchableOpacity>
+      <DrawerItem label="Something" onPress={() => console.log("Placeholder")}>
+        <Ionicons name="people-circle-outline" size={24} />
+      </DrawerItem>
+    </TouchableOpacity>
+  </DrawerContentScrollView>
+);
 
 const DrawerNavigator = () => {
   return (
     <Drawer.Navigator
+      drawerContent={(props) => <CustomDrawerItem />}
       screenOptions={{
         headerShown: false,
       }}
@@ -21,22 +37,10 @@ const DrawerNavigator = () => {
         component={BottomTabNavigator}
         options={{
           drawerIcon: () => <Ionicons name="home-sharp" size={24} />,
+          drawerItemStyle: { display: "none" },
         }}
       />
-      <Drawer.Screen
-        name="My Profile"
-        component={ProfileStackNavigator}
-        options={{
-          drawerIcon: () => <Ionicons name="person" size={24} />,
-        }}
-      />
-      <Drawer.Screen
-        name="Chapters"
-        component={ProfileStackNavigator}
-        options={{
-          drawerIcon: () => <Ionicons name="people-circle-outline" size={24} />,
-        }}
-      />
+      <Drawer.Screen name="Chapters" component={StacksNavigator} options={{}} />
     </Drawer.Navigator>
   );
 };

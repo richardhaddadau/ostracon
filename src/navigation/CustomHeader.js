@@ -17,14 +17,32 @@ const CustomHeader = ({ screenName, navigation }) => {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.headerItem}>
+      <View style={styles.headerTitle}>
         <Text style={styles.headerText}>{screenName}</Text>
       </View>
 
       <View style={styles.headerItem}>
-        <View style={styles.headerButton}>
-          <Ionicons name="notifications" size={24} color="#2d2f46" />
-        </View>
+        <TouchableOpacity
+          style={{
+            backgroundColor: "#fff",
+            justifyContent: "center",
+            alignItems: "center",
+
+            width: 45,
+            height: 45,
+
+            borderRadius: 100,
+
+            shadowColor: "black",
+            shadowOpacity: 0.5,
+            shadowOffset: { width: 0, height: 5 },
+            shadowRadius: 10,
+            elevation: 2,
+          }}
+          onPress={() => navigation.navigate("Profile")}
+        >
+          <Ionicons name="person" size={24} color="#2d2f46" />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -50,31 +68,22 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "20%",
   },
+  headerTitle: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexGrow: 2,
+  },
   logoImage: {
     width: 50,
     height: 50,
   },
   headerText: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: "bold",
     color: "#fff",
   },
-  headerButton: {
-    justifyContent: "center",
-    alignItems: "center",
-
-    width: 45,
-    height: 45,
-
-    backgroundColor: "#fff",
-    borderRadius: 100,
-
-    shadowColor: "black",
-    shadowOpacity: 0.5,
-    shadowOffset: { width: 0, height: 5 },
-    shadowRadius: 10,
-    elevation: 2,
-  },
+  headerButton: {},
 });
 
 export default CustomHeader;

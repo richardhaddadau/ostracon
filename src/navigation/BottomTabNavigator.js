@@ -1,25 +1,25 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import HomeScreen from "../screens/HomeScreen";
 import SearchScreen from "../screens/SearchScreen";
 import MessagesScreen from "../screens/MessagesScreen";
-import ProfileScreen from "../screens/ProfileScreen";
+import NotificationsScreen from "../screens/NotificationsScreen";
 import PostNewScreen from "../screens/PostNewScreen";
 
-import {
-  HomeStackNavigator,
-  SearchStackNavigator,
-  MessagesStackNavigator,
-  ProfileStackNavigator,
-  PostStackNavigator,
-} from "./StacksNavigator";
-
 // Import Icons
-import { Ionicons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
+
+const BarGap = () => (
+  <TouchableOpacity style={{ width: "20%", opacity: 0 }}>
+    <View style={{ width: 1 }}>
+      <Text> </Text>
+    </View>
+  </TouchableOpacity>
+);
 
 const iconColour = {
   unFocused: "#2d2f46",
@@ -36,10 +36,9 @@ const iconBackgroundColour = {
 const iconSize = 24;
 
 const BottomTabNavigator = () => {
-  // RETURN STATEMENT
   return (
     <Tab.Navigator
-      initialRouteName="Tab Home"
+      initialRouteName="Home"
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
@@ -57,19 +56,19 @@ const BottomTabNavigator = () => {
           backgroundColor: "#2d2f46",
 
           WebkitMaskImage:
-            "radial-gradient(circle 70px at 50% 0%, transparent 60px, white 61px)",
+            "radial-gradient(circle 60px at 50% 0%, transparent 50px, white 51px)",
           overflow: "hidden",
         },
       }}
     >
       <Tab.Screen
-        name="Tab Home"
-        component={HomeStackNavigator}
+        name="Home"
+        component={HomeScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={focused ? styles.focusedStyle : styles.unFocusedStyle}>
-              <Ionicons
-                name="home-sharp"
+              <MaterialCommunityIcons
+                name="home"
                 size={iconSize}
                 color={
                   focused ? iconColour["focused"] : iconColour["unFocused"]
@@ -82,12 +81,12 @@ const BottomTabNavigator = () => {
 
       <Tab.Screen
         name="Tab Search"
-        component={SearchStackNavigator}
+        component={SearchScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={focused ? styles.focusedStyle : styles.unFocusedStyle}>
-              <Ionicons
-                name="search"
+              <MaterialCommunityIcons
+                name="magnify"
                 size={iconSize}
                 color={
                   focused ? iconColour["focused"] : iconColour["unFocused"]
@@ -100,67 +99,20 @@ const BottomTabNavigator = () => {
 
       <Tab.Screen
         name="Tab New Post"
-        component={PostStackNavigator}
+        component={PostNewScreen}
         options={{
-          tabBarIcon: ({ focused }) => (
-            <View
-              style={
-                focused
-                  ? {
-                      justifyContent: "center",
-                      alignItems: "center",
-
-                      width: 70,
-                      height: 70,
-
-                      backgroundColor: iconBackgroundColour["focused"],
-                      borderRadius: 100,
-
-                      shadowColor: "black",
-                      shadowOpacity: 0.5,
-                      shadowOffset: { width: 0, height: 5 },
-                      shadowRadius: 10,
-                      elevation: 2,
-                    }
-                  : {
-                      justifyContent: "center",
-                      alignItems: "center",
-
-                      bottom: 45,
-
-                      width: 70,
-                      height: 70,
-
-                      // backgroundColor: iconBackgroundColour['bigButton'],
-                      backgroundColor: "red",
-                      borderRadius: 100,
-
-                      shadowColor: "black",
-                      shadowOpacity: 0.5,
-                      shadowOffset: { width: 0, height: 5 },
-                      shadowRadius: 10,
-                      elevation: 2,
-                    }
-              }
-            >
-              <Ionicons
-                name="pencil"
-                size={34}
-                color={iconColour["bigButton"]}
-              />
-            </View>
-          ),
+          tabBarButton: () => <BarGap />,
         }}
       />
 
       <Tab.Screen
-        name="Tab Messages"
-        component={MessagesStackNavigator}
+        name="Tab Profile"
+        component={NotificationsScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={focused ? styles.focusedStyle : styles.unFocusedStyle}>
-              <Ionicons
-                name="chatbox-ellipses-sharp"
+              <MaterialCommunityIcons
+                name="bell"
                 size={iconSize}
                 color={
                   focused ? iconColour["focused"] : iconColour["unFocused"]
@@ -172,13 +124,13 @@ const BottomTabNavigator = () => {
       />
 
       <Tab.Screen
-        name="Tab Profile"
-        component={ProfileStackNavigator}
+        name="Tab Messages"
+        component={MessagesScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={focused ? styles.focusedStyle : styles.unFocusedStyle}>
-              <Ionicons
-                name="person"
+              <MaterialCommunityIcons
+                name="message-text"
                 size={iconSize}
                 color={
                   focused ? iconColour["focused"] : iconColour["unFocused"]
