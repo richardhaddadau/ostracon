@@ -3,7 +3,6 @@ import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 // Import Icons
 import { Ionicons } from "@expo/vector-icons";
-import { NotificationsStackNavigator } from "./_bak-StacksNavigator";
 
 const CustomHeader = ({ screenName, navigation }) => {
   return (

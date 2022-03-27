@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // Import Navigation Libraries
 import { NavigationContainer } from "@react-navigation/native";
@@ -6,13 +6,15 @@ import { NavigationContainer } from "@react-navigation/native";
 // Import Notifications
 
 // Import Custom Navigation
-import DrawerNavigator from "./src/navigation/DrawerNavigator";
+import { navigationRef } from "./src/navigation/RootNavigation";
 import StacksNavigator from "./src/navigation/StacksNavigator";
+import BigButton from "./src/navigation/BigButton";
 
 const App = () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <StacksNavigator />
+      <BigButton />
     </NavigationContainer>
   );
 };

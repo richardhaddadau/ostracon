@@ -7,7 +7,6 @@ const MessagesScreen = ({ route, navigation }) => {
   return (
     <View>
       <CustomHeader screenName={"Messages"} navigation={navigation} />
-      <BigButton />
       <Text>Messages Screen</Text>
     </View>
   );

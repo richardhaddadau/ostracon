@@ -7,7 +7,6 @@ const HomeScreen = ({ route, navigation }) => {
   return (
     <View>
       <CustomHeader screenName={"Feed"} navigation={navigation} />
-      <BigButton />
       <View>
         <ScrollView style={{ flex: 1 }}></ScrollView>
       </View>

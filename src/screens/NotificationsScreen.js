@@ -10,7 +10,6 @@ const NotificationsScreen = ({ route, navigation }) => {
   return (
     <View>
       <CustomHeader screenName={"Notifications"} navigation={navigation} />
-      <BigButton />
     </View>
   );
 };

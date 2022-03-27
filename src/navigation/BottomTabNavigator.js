@@ -6,10 +6,10 @@ import HomeScreen from "../screens/HomeScreen";
 import SearchScreen from "../screens/SearchScreen";
 import MessagesScreen from "../screens/MessagesScreen";
 import NotificationsScreen from "../screens/NotificationsScreen";
+import PostNewScreen from "../screens/PostNewScreen";
 
 // Import Icons
-import { Ionicons } from "@expo/vector-icons";
-import PostNewScreen from "../screens/PostNewScreen";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
@@ -67,8 +67,8 @@ const BottomTabNavigator = () => {
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={focused ? styles.focusedStyle : styles.unFocusedStyle}>
-              <Ionicons
-                name="home-sharp"
+              <MaterialCommunityIcons
+                name="home"
                 size={iconSize}
                 color={
                   focused ? iconColour["focused"] : iconColour["unFocused"]
@@ -85,8 +85,8 @@ const BottomTabNavigator = () => {
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={focused ? styles.focusedStyle : styles.unFocusedStyle}>
-              <Ionicons
-                name="search"
+              <MaterialCommunityIcons
+                name="magnify"
                 size={iconSize}
                 color={
                   focused ? iconColour["focused"] : iconColour["unFocused"]
@@ -111,8 +111,8 @@ const BottomTabNavigator = () => {
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={focused ? styles.focusedStyle : styles.unFocusedStyle}>
-              <Ionicons
-                name="notifications"
+              <MaterialCommunityIcons
+                name="bell"
                 size={iconSize}
                 color={
                   focused ? iconColour["focused"] : iconColour["unFocused"]
@@ -129,8 +129,8 @@ const BottomTabNavigator = () => {
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={focused ? styles.focusedStyle : styles.unFocusedStyle}>
-              <Ionicons
-                name="chatbox-ellipses-sharp"
+              <MaterialCommunityIcons
+                name="message-text"
                 size={iconSize}
                 color={
                   focused ? iconColour["focused"] : iconColour["unFocused"]

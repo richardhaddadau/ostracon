@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import DrawerNavigator from "./DrawerNavigator";
 import ChaptersScreen from "../screens/ChaptersScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+import PostNewScreen from "../screens/PostNewScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +18,7 @@ const StacksNavigator = () => {
       />
       <Stack.Screen name="Chapter" component={ChapterStack} />
       <Stack.Screen name="Profile" component={ProfileStack} />
+      <Stack.Screen name="New Post" component={NewPostStack} />
     </Stack.Navigator>
   );
 };
@@ -35,6 +37,18 @@ const ProfileStack = () => {
       <Stack.Screen
         name="Profile Stack"
         component={ProfileScreen}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
+  );
+};
+
+const NewPostStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="New Post Stack"
+        component={PostNewScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

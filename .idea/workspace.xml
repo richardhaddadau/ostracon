@@ -4,14 +4,16 @@
     <list default="true" id="6524c894-5099-4c6b-b2bd-67b5aa24d30b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/navigation/BigButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/BigButton.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/navigation/BottomTabNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/BottomTabNavigator.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/navigation/CustomHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/CustomHeader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigation/DrawerNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/DrawerNavigator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigation/StacksNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/_bak-StacksNavigator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigation/StacksNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/StacksNavigator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/HomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/HomeScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/MessagesScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/MessagesScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/NotificationsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/NotificationsScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/PostNewScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/PostNewScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/ProfileScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ProfileScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/SearchScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SearchScreen.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +64,7 @@
       <option name="presentableId" value="Default" />
       <updated>1648215174896</updated>
       <workItem from="1648215176959" duration="25635000" />
+      <workItem from="1648392281007" duration="10722000" />
     </task>
     <servers />
   </component>

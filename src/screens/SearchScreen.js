@@ -9,7 +9,6 @@ const SearchScreen = ({ route, navigation }) => {
   return (
     <View>
       <CustomHeader screenName={"Search"} navigation={navigation} />
-      <BigButton />
       <View style={styles.mainWrapper}>
         <View style={styles.searchBlock}>
           <TextInput
