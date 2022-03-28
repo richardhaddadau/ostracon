@@ -9,7 +9,6 @@ import NotificationsScreen from "../screens/NotificationsScreen";
 import MessagesScreen from "../screens/MessagesScreen";
 
 import TabUI from "../components/TabUI";
-import { NewPostStack } from "./StacksNavigator";
 
 const Tabs = createBottomTabNavigator();
 const tabs = [
@@ -31,7 +30,7 @@ const BottomTabNavigator = () => {
     >
       <Tabs.Screen name="Home" component={HomeScreen} />
       <Tabs.Screen name="Search" component={SearchScreen} />
-      <Tabs.Screen name="Variable" component={NewPostStack} />
+      <Tabs.Screen name="Variable" component={HomeScreen} />
       <Tabs.Screen name="Notifications" component={NotificationsScreen} />
       <Tabs.Screen name="Messages" component={MessagesScreen} />
     </Tabs.Navigator>

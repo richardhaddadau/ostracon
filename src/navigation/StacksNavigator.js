@@ -5,7 +5,6 @@ import DrawerNavigator from "./DrawerNavigator";
 import ChaptersScreen from "../screens/ChaptersScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import PostNewScreen from "../screens/PostNewScreen";
-import MessagesSingleScreen from "../screens/MessagesSingleScreen";
 import MessagesNewScreen from "../screens/MessagesNewScreen";
 
 const Stack = createNativeStackNavigator();
@@ -18,7 +17,7 @@ const StacksNavigator = () => {
         component={DrawerNavigator}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="Chapters" component={ChapterStack} />
+      <Stack.Screen name="Chapters" component={ChaptersScreen} />
       <Stack.Screen name="Profile" component={ProfileStack} />
       <Stack.Screen name="New Post" component={PostNewScreen} />
       <Stack.Screen name="New Message" component={MessagesNewScreen} />
@@ -46,16 +45,12 @@ const ProfileStack = () => {
   );
 };
 
-const NewPostStack = () => {
+const MessagesStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        name="New Post Stack"
-        component={PostNewScreen}
-        options={{ headerShown: false }}
-      />
+      <Stack.Screen name="New Message Stack" component={MessagesNewScreen} />
     </Stack.Navigator>
   );
 };
 
-export { StacksNavigator, NewPostStack };
+export { StacksNavigator, MessagesStack };

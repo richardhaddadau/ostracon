@@ -71,23 +71,10 @@ const PostStackNavigator = () => {
   );
 };
 
-const ChaptersStackNavigator = () => {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <Stack.Screen name="Chapters" component={ChaptersScreen} />
-    </Stack.Navigator>
-  );
-};
-
 export {
   HomeStackNavigator,
   SearchStackNavigator,
   MessagesStackNavigator,
   ProfileStackNavigator,
   PostStackNavigator,
-  ChaptersStackNavigator,
 };
