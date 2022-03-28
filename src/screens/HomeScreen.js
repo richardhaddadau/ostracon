@@ -4,6 +4,7 @@ import axios from "axios";
 
 import CustomHeader from "../navigation/CustomHeader";
 import FeedPost from "../components/FeedPost";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const HomeScreen = ({ route, navigation }) => {
   const [feedData, setFeedData] = useState({});
@@ -19,7 +20,7 @@ const HomeScreen = ({ route, navigation }) => {
   };
 
   return (
-    <>
+    <SafeAreaView>
       <CustomHeader screenName={"Feed"} navigation={navigation} />
       <FlatList
         data={feedData}
@@ -27,7 +28,7 @@ const HomeScreen = ({ route, navigation }) => {
         keyExtractor={(item) => item.id}
         style={{ backgroundColor: "white", paddingBottom: 100 }}
       />
-    </>
+    </SafeAreaView>
   );
 };
 

@@ -28,7 +28,12 @@ const TabItems = ({ tabs, tabWidth }) => {
         if (key === Math.floor(tabs.length / 2)) {
           return (
             <TouchableOpacity
-              style={styles.ostraconButton}
+              style={[
+                styles.ostraconButton,
+                {
+                  transform: [{ translateX: "-50%" }],
+                },
+              ]}
               onPress={tab.action}
             >
               <MaterialCommunityIcons
@@ -67,14 +72,19 @@ const styles = StyleSheet.create({
     bottom: 50,
     left: "50%",
 
-    transform: "translateX(-50%)",
-
     width: 80,
     height: 80,
 
     backgroundColor: "#2d2f46",
     borderRadius: 100,
-    boxShadow: "0 5px 10px rgba(0, 0, 0, 0.5)",
+
+    shadowColor: "black",
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
   },
   standardBottomBarButton: {
     justifyContent: "center",

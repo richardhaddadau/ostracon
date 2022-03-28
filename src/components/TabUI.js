@@ -7,6 +7,7 @@ import {
   BOTTOM_NAVIGATION_BAR_HEIGHT,
   BOTTOM_NAVIGATION_BUTTON_SIZE,
   BOTTOM_NAVIGATION_ICON_SIZE,
+  OSTRACON_BUTTON_BOTTOM_GAP,
   OSTRACON_BUTTON_SIZE,
   OSTRACON_BUTTON_SPACE,
   OSTRACON_ICON_SIZE,
@@ -120,7 +121,7 @@ const TabUI = ({ state, navigation }) => {
                 shadowRadius: 5,
                 shadowOpacity: 0.65,
                 shadowColor: "black",
-                elevation: 1,
+                elevation: 5,
               }}
             >
               <MaterialCommunityIcons
@@ -139,9 +140,10 @@ const TabUI = ({ state, navigation }) => {
 const styles = StyleSheet.create({
   tabBarLayout: {
     position: "absolute",
-
     flexDirection: "row",
-    flexWrap: "wrap",
+
+    margin: 0,
+    padding: 0,
 
     bottom: 0,
 
@@ -152,14 +154,17 @@ const styles = StyleSheet.create({
     width: viewWidth,
 
     backgroundColor: "transparent",
+    borderWidth: 0,
+
     elevation: 0,
   },
   ostraconButton: {
+    position: "relative",
+
     justifyContent: "center",
     alignItems: "center",
 
-    bottom: 40,
-    transform: "translateX(-0.5px)",
+    bottom: OSTRACON_BUTTON_BOTTOM_GAP,
 
     width: ostraconSize,
     height: ostraconSize,
@@ -171,12 +176,15 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     shadowOpacity: 0.8,
     shadowColor: "black",
-    elevation: 2,
+
+    elevation: 5,
   },
   tabItem: {
     justifyContent: "center",
     alignItems: "center",
+
     width: (viewWidth - ostraconSpace) / 4,
+    height: barHeight,
   },
 });
 
