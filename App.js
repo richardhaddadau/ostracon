@@ -7,14 +7,19 @@ import { NavigationContainer } from "@react-navigation/native";
 
 // Import Custom Navigation
 import { navigationRef } from "./src/navigation/RootNavigation";
-import StacksNavigator from "./src/navigation/StacksNavigator";
-import BigButton from "./src/navigation/BigButton";
+import { StacksNavigator } from "./src/navigation/StacksNavigator";
 
 const App = () => {
   return (
-    <NavigationContainer ref={navigationRef}>
+    <NavigationContainer
+      ref={navigationRef}
+      screenOptions={{
+        tabBarStyle: {
+          backgroundColor: "transparent",
+        },
+      }}
+    >
       <StacksNavigator />
-      <BigButton />
     </NavigationContainer>
   );
 };

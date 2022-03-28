@@ -10,7 +10,7 @@ import {
 import BottomTabNavigator from "./BottomTabNavigator";
 
 import { Ionicons } from "@expo/vector-icons";
-import StacksNavigator from "./StacksNavigator";
+import { StacksNavigator } from "./StacksNavigator";
 
 const Drawer = createDrawerNavigator();
 
