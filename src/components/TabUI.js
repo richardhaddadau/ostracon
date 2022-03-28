@@ -6,6 +6,7 @@ import TabShape from "./TabShape";
 import {
   BOTTOM_NAVIGATION_BAR_HEIGHT,
   BOTTOM_NAVIGATION_BUTTON_SIZE,
+  BOTTOM_NAVIGATION_FULL_HEIGHT,
   BOTTOM_NAVIGATION_ICON_SIZE,
   OSTRACON_BUTTON_BOTTOM_GAP,
   OSTRACON_BUTTON_SIZE,
@@ -148,9 +149,9 @@ const styles = StyleSheet.create({
     bottom: 0,
 
     justifyContent: "space-evenly",
-    alignItems: "center",
+    alignItems: "flex-end",
 
-    height: barHeight,
+    height: BOTTOM_NAVIGATION_FULL_HEIGHT,
     width: viewWidth,
 
     backgroundColor: "transparent",
