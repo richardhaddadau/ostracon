@@ -1,9 +1,8 @@
 import React, { useState } from "react";
+import { Provider as PaperProvider } from "react-native-paper";
 
 // Import Navigation Libraries
 import { NavigationContainer } from "@react-navigation/native";
-
-// Import Notifications
 
 // Import Custom Navigation
 import { navigationRef } from "./src/navigation/RootNavigation";
@@ -11,9 +10,11 @@ import { StacksNavigator } from "./src/navigation/StacksNavigator";
 
 const App = () => {
   return (
-    <NavigationContainer ref={navigationRef}>
-      <StacksNavigator />
-    </NavigationContainer>
+    <PaperProvider>
+      <NavigationContainer ref={navigationRef}>
+        <StacksNavigator />
+      </NavigationContainer>
+    </PaperProvider>
   );
 };
 
