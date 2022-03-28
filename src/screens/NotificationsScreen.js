@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 import CustomHeader from "../navigation/CustomHeader";
-import BigButton from "../navigation/BigButton";
+import BigButton from "../_archive/BigButton";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 const Tab = createBottomTabNavigator();

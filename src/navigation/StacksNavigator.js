@@ -18,7 +18,7 @@ const StacksNavigator = () => {
         component={DrawerNavigator}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="Chapter" component={ChapterStack} />
+      <Stack.Screen name="Chapters" component={ChapterStack} />
       <Stack.Screen name="Profile" component={ProfileStack} />
       <Stack.Screen name="New Post" component={PostNewScreen} />
       <Stack.Screen name="New Message" component={MessagesNewScreen} />

@@ -10,7 +10,7 @@ const CustomHeader = ({ screenName, navigation }) => {
       <View style={styles.headerItem}>
         <TouchableOpacity onPress={() => navigation.openDrawer()}>
           <Image
-            source={require("../../assets/ostracon-o-logo.png")}
+            source={require("../../assets/ostracon-o-logo.svg")}
             resizeMode="contain"
             style={styles.logoImage}
           />

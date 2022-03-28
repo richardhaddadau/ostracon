@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, ScrollView } from "react-native";
 import CustomHeader from "../navigation/CustomHeader";
-import BigButton from "../navigation/BigButton";
+import BigButton from "../_archive/BigButton";
 
 const HomeScreen = ({ route, navigation }) => {
   return (

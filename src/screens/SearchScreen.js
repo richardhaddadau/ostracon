@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, TextInput, StyleSheet } from "react-native";
-import BigButton from "../navigation/BigButton";
+import BigButton from "../_archive/BigButton";
 import CustomHeader from "../navigation/CustomHeader";
 
 const SearchScreen = ({ route, navigation }) => {

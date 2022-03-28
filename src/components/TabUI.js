@@ -153,6 +153,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
 
     bottom: 40,
+    transform: "translateX(-0.5px)",
 
     width: ostraconSize,
     height: ostraconSize,
@@ -163,22 +164,6 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 2, height: 5 },
     shadowRadius: 10,
     shadowOpacity: 0.8,
-    shadowColor: "black",
-    elevation: 2,
-  },
-  standardBottomBarButton: {
-    justifyContent: "center",
-    alignItems: "center",
-
-    width: buttonSize,
-    height: buttonSize,
-
-    backgroundColor: "#fff",
-    borderRadius: 100,
-
-    shadowOffset: { width: 2, height: 5 },
-    shadowRadius: 5,
-    shadowOpacity: 0.65,
     shadowColor: "black",
     elevation: 2,
   },

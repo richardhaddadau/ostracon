@@ -8,6 +8,7 @@ import {
 } from "@react-navigation/drawer";
 
 import BottomTabNavigator from "./BottomTabNavigator";
+import { navigate } from "./RootNavigation";
 
 import { Ionicons } from "@expo/vector-icons";
 import { StacksNavigator } from "./StacksNavigator";
@@ -17,7 +18,7 @@ const Drawer = createDrawerNavigator();
 const CustomDrawerItem = (props) => (
   <DrawerContentScrollView {...props}>
     <TouchableOpacity>
-      <DrawerItem label="Something" onPress={() => console.log("Placeholder")}>
+      <DrawerItem label="Chapters" onPress={() => navigate("Chapters")}>
         <Ionicons name="people-circle-outline" size={24} />
       </DrawerItem>
     </TouchableOpacity>
