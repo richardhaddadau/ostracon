@@ -11,14 +11,7 @@ import { StacksNavigator } from "./src/navigation/StacksNavigator";
 
 const App = () => {
   return (
-    <NavigationContainer
-      ref={navigationRef}
-      screenOptions={{
-        tabBarStyle: {
-          backgroundColor: "transparent",
-        },
-      }}
-    >
+    <NavigationContainer ref={navigationRef}>
       <StacksNavigator />
     </NavigationContainer>
   );

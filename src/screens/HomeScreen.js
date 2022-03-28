@@ -1,25 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, FlatList } from "react-native";
-import CustomHeader from "../navigation/CustomHeader";
+import axios from "axios";
 
+import CustomHeader from "../navigation/CustomHeader";
+import FeedPost from "../components/FeedPost";
 
 const HomeScreen = ({ route, navigation }) => {
+  const [feedData, setFeedData] = useState({});
+
   useEffect(() => {
-    axios
-  })
-  const DATA = [{id: }];
+    axios("https://jsonplaceholder.typicode.com/posts")
+      .then((response) => response.data)
+      .then((actualData) => setFeedData(actualData));
+  });
+
+  const renderItem = ({ item }) => {
+    return <FeedPost item={item} />;
+  };
 
   return (
-    <View>
+    <>
       <CustomHeader screenName={"Feed"} navigation={navigation} />
-      <View>
-        <FlatList
-          data={DATA}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-        />
-      </View>
-    </View>
+      <FlatList
+        data={feedData}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        style={{ backgroundColor: "white", paddingBottom: 100 }}
+      />
+    </>
   );
 };
 

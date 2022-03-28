@@ -120,7 +120,7 @@ const TabUI = ({ state, navigation }) => {
                 shadowRadius: 5,
                 shadowOpacity: 0.65,
                 shadowColor: "black",
-                elevation: 2,
+                elevation: 1,
               }}
             >
               <MaterialCommunityIcons
@@ -138,15 +138,21 @@ const TabUI = ({ state, navigation }) => {
 
 const styles = StyleSheet.create({
   tabBarLayout: {
-    display: "flex",
+    position: "absolute",
+
     flexDirection: "row",
     flexWrap: "wrap",
+
+    bottom: 0,
 
     justifyContent: "space-evenly",
     alignItems: "center",
 
     height: barHeight,
     width: viewWidth,
+
+    backgroundColor: "transparent",
+    elevation: 0,
   },
   ostraconButton: {
     justifyContent: "center",

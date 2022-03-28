@@ -78,8 +78,10 @@ const TabShape = () => {
 
 const styles = StyleSheet.create({
   barBackground: {
-    position: "fixed",
+    position: "absolute",
     bottom: 0,
+
+    backgroundColor: "transparent",
   },
 });
 
