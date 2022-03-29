@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 import BigButton from "../_archive/BigButton";
 import CustomHeader from "../navigation/CustomHeader";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const SearchScreen = ({ route, navigation }) => {
   const [searchText, setSearchText] = useState("");
 
   return (
-    <View>
+    <SafeAreaView>
       <CustomHeader screenName={"Search"} navigation={navigation} />
       <View style={styles.mainWrapper}>
         <View style={styles.searchBlock}>
@@ -19,14 +20,13 @@ const SearchScreen = ({ route, navigation }) => {
           />
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   mainWrapper: {
-    flex: 1,
-    padding: 10,
+    padding: 0,
     backgroundColor: "#fff",
   },
   searchBlock: {
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   search: {
-    padding: 20,
+    padding: 10,
     backgroundColor: "#e7e7e7",
     borderRadius: 50,
   },

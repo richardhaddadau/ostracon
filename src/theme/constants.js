@@ -8,6 +8,11 @@ export const OSTRACON_ICON_SIZE = 30;
 export const OSTRACON_BUTTON_SIZE = 60;
 export const OSTRACON_BUTTON_BOTTOM_GAP = 22;
 
+// Header
+export const HEADER_HEIGHT = 65;
+export const HEADER_ICON_SIZE = 22.5;
+export const HEADER_BUTTON_SIZE = 35;
+
 // Feed
 export const POST_IMAGE_SIZE = 80;
 export const POST_USERNAME_BAR = 10;

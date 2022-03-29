@@ -3,6 +3,13 @@ import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 // Import Icons
 import { Ionicons } from "@expo/vector-icons";
+import {
+  HEADER_BUTTON_SIZE,
+  HEADER_HEIGHT,
+  HEADER_ICON_SIZE,
+} from "../theme/constants";
+
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const CustomHeader = ({ screenName, navigation }) => {
   return (
@@ -10,7 +17,7 @@ const CustomHeader = ({ screenName, navigation }) => {
       <View style={styles.headerItem}>
         <TouchableOpacity onPress={() => navigation.openDrawer()}>
           <Image
-            source={require("../../assets/ostracon-o-logo.svg")}
+            source={require("../../assets/ostracon-o-logo.png")}
             resizeMode="contain"
             style={styles.logoImage}
           />
@@ -28,8 +35,8 @@ const CustomHeader = ({ screenName, navigation }) => {
             justifyContent: "center",
             alignItems: "center",
 
-            width: 45,
-            height: 45,
+            width: HEADER_BUTTON_SIZE,
+            height: HEADER_BUTTON_SIZE,
 
             borderRadius: 100,
 
@@ -37,11 +44,12 @@ const CustomHeader = ({ screenName, navigation }) => {
             shadowOpacity: 0.5,
             shadowOffset: { width: 0, height: 5 },
             shadowRadius: 10,
-            elevation: 2,
+
+            elevation: 5,
           }}
           onPress={() => navigation.navigate("Profile")}
         >
-          <Ionicons name="person" size={24} color="#2d2f46" />
+          <Ionicons name="person" size={HEADER_ICON_SIZE} color="#2d2f46" />
         </TouchableOpacity>
       </View>
     </View>
@@ -50,33 +58,35 @@ const CustomHeader = ({ screenName, navigation }) => {
 
 const styles = StyleSheet.create({
   headerWrapper: {
-    display: "flex",
     flexDirection: "row",
-    flexWrap: "nowrap",
+
+    margin: 0,
+    padding: 0,
 
     width: "100%",
-    height: 90,
+    height: HEADER_HEIGHT,
 
     backgroundColor: "#2d2f46",
 
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "stretch",
   },
   headerItem: {
-    display: "flex",
     justifyContent: "center",
     alignItems: "center",
+
     width: "20%",
   },
   headerTitle: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+
     flexGrow: 2,
   },
   logoImage: {
-    width: 50,
-    height: 50,
+    width: 35,
+    height: 35,
   },
   headerText: {
     fontSize: 24,

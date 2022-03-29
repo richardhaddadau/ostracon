@@ -7,6 +7,9 @@ import {
   DrawerItemList,
 } from "@react-navigation/drawer";
 
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { StyleSheet } from "react-native";
+
 const CustomDrawerContent = (props, navigation) => {
   return (
     <DrawerContentScrollView {...props}>
@@ -16,10 +19,44 @@ const CustomDrawerContent = (props, navigation) => {
         onPress={() => {
           navigate("Chapters");
         }}
+        icon={() => (
+          <MaterialCommunityIcons
+            name="book-account-outline"
+            size={24}
+            color="black"
+          />
+        )}
+        labelStyle={{ marginLeft: -20 }}
       />
-      <DrawerItem label="Points" onPress={() => navigate("Chapters")} />
-      <DrawerItem label="Settings" onPress={() => navigate("Chapters")} />
-      <DrawerItem label="Help & Support" onPress={() => navigate("Chapters")} />
+      <DrawerItem
+        label="Points"
+        onPress={() => navigate("Chapters")}
+        icon={() => (
+          <MaterialCommunityIcons
+            name="shield-star-outline"
+            size={24}
+            color="black"
+          />
+        )}
+        labelStyle={{ marginLeft: -20 }}
+      />
+      <DrawerItem
+        label="Settings"
+        onPress={() => navigate("Chapters")}
+        icon={() => (
+          <MaterialCommunityIcons name="cog-outline" size={24} color="black" />
+        )}
+        labelStyle={{ marginLeft: -20 }}
+      />
+      <DrawerItem
+        label="Help & Support"
+        onPress={() => navigate("Chapters")}
+        labelStyle={{
+          paddingTop: 15,
+          borderTopColor: "#e7e7e7",
+          borderTopWidth: 1,
+        }}
+      />
     </DrawerContentScrollView>
   );
 };

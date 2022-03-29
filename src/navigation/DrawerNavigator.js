@@ -1,5 +1,4 @@
 import React from "react";
-import { TouchableOpacity, Text } from "react-native";
 
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
@@ -14,6 +13,7 @@ const DrawerNavigator = () => {
       drawerContent={(props) => <CustomDrawerContent {...props} />}
       screenOptions={{
         headerShown: false,
+        drawerType: "front",
       }}
     >
       <Drawer.Screen
