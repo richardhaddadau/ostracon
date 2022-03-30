@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Provider as PaperProvider } from "react-native-paper";
-import { AppRegistry } from "react-native";
+import { AppRegistry, Platform } from "react-native";
+import { name as appName } from "./app.json";
 
 // Import Navigation Libraries
 import { NavigationContainer } from "@react-navigation/native";
@@ -9,6 +10,13 @@ import { NavigationContainer } from "@react-navigation/native";
 import { navigationRef } from "./src/navigation/RootNavigation";
 import { StacksNavigator } from "./src/navigation/StacksNavigator";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { registerRootComponent } from "expo";
+
+if (Platform.OS === "android") {
+  registerRootComponent(App);
+} else {
+  AppRegistry.registerComponent("main", () => App);
+}
 
 const App = () => {
   return (
@@ -21,5 +29,3 @@ const App = () => {
 };
 
 export default App;
-
-AppRegistry.registerComponent("Ostracon", () => App);

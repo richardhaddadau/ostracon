@@ -14,9 +14,10 @@ export const HEADER_ICON_SIZE = 22.5;
 export const HEADER_BUTTON_SIZE = 35;
 
 // Feed
-export const POST_IMAGE_SIZE = 80;
-export const POST_USERNAME_BAR = 10;
+export const FEED_GUTTER = 10;
+export const POST_IMAGE_SIZE = 60;
+export const POST_USERNAME_BAR = 30;
 export const POST_MIN_HEIGHT = 150;
 export const POST_ICON_SIZE = 20;
-export const POST_MARGIN = 10;
+export const POST_MARGIN = 5;
 export const POST_PADDING = 5;

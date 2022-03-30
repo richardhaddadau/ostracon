@@ -1,16 +1,17 @@
 import React from "react";
 import { View, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+
 import CustomHeader from "../navigation/CustomHeader";
-import BigButton from "../_archive/BigButton";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 const Tab = createBottomTabNavigator();
 
 const NotificationsScreen = ({ route, navigation }) => {
   return (
-    <View>
+    <SafeAreaView>
       <CustomHeader screenName={"Notifications"} navigation={navigation} />
-    </View>
+    </SafeAreaView>
   );
 };
 

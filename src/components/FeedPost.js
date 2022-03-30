@@ -1,35 +1,70 @@
 import React from "react";
-import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
+import {
+  TouchableOpacity,
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+} from "react-native";
 
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faMessage } from "@fortawesome/free-regular-svg-icons";
+
+import { faMedal, faHandsClapping } from "@fortawesome/free-solid-svg-icons";
+
+// Constants
+import {
+  POST_IMAGE_SIZE,
+  POST_USERNAME_BAR,
+  POST_MARGIN,
+  POST_MIN_HEIGHT,
+  POST_PADDING,
+  POST_ICON_SIZE,
+} from "../theme/constants";
 
 const FeedPost = ({ item }) => {
   return (
     <View style={styles.feedWrapper}>
-      <View style={styles.feedImage}></View>
-      <View style={styles.feedInfo}>
-        <Text style={styles.feedUsername}>User: {item["userId"]}</Text>
+      <View style={styles.feedHeader}>
+        <View style={styles.feedImage}></View>
+        <View style={styles.feedInfo}>
+          <Text style={styles.feedUsername}>User: {item["userId"]}</Text>
+          <Text style={styles.feedTime}>5 hr</Text>
+        </View>
+        <TouchableOpacity style={styles.praiseButton}>
+          <FontAwesomeIcon
+            icon={faMedal}
+            size={POST_ICON_SIZE}
+            color={"#b7b7b7"}
+          />
+        </TouchableOpacity>
       </View>
+
       <View style={styles.feedBody}>
-        <View style={styles.LeftInteractions}>
-          <TouchableOpacity style={{ borderWidth: 1 }}>
-            <MaterialCommunityIcons name="hand-heart" size={24} color="black" />
+        <View style={styles.leftInteractions}>
+          <TouchableOpacity>
+            <FontAwesomeIcon
+              icon={faHandsClapping}
+              size={POST_ICON_SIZE}
+              color={"#b7b7b7"}
+            />
           </TouchableOpacity>
 
-          <TouchableOpacity style={{ borderWidth: 1 }}>
-            <MaterialCommunityIcons name="hand-heart" size={24} color="black" />
-          </TouchableOpacity>
-
-          <TouchableOpacity style={{ borderWidth: 1 }}>
-            <MaterialCommunityIcons name="hand-heart" size={24} color="black" />
+          <TouchableOpacity>
+            <FontAwesomeIcon
+              icon={faMessage}
+              size={POST_ICON_SIZE}
+              color={"#b7b7b7"}
+            />
           </TouchableOpacity>
         </View>
-        <TouchableOpacity onPress={() => console.log(item["id"])}>
-          <View style={styles.feedPost}>
+
+        <View style={styles.feedPost}>
+          <TouchableOpacity onPress={() => console.log(item["id"])}>
             <Text>User: {item["title"]}</Text>
             <Text>User: {item["body"]}</Text>
-          </View>
-        </TouchableOpacity>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -37,68 +72,66 @@ const FeedPost = ({ item }) => {
 
 const styles = StyleSheet.create({
   feedWrapper: {
-    margin: 5,
-
-    borderWidth: 1,
-
-    overflow: "hidden",
+    margin: POST_MARGIN,
+    padding: POST_PADDING,
   },
-  feedInfo: {
+  feedHeader: {
     flexDirection: "row",
-    alignItems: "flex-end",
-
-    left: 70,
-    height: 35,
-
-    fontWeight: "bold",
+    alignItems: "stretch",
   },
-  feedUsername: {
-    fontSize: 16,
-    fontWeight: "bold",
+  feedBody: {
+    flex: 1,
+
+    flexDirection: "row",
+
+    alignItems: "flex-start",
+
+    minHeight: POST_MIN_HEIGHT,
   },
   feedImage: {
-    position: "absolute",
+    width: POST_IMAGE_SIZE,
+    height: POST_IMAGE_SIZE,
 
-    left: 0,
-    top: 0,
-
-    width: 70,
-    height: 70,
-
-    borderWidth: 10,
-    borderColor: "white",
     borderRadius: 100,
-    backgroundColor: "red",
 
-    zIndex: 5,
+    borderColor: "red",
+    borderWidth: 1,
   },
-  feedTime: {},
-  feedBody: {
-    flexDirection: "row",
+  feedInfo: {
+    paddingLeft: 10,
+    justifyContent: "center",
+    alignItems: "flex-start",
 
-    marginLeft: 40,
-    minHeight: 150,
-
-    backgroundColor: "#e3e3e3",
+    flexGrow: 1,
   },
-  LeftInteractions: {
+  feedUsername: {
+    fontWeight: "bold",
+    marginRight: 10,
+  },
+  feedTime: { fontSize: 12, color: "#777" },
+  praiseButton: {
+    alignItems: "center",
+    justifyContent: "center",
+    height: POST_USERNAME_BAR,
+  },
+  leftInteractions: {
     flexDirection: "column",
 
-    marginTop: 40,
+    paddingTop: 20,
+    paddingBottom: 20,
 
-    height: 100,
-
-    justifyContent: "space-evenly",
+    justifyContent: "space-between",
     alignItems: "center",
 
-    width: 40,
+    height: 115,
+
+    width: POST_IMAGE_SIZE,
+    alignSelf: "flex-start",
   },
   feedPost: {
-    flexGrow: 2,
-
-    padding: 5,
-
-    borderRadius: 5,
+    width:
+      Dimensions.get("screen").width -
+      (POST_IMAGE_SIZE + 2 * POST_PADDING + 2 * POST_MARGIN),
   },
 });
 
