@@ -1,5 +1,5 @@
 import React from "react";
-import { navigate } from "../navigation/RootNavigation";
+import { navigate } from "./RootNavigation";
 
 import {
   DrawerContentScrollView,

@@ -7,7 +7,7 @@ import {
   HEADER_BUTTON_SIZE,
   HEADER_HEIGHT,
   HEADER_ICON_SIZE,
-} from "../theme/constants";
+} from "../constants/constants";
 
 import { SafeAreaView } from "react-native-safe-area-context";
 

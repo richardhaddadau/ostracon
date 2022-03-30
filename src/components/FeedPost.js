@@ -20,13 +20,18 @@ import {
   POST_MIN_HEIGHT,
   POST_PADDING,
   POST_ICON_SIZE,
-} from "../theme/constants";
+} from "../constants/constants";
+import { Avatar } from "react-native-paper";
 
 const FeedPost = ({ item }) => {
   return (
     <View style={styles.feedWrapper}>
       <View style={styles.feedHeader}>
-        <View style={styles.feedImage}></View>
+        <Avatar.Image
+          style={styles.feedImage}
+          size={POST_IMAGE_SIZE}
+          source={require("../../assets/Placeholder-Avatar.png")}
+        />
         <View style={styles.feedInfo}>
           <Text style={styles.feedUsername}>User: {item["userId"]}</Text>
           <Text style={styles.feedTime}>5 hr</Text>
@@ -89,13 +94,7 @@ const styles = StyleSheet.create({
     minHeight: POST_MIN_HEIGHT,
   },
   feedImage: {
-    width: POST_IMAGE_SIZE,
-    height: POST_IMAGE_SIZE,
-
     borderRadius: 100,
-
-    borderColor: "red",
-    borderWidth: 1,
   },
   feedInfo: {
     paddingLeft: 10,

@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Badge } from "react-native-paper";
 
+// Import tab navigator main shape
 import TabShape from "./TabShape";
 
+// Import constants
 import {
   BOTTOM_NAVIGATION_BAR_HEIGHT,
   BOTTOM_NAVIGATION_BUTTON_SIZE,
@@ -12,11 +15,20 @@ import {
   OSTRACON_BUTTON_SIZE,
   OSTRACON_BUTTON_SPACE,
   OSTRACON_ICON_SIZE,
-} from "../theme/constants";
+} from "../constants/constants";
 
+// Import icons
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import {
+  faHouse as faHouseSolid,
+  faMagnifyingGlass as faMagnifyingGlassSolid,
+  faBell as faBellSolid,
+  faEnvelope as faEnvelopeSolid,
+} from "@fortawesome/free-solid-svg-icons";
+import { faBell, faEnvelope } from "@fortawesome/free-regular-svg-icons";
 
-import { navigate } from "../navigation/RootNavigation";
+import { navigate } from "./RootNavigation";
 
 const { width: viewWidth } = Dimensions.get("window");
 const barHeight = BOTTOM_NAVIGATION_BAR_HEIGHT;
@@ -32,7 +44,14 @@ const TabUI = ({ state, navigation }) => {
   const [currentScreen, setCurrentScreen] = useState("");
   const [currentRoute, setCurrentRoute] = useState("");
 
-  const screenObj = {
+  const focusedIconsObj = {
+    Home: "home",
+    Search: "magnify",
+    Notifications: "bell",
+    Messages: "message-text",
+  };
+
+  const unfocusedIconsObj = {
     Home: "home",
     Search: "magnify",
     Notifications: "bell",
@@ -74,6 +93,7 @@ const TabUI = ({ state, navigation }) => {
           });
         };
 
+        // In the case of the middle Ostracon Button
         if (index === Math.floor(state.routes.length / 2)) {
           return (
             <TouchableOpacity
@@ -101,6 +121,7 @@ const TabUI = ({ state, navigation }) => {
           );
         }
 
+        // For the other standard buttons
         return (
           <View key={route["key"]} style={styles.tabItem}>
             <TouchableOpacity
@@ -125,8 +146,11 @@ const TabUI = ({ state, navigation }) => {
                 elevation: 5,
               }}
             >
+              {/* Only show badge for badge buttons*/}
+              {index > 2 ? <Badge style={styles.tabBadge}>99+</Badge> : null}
+
               <MaterialCommunityIcons
-                name={screenObj[route.name]}
+                name={focusedIconsObj[route.name]}
                 size={buttonIconSize}
                 color={isFocused ? "#fff" : "#2d2f46"}
               />
@@ -186,6 +210,15 @@ const styles = StyleSheet.create({
 
     width: (viewWidth - ostraconSpace) / 4,
     height: barHeight,
+  },
+  tabBadge: {
+    position: "absolute",
+
+    top: -5,
+    right: -10,
+
+    elevation: 5,
+    zIndex: 5,
   },
 });
 
