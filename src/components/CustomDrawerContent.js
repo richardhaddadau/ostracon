@@ -7,8 +7,13 @@ import {
   DrawerItemList,
 } from "@react-navigation/drawer";
 
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { StyleSheet } from "react-native";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import {
+  faBookBookmark,
+  faMedal,
+  faGear,
+} from "@fortawesome/free-solid-svg-icons";
+import {} from "@fortawesome/free-solid-svg-icons";
 
 const CustomDrawerContent = (props, navigation) => {
   return (
@@ -19,33 +24,19 @@ const CustomDrawerContent = (props, navigation) => {
         onPress={() => {
           navigate("Chapters");
         }}
-        icon={() => (
-          <MaterialCommunityIcons
-            name="book-account-outline"
-            size={24}
-            color="black"
-          />
-        )}
+        icon={() => <FontAwesomeIcon icon={faBookBookmark} size={20} />}
         labelStyle={{ marginLeft: -20 }}
       />
       <DrawerItem
         label="Points"
         onPress={() => navigate("Chapters")}
-        icon={() => (
-          <MaterialCommunityIcons
-            name="shield-star-outline"
-            size={24}
-            color="black"
-          />
-        )}
+        icon={() => <FontAwesomeIcon icon={faMedal} size={20} />}
         labelStyle={{ marginLeft: -20 }}
       />
       <DrawerItem
         label="Settings"
         onPress={() => navigate("Chapters")}
-        icon={() => (
-          <MaterialCommunityIcons name="cog-outline" size={24} color="black" />
-        )}
+        icon={() => <FontAwesomeIcon icon={faGear} size={20} />}
         labelStyle={{ marginLeft: -20 }}
       />
       <DrawerItem

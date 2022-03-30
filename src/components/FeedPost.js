@@ -7,15 +7,10 @@ import {
   Dimensions,
 } from "react-native";
 
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faMessage } from "@fortawesome/free-regular-svg-icons";
 
-import {
-  faBolt,
-  faHandsClapping,
-  faShareNodes,
-} from "@fortawesome/free-solid-svg-icons";
+import { faMedal, faHandsClapping } from "@fortawesome/free-solid-svg-icons";
 
 // Constants
 import {
@@ -38,7 +33,7 @@ const FeedPost = ({ item }) => {
         </View>
         <TouchableOpacity style={styles.praiseButton}>
           <FontAwesomeIcon
-            icon={faBolt}
+            icon={faMedal}
             size={POST_ICON_SIZE}
             color={"#b7b7b7"}
           />
