@@ -15,7 +15,7 @@ import { registerRootComponent } from "expo";
 if (Platform.OS === "android") {
   registerRootComponent(App);
 } else {
-  AppRegistry.registerComponent(appName, () => App);
+  AppRegistry.registerComponent("main", () => App);
 }
 
 const App = () => {
