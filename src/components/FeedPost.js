@@ -31,6 +31,12 @@ const FeedPost = ({ item }) => {
           </View>
         </TouchableOpacity>
       </View>
+
+      <View>
+        <TouchableOpacity style={{ borderWidth: 1 }}>
+          <MaterialCommunityIcons name="hand-heart" size={24} color="black" />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
