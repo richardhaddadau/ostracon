@@ -85,11 +85,11 @@ const styles = StyleSheet.create({
     flexGrow: 2,
   },
   logoImage: {
-    width: 35,
-    height: 35,
+    width: 30,
+    height: 30,
   },
   headerText: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: "bold",
     color: "#fff",
   },

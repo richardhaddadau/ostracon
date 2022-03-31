@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native";
-import { Badge } from "react-native-paper";
+import { Badge, DefaultTheme } from "react-native-paper";
 
 // Import tab navigator main shape
 import TabShape from "./TabShape";
@@ -29,6 +29,11 @@ import {
 import { faBell, faEnvelope } from "@fortawesome/free-regular-svg-icons";
 
 import { navigate } from "./RootNavigation";
+import {
+  OSTRACON_ACCENT,
+  OSTRACON_BADGE,
+  OSTRACON_PRIMARY,
+} from "../theme/Colours";
 
 const { width: viewWidth } = Dimensions.get("window");
 const barHeight = BOTTOM_NAVIGATION_BAR_HEIGHT;
@@ -61,6 +66,17 @@ const TabUI = ({ state, navigation }) => {
   const variableObj = {
     Default: "pencil-plus",
     Messages: "email-plus-outline",
+  };
+
+  const theme = {
+    ...DefaultTheme,
+    roundness: 2,
+    colors: {
+      ...DefaultTheme.colors,
+      primary: OSTRACON_PRIMARY,
+      accent: OSTRACON_ACCENT,
+      notification: OSTRACON_BADGE,
+    },
   };
 
   return (
@@ -147,7 +163,11 @@ const TabUI = ({ state, navigation }) => {
               }}
             >
               {/* Only show badge for badge buttons*/}
-              {index > 2 ? <Badge style={styles.tabBadge}>99+</Badge> : null}
+              {index > 2 ? (
+                <Badge theme={theme} style={styles.tabBadge}>
+                  99+
+                </Badge>
+              ) : null}
 
               <MaterialCommunityIcons
                 name={focusedIconsObj[route.name]}
@@ -215,7 +235,7 @@ const styles = StyleSheet.create({
     position: "absolute",
 
     top: -5,
-    right: -10,
+    right: -15,
 
     elevation: 5,
     zIndex: 5,
