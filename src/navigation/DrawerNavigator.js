@@ -7,7 +7,7 @@ import BottomTabNavigator from "./BottomTabNavigator";
 
 const Drawer = createDrawerNavigator();
 
-const DrawerNavigator = () => {
+const DrawerNavigator = ({ theme }) => {
   return (
     <Drawer.Navigator
       drawerContent={(props) => <CustomDrawerContent {...props} />}

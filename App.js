@@ -7,8 +7,8 @@ import {
   DefaultTheme as PaperDefaultTheme,
   DarkTheme as PaperDarkTheme,
 } from "react-native-paper";
-import { OstraconTheme } from "./src/theme/Theme";
 import { ThemeContext } from "./src/context/ThemeContext";
+import { OstraconTheme } from "./src/theme/Theme";
 import deepmerge from "deepmerge";
 
 // Import Navigation Libraries
@@ -53,8 +53,8 @@ const App = () => {
   return (
     <ThemeContext.Provider value={preferences}>
       <PaperProvider theme={theme}>
-        <NavigationContainer theme={theme} ref={navigationRef}>
-          <StacksNavigator />
+        <NavigationContainer ref={navigationRef}>
+          <StacksNavigator theme={theme} />
         </NavigationContainer>
       </PaperProvider>
     </ThemeContext.Provider>

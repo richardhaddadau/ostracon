@@ -27,7 +27,7 @@ import {
   POST_ICON_SIZE,
 } from "../../constants/constants";
 
-import { Avatar } from "react-native-paper";
+import { Avatar, useTheme } from "react-native-paper";
 
 import {
   FEED_POST_FONT_SIZE,

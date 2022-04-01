@@ -1,42 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, FlatList } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import axios from "axios";
 
+// Import components
 import CustomHeader from "../navigation/CustomHeader";
-import FeedPost from "../components/Post/FeedPost";
-import { SafeAreaView } from "react-native-safe-area-context";
-import PostSeparator from "../components/Post/PostSeparator";
-import posts from "../data/posts";
-import { BOTTOM_NAVIGATION_FULL_HEIGHT } from "../constants/constants";
-import PostFooter from "../components/Post/PostFooter";
 
+// Import theme libraries
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import FollowersFeed from "./FollowersFeed";
+
+const GlobalFeed = () => <View></View>;
+
+const TopTabs = createMaterialTopTabNavigator();
+
+// Main Component
 const HomeScreen = ({ navigation }) => {
-  const [feedData, setFeedData] = useState({});
-
-  useEffect(() => {
-    //   axios("https://jsonplaceholder.typicode.com/posts")
-    //     .then((response) => response.data)
-    //     .then((actualData) => setFeedData(actualData));
-    setFeedData(posts);
-  });
-
-  const renderItem = ({ item }) => {
-    return <FeedPost item={item} />;
-  };
-
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <CustomHeader screenName={"Feed"} navigation={navigation} />
-      <FlatList
-        data={feedData}
-        renderItem={renderItem}
-        keyExtractor={(item) => item["id"]}
-        ItemSeparatorComponent={PostSeparator}
-        ListFooterComponent={PostFooter}
-        style={{
-          backgroundColor: "white",
-        }}
-      />
+
+      <TopTabs.Navigator>
+        <TopTabs.Screen name="My Feed" component={FollowersFeed} />
+        <TopTabs.Screen name="Global" component={GlobalFeed} />
+      </TopTabs.Navigator>
     </SafeAreaView>
   );
 };

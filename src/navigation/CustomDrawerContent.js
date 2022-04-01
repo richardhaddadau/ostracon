@@ -16,7 +16,7 @@ import {
 import {} from "@fortawesome/free-solid-svg-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-const CustomDrawerContent = (props, navigation) => {
+const CustomDrawerContent = (props) => {
   return (
     <DrawerContentScrollView {...props}>
       <DrawerItemList {...props} />
