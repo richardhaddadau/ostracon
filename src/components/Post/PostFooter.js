@@ -10,11 +10,12 @@ const PostFooter = () => {
   return (
     <View
       style={{
-        marginVertical: POST_MARGIN * 2,
         height: BOTTOM_NAVIGATION_FULL_HEIGHT,
       }}
     >
-      <Text>You've reached the end</Text>
+      <Text style={{ fontStyle: "italic", textAlign: "center" }}>
+        - This is the end -
+      </Text>
     </View>
   );
 };

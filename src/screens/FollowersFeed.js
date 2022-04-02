@@ -23,7 +23,7 @@ const FollowersFeed = () => {
   });
 
   return (
-    <SafeAreaView style={{ flex: 1, borderWidth: 1 }}>
+    <View style={{}}>
       <FlatList
         data={feedData}
         renderItem={renderItem}
@@ -31,7 +31,7 @@ const FollowersFeed = () => {
         ItemSeparatorComponent={Divider}
         ListFooterComponent={PostFooter}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 
