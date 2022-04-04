@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { AppRegistry, Platform } from "react-native";
 
 // Import Theme Libraries
-import { ThemeContext } from "./src/context/ThemeContext";
-import { OstraconTheme } from "./src/theme/Theme";
-import deepmerge from "deepmerge";
+import * as eva from "@eva-design/eva";
+import { ApplicationProvider, Layout } from "@ui-kitten/components";
 
 // Import Navigation Libraries
 import {
@@ -27,13 +26,11 @@ if (Platform.OS === "android") {
 const App = () => {
   // States
   return (
-    <ThemeContext.Provider>
-      <PaperProvider>
-        <NavigationContainer ref={navigationRef}>
-          <StacksNavigator />
-        </NavigationContainer>
-      </PaperProvider>
-    </ThemeContext.Provider>
+    <ApplicationProvider {...eva} theme={eva.light}>
+      <NavigationContainer ref={navigationRef}>
+        <StacksNavigator />
+      </NavigationContainer>
+    </ApplicationProvider>
   );
 };
 
