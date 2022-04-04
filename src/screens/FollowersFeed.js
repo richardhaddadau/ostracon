@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { FlatList, View } from "react-native";
-import { Divider } from "react-native-paper";
 
 import PostFooter from "../components/Post/PostFooter";
 import FeedPost from "../components/Post/FeedPost";

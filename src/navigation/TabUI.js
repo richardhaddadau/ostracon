@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native";
-import { Badge, DefaultTheme } from "react-native-paper";
 
 // Import tab navigator main shape
 import TabShape from "./TabShape";
@@ -66,17 +65,6 @@ const TabUI = ({ state, navigation }) => {
   const variableObj = {
     Default: "pencil-plus",
     Messages: "email-plus-outline",
-  };
-
-  const theme = {
-    ...DefaultTheme,
-    roundness: 2,
-    colors: {
-      ...DefaultTheme.colors,
-      primary: OSTRACON_PRIMARY,
-      accent: OSTRACON_ACCENT,
-      notification: OSTRACON_BADGE,
-    },
   };
 
   return (
