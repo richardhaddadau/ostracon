@@ -3,14 +3,12 @@ import { AppRegistry, Platform } from "react-native";
 
 // Import Theme Libraries
 import * as eva from "@eva-design/eva";
-import { ApplicationProvider, Layout } from "@ui-kitten/components";
+import { ApplicationProvider } from "@ui-kitten/components";
+import { default as myTheme } from "./src/theme/theme.json";
+import { ThemeContext } from "./src/context/ThemeContext";
 
 // Import Navigation Libraries
-import {
-  NavigationContainer,
-  DefaultTheme as NavigateDefaultTheme,
-  DarkTheme as NavigateDarkTheme,
-} from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 
 // Import Custom Navigation
 import { navigationRef } from "./src/navigation/RootNavigation";
@@ -25,12 +23,21 @@ if (Platform.OS === "android") {
 
 const App = () => {
   // States
+  const [theme, setTheme] = useState("light");
+
+  const toggleTheme = () => {
+    const nextTheme = theme === "light" ? "dark" : "light";
+    setTheme(nextTheme);
+  };
+
   return (
-    <ApplicationProvider {...eva} theme={eva.light}>
-      <NavigationContainer ref={navigationRef}>
-        <StacksNavigator />
-      </NavigationContainer>
-    </ApplicationProvider>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <ApplicationProvider {...eva} theme={{ ...eva[theme], ...myTheme }}>
+        <NavigationContainer ref={navigationRef}>
+          <StacksNavigator />
+        </NavigationContainer>
+      </ApplicationProvider>
+    </ThemeContext.Provider>
   );
 };
 

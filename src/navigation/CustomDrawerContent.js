@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { navigate } from "./RootNavigation";
+import { ThemeContext } from "../context/ThemeContext";
 
 import {
   DrawerContentScrollView,
@@ -17,6 +18,8 @@ import {} from "@fortawesome/free-solid-svg-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const CustomDrawerContent = (props) => {
+  const themeContext = useContext(ThemeContext);
+
   return (
     <DrawerContentScrollView {...props}>
       <DrawerItemList {...props} />
@@ -49,6 +52,15 @@ const CustomDrawerContent = (props) => {
       <DrawerItem
         label="Help & Support"
         onPress={() => navigate("Chapters")}
+        labelStyle={{
+          paddingTop: 15,
+          borderTopColor: "#e7e7e7",
+          borderTopWidth: 1,
+        }}
+      />
+      <DrawerItem
+        label="Switch to Dark"
+        onPress={themeContext.toggleTheme}
         labelStyle={{
           paddingTop: 15,
           borderTopColor: "#e7e7e7",

@@ -4,7 +4,7 @@ import { FlatList, View } from "react-native";
 import PostFooter from "../components/Post/PostFooter";
 import FeedPost from "../components/Post/FeedPost";
 import posts from "../data/posts";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Divider } from "@ui-kitten/components";
 
 const renderItem = ({ item }) => {
   return <FeedPost item={item} />;

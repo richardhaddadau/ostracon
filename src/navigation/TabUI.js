@@ -4,6 +4,9 @@ import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native";
 // Import tab navigator main shape
 import TabShape from "./TabShape";
 
+// Import Theme
+import { useTheme } from "@ui-kitten/components";
+
 // Import constants
 import {
   BOTTOM_NAVIGATION_BAR_HEIGHT,
@@ -45,6 +48,8 @@ const ostraconIconSize = OSTRACON_ICON_SIZE;
 const tabWidth = (viewWidth - ostraconSpace) / 4;
 
 const TabUI = ({ state, navigation }) => {
+  const theme = useTheme();
+
   const [currentScreen, setCurrentScreen] = useState("");
   const [currentRoute, setCurrentRoute] = useState("");
 
@@ -110,7 +115,12 @@ const TabUI = ({ state, navigation }) => {
               }}
               onLongPress={onLongPress}
               key={route["key"]}
-              style={styles.ostraconButton}
+              style={[
+                styles.ostraconButton,
+                {
+                  backgroundColor: theme["color-primary-default"],
+                },
+              ]}
             >
               <MaterialCommunityIcons
                 name={
@@ -151,11 +161,7 @@ const TabUI = ({ state, navigation }) => {
               }}
             >
               {/* Only show badge for badge buttons*/}
-              {index > 2 ? (
-                <Badge theme={theme} style={styles.tabBadge}>
-                  99+
-                </Badge>
-              ) : null}
+              {index > 2 ? null : null}
 
               <MaterialCommunityIcons
                 name={focusedIconsObj[route.name]}
@@ -202,7 +208,6 @@ const styles = StyleSheet.create({
     width: ostraconSize,
     height: ostraconSize,
 
-    backgroundColor: "#2d2f46",
     borderRadius: 100,
 
     shadowOffset: { width: 2, height: 5 },

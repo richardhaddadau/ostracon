@@ -7,6 +7,8 @@ import {
   Dimensions,
 } from "react-native";
 
+import { Avatar } from "@ui-kitten/components";
+
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faMessage, faClone } from "@fortawesome/free-regular-svg-icons";
@@ -19,26 +21,19 @@ import {
 
 // Constants
 import {
-  POST_IMAGE_SIZE,
   POST_USERNAME_BAR,
   POST_MARGIN,
-  POST_MIN_HEIGHT,
   POST_PADDING,
   POST_ICON_SIZE,
 } from "../../constants/constants";
 
 import {
-  FEED_POST_FONT_SIZE,
   FEED_POST_TIME_SIZE,
   FEED_POST_USERNAME_SIZE,
   STANDARD_SIZE,
 } from "../../theme/Fonts";
 
-import {
-  OSTRACON_ACCENT,
-  OSTRACON_PLACEHOLDER,
-  OSTRACON_PRIMARY,
-} from "../../theme/Colours";
+import { OSTRACON_PLACEHOLDER } from "../../theme/Colours";
 
 const FeedPost = ({ item }) => {
   useEffect(() => {
@@ -102,12 +97,7 @@ const FeedPost = ({ item }) => {
   return (
     <View style={styles.feedWrapper}>
       <View style={styles.feedHeader}>
-        <Avatar.Image
-          style={styles.feedImage}
-          size={POST_IMAGE_SIZE}
-          source={item["user"]["image"]}
-        />
-
+        <Avatar size="medium" source={item["user"]["image"]} />
         <View style={styles.feedInfo}>
           <Text style={styles.feedUsername}>{item["user"]["id"]}</Text>
           <Text style={styles.feedTime}>posted {postedText}</Text>
