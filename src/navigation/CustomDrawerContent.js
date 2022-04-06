@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { navigate } from "./RootNavigation";
 import { ThemeContext } from "../context/ThemeContext";
 
@@ -16,6 +16,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {} from "@fortawesome/free-solid-svg-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useTheme } from "@ui-kitten/components";
 
 const CustomDrawerContent = (props) => {
   const themeContext = useContext(ThemeContext);

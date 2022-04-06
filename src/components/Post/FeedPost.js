@@ -7,7 +7,7 @@ import {
   Dimensions,
 } from "react-native";
 
-import { Avatar } from "@ui-kitten/components";
+import { Avatar, useTheme } from "@ui-kitten/components";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -93,9 +93,15 @@ const FeedPost = ({ item }) => {
   });
 
   const [postedText, setPostedText] = useState("");
+  const theme = useTheme();
 
   return (
-    <View style={styles.feedWrapper}>
+    <View
+      style={[
+        styles.feedWrapper,
+        { backgroundColor: theme["base-background-5"] },
+      ]}
+    >
       <View style={styles.feedHeader}>
         <Avatar size="medium" source={item["user"]["image"]} />
         <View style={styles.feedInfo}>

@@ -4,7 +4,8 @@ import { AppRegistry, Platform } from "react-native";
 // Import Theme Libraries
 import * as eva from "@eva-design/eva";
 import { ApplicationProvider } from "@ui-kitten/components";
-import { default as myTheme } from "./src/theme/theme.json";
+import { default as lightOstracon } from "./src/theme/lightOstracon.json";
+import { default as darkOstracon } from "./src/theme/darkOstracon.json";
 import { ThemeContext } from "./src/context/ThemeContext";
 
 // Import Navigation Libraries
@@ -24,10 +25,13 @@ if (Platform.OS === "android") {
 const App = () => {
   // States
   const [theme, setTheme] = useState("light");
+  const [myTheme, setMyTheme] = useState(lightOstracon);
 
   const toggleTheme = () => {
     const nextTheme = theme === "light" ? "dark" : "light";
+    const myNextTheme = nextTheme === "light" ? lightOstracon : darkOstracon;
     setTheme(nextTheme);
+    setMyTheme(myNextTheme);
   };
 
   return (
