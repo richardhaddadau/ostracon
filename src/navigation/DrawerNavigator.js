@@ -2,12 +2,12 @@ import React from "react";
 
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
-import CustomDrawerContent from "../components/CustomDrawerContent";
+import CustomDrawerContent from "./CustomDrawerContent";
 import BottomTabNavigator from "./BottomTabNavigator";
 
 const Drawer = createDrawerNavigator();
 
-const DrawerNavigator = () => {
+const DrawerNavigator = ({ theme }) => {
   return (
     <Drawer.Navigator
       drawerContent={(props) => <CustomDrawerContent {...props} />}

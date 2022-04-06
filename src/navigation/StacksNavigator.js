@@ -9,18 +9,19 @@ import MessagesNewScreen from "../screens/MessagesNewScreen";
 
 const Stack = createNativeStackNavigator();
 
-const StacksNavigator = () => {
+const StacksNavigator = ({ theme }) => {
   return (
     <Stack.Navigator>
       <Stack.Screen
         name="Drawer"
         component={DrawerNavigator}
         options={{ headerShown: false }}
+        theme={theme}
       />
       <Stack.Screen name="Chapters" component={ChaptersScreen} />
       <Stack.Screen name="Profile" component={ProfileStack} />
       <Stack.Screen name="New Post" component={PostNewScreen} />
-      <Stack.Screen name="New Message" component={MessagesNewScreen} />
+      <Stack.Screen name="New Message" component={MessagesStack} />
     </Stack.Navigator>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { navigate } from "../navigation/RootNavigation";
+import { navigate } from "./RootNavigation";
 
 import {
   DrawerContentScrollView,
@@ -14,8 +14,9 @@ import {
   faGear,
 } from "@fortawesome/free-solid-svg-icons";
 import {} from "@fortawesome/free-solid-svg-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-const CustomDrawerContent = (props, navigation) => {
+const CustomDrawerContent = (props) => {
   return (
     <DrawerContentScrollView {...props}>
       <DrawerItemList {...props} />
@@ -30,7 +31,13 @@ const CustomDrawerContent = (props, navigation) => {
       <DrawerItem
         label="Points"
         onPress={() => navigate("Chapters")}
-        icon={() => <FontAwesomeIcon icon={faMedal} size={20} />}
+        icon={() => (
+          <MaterialCommunityIcons
+            name="shield-star"
+            size={24}
+            style={{ margin: -2 }}
+          />
+        )}
         labelStyle={{ marginLeft: -20 }}
       />
       <DrawerItem

@@ -8,16 +8,10 @@ import SearchScreen from "../screens/SearchScreen";
 import NotificationsScreen from "../screens/NotificationsScreen";
 import MessagesScreen from "../screens/MessagesScreen";
 
-import TabUI from "../components/TabUI";
+// Import Custom Tab Layout
+import TabUI from "./TabUI";
 
 const Tabs = createBottomTabNavigator();
-const tabs = [
-  { name: "Home" },
-  { name: "Search" },
-  { name: "New Post" },
-  { name: "Notifications" },
-  { name: "Messages" },
-];
 
 const BottomTabNavigator = () => {
   return (

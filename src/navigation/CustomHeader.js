@@ -7,7 +7,7 @@ import {
   HEADER_BUTTON_SIZE,
   HEADER_HEIGHT,
   HEADER_ICON_SIZE,
-} from "../theme/constants";
+} from "../constants/constants";
 
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -85,11 +85,11 @@ const styles = StyleSheet.create({
     flexGrow: 2,
   },
   logoImage: {
-    width: 35,
-    height: 35,
+    width: 30,
+    height: 30,
   },
   headerText: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: "bold",
     color: "#fff",
   },

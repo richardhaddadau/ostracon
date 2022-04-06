@@ -1,14 +1,9 @@
 import React from "react";
 import { Text, View } from "react-native";
+import { SafeAreaView } from "react-native-web";
 
-const ProfileScreen = ({ route, navigation }) => {
-  return (
-    <View>
-      <View>
-        <Text>Profile Screen</Text>
-      </View>
-    </View>
-  );
+const ProfileScreen = () => {
+  return <SafeAreaView></SafeAreaView>;
 };
 
 export default ProfileScreen;

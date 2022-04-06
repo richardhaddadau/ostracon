@@ -9,7 +9,7 @@ import { curveBasis, line } from "d3-shape";
 import {
   BOTTOM_NAVIGATION_BAR_HEIGHT,
   OSTRACON_BUTTON_SPACE,
-} from "../theme/constants";
+} from "../constants/constants";
 
 // Set our dimensions
 const { width: viewWidth } = Dimensions.get("screen");

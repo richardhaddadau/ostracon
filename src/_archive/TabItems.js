@@ -7,7 +7,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import {
   BOTTOM_NAVIGATION_BUTTON_SIZE,
   OSTRACON_BUTTON_SIZE,
-} from "../theme/constants";
+} from "../constants/constants";
 
 const TabItems = ({ tabs, tabWidth }) => {
   const {

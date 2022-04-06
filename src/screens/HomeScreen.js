@@ -1,33 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, FlatList } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import axios from "axios";
 
+// Import components
 import CustomHeader from "../navigation/CustomHeader";
-import FeedPost from "../components/FeedPost";
-import { SafeAreaView } from "react-native-safe-area-context";
 
-const HomeScreen = ({ route, navigation }) => {
-  const [feedData, setFeedData] = useState({});
+// Import theme libraries
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import FollowersFeed from "./FollowersFeed";
 
-  useEffect(() => {
-    axios("https://jsonplaceholder.typicode.com/posts")
-      .then((response) => response.data)
-      .then((actualData) => setFeedData(actualData));
-  });
+const GlobalFeed = () => <View></View>;
 
-  const renderItem = ({ item }) => {
-    return <FeedPost item={item} />;
-  };
+const TopTabs = createMaterialTopTabNavigator();
 
+// Main Component
+const HomeScreen = ({ navigation }) => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <CustomHeader screenName={"Feed"} navigation={navigation} />
-      <FlatList
-        data={feedData}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        style={{ backgroundColor: "white", paddingBottom: 100 }}
-      />
+
+      <TopTabs.Navigator>
+        <TopTabs.Screen name="My Feed" component={FollowersFeed} />
+        <TopTabs.Screen name="Global" component={GlobalFeed} />
+      </TopTabs.Navigator>
     </SafeAreaView>
   );
 };
