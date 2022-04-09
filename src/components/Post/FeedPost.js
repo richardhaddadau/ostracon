@@ -44,9 +44,10 @@ const FeedPost = ({ item }) => {
     let timeAgo;
 
     const timeObj = {
-      minute: 60,
-      hour: 3600,
-      day: 86400,
+      minute: 60, // 60 Seconds
+      hour: 3600, // 60 Seconds x 60 Minutes
+      day: 86400, // 60 Seconds x 60 Minutes x 24 Hours
+      year: 31536000, // 60 Seconds x 60 Minutes x 24 Hours x 365 Days
     };
 
     const monthObj = {
@@ -82,10 +83,15 @@ const FeedPost = ({ item }) => {
         timeAgoInHours === 1
           ? `${timeAgoInHours} hour ago`
           : `${timeAgoInHours} hours ago`;
+    } else if (timeDiff < timeObj.year) {
+      let timeAgoExact = `${createdAt.getDay()} ${
+        monthObj[createdAt.getMonth()]
+      }`;
+      timeAgo = timeAgoExact;
     } else {
-      let timeAgoExact = `${
-        monthObj[rightNow.getMonth()]
-      } ${rightNow.getDay()} `;
+      let timeAgoExact = `${createdAt.getDay()} ${
+        monthObj[createdAt.getMonth()]
+      } ${createdAt.getFullYear().toString().substring(2)}`;
       timeAgo = timeAgoExact;
     }
 

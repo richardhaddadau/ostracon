@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { navigate } from "./RootNavigation";
 import { ThemeContext } from "../context/ThemeContext";
 
@@ -15,22 +16,48 @@ import {
   faGear,
 } from "@fortawesome/free-solid-svg-icons";
 import {} from "@fortawesome/free-solid-svg-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useTheme } from "@ui-kitten/components";
+import { MaterialCommunityIcons, Feather } from "@expo/vector-icons";
+import { Divider, useTheme } from "@ui-kitten/components";
 
 const CustomDrawerContent = (props) => {
   const themeContext = useContext(ThemeContext);
 
+  const theme = useTheme();
+
   return (
-    <DrawerContentScrollView {...props}>
+    <DrawerContentScrollView
+      {...props}
+      style={{
+        backgroundColor:
+          themeContext.theme === "light"
+            ? theme["color-base-background"]
+            : theme["color-primary-default"],
+      }}
+    >
       <DrawerItemList {...props} />
       <DrawerItem
         label="Chapters"
         onPress={() => {
           navigate("Chapters");
         }}
-        icon={() => <FontAwesomeIcon icon={faBookBookmark} size={20} />}
-        labelStyle={{ marginLeft: -20 }}
+        icon={() => (
+          <FontAwesomeIcon
+            icon={faBookBookmark}
+            size={20}
+            color={
+              themeContext.theme === "light"
+                ? theme["color-primary-500"]
+                : theme["color-primary-100"]
+            }
+          />
+        )}
+        labelStyle={{
+          marginLeft: -20,
+          color:
+            themeContext.theme === "light"
+              ? theme["color-primary-500"]
+              : theme["color-primary-100"],
+        }}
       />
       <DrawerItem
         label="Points"
@@ -39,33 +66,90 @@ const CustomDrawerContent = (props) => {
           <MaterialCommunityIcons
             name="shield-star"
             size={24}
+            color={
+              themeContext.theme === "light"
+                ? theme["color-primary-500"]
+                : theme["color-primary-100"]
+            }
             style={{ margin: -2 }}
           />
         )}
-        labelStyle={{ marginLeft: -20 }}
+        labelStyle={{
+          marginLeft: -20,
+          color:
+            themeContext.theme === "light"
+              ? theme["color-primary-500"]
+              : theme["color-primary-100"],
+        }}
       />
       <DrawerItem
         label="Settings"
         onPress={() => navigate("Chapters")}
-        icon={() => <FontAwesomeIcon icon={faGear} size={20} />}
-        labelStyle={{ marginLeft: -20 }}
+        icon={() => (
+          <FontAwesomeIcon
+            icon={faGear}
+            size={20}
+            color={
+              themeContext.theme === "light"
+                ? theme["color-primary-500"]
+                : theme["color-primary-100"]
+            }
+          />
+        )}
+        labelStyle={{
+          marginLeft: -20,
+          color:
+            themeContext.theme === "light"
+              ? theme["color-primary-500"]
+              : theme["color-primary-100"],
+        }}
       />
+      <Divider />
       <DrawerItem
         label="Help & Support"
         onPress={() => navigate("Chapters")}
         labelStyle={{
-          paddingTop: 15,
-          borderTopColor: "#e7e7e7",
-          borderTopWidth: 1,
+          color:
+            themeContext.theme === "light"
+              ? theme["color-primary-500"]
+              : theme["color-primary-100"],
         }}
       />
+      <Divider />
       <DrawerItem
-        label="Switch to Dark"
+        label={
+          themeContext.theme === "light" ? "Switch to Dark" : "Switch to Light"
+        }
         onPress={themeContext.toggleTheme}
+        icon={() =>
+          themeContext.theme === "light" ? (
+            <Feather
+              name="moon"
+              size={20}
+              color={
+                themeContext.theme === "light"
+                  ? theme["color-primary-500"]
+                  : theme["color-primary-100"]
+              }
+            />
+          ) : (
+            <Feather
+              name="sun"
+              size={24}
+              color={
+                themeContext.theme === "light"
+                  ? theme["color-primary-500"]
+                  : theme["color-primary-100"]
+              }
+            />
+          )
+        }
         labelStyle={{
-          paddingTop: 15,
-          borderTopColor: "#e7e7e7",
-          borderTopWidth: 1,
+          marginLeft: -20,
+          color:
+            themeContext.theme === "light"
+              ? theme["color-primary-500"]
+              : theme["color-primary-100"],
         }}
       />
     </DrawerContentScrollView>

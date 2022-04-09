@@ -9,9 +9,9 @@ export const OSTRACON_BUTTON_SIZE = 60;
 export const OSTRACON_BUTTON_BOTTOM_GAP = 22;
 
 // Header
-export const HEADER_HEIGHT = 55;
-export const HEADER_ICON_SIZE = 20;
-export const HEADER_BUTTON_SIZE = 32.5;
+export const HEADER_HEIGHT = 50;
+export const HEADER_ICON_SIZE = 18;
+export const HEADER_BUTTON_SIZE = 30;
 
 // Feed
 export const FEED_GUTTER = 10;

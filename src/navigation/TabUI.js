@@ -21,21 +21,8 @@ import {
 
 // Import icons
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import {
-  faHouse as faHouseSolid,
-  faMagnifyingGlass as faMagnifyingGlassSolid,
-  faBell as faBellSolid,
-  faEnvelope as faEnvelopeSolid,
-} from "@fortawesome/free-solid-svg-icons";
-import { faBell, faEnvelope } from "@fortawesome/free-regular-svg-icons";
 
 import { navigate } from "./RootNavigation";
-import {
-  OSTRACON_ACCENT,
-  OSTRACON_BADGE,
-  OSTRACON_PRIMARY,
-} from "../theme/Colours";
 
 const { width: viewWidth } = Dimensions.get("window");
 const barHeight = BOTTOM_NAVIGATION_BAR_HEIGHT;
@@ -160,14 +147,16 @@ const TabUI = ({ state, navigation }) => {
                 elevation: 5,
               }}
             >
-              {/* Only show badge for badge buttons*/}
-              {index > 2 ? null : null}
+              <View>
+                {/* Only show badge for badge buttons*/}
+                {index > 2 ? null : null}
 
-              <MaterialCommunityIcons
-                name={focusedIconsObj[route.name]}
-                size={buttonIconSize}
-                color={isFocused ? "#fff" : "#2d2f46"}
-              />
+                <MaterialCommunityIcons
+                  name={focusedIconsObj[route.name]}
+                  size={buttonIconSize}
+                  color={isFocused ? "#fff" : "#2d2f46"}
+                />
+              </View>
             </TouchableOpacity>
           </View>
         );
