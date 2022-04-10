@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import axios from "axios";
+import { useTheme } from "@ui-kitten/components";
 
 // Import components
 import CustomHeader from "../navigation/CustomHeader";
@@ -16,6 +16,8 @@ const TopTabs = createMaterialTopTabNavigator();
 
 // Main Component
 const HomeScreen = ({ navigation }) => {
+  const theme = useTheme();
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <CustomHeader screenName={"Feed"} navigation={navigation} />

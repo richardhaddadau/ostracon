@@ -4,6 +4,9 @@ import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native";
 // Import tab navigator main shape
 import TabShape from "./TabShape";
 
+// Import Theme
+import { useTheme } from "@ui-kitten/components";
+
 // Import constants
 import {
   BOTTOM_NAVIGATION_BAR_HEIGHT,
@@ -18,21 +21,8 @@ import {
 
 // Import icons
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import {
-  faHouse as faHouseSolid,
-  faMagnifyingGlass as faMagnifyingGlassSolid,
-  faBell as faBellSolid,
-  faEnvelope as faEnvelopeSolid,
-} from "@fortawesome/free-solid-svg-icons";
-import { faBell, faEnvelope } from "@fortawesome/free-regular-svg-icons";
 
 import { navigate } from "./RootNavigation";
-import {
-  OSTRACON_ACCENT,
-  OSTRACON_BADGE,
-  OSTRACON_PRIMARY,
-} from "../theme/Colours";
 
 const { width: viewWidth } = Dimensions.get("window");
 const barHeight = BOTTOM_NAVIGATION_BAR_HEIGHT;
@@ -45,6 +35,8 @@ const ostraconIconSize = OSTRACON_ICON_SIZE;
 const tabWidth = (viewWidth - ostraconSpace) / 4;
 
 const TabUI = ({ state, navigation }) => {
+  const theme = useTheme();
+
   const [currentScreen, setCurrentScreen] = useState("");
   const [currentRoute, setCurrentRoute] = useState("");
 
@@ -110,7 +102,12 @@ const TabUI = ({ state, navigation }) => {
               }}
               onLongPress={onLongPress}
               key={route["key"]}
-              style={styles.ostraconButton}
+              style={[
+                styles.ostraconButton,
+                {
+                  backgroundColor: theme["color-primary-default"],
+                },
+              ]}
             >
               <MaterialCommunityIcons
                 name={
@@ -150,18 +147,16 @@ const TabUI = ({ state, navigation }) => {
                 elevation: 5,
               }}
             >
-              {/* Only show badge for badge buttons*/}
-              {index > 2 ? (
-                <Badge theme={theme} style={styles.tabBadge}>
-                  99+
-                </Badge>
-              ) : null}
+              <View>
+                {/* Only show badge for badge buttons*/}
+                {index > 2 ? null : null}
 
-              <MaterialCommunityIcons
-                name={focusedIconsObj[route.name]}
-                size={buttonIconSize}
-                color={isFocused ? "#fff" : "#2d2f46"}
-              />
+                <MaterialCommunityIcons
+                  name={focusedIconsObj[route.name]}
+                  size={buttonIconSize}
+                  color={isFocused ? "#fff" : "#2d2f46"}
+                />
+              </View>
             </TouchableOpacity>
           </View>
         );
@@ -202,7 +197,6 @@ const styles = StyleSheet.create({
     width: ostraconSize,
     height: ostraconSize,
 
-    backgroundColor: "#2d2f46",
     borderRadius: 100,
 
     shadowOffset: { width: 2, height: 5 },

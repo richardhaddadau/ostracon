@@ -75,12 +75,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
 
-    width: "20%",
+    width: "15%",
   },
   headerTitle: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "flex-start",
 
     flexGrow: 2,
   },
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     height: 30,
   },
   headerText: {
-    fontSize: 22,
+    fontSize: 16,
     fontWeight: "bold",
     color: "#fff",
   },

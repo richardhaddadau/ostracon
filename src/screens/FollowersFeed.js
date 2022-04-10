@@ -4,7 +4,7 @@ import { FlatList, View } from "react-native";
 import PostFooter from "../components/Post/PostFooter";
 import FeedPost from "../components/Post/FeedPost";
 import posts from "../data/posts";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Divider, useTheme } from "@ui-kitten/components";
 
 const renderItem = ({ item }) => {
   return <FeedPost item={item} />;
@@ -21,6 +21,8 @@ const FollowersFeed = () => {
     setFeedData(posts);
   });
 
+  const theme = useTheme();
+
   return (
     <View style={{}}>
       <FlatList
@@ -29,6 +31,7 @@ const FollowersFeed = () => {
         keyExtractor={(item) => item["id"]}
         ItemSeparatorComponent={Divider}
         ListFooterComponent={PostFooter}
+        style={{ backgroundColor: theme["base-background"] }}
       />
     </View>
   );
