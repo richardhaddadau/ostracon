@@ -105,7 +105,7 @@ const FeedPost = ({ item }) => {
     <View
       style={[
         styles.feedWrapper,
-        { backgroundColor: theme["base-background-5"] },
+        { backgroundColor: theme["base-background"] },
       ]}
     >
       <View style={styles.feedHeader}>

@@ -53,6 +53,7 @@ const TabUI = ({ state, navigation }) => {
     Notifications: "bell",
     Messages: "message-text",
   };
+  v;
 
   const variableObj = {
     Default: "pencil-plus",

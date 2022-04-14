@@ -67,7 +67,7 @@ const TabShape = () => {
 
   return (
     <Svg width={viewWidth + 10} height={barHeight} style={styles.barBackground}>
-      <Path fill={theme["color-primary-default"]} {...{ d }} />
+      <Path fill={theme["surface"]} {...{ d }} />
     </Svg>
   );
 };

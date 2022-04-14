@@ -1,6 +1,6 @@
 {
-  "base-background": "#FFFFFF",
-  "base-background-5": "#FFFFFF",
+  "base-background": "#F7F7F7",
+  "surface": "#FFFFFF",
   "color-primary-100": "#EBECF5",
   "color-primary-200": "#D8DAEC",
   "color-primary-300": "#AEB0C6",
