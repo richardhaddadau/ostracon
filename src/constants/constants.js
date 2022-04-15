@@ -1,4 +1,5 @@
 // Navigation
+export const DRAWER_NAVIGATION_ICON_SIZE = 18;
 export const BOTTOM_NAVIGATION_FULL_HEIGHT = 82;
 export const BOTTOM_NAVIGATION_BAR_HEIGHT = 55;
 export const BOTTOM_NAVIGATION_ICON_SIZE = 20;

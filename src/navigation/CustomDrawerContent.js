@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import { StyleSheet, View, TouchableOpacity } from "react-native";
+import React, { useContext } from "react";
 import { navigate } from "./RootNavigation";
 import { ThemeContext } from "../context/ThemeContext";
 
@@ -18,8 +17,18 @@ import {
   Sun as SunActive,
 } from "../components/Ostracon-Active";
 
+import {
+  Bookmark as BookmarkStd,
+  Award as AwardStd,
+  Moon as MoonStd,
+  Settings as SettingsStd,
+  Sun as SunStd,
+} from "../components/Ostracon-Std";
+
 import { Divider, useTheme } from "@ui-kitten/components";
-import { BOTTOM_NAVIGATION_ICON_SIZE } from "../constants/constants";
+
+// Import Constants
+import { DRAWER_NAVIGATION_ICON_SIZE } from "../constants/constants";
 
 const CustomDrawerContent = (props) => {
   const themeContext = useContext(ThemeContext);
@@ -43,8 +52,8 @@ const CustomDrawerContent = (props) => {
           navigate("Chapters");
         }}
         icon={() => (
-          <BookmarkActive
-            size={BOTTOM_NAVIGATION_ICON_SIZE}
+          <BookmarkStd
+            size={DRAWER_NAVIGATION_ICON_SIZE}
             color={
               themeContext.theme === "light"
                 ? theme["color-primary-500"]
@@ -65,8 +74,8 @@ const CustomDrawerContent = (props) => {
         label="Points"
         onPress={() => navigate("Chapters")}
         icon={() => (
-          <AwardActive
-            size={BOTTOM_NAVIGATION_ICON_SIZE}
+          <AwardStd
+            size={DRAWER_NAVIGATION_ICON_SIZE}
             color={
               themeContext.theme === "light"
                 ? theme["color-primary-500"]
@@ -87,8 +96,8 @@ const CustomDrawerContent = (props) => {
         label="Settings"
         onPress={() => navigate("Chapters")}
         icon={() => (
-          <SettingsActive
-            size={BOTTOM_NAVIGATION_ICON_SIZE}
+          <SettingsStd
+            size={DRAWER_NAVIGATION_ICON_SIZE}
             color={
               themeContext.theme === "light"
                 ? theme["color-primary-500"]
@@ -124,8 +133,8 @@ const CustomDrawerContent = (props) => {
         onPress={themeContext.toggleTheme}
         icon={() =>
           themeContext.theme === "light" ? (
-            <MoonActive
-              size={20}
+            <MoonStd
+              size={DRAWER_NAVIGATION_ICON_SIZE}
               color={
                 themeContext.theme === "light"
                   ? theme["color-primary-500"]
@@ -134,8 +143,8 @@ const CustomDrawerContent = (props) => {
               style={{ margin: -2 }}
             />
           ) : (
-            <SunActive
-              size={24}
+            <SunStd
+              size={DRAWER_NAVIGATION_ICON_SIZE}
               color={
                 themeContext.theme === "light"
                   ? theme["color-primary-500"]
