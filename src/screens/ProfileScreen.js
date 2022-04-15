@@ -20,8 +20,9 @@ const ProfileScreen = ({ navigation }) => {
 
       <ProfileHeader />
       <Tabs.Navigator>
-        <Tabs.Screen name="Test" component={FollowersFeed} />
-        <Tabs.Screen name="Another" component={FollowersFeed} />
+        <Tabs.Screen name="Posts" component={FollowersFeed} />
+        <Tabs.Screen name="Replies" component={FollowersFeed} />
+        <Tabs.Screen name="Praises" component={FollowersFeed} />
       </Tabs.Navigator>
     </SafeAreaView>
   );
