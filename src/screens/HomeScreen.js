@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, FlatList } from "react-native";
+import React, { lazy } from "react";
+import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useTheme } from "@ui-kitten/components";
+import { useTheme, Layout, Tab, TabView, Text } from "@ui-kitten/components";
 
 // Import components
 import CustomHeader from "../navigation/CustomHeader";
-
-// Import theme libraries
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+
+// Import Screens
 import FollowersFeed from "./FollowersFeed";
+import SearchFeed from "./SearchFeed";
 
 const GlobalFeed = () => <View></View>;
 
@@ -23,8 +24,21 @@ const HomeScreen = ({ navigation }) => {
       <CustomHeader screenName={"Feed"} navigation={navigation} />
 
       <TopTabs.Navigator>
-        <TopTabs.Screen name="My Feed" component={FollowersFeed} />
-        <TopTabs.Screen name="Global" component={GlobalFeed} />
+        <TopTabs.Screen
+          name="My Feed"
+          component={FollowersFeed}
+          screenOptions={{ lazy: true }}
+        />
+        <TopTabs.Screen
+          name="Global"
+          component={GlobalFeed}
+          screenOptions={{ lazy: true }}
+        />
+        <TopTabs.Screen
+          name="Search"
+          component={SearchFeed}
+          screenOptions={{ lazy: true }}
+        />
       </TopTabs.Navigator>
     </SafeAreaView>
   );

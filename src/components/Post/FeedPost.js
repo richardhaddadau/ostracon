@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   TouchableOpacity,
+  TouchableWithoutFeedback,
   View,
   Text,
   StyleSheet,
@@ -34,6 +35,7 @@ import {
 } from "../../theme/Fonts";
 
 import { OSTRACON_PLACEHOLDER } from "../../theme/Colours";
+import { Touchable } from "react-native-web";
 
 const FeedPost = ({ item }) => {
   useEffect(() => {
@@ -115,13 +117,15 @@ const FeedPost = ({ item }) => {
           <Text style={styles.feedTime}>posted {postedText}</Text>
         </View>
 
-        <TouchableOpacity style={styles.menuButton}>
-          <FontAwesomeIcon
-            icon={faEllipsisSolid}
-            size={POST_ICON_SIZE}
-            color={"#b7b7b7"}
-          />
-        </TouchableOpacity>
+        <TouchableWithoutFeedback>
+          <View style={styles.menuButton}>
+            <FontAwesomeIcon
+              icon={faEllipsisSolid}
+              size={POST_ICON_SIZE}
+              color={"#b7b7b7"}
+            />
+          </View>
+        </TouchableWithoutFeedback>
       </View>
 
       <View style={styles.feedBody}>
@@ -133,59 +137,67 @@ const FeedPost = ({ item }) => {
       </View>
 
       <View style={styles.interactionsBar}>
-        <TouchableOpacity style={styles.feedInteractions}>
-          <FontAwesomeIcon
-            icon={faHandsClappingSolid}
-            size={POST_ICON_SIZE}
-            color={"#b7b7b7"}
-          />
-          <Text style={styles.feedBadge}>{item["numberOfApplause"]}</Text>
-        </TouchableOpacity>
+        <TouchableWithoutFeedback>
+          <View style={styles.feedInteractions}>
+            <FontAwesomeIcon
+              icon={faHandsClappingSolid}
+              size={POST_ICON_SIZE}
+              color={"#b7b7b7"}
+            />
+            <Text style={styles.feedBadge}>{item["numberOfApplause"]}</Text>
+          </View>
+        </TouchableWithoutFeedback>
 
-        <TouchableOpacity style={styles.feedInteractions}>
-          <FontAwesomeIcon
-            icon={faClone}
-            size={POST_ICON_SIZE}
-            color={"#b7b7b7"}
-          />
+        <TouchableWithoutFeedback>
+          <View style={styles.feedInteractions}>
+            <FontAwesomeIcon
+              icon={faClone}
+              size={POST_ICON_SIZE}
+              color={"#b7b7b7"}
+            />
 
-          {/*<FontAwesomeIcon*/}
-          {/*  icon={faCloneSolid}*/}
-          {/*  size={POST_ICON_SIZE}*/}
-          {/*  color={OSTRACON_PRIMARY}*/}
-          {/*/>*/}
-          <Text style={styles.feedBadge}>{item["numberOfClones"]}</Text>
-        </TouchableOpacity>
+            {/*<FontAwesomeIcon*/}
+            {/*  icon={faCloneSolid}*/}
+            {/*  size={POST_ICON_SIZE}*/}
+            {/*  color={OSTRACON_PRIMARY}*/}
+            {/*/>*/}
+            <Text style={styles.feedBadge}>{item["numberOfClones"]}</Text>
+          </View>
+        </TouchableWithoutFeedback>
 
-        <TouchableOpacity style={styles.feedInteractions}>
-          <FontAwesomeIcon
-            icon={faMessage}
-            size={POST_ICON_SIZE}
-            color={"#b7b7b7"}
-          />
+        <TouchableWithoutFeedback>
+          <View style={styles.feedInteractions}>
+            <FontAwesomeIcon
+              icon={faMessage}
+              size={POST_ICON_SIZE}
+              color={"#b7b7b7"}
+            />
 
-          {/*<FontAwesomeIcon*/}
-          {/*  icon={faMessageSolid}*/}
-          {/*  size={POST_ICON_SIZE}*/}
-          {/*  color={OSTRACON_PRIMARY}*/}
-          {/*/>*/}
-          <Text style={styles.feedBadge}>{item["numberOfComments"]}</Text>
-        </TouchableOpacity>
+            {/*<FontAwesomeIcon*/}
+            {/*  icon={faMessageSolid}*/}
+            {/*  size={POST_ICON_SIZE}*/}
+            {/*  color={OSTRACON_PRIMARY}*/}
+            {/*/>*/}
+            <Text style={styles.feedBadge}>{item["numberOfComments"]}</Text>
+          </View>
+        </TouchableWithoutFeedback>
 
-        <TouchableOpacity style={styles.feedInteractions}>
-          <MaterialCommunityIcons
-            name="shield-star-outline"
-            size={24}
-            color={"#b7b7b7"}
-          />
+        <TouchableWithoutFeedback>
+          <View style={styles.feedInteractions}>
+            <MaterialCommunityIcons
+              name="shield-star-outline"
+              size={24}
+              color={"#b7b7b7"}
+            />
 
-          {/*<MaterialCommunityIcons*/}
-          {/*  name="shield-star"*/}
-          {/*  size={24}*/}
-          {/*  color={OSTRACON_PRIMARY}*/}
-          {/*/>*/}
-          <Text style={styles.feedBadge}>{item["numberOfPraises"]}</Text>
-        </TouchableOpacity>
+            {/*<MaterialCommunityIcons*/}
+            {/*  name="shield-star"*/}
+            {/*  size={24}*/}
+            {/*  color={OSTRACON_PRIMARY}*/}
+            {/*/>*/}
+            <Text style={styles.feedBadge}>{item["numberOfPraises"]}</Text>
+          </View>
+        </TouchableWithoutFeedback>
       </View>
     </View>
   );
