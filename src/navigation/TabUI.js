@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native";
+import {
+  Dimensions,
+  StyleSheet,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 
 // Import tab navigator main shape
 import TabShape from "./TabShape";
@@ -53,7 +59,6 @@ const TabUI = ({ state, navigation }) => {
     Notifications: "bell",
     Messages: "message-text",
   };
-  v;
 
   const variableObj = {
     Default: "pencil-plus",
@@ -126,29 +131,31 @@ const TabUI = ({ state, navigation }) => {
         // For the other standard buttons
         return (
           <View key={route["key"]} style={styles.tabItem}>
-            <TouchableOpacity
+            <TouchableWithoutFeedback
               accessibilityRole="button"
               accessibilityState={isFocused ? { selected: true } : {}}
               onPress={onPress}
               onLongPress={onLongPress}
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-
-                width: buttonSize,
-                height: buttonSize,
-
-                backgroundColor: isFocused ? "#937741" : "#fff",
-                borderRadius: 100,
-
-                shadowOffset: { width: 2, height: 5 },
-                shadowRadius: 5,
-                shadowOpacity: 0.65,
-                shadowColor: "black",
-                elevation: 5,
-              }}
             >
-              <View>
+              <View
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+
+                  width: buttonSize,
+                  height: buttonSize,
+
+                  backgroundColor: isFocused ? "#937741" : "#fff",
+                  borderRadius: 100,
+
+                  shadowOffset: isFocused ? { width: 2, height: 5 } : "none",
+                  shadowRadius: 5,
+                  shadowOpacity: 0.65,
+                  shadowColor: "black",
+
+                  elevation: isFocused ? 5 : 0,
+                }}
+              >
                 {/* Only show badge for badge buttons*/}
                 {index > 2 ? null : null}
 
@@ -158,7 +165,7 @@ const TabUI = ({ state, navigation }) => {
                   color={isFocused ? "#fff" : "#2d2f46"}
                 />
               </View>
-            </TouchableOpacity>
+            </TouchableWithoutFeedback>
           </View>
         );
       })}

@@ -1,6 +1,8 @@
 {
-  "base-background": "#121212",
-  "surface": "#363744",
+  "base-background": "#1b1b22",
+  "surface": "red",
+  "bottom-bar-surface": "#363744",
+  "color-primary-default": "#363744",
   "color-primary-100": "#EBECF5",
   "color-primary-200": "#D8DAEC",
   "color-primary-300": "#AEB0C6",

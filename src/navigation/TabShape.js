@@ -23,9 +23,12 @@ const shapePattern = line()
   .x(({ x }) => x)
   .y(({ y }) => y);
 
-const rect = shapePattern([
+const rectLeft = shapePattern([
   { x: -5, y: 0 },
   { x: (viewWidth - buttonSpace) / 2, y: 0 },
+]);
+
+const rectRight = shapePattern([
   { x: (viewWidth + buttonSpace) / 2, y: 0 },
   { x: viewWidth + 5, y: 0 },
   { x: viewWidth + 5, y: barHeight },
@@ -60,14 +63,18 @@ const hole = shapePattern.curve(curveBasis)([
   { x: (viewWidth + buttonSpace) / 2, y: 0 },
 ]);
 
-const d = `${rect} ${hole}`;
+const d = `${rectLeft} ${hole} ${rectRight}`;
 
 const TabShape = () => {
   const theme = useTheme();
 
   return (
     <Svg width={viewWidth + 10} height={barHeight} style={styles.barBackground}>
-      <Path fill={theme["surface"]} {...{ d }} />
+      <Path
+        fill={theme["bottom-bar-surface"]}
+        stroke={theme["color-primary-200"]}
+        {...{ d }}
+      />
     </Svg>
   );
 };
@@ -81,8 +88,6 @@ const styles = StyleSheet.create({
 
     bottom: 0,
     left: 0,
-
-    backgroundColor: "transparent",
 
     elevation: 0,
     zIndex: 0,

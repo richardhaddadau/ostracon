@@ -1,5 +1,11 @@
 import React from "react";
-import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Image,
+  Text,
+  StyleSheet,
+  TouchableWithoutFeedback,
+} from "react-native";
 
 // Import Icons
 import { Ionicons } from "@expo/vector-icons";
@@ -10,18 +16,28 @@ import {
 } from "../constants/constants";
 
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useTheme } from "@ui-kitten/components";
 
 const CustomHeader = ({ screenName, navigation }) => {
+  const theme = useTheme();
+
   return (
-    <View style={styles.headerWrapper}>
+    <View
+      style={[
+        styles.headerWrapper,
+        {
+          backgroundColor: theme["color-primary-default"],
+        },
+      ]}
+    >
       <View style={styles.headerItem}>
-        <TouchableOpacity onPress={() => navigation.openDrawer()}>
+        <TouchableWithoutFeedback onPress={() => navigation.openDrawer()}>
           <Image
             source={require("../../assets/ostracon-o-logo.png")}
             resizeMode="contain"
             style={styles.logoImage}
           />
-        </TouchableOpacity>
+        </TouchableWithoutFeedback>
       </View>
 
       <View style={styles.headerTitle}>
@@ -29,28 +45,31 @@ const CustomHeader = ({ screenName, navigation }) => {
       </View>
 
       <View style={styles.headerItem}>
-        <TouchableOpacity
-          style={{
-            backgroundColor: "#fff",
-            justifyContent: "center",
-            alignItems: "center",
-
-            width: HEADER_BUTTON_SIZE,
-            height: HEADER_BUTTON_SIZE,
-
-            borderRadius: 100,
-
-            shadowColor: "black",
-            shadowOpacity: 0.5,
-            shadowOffset: { width: 0, height: 5 },
-            shadowRadius: 10,
-
-            elevation: 5,
-          }}
+        <TouchableWithoutFeedback
           onPress={() => navigation.navigate("Profile")}
         >
-          <Ionicons name="person" size={HEADER_ICON_SIZE} color="#2d2f46" />
-        </TouchableOpacity>
+          <View
+            style={{
+              backgroundColor: "#fff",
+              justifyContent: "center",
+              alignItems: "center",
+
+              width: HEADER_BUTTON_SIZE,
+              height: HEADER_BUTTON_SIZE,
+
+              borderRadius: 100,
+
+              shadowColor: "black",
+              shadowOpacity: 0.5,
+              shadowOffset: { width: 0, height: 5 },
+              shadowRadius: 10,
+
+              elevation: 5,
+            }}
+          >
+            <Ionicons name="person" size={HEADER_ICON_SIZE} color="#2d2f46" />
+          </View>
+        </TouchableWithoutFeedback>
       </View>
     </View>
   );
@@ -65,8 +84,6 @@ const styles = StyleSheet.create({
 
     width: "100%",
     height: HEADER_HEIGHT,
-
-    backgroundColor: "#2d2f46",
 
     justifyContent: "space-between",
     alignItems: "stretch",
