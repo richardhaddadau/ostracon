@@ -23,21 +23,30 @@ const HomeScreen = ({ navigation }) => {
     <SafeAreaView style={{ flex: 1 }}>
       <CustomHeader screenName={"Feed"} navigation={navigation} />
 
-      <TopTabs.Navigator>
+      <TopTabs.Navigator
+        screenOptions={{
+          tabBarShowIcon: true,
+          tabBarLabelStyle: {
+            fontWeight: "bold",
+            fontSize: 12,
+            textTransform: "capitalize",
+          },
+        }}
+      >
         <TopTabs.Screen
           name="My Feed"
           component={FollowersFeed}
-          screenOptions={{ lazy: true }}
+          options={{ lazy: true, tabBarShowLabel: false, tabBarIcon: () => {} }}
         />
         <TopTabs.Screen
           name="Global"
           component={GlobalFeed}
-          screenOptions={{ lazy: true }}
+          options={{ lazy: true }}
         />
         <TopTabs.Screen
           name="Search"
           component={SearchFeed}
-          screenOptions={{ lazy: true }}
+          options={{ lazy: true }}
         />
       </TopTabs.Navigator>
     </SafeAreaView>

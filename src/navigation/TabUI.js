@@ -44,7 +44,6 @@ const TabUI = ({ state, navigation }) => {
   const theme = useTheme();
 
   const [currentScreen, setCurrentScreen] = useState("");
-  const [currentRoute, setCurrentRoute] = useState("");
 
   const focusedIconsObj = {
     Home: "home",
