@@ -9,15 +9,17 @@ import {
   DrawerItemList,
 } from "@react-navigation/drawer";
 
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+// Import icons
 import {
-  faBookBookmark,
-  faMedal,
-  faGear,
-} from "@fortawesome/free-solid-svg-icons";
-import {} from "@fortawesome/free-solid-svg-icons";
-import { MaterialCommunityIcons, Feather } from "@expo/vector-icons";
+  Bookmark as BookmarkActive,
+  Award as AwardActive,
+  Moon as MoonActive,
+  Settings as SettingsActive,
+  Sun as SunActive,
+} from "../components/Ostracon-Active";
+
 import { Divider, useTheme } from "@ui-kitten/components";
+import { BOTTOM_NAVIGATION_ICON_SIZE } from "../constants/constants";
 
 const CustomDrawerContent = (props) => {
   const themeContext = useContext(ThemeContext);
@@ -41,14 +43,14 @@ const CustomDrawerContent = (props) => {
           navigate("Chapters");
         }}
         icon={() => (
-          <FontAwesomeIcon
-            icon={faBookBookmark}
-            size={20}
+          <BookmarkActive
+            size={BOTTOM_NAVIGATION_ICON_SIZE}
             color={
               themeContext.theme === "light"
                 ? theme["color-primary-500"]
                 : theme["color-primary-100"]
             }
+            style={{ margin: -2 }}
           />
         )}
         labelStyle={{
@@ -63,9 +65,8 @@ const CustomDrawerContent = (props) => {
         label="Points"
         onPress={() => navigate("Chapters")}
         icon={() => (
-          <MaterialCommunityIcons
-            name="shield-star"
-            size={24}
+          <AwardActive
+            size={BOTTOM_NAVIGATION_ICON_SIZE}
             color={
               themeContext.theme === "light"
                 ? theme["color-primary-500"]
@@ -86,14 +87,14 @@ const CustomDrawerContent = (props) => {
         label="Settings"
         onPress={() => navigate("Chapters")}
         icon={() => (
-          <FontAwesomeIcon
-            icon={faGear}
-            size={20}
+          <SettingsActive
+            size={BOTTOM_NAVIGATION_ICON_SIZE}
             color={
               themeContext.theme === "light"
                 ? theme["color-primary-500"]
                 : theme["color-primary-100"]
             }
+            style={{ margin: -2 }}
           />
         )}
         labelStyle={{
@@ -123,24 +124,24 @@ const CustomDrawerContent = (props) => {
         onPress={themeContext.toggleTheme}
         icon={() =>
           themeContext.theme === "light" ? (
-            <Feather
-              name="moon"
+            <MoonActive
               size={20}
               color={
                 themeContext.theme === "light"
                   ? theme["color-primary-500"]
                   : theme["color-primary-100"]
               }
+              style={{ margin: -2 }}
             />
           ) : (
-            <Feather
-              name="sun"
+            <SunActive
               size={24}
               color={
                 themeContext.theme === "light"
                   ? theme["color-primary-500"]
                   : theme["color-primary-100"]
               }
+              style={{ margin: -2 }}
             />
           )
         }
