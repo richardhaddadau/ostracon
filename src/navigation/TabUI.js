@@ -33,6 +33,7 @@ import {
   Message as MessageStd,
   NewMessage as NewMessageStd,
   NewPost as NewPostStd,
+  Profile as ProfileStd,
 } from "../components/Ostracon-Std";
 
 import {
@@ -40,6 +41,7 @@ import {
   Search as SearchActive,
   Bell as BellActive,
   Message as MessageActive,
+  Profile as ProfileActive,
 } from "../components/Ostracon-Active";
 
 import { navigate } from "./RootNavigation";
@@ -83,16 +85,26 @@ const TabUI = ({ state, navigation }) => {
         color={theme["color-primary-default"]}
       />
     ),
+    Profile: (
+      <ProfileStd
+        size={BOTTOM_NAVIGATION_ICON_SIZE}
+        color={theme["color-primary-default"]}
+      />
+    ),
   };
 
   const focusedIconsObj = {
     Home: <HomeActive size={BOTTOM_NAVIGATION_ICON_SIZE} color={"white"} />,
     Search: <SearchActive size={BOTTOM_NAVIGATION_ICON_SIZE} color={"white"} />,
+
     Notifications: (
       <BellActive size={BOTTOM_NAVIGATION_ICON_SIZE} color={"white"} />
     ),
     Messages: (
       <MessageActive size={BOTTOM_NAVIGATION_ICON_SIZE} color={"white"} />
+    ),
+    Profile: (
+      <ProfileActive size={BOTTOM_NAVIGATION_ICON_SIZE} color={"white"} />
     ),
   };
 
