@@ -115,7 +115,7 @@ const TabUI = ({ state, navigation }) => {
 
   return (
     <View style={styles.tabBarLayout}>
-      <TabShape {...{ tabWidth }} />
+      <TabShape />
 
       {state.routes.map((route, index) => {
         const isFocused = state.index === index;

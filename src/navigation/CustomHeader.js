@@ -8,14 +8,10 @@ import {
 } from "react-native";
 
 // Import Icons
-import { Ionicons } from "@expo/vector-icons";
-import {
-  HEADER_BUTTON_SIZE,
-  HEADER_HEIGHT,
-  HEADER_ICON_SIZE,
-} from "../constants/constants";
 
-import { SafeAreaView } from "react-native-safe-area-context";
+// Import Constants
+import { HEADER_HEIGHT } from "../constants/constants";
+
 import { useTheme } from "@ui-kitten/components";
 
 const CustomHeader = ({ screenName, navigation }) => {
@@ -26,7 +22,7 @@ const CustomHeader = ({ screenName, navigation }) => {
       style={[
         styles.headerWrapper,
         {
-          backgroundColor: theme["color-primary-default"],
+          backgroundColor: "#121212",
         },
       ]}
     >
@@ -42,34 +38,6 @@ const CustomHeader = ({ screenName, navigation }) => {
 
       <View style={styles.headerTitle}>
         <Text style={styles.headerText}>{screenName}</Text>
-      </View>
-
-      <View style={styles.headerItem}>
-        <TouchableWithoutFeedback
-          onPress={() => navigation.navigate("Profile")}
-        >
-          <View
-            style={{
-              backgroundColor: "#fff",
-              justifyContent: "center",
-              alignItems: "center",
-
-              width: HEADER_BUTTON_SIZE,
-              height: HEADER_BUTTON_SIZE,
-
-              borderRadius: 100,
-
-              shadowColor: "black",
-              shadowOpacity: 0.5,
-              shadowOffset: { width: 0, height: 5 },
-              shadowRadius: 10,
-
-              elevation: 5,
-            }}
-          >
-            <Ionicons name="person" size={HEADER_ICON_SIZE} color="#2d2f46" />
-          </View>
-        </TouchableWithoutFeedback>
       </View>
     </View>
   );

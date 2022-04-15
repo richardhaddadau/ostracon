@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  View,
-  Text,
-  StyleSheet,
-  Dimensions,
-} from "react-native";
+import { TouchableWithoutFeedback, View, Text, StyleSheet } from "react-native";
 
 import { Avatar, useTheme } from "@ui-kitten/components";
 
@@ -25,15 +18,8 @@ import {
   Comment as CommentActive,
 } from "../Ostracon-Active";
 
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faMessage, faClone } from "@fortawesome/free-regular-svg-icons";
-import {
-  faEllipsis as faEllipsisSolid,
-  faHandsClapping as faHandsClappingSolid,
-  faMessage as faMessageSolid,
-  faClone as faCloneSolid,
-} from "@fortawesome/free-solid-svg-icons";
+import { faEllipsis as faEllipsisSolid } from "@fortawesome/free-solid-svg-icons";
 
 // Import Constants
 import {
@@ -50,7 +36,6 @@ import {
 } from "../../theme/Fonts";
 
 import { OSTRACON_PLACEHOLDER } from "../../theme/Colours";
-import { Touchable } from "react-native-web";
 
 const FeedPost = ({ item }) => {
   useEffect(() => {
@@ -101,12 +86,12 @@ const FeedPost = ({ item }) => {
           ? `${timeAgoInHours} hour ago`
           : `${timeAgoInHours} hours ago`;
     } else if (timeDiff < timeObj.year) {
-      let timeAgoExact = `${createdAt.getDay()} ${
+      let timeAgoExact = `${createdAt.getDate()} ${
         monthObj[createdAt.getMonth()]
       }`;
       timeAgo = timeAgoExact;
     } else {
-      let timeAgoExact = `${createdAt.getDay()} ${
+      let timeAgoExact = `${createdAt.getDate()} ${
         monthObj[createdAt.getMonth()]
       } ${createdAt.getFullYear().toString().substring(2)}`;
       timeAgo = timeAgoExact;
@@ -126,9 +111,16 @@ const FeedPost = ({ item }) => {
       ]}
     >
       <View style={styles.feedHeader}>
-        <Avatar size="medium" source={item["user"]["image"]} />
+        <Avatar
+          size="medium"
+          shape="rounded"
+          source={item["user"]["image"]}
+          style={styles.feedImage}
+        />
         <View style={styles.feedInfo}>
-          <Text style={styles.feedUsername}>{item["user"]["id"]}</Text>
+          <Text style={styles.feedUsername}>
+            {item["user"]["name"]} • {item["user"]["username"]}
+          </Text>
           <Text style={styles.feedTime}>posted {postedText}</Text>
         </View>
 
@@ -146,7 +138,7 @@ const FeedPost = ({ item }) => {
       <View style={styles.feedBody}>
         <View style={styles.feedPost}>
           <TouchableWithoutFeedback onPress={() => console.log(item["id"])}>
-            <Text>{item["content"]}</Text>
+            <Text style={{ fontSize: STANDARD_SIZE }}>{item["content"]}</Text>
           </TouchableWithoutFeedback>
         </View>
       </View>
@@ -202,9 +194,7 @@ const styles = StyleSheet.create({
 
     alignItems: "flex-start",
   },
-  feedImage: {
-    borderRadius: 100,
-  },
+  feedImage: {},
   feedInfo: {
     flexGrow: 1,
     flexDirection: "column",
@@ -233,9 +223,7 @@ const styles = StyleSheet.create({
     flex: 1,
 
     paddingBottom: POST_MARGIN,
-
     marginVertical: POST_MARGIN,
-    fontSize: STANDARD_SIZE,
   },
   interactionsBar: {
     flex: 1,

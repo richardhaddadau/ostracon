@@ -1,7 +1,9 @@
-import React, { lazy } from "react";
+import React from "react";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useTheme, Layout, Tab, TabView, Text } from "@ui-kitten/components";
+
+// Import Theme
+import { useTheme } from "@ui-kitten/components";
 
 // Import components
 import CustomHeader from "../navigation/CustomHeader";
@@ -15,7 +17,6 @@ const GlobalFeed = () => <View></View>;
 
 const TopTabs = createMaterialTopTabNavigator();
 
-// Main Component
 const HomeScreen = ({ navigation }) => {
   const theme = useTheme();
 
@@ -26,6 +27,9 @@ const HomeScreen = ({ navigation }) => {
       <TopTabs.Navigator
         screenOptions={{
           tabBarShowIcon: true,
+          tabBarIndicatorStyle: {
+            backgroundColor: theme["color-primary-default"],
+          },
           tabBarLabelStyle: {
             fontWeight: "bold",
             fontSize: 12,
