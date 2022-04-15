@@ -10,6 +10,21 @@ import {
 
 import { Avatar, useTheme } from "@ui-kitten/components";
 
+// Import Icons
+import {
+  Attach as AttachStd,
+  Award as AwardStd,
+  Clap as ClapStd,
+  Comment as CommentStd,
+} from "../Ostracon-Std";
+
+import {
+  Attach as AttachActive,
+  Award as AwardActive,
+  Clap as ClapActive,
+  Comment as CommentActive,
+} from "../Ostracon-Active";
+
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faMessage, faClone } from "@fortawesome/free-regular-svg-icons";
@@ -20,7 +35,7 @@ import {
   faClone as faCloneSolid,
 } from "@fortawesome/free-solid-svg-icons";
 
-// Constants
+// Import Constants
 import {
   POST_USERNAME_BAR,
   POST_MARGIN,
@@ -130,71 +145,37 @@ const FeedPost = ({ item }) => {
 
       <View style={styles.feedBody}>
         <View style={styles.feedPost}>
-          <TouchableOpacity onPress={() => console.log(item["id"])}>
+          <TouchableWithoutFeedback onPress={() => console.log(item["id"])}>
             <Text>{item["content"]}</Text>
-          </TouchableOpacity>
+          </TouchableWithoutFeedback>
         </View>
       </View>
 
       <View style={styles.interactionsBar}>
         <TouchableWithoutFeedback>
           <View style={styles.feedInteractions}>
-            <FontAwesomeIcon
-              icon={faHandsClappingSolid}
-              size={POST_ICON_SIZE}
-              color={"#b7b7b7"}
-            />
+            <ClapStd size={POST_ICON_SIZE} color={"#b7b7b7"} />
             <Text style={styles.feedBadge}>{item["numberOfApplause"]}</Text>
           </View>
         </TouchableWithoutFeedback>
 
         <TouchableWithoutFeedback>
           <View style={styles.feedInteractions}>
-            <FontAwesomeIcon
-              icon={faClone}
-              size={POST_ICON_SIZE}
-              color={"#b7b7b7"}
-            />
-
-            {/*<FontAwesomeIcon*/}
-            {/*  icon={faCloneSolid}*/}
-            {/*  size={POST_ICON_SIZE}*/}
-            {/*  color={OSTRACON_PRIMARY}*/}
-            {/*/>*/}
+            <AttachStd size={POST_ICON_SIZE} color={"#b7b7b7"} />
             <Text style={styles.feedBadge}>{item["numberOfClones"]}</Text>
           </View>
         </TouchableWithoutFeedback>
 
         <TouchableWithoutFeedback>
           <View style={styles.feedInteractions}>
-            <FontAwesomeIcon
-              icon={faMessage}
-              size={POST_ICON_SIZE}
-              color={"#b7b7b7"}
-            />
-
-            {/*<FontAwesomeIcon*/}
-            {/*  icon={faMessageSolid}*/}
-            {/*  size={POST_ICON_SIZE}*/}
-            {/*  color={OSTRACON_PRIMARY}*/}
-            {/*/>*/}
+            <CommentStd size={POST_ICON_SIZE} color={"#b7b7b7"} />
             <Text style={styles.feedBadge}>{item["numberOfComments"]}</Text>
           </View>
         </TouchableWithoutFeedback>
 
         <TouchableWithoutFeedback>
           <View style={styles.feedInteractions}>
-            <MaterialCommunityIcons
-              name="shield-star-outline"
-              size={24}
-              color={"#b7b7b7"}
-            />
-
-            {/*<MaterialCommunityIcons*/}
-            {/*  name="shield-star"*/}
-            {/*  size={24}*/}
-            {/*  color={OSTRACON_PRIMARY}*/}
-            {/*/>*/}
+            <AwardStd size={24} color={"#b7b7b7"} />
             <Text style={styles.feedBadge}>{item["numberOfPraises"]}</Text>
           </View>
         </TouchableWithoutFeedback>

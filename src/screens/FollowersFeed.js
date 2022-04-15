@@ -27,6 +27,7 @@ const FollowersFeed = () => {
     <View style={{}}>
       <FlatList
         data={feedData}
+        inverted={true}
         renderItem={renderItem}
         keyExtractor={(item) => item["id"]}
         ItemSeparatorComponent={Divider}
