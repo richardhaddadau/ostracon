@@ -9,6 +9,7 @@ import {
   Award as AwardStd,
   Clap as ClapStd,
   Comment as CommentStd,
+  Ellipse as EllipseStd,
 } from "../Ostracon-Std";
 
 import {
@@ -16,10 +17,8 @@ import {
   Award as AwardActive,
   Clap as ClapActive,
   Comment as CommentActive,
+  Ellipse as EllipseActive,
 } from "../Ostracon-Active";
-
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faEllipsis as faEllipsisSolid } from "@fortawesome/free-solid-svg-icons";
 
 // Import Constants
 import {
@@ -126,11 +125,7 @@ const FeedPost = ({ item }) => {
 
         <TouchableWithoutFeedback>
           <View style={styles.menuButton}>
-            <FontAwesomeIcon
-              icon={faEllipsisSolid}
-              size={POST_ICON_SIZE}
-              color={"#b7b7b7"}
-            />
+            <EllipseStd size={POST_ICON_SIZE} color={"#b7b7b7"} />
           </View>
         </TouchableWithoutFeedback>
       </View>
