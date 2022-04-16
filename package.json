@@ -12,6 +12,7 @@
   "dependencies": {
     "@babel/preset-env": "^7.1.6",
     "@babel/preset-typescript": "^7.16.7",
+    "@cometchat-pro/react-native-chat": "3.0.2",
     "@eva-design/eva": "^2.1.1",
     "@expo/vector-icons": "^12.0.5",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
