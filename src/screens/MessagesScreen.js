@@ -1,14 +1,51 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import CustomHeader from "../navigation/CustomHeader";
+// Import Theme
+import { useTheme } from "@ui-kitten/components";
 
-const MessagesScreen = ({ route, navigation }) => {
+// Import Components
+import CustomHeader from "../navigation/CustomHeader";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+
+import SearchFeed from "./SearchFeed";
+
+const GlobalFeed = () => <View></View>;
+
+const TopTabs = createMaterialTopTabNavigator();
+
+const MessagesScreen = ({ navigation }) => {
+  const theme = useTheme();
+
   return (
-    <SafeAreaView>
-      <CustomHeader screenName={"Messages"} navigation={navigation} />
-      <Text>Messages Screen</Text>
+    <SafeAreaView style={{ flex: 1 }}>
+      <CustomHeader screenName={"Feed"} navigation={navigation} />
+
+      <TopTabs.Navigator
+        screenOptions={{
+          tabBarShowIcon: true,
+          tabBarIndicatorStyle: {
+            backgroundColor: theme["color-primary-default"],
+          },
+          tabBarLabelStyle: {
+            fontWeight: "bold",
+            fontSize: 12,
+            textTransform: "capitalize",
+          },
+        }}
+      >
+        <TopTabs.Screen
+          name="Private"
+          component={GlobalFeed}
+          options={{ lazy: true }}
+        />
+        <TopTabs.Screen
+          name="Group"
+          component={SearchFeed}
+          options={{ lazy: true }}
+        />
+      </TopTabs.Navigator>
     </SafeAreaView>
   );
 };

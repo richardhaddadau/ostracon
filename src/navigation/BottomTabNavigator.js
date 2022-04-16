@@ -10,6 +10,7 @@ import MessagesScreen from "../screens/MessagesScreen";
 
 // Import Custom Tab Layout
 import TabUI from "./TabUI";
+import ProfileScreen from "../screens/ProfileScreen";
 
 const Tabs = createBottomTabNavigator();
 
@@ -23,10 +24,11 @@ const BottomTabNavigator = () => {
       }}
     >
       <Tabs.Screen name="Home" component={HomeScreen} />
-      <Tabs.Screen name="Search" component={SearchScreen} />
-      <Tabs.Screen name="Variable" component={HomeScreen} />
+      {/*<Tabs.Screen name="Search" component={SearchScreen} />*/}
       <Tabs.Screen name="Notifications" component={NotificationsScreen} />
+      <Tabs.Screen name="Variable" component={HomeScreen} />
       <Tabs.Screen name="Messages" component={MessagesScreen} />
+      <Tabs.Screen name="Profile" component={ProfileScreen} />
     </Tabs.Navigator>
   );
 };

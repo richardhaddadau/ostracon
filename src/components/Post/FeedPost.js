@@ -1,25 +1,27 @@
 import React, { useEffect, useState } from "react";
-import {
-  TouchableOpacity,
-  View,
-  Text,
-  StyleSheet,
-  Dimensions,
-} from "react-native";
+import { TouchableWithoutFeedback, View, Text, StyleSheet } from "react-native";
 
 import { Avatar, useTheme } from "@ui-kitten/components";
 
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faMessage, faClone } from "@fortawesome/free-regular-svg-icons";
+// Import Icons
 import {
-  faEllipsis as faEllipsisSolid,
-  faHandsClapping as faHandsClappingSolid,
-  faMessage as faMessageSolid,
-  faClone as faCloneSolid,
-} from "@fortawesome/free-solid-svg-icons";
+  Attach as AttachStd,
+  Award as AwardStd,
+  Clap as ClapStd,
+  Comment as CommentStd,
+} from "../Ostracon-Std";
 
-// Constants
+import {
+  Attach as AttachActive,
+  Award as AwardActive,
+  Clap as ClapActive,
+  Comment as CommentActive,
+} from "../Ostracon-Active";
+
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faEllipsis as faEllipsisSolid } from "@fortawesome/free-solid-svg-icons";
+
+// Import Constants
 import {
   POST_USERNAME_BAR,
   POST_MARGIN,
@@ -84,12 +86,12 @@ const FeedPost = ({ item }) => {
           ? `${timeAgoInHours} hour ago`
           : `${timeAgoInHours} hours ago`;
     } else if (timeDiff < timeObj.year) {
-      let timeAgoExact = `${createdAt.getDay()} ${
+      let timeAgoExact = `${createdAt.getDate()} ${
         monthObj[createdAt.getMonth()]
       }`;
       timeAgo = timeAgoExact;
     } else {
-      let timeAgoExact = `${createdAt.getDay()} ${
+      let timeAgoExact = `${createdAt.getDate()} ${
         monthObj[createdAt.getMonth()]
       } ${createdAt.getFullYear().toString().substring(2)}`;
       timeAgo = timeAgoExact;
@@ -105,87 +107,70 @@ const FeedPost = ({ item }) => {
     <View
       style={[
         styles.feedWrapper,
-        { backgroundColor: theme["base-background-5"] },
+        { backgroundColor: theme["base-background"] },
       ]}
     >
       <View style={styles.feedHeader}>
-        <Avatar size="medium" source={item["user"]["image"]} />
+        <Avatar
+          size="medium"
+          shape="rounded"
+          source={item["user"]["image"]}
+          style={styles.feedImage}
+        />
         <View style={styles.feedInfo}>
-          <Text style={styles.feedUsername}>{item["user"]["id"]}</Text>
+          <Text style={styles.feedUsername}>
+            {item["user"]["name"]} • {item["user"]["username"]}
+          </Text>
           <Text style={styles.feedTime}>posted {postedText}</Text>
         </View>
 
-        <TouchableOpacity style={styles.menuButton}>
-          <FontAwesomeIcon
-            icon={faEllipsisSolid}
-            size={POST_ICON_SIZE}
-            color={"#b7b7b7"}
-          />
-        </TouchableOpacity>
+        <TouchableWithoutFeedback>
+          <View style={styles.menuButton}>
+            <FontAwesomeIcon
+              icon={faEllipsisSolid}
+              size={POST_ICON_SIZE}
+              color={"#b7b7b7"}
+            />
+          </View>
+        </TouchableWithoutFeedback>
       </View>
 
       <View style={styles.feedBody}>
         <View style={styles.feedPost}>
-          <TouchableOpacity onPress={() => console.log(item["id"])}>
-            <Text>{item["content"]}</Text>
-          </TouchableOpacity>
+          <TouchableWithoutFeedback onPress={() => console.log(item["id"])}>
+            <Text style={{ fontSize: STANDARD_SIZE }}>{item["content"]}</Text>
+          </TouchableWithoutFeedback>
         </View>
       </View>
 
       <View style={styles.interactionsBar}>
-        <TouchableOpacity style={styles.feedInteractions}>
-          <FontAwesomeIcon
-            icon={faHandsClappingSolid}
-            size={POST_ICON_SIZE}
-            color={"#b7b7b7"}
-          />
-          <Text style={styles.feedBadge}>{item["numberOfApplause"]}</Text>
-        </TouchableOpacity>
+        <TouchableWithoutFeedback>
+          <View style={styles.feedInteractions}>
+            <ClapStd size={POST_ICON_SIZE} color={"#b7b7b7"} />
+            <Text style={styles.feedBadge}>{item["numberOfApplause"]}</Text>
+          </View>
+        </TouchableWithoutFeedback>
 
-        <TouchableOpacity style={styles.feedInteractions}>
-          <FontAwesomeIcon
-            icon={faClone}
-            size={POST_ICON_SIZE}
-            color={"#b7b7b7"}
-          />
+        <TouchableWithoutFeedback>
+          <View style={styles.feedInteractions}>
+            <AttachStd size={POST_ICON_SIZE} color={"#b7b7b7"} />
+            <Text style={styles.feedBadge}>{item["numberOfClones"]}</Text>
+          </View>
+        </TouchableWithoutFeedback>
 
-          {/*<FontAwesomeIcon*/}
-          {/*  icon={faCloneSolid}*/}
-          {/*  size={POST_ICON_SIZE}*/}
-          {/*  color={OSTRACON_PRIMARY}*/}
-          {/*/>*/}
-          <Text style={styles.feedBadge}>{item["numberOfClones"]}</Text>
-        </TouchableOpacity>
+        <TouchableWithoutFeedback>
+          <View style={styles.feedInteractions}>
+            <CommentStd size={POST_ICON_SIZE} color={"#b7b7b7"} />
+            <Text style={styles.feedBadge}>{item["numberOfComments"]}</Text>
+          </View>
+        </TouchableWithoutFeedback>
 
-        <TouchableOpacity style={styles.feedInteractions}>
-          <FontAwesomeIcon
-            icon={faMessage}
-            size={POST_ICON_SIZE}
-            color={"#b7b7b7"}
-          />
-
-          {/*<FontAwesomeIcon*/}
-          {/*  icon={faMessageSolid}*/}
-          {/*  size={POST_ICON_SIZE}*/}
-          {/*  color={OSTRACON_PRIMARY}*/}
-          {/*/>*/}
-          <Text style={styles.feedBadge}>{item["numberOfComments"]}</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.feedInteractions}>
-          <MaterialCommunityIcons
-            name="shield-star-outline"
-            size={24}
-            color={"#b7b7b7"}
-          />
-
-          {/*<MaterialCommunityIcons*/}
-          {/*  name="shield-star"*/}
-          {/*  size={24}*/}
-          {/*  color={OSTRACON_PRIMARY}*/}
-          {/*/>*/}
-          <Text style={styles.feedBadge}>{item["numberOfPraises"]}</Text>
-        </TouchableOpacity>
+        <TouchableWithoutFeedback>
+          <View style={styles.feedInteractions}>
+            <AwardStd size={24} color={"#b7b7b7"} />
+            <Text style={styles.feedBadge}>{item["numberOfPraises"]}</Text>
+          </View>
+        </TouchableWithoutFeedback>
       </View>
     </View>
   );
@@ -209,9 +194,7 @@ const styles = StyleSheet.create({
 
     alignItems: "flex-start",
   },
-  feedImage: {
-    borderRadius: 100,
-  },
+  feedImage: {},
   feedInfo: {
     flexGrow: 1,
     flexDirection: "column",
@@ -240,9 +223,7 @@ const styles = StyleSheet.create({
     flex: 1,
 
     paddingBottom: POST_MARGIN,
-
     marginVertical: POST_MARGIN,
-    fontSize: STANDARD_SIZE,
   },
   interactionsBar: {
     flex: 1,

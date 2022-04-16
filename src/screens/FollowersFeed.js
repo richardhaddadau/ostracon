@@ -30,7 +30,6 @@ const FollowersFeed = () => {
         renderItem={renderItem}
         keyExtractor={(item) => item["id"]}
         ItemSeparatorComponent={Divider}
-        ListFooterComponent={PostFooter}
         style={{ backgroundColor: theme["base-background"] }}
       />
     </View>

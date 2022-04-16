@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native";
+import {
+  Dimensions,
+  StyleSheet,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 
 // Import tab navigator main shape
 import TabShape from "./TabShape";
@@ -20,14 +26,29 @@ import {
 } from "../constants/constants";
 
 // Import icons
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import {
+  Home as HomeStd,
+  Search as SearchStd,
+  Bell as BellStd,
+  Message as MessageStd,
+  NewMessage as NewMessageStd,
+  NewPost as NewPostStd,
+  Profile as ProfileStd,
+} from "../components/Ostracon-Std";
+
+import {
+  Home as HomeActive,
+  Search as SearchActive,
+  Bell as BellActive,
+  Message as MessageActive,
+  Profile as ProfileActive,
+} from "../components/Ostracon-Active";
 
 import { navigate } from "./RootNavigation";
 
 const { width: viewWidth } = Dimensions.get("window");
 const barHeight = BOTTOM_NAVIGATION_BAR_HEIGHT;
 const buttonSize = BOTTOM_NAVIGATION_BUTTON_SIZE;
-const buttonIconSize = BOTTOM_NAVIGATION_ICON_SIZE;
 const ostraconSpace = OSTRACON_BUTTON_SPACE;
 const ostraconSize = OSTRACON_BUTTON_SIZE;
 const ostraconIconSize = OSTRACON_ICON_SIZE;
@@ -38,20 +59,53 @@ const TabUI = ({ state, navigation }) => {
   const theme = useTheme();
 
   const [currentScreen, setCurrentScreen] = useState("");
-  const [currentRoute, setCurrentRoute] = useState("");
-
-  const focusedIconsObj = {
-    Home: "home",
-    Search: "magnify",
-    Notifications: "bell",
-    Messages: "message-text",
-  };
 
   const unfocusedIconsObj = {
-    Home: "home",
-    Search: "magnify",
-    Notifications: "bell",
-    Messages: "message-text",
+    Home: (
+      <HomeStd
+        size={BOTTOM_NAVIGATION_ICON_SIZE}
+        color={theme["color-primary-default"]}
+      />
+    ),
+    Search: (
+      <SearchStd
+        size={BOTTOM_NAVIGATION_ICON_SIZE}
+        color={theme["color-primary-default"]}
+      />
+    ),
+    Notifications: (
+      <BellStd
+        size={BOTTOM_NAVIGATION_ICON_SIZE}
+        color={theme["color-primary-default"]}
+      />
+    ),
+    Messages: (
+      <MessageStd
+        size={BOTTOM_NAVIGATION_ICON_SIZE}
+        color={theme["color-primary-default"]}
+      />
+    ),
+    Profile: (
+      <ProfileStd
+        size={BOTTOM_NAVIGATION_ICON_SIZE}
+        color={theme["color-primary-default"]}
+      />
+    ),
+  };
+
+  const focusedIconsObj = {
+    Home: <HomeActive size={BOTTOM_NAVIGATION_ICON_SIZE} color={"white"} />,
+    Search: <SearchActive size={BOTTOM_NAVIGATION_ICON_SIZE} color={"white"} />,
+
+    Notifications: (
+      <BellActive size={BOTTOM_NAVIGATION_ICON_SIZE} color={"white"} />
+    ),
+    Messages: (
+      <MessageActive size={BOTTOM_NAVIGATION_ICON_SIZE} color={"white"} />
+    ),
+    Profile: (
+      <ProfileActive size={BOTTOM_NAVIGATION_ICON_SIZE} color={"white"} />
+    ),
   };
 
   const variableObj = {
@@ -61,7 +115,7 @@ const TabUI = ({ state, navigation }) => {
 
   return (
     <View style={styles.tabBarLayout}>
-      <TabShape {...{ tabWidth }} />
+      <TabShape />
 
       {state.routes.map((route, index) => {
         const isFocused = state.index === index;
@@ -109,15 +163,11 @@ const TabUI = ({ state, navigation }) => {
                 },
               ]}
             >
-              <MaterialCommunityIcons
-                name={
-                  currentScreen === "Messages"
-                    ? variableObj["Messages"]
-                    : variableObj["Default"]
-                }
-                size={ostraconIconSize}
-                color={"white"}
-              />
+              {currentScreen === "Messages" ? (
+                <NewMessageStd size={ostraconIconSize} color={"white"} />
+              ) : (
+                <NewPostStd size={ostraconIconSize} color={"white"} />
+              )}
             </TouchableOpacity>
           );
         }
@@ -125,39 +175,39 @@ const TabUI = ({ state, navigation }) => {
         // For the other standard buttons
         return (
           <View key={route["key"]} style={styles.tabItem}>
-            <TouchableOpacity
+            <TouchableWithoutFeedback
               accessibilityRole="button"
               accessibilityState={isFocused ? { selected: true } : {}}
               onPress={onPress}
               onLongPress={onLongPress}
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-
-                width: buttonSize,
-                height: buttonSize,
-
-                backgroundColor: isFocused ? "#937741" : "#fff",
-                borderRadius: 100,
-
-                shadowOffset: { width: 2, height: 5 },
-                shadowRadius: 5,
-                shadowOpacity: 0.65,
-                shadowColor: "black",
-                elevation: 5,
-              }}
             >
-              <View>
+              <View
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+
+                  width: buttonSize,
+                  height: buttonSize,
+
+                  backgroundColor: isFocused ? "#937741" : "#fff",
+                  borderRadius: 100,
+
+                  shadowOffset: isFocused ? { width: 2, height: 5 } : "none",
+                  shadowRadius: 5,
+                  shadowOpacity: 0.65,
+                  shadowColor: "black",
+
+                  elevation: isFocused ? 5 : 0,
+                }}
+              >
                 {/* Only show badge for badge buttons*/}
                 {index > 2 ? null : null}
 
-                <MaterialCommunityIcons
-                  name={focusedIconsObj[route.name]}
-                  size={buttonIconSize}
-                  color={isFocused ? "#fff" : "#2d2f46"}
-                />
+                {isFocused
+                  ? focusedIconsObj[route.name]
+                  : unfocusedIconsObj[route.name]}
               </View>
-            </TouchableOpacity>
+            </TouchableWithoutFeedback>
           </View>
         );
       })}
