@@ -81,6 +81,40 @@ const Comment = ({ size = 24, color = "black", style }) => {
     </Svg>
   );
 };
+const Ellipse = ({ size = 24, color = "black", style }) => {
+  return (
+    <Svg
+      width={size}
+      height={size}
+      viewBox="0 0 512 512"
+      fill={color}
+      style={style}
+    >
+      <Path d="M0 0h512v512H0z" transform="translate(.006) scale(4.16667)" />
+      <Circle
+        cx={2407}
+        cy={256}
+        r={65}
+        transform="translate(-8275.001) scale(4.16667)"
+      />
+      <Circle
+        cx={2407}
+        cy={256}
+        r={65}
+        transform="translate(-8962.502) scale(4.16667)"
+      />
+      <Circle
+        cx={2407}
+        cy={256}
+        r={65}
+        style={{
+          fill: "#363744",
+        }}
+        transform="translate(-9650.002) scale(4.16667)"
+      />
+    </Svg>
+  );
+};
 const Flame = ({ size = 24, color = "black", style }) => {
   return (
     <Svg
@@ -306,6 +340,7 @@ export {
   Award,
   Bell,
   Bookmark,
+  Ellipse,
   Flame,
   Clap,
   Comment,
