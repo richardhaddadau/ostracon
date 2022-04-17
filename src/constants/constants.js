@@ -22,3 +22,7 @@ export const POST_MIN_HEIGHT = 110;
 export const POST_ICON_SIZE = 16;
 export const POST_MARGIN = 10;
 export const POST_PADDING = 5;
+
+// New Post
+export const NEW_POST_MARGIN = 5;
+export const NEW_POST_PADDING = 10;
