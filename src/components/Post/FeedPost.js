@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { TouchableWithoutFeedback, View, Text, StyleSheet } from "react-native";
 
 import { Avatar, useTheme } from "@ui-kitten/components";
@@ -36,8 +36,8 @@ import {
 
 import { OSTRACON_PLACEHOLDER } from "../../theme/Colours";
 
-const FeedPost = ({ item }) => {
-  useEffect(() => {
+const FeedPost = ({ item, bottomSheetRef }) => {
+  const updateTime = () => {
     const createdAt = new Date(item["createdAt"]);
     const rightNow = new Date();
 
@@ -96,11 +96,17 @@ const FeedPost = ({ item }) => {
       timeAgo = timeAgoExact;
     }
 
-    setPostedText(timeAgo);
-  });
+    return timeAgo;
+  };
 
+  // States
   const [postedText, setPostedText] = useState("");
+
   const theme = useTheme();
+
+  useEffect(() => {
+    setPostedText(updateTime);
+  });
 
   return (
     <View
@@ -111,10 +117,10 @@ const FeedPost = ({ item }) => {
     >
       <View style={styles.feedHeader}>
         <Avatar
+          style={styles.feedImage}
           size="medium"
           shape="rounded"
           source={item["user"]["image"]}
-          style={styles.feedImage}
         />
         <View style={styles.feedInfo}>
           <Text style={styles.feedUsername}>
@@ -123,7 +129,11 @@ const FeedPost = ({ item }) => {
           <Text style={styles.feedTime}>posted {postedText}</Text>
         </View>
 
-        <TouchableWithoutFeedback>
+        <TouchableWithoutFeedback
+          onPress={() => {
+            bottomSheetRef.current.snapTo(0);
+          }}
+        >
           <View style={styles.menuButton}>
             <EllipseStd size={POST_ICON_SIZE} color={"#b7b7b7"} />
           </View>
@@ -162,7 +172,7 @@ const FeedPost = ({ item }) => {
 
         <TouchableWithoutFeedback>
           <View style={styles.feedInteractions}>
-            <AwardStd size={24} color={"#b7b7b7"} />
+            <AwardStd size={POST_ICON_SIZE} color={"#b7b7b7"} />
             <Text style={styles.feedBadge}>{item["numberOfPraises"]}</Text>
           </View>
         </TouchableWithoutFeedback>

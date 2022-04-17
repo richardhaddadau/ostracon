@@ -19,6 +19,6 @@ export const FEED_GUTTER = 10;
 export const POST_IMAGE_SIZE = 45;
 export const POST_USERNAME_BAR = 30;
 export const POST_MIN_HEIGHT = 110;
-export const POST_ICON_SIZE = 20;
+export const POST_ICON_SIZE = 16;
 export const POST_MARGIN = 10;
 export const POST_PADDING = 5;

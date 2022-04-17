@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FlatList, View } from "react-native";
 
-import PostFooter from "../components/Post/PostFooter";
 import FeedPost from "../components/Post/FeedPost";
 import posts from "../data/posts";
 import { Divider, useTheme } from "@ui-kitten/components";
-
-const renderItem = ({ item }) => {
-  return <FeedPost item={item} />;
-};
+import BottomSheet from "reanimated-bottom-sheet";
+import PostMenu from "../components/Post/PostMenu";
 
 const FollowersFeed = () => {
   // States
@@ -23,6 +20,13 @@ const FollowersFeed = () => {
 
   const theme = useTheme();
 
+  // Refs
+  const bottomSheetRef = useRef(null);
+
+  const renderItem = ({ item }) => {
+    return <FeedPost item={item} bottomSheetRef={bottomSheetRef} />;
+  };
+
   return (
     <View style={{}}>
       <FlatList
@@ -31,6 +35,13 @@ const FollowersFeed = () => {
         keyExtractor={(item) => item["id"]}
         ItemSeparatorComponent={Divider}
         style={{ backgroundColor: theme["base-background"] }}
+      />
+
+      <BottomSheet
+        ref={bottomSheetRef}
+        snapPoints={["100%", 0]}
+        initialSnap={1}
+        renderContent={PostMenu}
       />
     </View>
   );
