@@ -143,7 +143,14 @@ const FeedPost = ({ item, bottomSheetRef }) => {
       <View style={styles.feedBody}>
         <View style={styles.feedPost}>
           <TouchableWithoutFeedback onPress={() => console.log(item["id"])}>
-            <Text style={{ fontSize: STANDARD_SIZE }}>{item["content"]}</Text>
+            <Text
+              style={{
+                fontSize: STANDARD_SIZE,
+                color: theme["color-primary-500"],
+              }}
+            >
+              {item["content"]}
+            </Text>
           </TouchableWithoutFeedback>
         </View>
       </View>
