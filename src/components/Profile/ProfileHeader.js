@@ -8,7 +8,7 @@ import {
 
 import { Text, useTheme } from "@ui-kitten/components";
 
-import ProfileBulk from "./ProfileBulk";
+import ProfileTriangle from "./ProfileTriangle";
 
 const ProfileHeader = () => {
   const theme = useTheme();
@@ -31,7 +31,7 @@ const ProfileHeader = () => {
         </View>
       </TouchableWithoutFeedback>
 
-      <ProfileBulk />
+      <ProfileTriangle />
       <View
         style={[
           styles.profileContent,

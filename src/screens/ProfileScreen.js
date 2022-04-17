@@ -16,8 +16,6 @@ const ProfileScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <CustomHeader screenName={"Profile"} navigation={navigation} />
-
       <ProfileHeader />
       <Tabs.Navigator>
         <Tabs.Screen name="Posts" component={FollowersFeed} />

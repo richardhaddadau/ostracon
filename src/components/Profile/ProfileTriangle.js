@@ -25,7 +25,7 @@ const triangleHead = shapePattern([
 
 const d = `${triangleHead}`;
 
-const ProfileBulk = () => {
+const ProfileTriangle = () => {
   const theme = useTheme();
 
   return (
@@ -39,9 +39,9 @@ const styles = StyleSheet.create({
   header: {
     position: "absolute",
 
-    top: 145,
+    top: 95,
     left: 0,
   },
 });
 
-export default ProfileBulk;
+export default ProfileTriangle;

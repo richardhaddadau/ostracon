@@ -20,7 +20,7 @@ const MessagesScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <CustomHeader screenName={"Feed"} navigation={navigation} />
+      <CustomHeader screenName={"Messages"} navigation={navigation} />
 
       <TopTabs.Navigator
         screenOptions={{
