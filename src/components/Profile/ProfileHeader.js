@@ -9,9 +9,31 @@ import {
 import { Text, useTheme } from "@ui-kitten/components";
 
 import ProfileTriangle from "./ProfileTriangle";
+import CreateMaterialTopTabNavigator from "@react-navigation/material-top-tabs/src/navigators/createMaterialTopTabNavigator";
+import posts from "../../data/posts";
+
+const Tabs = CreateMaterialTopTabNavigator();
 
 const ProfileHeader = () => {
   const theme = useTheme();
+
+  const ProfileFeed = () => {
+    return (
+      <View>
+        {posts.map((item, index) => (
+          <Text key={index}>{item["user"]["name"]}</Text>
+        ))}
+      </View>
+    );
+  };
+
+  const PraisesFeed = () => {
+    return (
+      <View style={{ height: 50 }}>
+        <Text>{posts[0]["user"]["name"]}</Text>
+      </View>
+    );
+  };
 
   return (
     <>
@@ -112,6 +134,13 @@ const ProfileHeader = () => {
           </View>
         </View>
       </View>
+
+      <Tabs.Navigator style={{ minHeight: 100 }}>
+        <Tabs.Screen name="Posts" component={ProfileFeed} />
+        <Tabs.Screen name="Replies" component={PraisesFeed} />
+        <Tabs.Screen name="Applause" component={PraisesFeed} />
+        <Tabs.Screen name="Praises" component={PraisesFeed} />
+      </Tabs.Navigator>
     </>
   );
 };

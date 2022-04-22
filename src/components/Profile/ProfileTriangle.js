@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   header: {
     position: "absolute",
 
-    top: 95,
+    top: 75,
     left: 0,
   },
 });
