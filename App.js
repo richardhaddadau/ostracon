@@ -38,7 +38,7 @@ const App = () => {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <ApplicationProvider theme={{ ...myTheme }}>
+      <ApplicationProvider {...eva} theme={{ ...eva[theme], ...myTheme }}>
         <NavigationContainer ref={navigationRef}>
           {isSignedIn === true ? <MemberStack /> : <GuestStack />}
         </NavigationContainer>
