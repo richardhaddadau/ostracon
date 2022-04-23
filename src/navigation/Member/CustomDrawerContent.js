@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { navigate } from "./RootNavigation";
-import { ThemeContext } from "../context/ThemeContext";
+import { ThemeContext } from "../../context/ThemeContext";
 
 import {
   DrawerContentScrollView,
@@ -15,7 +15,7 @@ import {
   Moon as MoonActive,
   Settings as SettingsActive,
   Sun as SunActive,
-} from "../components/Ostracon-Active";
+} from "../../components/Ostracon-Active";
 
 import {
   Bookmark as BookmarkStd,
@@ -23,12 +23,12 @@ import {
   Moon as MoonStd,
   Settings as SettingsStd,
   Sun as SunStd,
-} from "../components/Ostracon-Std";
+} from "../../components/Ostracon-Std";
 
 import { Divider, useTheme } from "@ui-kitten/components";
 
 // Import Constants
-import { DRAWER_NAVIGATION_ICON_SIZE } from "../constants/constants";
+import { DRAWER_NAVIGATION_ICON_SIZE } from "../../constants/constants";
 
 const CustomDrawerContent = (props) => {
   const themeContext = useContext(ThemeContext);

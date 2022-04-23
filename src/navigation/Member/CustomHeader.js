@@ -10,7 +10,7 @@ import {
 // Import Icons
 
 // Import Constants
-import { HEADER_HEIGHT } from "../constants/constants";
+import { HEADER_HEIGHT } from "../../constants/constants";
 
 import { useTheme } from "@ui-kitten/components";
 
@@ -29,7 +29,7 @@ const CustomHeader = ({ screenName, navigation }) => {
       <View style={styles.headerItem}>
         <TouchableWithoutFeedback onPress={() => navigation.openDrawer()}>
           <Image
-            source={require("../../assets/ostracon-o-logo.png")}
+            source={require("../../../assets/ostracon-o-logo.png")}
             resizeMode="contain"
             style={styles.logoImage}
           />

@@ -12,8 +12,9 @@ import { ThemeContext } from "./src/context/ThemeContext";
 import { NavigationContainer } from "@react-navigation/native";
 
 // Import Custom Navigation
-import { navigationRef } from "./src/navigation/RootNavigation";
-import { StacksNavigator } from "./src/navigation/StacksNavigator";
+import { navigationRef } from "./src/navigation/Member/RootNavigation";
+import { MemberStack } from "./src/navigation/Member/MemberStack";
+import SignInScreen from "./src/screens/SignInScreen";
 import { registerRootComponent } from "expo";
 
 if (Platform.OS === "android") {
@@ -26,6 +27,7 @@ const App = () => {
   // States
   const [theme, setTheme] = useState("light");
   const [myTheme, setMyTheme] = useState(lightOstracon);
+  const [isSignedIn, setIsSignedIn] = useState(false);
 
   const toggleTheme = () => {
     const nextTheme = theme === "light" ? "dark" : "light";
@@ -37,9 +39,13 @@ const App = () => {
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <ApplicationProvider {...eva} theme={{ ...eva[theme], ...myTheme }}>
-        <NavigationContainer ref={navigationRef}>
-          <StacksNavigator />
-        </NavigationContainer>
+        {isSignedIn === true ? (
+          <NavigationContainer ref={navigationRef}>
+            <MemberStack />
+          </NavigationContainer>
+        ) : (
+          <SignInScreen />
+        )}
       </ApplicationProvider>
     </ThemeContext.Provider>
   );

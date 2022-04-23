@@ -12,7 +12,7 @@ import { useTheme } from "@ui-kitten/components";
 import {
   BOTTOM_NAVIGATION_BAR_HEIGHT,
   OSTRACON_BUTTON_SPACE,
-} from "../constants/constants";
+} from "../../constants/constants";
 
 // Set our dimensions
 const { width: viewWidth } = Dimensions.get("screen");

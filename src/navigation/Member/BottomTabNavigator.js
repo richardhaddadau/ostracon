@@ -3,14 +3,14 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 // Import screens
-import HomeScreen from "../screens/HomeScreen";
-import SearchScreen from "../screens/SearchScreen";
-import NotificationsScreen from "../screens/NotificationsScreen";
-import MessagesScreen from "../screens/MessagesScreen";
+import HomeScreen from "../../screens/HomeScreen";
+import SearchScreen from "../../screens/SearchScreen";
+import NotificationsScreen from "../../screens/NotificationsScreen";
+import MessagesScreen from "../../screens/MessagesScreen";
 
 // Import Custom Tab Layout
 import TabUI from "./TabUI";
-import ProfileScreen from "../screens/ProfileScreen";
+import ProfileScreen from "../../screens/ProfileScreen";
 
 const Tabs = createBottomTabNavigator();
 
