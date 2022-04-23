@@ -14,7 +14,7 @@ import { NavigationContainer } from "@react-navigation/native";
 // Import Custom Navigation
 import { navigationRef } from "./src/navigation/Member/RootNavigation";
 import { MemberStack } from "./src/navigation/Member/MemberStack";
-import SignInScreen from "./src/screens/SignInScreen";
+import GuestStack from "./src/navigation/Guest/GuestStack";
 import { registerRootComponent } from "expo";
 
 if (Platform.OS === "android") {
@@ -38,14 +38,10 @@ const App = () => {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <ApplicationProvider {...eva} theme={{ ...eva[theme], ...myTheme }}>
-        {isSignedIn === true ? (
-          <NavigationContainer ref={navigationRef}>
-            <MemberStack />
-          </NavigationContainer>
-        ) : (
-          <SignInScreen />
-        )}
+      <ApplicationProvider theme={{ ...myTheme }}>
+        <NavigationContainer ref={navigationRef}>
+          {isSignedIn === true ? <MemberStack /> : <GuestStack />}
+        </NavigationContainer>
       </ApplicationProvider>
     </ThemeContext.Provider>
   );
