@@ -23,7 +23,7 @@ import {
   OSTRACON_BUTTON_SIZE,
   OSTRACON_BUTTON_SPACE,
   OSTRACON_ICON_SIZE,
-} from "../constants/constants";
+} from "../../constants/constants";
 
 // Import icons
 import {
@@ -34,7 +34,7 @@ import {
   NewMessage as NewMessageStd,
   NewPost as NewPostStd,
   Profile as ProfileStd,
-} from "../components/Ostracon-Std";
+} from "../../components/Ostracon-Std";
 
 import {
   Home as HomeActive,
@@ -42,7 +42,7 @@ import {
   Bell as BellActive,
   Message as MessageActive,
   Profile as ProfileActive,
-} from "../components/Ostracon-Active";
+} from "../../components/Ostracon-Active";
 
 import { navigate } from "./RootNavigation";
 
@@ -52,8 +52,6 @@ const buttonSize = BOTTOM_NAVIGATION_BUTTON_SIZE;
 const ostraconSpace = OSTRACON_BUTTON_SPACE;
 const ostraconSize = OSTRACON_BUTTON_SIZE;
 const ostraconIconSize = OSTRACON_ICON_SIZE;
-
-const tabWidth = (viewWidth - ostraconSpace) / 4;
 
 const TabUI = ({ state, navigation }) => {
   const theme = useTheme();
@@ -106,11 +104,6 @@ const TabUI = ({ state, navigation }) => {
     Profile: (
       <ProfileActive size={BOTTOM_NAVIGATION_ICON_SIZE} color={"white"} />
     ),
-  };
-
-  const variableObj = {
-    Default: "pencil-plus",
-    Messages: "email-plus-outline",
   };
 
   return (

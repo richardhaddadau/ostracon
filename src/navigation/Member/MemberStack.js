@@ -2,14 +2,14 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import DrawerNavigator from "./DrawerNavigator";
-import ChaptersScreen from "../screens/ChaptersScreen";
-import ProfileScreen from "../screens/ProfileScreen";
-import PostNewScreen from "../screens/PostNewScreen";
-import MessagesNewScreen from "../screens/MessagesNewScreen";
+import ChaptersScreen from "../../screens/ChaptersScreen";
+import ProfileScreen from "../../screens/ProfileScreen";
+import PostNewScreen from "../../screens/PostNewScreen";
+import MessagesNewScreen from "../../screens/MessagesNewScreen";
 
 const Stack = createNativeStackNavigator();
 
-const StacksNavigator = ({ theme }) => {
+const MemberStack = ({ theme }) => {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -54,4 +54,4 @@ const MessagesStack = () => {
   );
 };
 
-export { StacksNavigator, MessagesStack };
+export { MemberStack };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 
-import CustomHeader from "../navigation/CustomHeader";
+import CustomHeader from "../navigation/Member/CustomHeader";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const SearchScreen = ({ route, navigation }) => {

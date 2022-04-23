@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
 
-import { navigate, currentScreen } from "../navigation/RootNavigation";
+import { navigate, currentScreen } from "../navigation/Member/RootNavigation";
 
 // Import Icons
 import { MaterialCommunityIcons } from "@expo/vector-icons";

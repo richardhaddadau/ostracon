@@ -6,7 +6,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useTheme } from "@ui-kitten/components";
 
 // Import components
-import CustomHeader from "../navigation/CustomHeader";
+import CustomHeader from "../navigation/Member/CustomHeader";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
 // Import Screens
