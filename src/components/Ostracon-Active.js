@@ -235,6 +235,19 @@ const NewPost = ({ size = 24, color = "black", style }) => {
     </Svg>
   );
 };
+const Play = ({ size = 24, color = "black", style }) => {
+  return (
+    <Svg
+      width={size}
+      height={size}
+      viewBox="0 0 512 512"
+      fill={color}
+      style={style}
+    >
+      <Path d="m424.48 203.61-260-191C153.71 4.68 140.4 0 126 0 90.1 0 61 29.1 61 65v382c0 35.9 29.1 65 65 65 14.4 0 27.71-4.68 38.48-12.61l260-191C440.56 296.56 451 277.5 451 256s-10.43-40.55-26.52-52.39Z" />
+    </Svg>
+  );
+};
 const Profile = ({ size = 24, color = "black", style }) => {
   return (
     <Svg
@@ -370,6 +383,7 @@ export {
   Moon,
   NewMessage,
   NewPost,
+  Play,
   Profile,
   Search,
   Settings,
