@@ -3,6 +3,7 @@ import React from "react";
 // Import Navigation Libraries
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
+// Import Screens
 import WelcomeScreen from "../../screens/WelcomeScreen";
 import SignInScreen from "../../screens/SignInScreen";
 import SignUpScreen from "../../screens/SignUpScreen";

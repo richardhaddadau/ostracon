@@ -9,21 +9,27 @@ import {
   OSTRACON_ICON_SIZE,
 } from "../constants/constants";
 
+// Import Icons
 import { Play as PlayActive } from "../components/Ostracon-Active";
-
-const WelcomeScreen = () => {
+const WelcomeScreen = ({ navigation }) => {
   return (
     <SafeAreaView
       style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
     >
       <Text>Welcome</Text>
-      <TouchableWithoutFeedback>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          navigation.navigate("Login");
+        }}
+      >
         <View
           style={{
             justifyContent: "center",
             alignItems: "center",
 
             paddingLeft: 5,
+
+            top: "25%",
 
             width: OSTRACON_BUTTON_SIZE,
             height: OSTRACON_BUTTON_SIZE,
