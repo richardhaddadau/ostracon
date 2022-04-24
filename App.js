@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, createContext } from "react";
 import { AppRegistry, Platform } from "react-native";
 
 // Import Theme Libraries
@@ -29,6 +29,8 @@ const App = () => {
   const [myTheme, setMyTheme] = useState(lightOstracon);
   const [isSignedIn, setIsSignedIn] = useState(false);
 
+  const AuthContext = createContext();
+
   const toggleTheme = () => {
     const nextTheme = theme === "light" ? "dark" : "light";
     const myNextTheme = nextTheme === "light" ? lightOstracon : darkOstracon;
@@ -40,7 +42,11 @@ const App = () => {
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <ApplicationProvider {...eva} theme={{ ...eva[theme], ...myTheme }}>
         <NavigationContainer ref={navigationRef}>
-          {isSignedIn === true ? <MemberStack /> : <GuestStack />}
+          {isSignedIn === true ? (
+            <MemberStack setSigned={setIsSignedIn} />
+          ) : (
+            <GuestStack setSigned={setIsSignedIn} />
+          )}
         </NavigationContainer>
       </ApplicationProvider>
     </ThemeContext.Provider>
