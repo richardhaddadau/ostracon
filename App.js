@@ -17,20 +17,11 @@ import { MemberStack } from "./src/navigation/Member/MemberStack";
 import GuestStack from "./src/navigation/Guest/GuestStack";
 import { registerRootComponent } from "expo";
 
-// SQLite
-import SQLite from "react-native-sqlite-storage";
-
 if (Platform.OS === "android") {
   registerRootComponent(App);
 } else {
   AppRegistry.registerComponent("main", () => App);
 }
-
-global.db = SQLite.openDatabase({
-  name: "local-settings",
-  location: "default",
-  createFromLocation: "",
-});
 
 const App = () => {
   // States
