@@ -1,5 +1,4 @@
 import React, { useState, useContext, createContext } from "react";
-import { AppRegistry, Platform } from "react-native";
 
 // Import Theme Libraries
 import * as eva from "@eva-design/eva";
@@ -15,13 +14,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { navigationRef } from "./src/navigation/Member/RootNavigation";
 import { MemberStack } from "./src/navigation/Member/MemberStack";
 import GuestStack from "./src/navigation/Guest/GuestStack";
-import { registerRootComponent } from "expo";
-
-if (Platform.OS === "android") {
-  registerRootComponent(App);
-} else {
-  AppRegistry.registerComponent("main", () => App);
-}
 
 const App = () => {
   // States
