@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Platform, View } from "react-native";
 import { navigate } from "./RootNavigation";
 import { ThemeContext } from "../../context/ThemeContext";
 
@@ -36,9 +37,11 @@ const CustomDrawerContent = (props) => {
   const theme = useTheme();
 
   return (
-    <DrawerContentScrollView
+    <View
       {...props}
       style={{
+        flex: 1,
+        paddingTop: Platform.OS === "ios" ? 10 : 0,
         backgroundColor:
           themeContext.theme === "light"
             ? theme["color-base-background"]
@@ -92,6 +95,18 @@ const CustomDrawerContent = (props) => {
               : theme["color-primary-100"],
         }}
       />
+
+      <DrawerItem
+        label="Ostracon Gold"
+        onPress={() => navigate("Chapters")}
+        labelStyle={{
+          color:
+            themeContext.theme === "light"
+              ? theme["color-primary-500"]
+              : theme["color-primary-100"],
+        }}
+      />
+
       <DrawerItem
         label="Settings"
         onPress={() => navigate("Chapters")}
@@ -126,43 +141,56 @@ const CustomDrawerContent = (props) => {
         }}
       />
       <Divider />
-      <DrawerItem
-        label={
-          themeContext.theme === "light" ? "Switch to Dark" : "Switch to Light"
-        }
-        onPress={themeContext.toggleTheme}
-        icon={() =>
-          themeContext.theme === "light" ? (
-            <MoonStd
-              size={DRAWER_NAVIGATION_ICON_SIZE}
-              color={
-                themeContext.theme === "light"
-                  ? theme["color-primary-500"]
-                  : theme["color-primary-100"]
-              }
-              style={{ margin: -2 }}
-            />
-          ) : (
-            <SunStd
-              size={DRAWER_NAVIGATION_ICON_SIZE}
-              color={
-                themeContext.theme === "light"
-                  ? theme["color-primary-500"]
-                  : theme["color-primary-100"]
-              }
-              style={{ margin: -2 }}
-            />
-          )
-        }
-        labelStyle={{
-          marginLeft: -20,
-          color:
-            themeContext.theme === "light"
-              ? theme["color-primary-500"]
-              : theme["color-primary-100"],
+
+      <View
+        style={{
+          position: "absolute",
+
+          width: "100%",
+
+          bottom: 0,
         }}
-      />
-    </DrawerContentScrollView>
+      >
+        <DrawerItem
+          label={
+            themeContext.theme === "light"
+              ? "Switch to Dark"
+              : "Switch to Light"
+          }
+          onPress={themeContext.toggleTheme}
+          icon={() =>
+            themeContext.theme === "light" ? (
+              <MoonStd
+                size={DRAWER_NAVIGATION_ICON_SIZE}
+                color={
+                  themeContext.theme === "light"
+                    ? theme["color-primary-500"]
+                    : theme["color-primary-100"]
+                }
+                style={{ margin: -2 }}
+              />
+            ) : (
+              <SunStd
+                size={DRAWER_NAVIGATION_ICON_SIZE}
+                color={
+                  themeContext.theme === "light"
+                    ? theme["color-primary-500"]
+                    : theme["color-primary-100"]
+                }
+                style={{ margin: -2 }}
+              />
+            )
+          }
+          labelStyle={{
+            marginLeft: -20,
+            color:
+              themeContext.theme === "light"
+                ? theme["color-primary-500"]
+                : theme["color-primary-100"],
+          }}
+        />
+      </View>
+    </View>
   );
 };
 

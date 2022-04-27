@@ -1,5 +1,5 @@
 import React from "react";
-import { Dimensions } from "react-native";
+import { Platform, Dimensions } from "react-native";
 
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
@@ -15,7 +15,7 @@ const DrawerNavigator = ({ theme }) => {
       drawerContent={(props) => <CustomDrawerContent {...props} />}
       screenOptions={{
         headerShown: false,
-        drawerType: "front",
+        drawerType: Platform.OS === "android" ? "front" : "slide",
         swipeEdgeWidth: viewWidth * 0.25,
       }}
     >
