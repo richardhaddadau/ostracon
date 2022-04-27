@@ -265,6 +265,19 @@ const NewPost = ({ size = 24, color = "black", style }) => {
     </Svg>
   );
 };
+const Ostracon = ({ size = 24, color = "black", style }) => {
+  return (
+    <Svg
+      width={size}
+      height={size}
+      viewBox="0 0 512 512"
+      fill={color}
+      style={style}
+    >
+      <Path d="M279.79 139.63c-111.91 0-186.68 80.99-186.68 184.7S166.89 512 278.8 512s186.68-83.46 186.68-187.67-72.79-184.7-185.69-184.7Zm83.93 269.02C342.68 430.46 313.32 442 278.8 442s-63.2-11.61-84.11-33.57c-20.37-21.4-31.58-51.26-31.58-84.09s11.1-61.65 31.27-82.15c20.96-21.3 50.49-32.56 85.41-32.56s65.14 10.82 85.33 31.3c19.86 20.15 30.36 48.99 30.36 83.4s-11.28 63.08-31.76 84.32ZM117.23 164.13C158.65 122.76 215.8 100 279.29 100V0C189.06 0 106.82 33.15 46.52 93.42l70.71 70.71Z" />
+    </Svg>
+  );
+};
 const Person = ({ size = 24, color = "black", style }) => {
   return (
     <Svg
@@ -428,6 +441,7 @@ export {
   NewImage,
   NewMessage,
   NewPost,
+  Ostracon,
   Person,
   Profile,
   Search,
