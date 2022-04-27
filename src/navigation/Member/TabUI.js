@@ -55,6 +55,10 @@ const ostraconSpace = OSTRACON_BUTTON_SPACE;
 const ostraconSize = OSTRACON_BUTTON_SIZE;
 const ostraconIconSize = OSTRACON_ICON_SIZE;
 
+const CustomBaseBar = () => {
+  return <></>;
+};
+
 const TabUI = ({ state, navigation }) => {
   const theme = useTheme();
 
@@ -210,6 +214,8 @@ const TabUI = ({ state, navigation }) => {
           );
         })}
       </View>
+
+      <CustomBaseBar />
     </SafeAreaView>
   );
 };

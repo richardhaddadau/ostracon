@@ -1,6 +1,9 @@
 import React, { useMemo } from "react";
-import { Dimensions, StyleSheet } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { View, Dimensions, StyleSheet } from "react-native";
+import {
+  useSafeAreaInsets,
+  SafeAreaView,
+} from "react-native-safe-area-context";
 
 // Import shaping libraries
 import { Svg, Path } from "react-native-svg";
@@ -32,8 +35,8 @@ const rectLeft = shapePattern([
 const rectRight = shapePattern([
   { x: (viewWidth + buttonSpace) / 2, y: 0 },
   { x: viewWidth + 5, y: 0 },
-  { x: viewWidth + 5, y: barHeight },
-  { x: -5, y: barHeight },
+  { x: viewWidth + 5, y: barHeight + 10 },
+  { x: -5, y: barHeight + 10 },
   { x: -5, y: 0 },
 ]);
 
@@ -68,21 +71,41 @@ const d = `${rectLeft} ${hole} ${rectRight}`;
 
 const TabShape = () => {
   const theme = useTheme();
+  const insets = useSafeAreaInsets();
 
   return (
-    <SafeAreaView>
-      <Svg
-        width={viewWidth + 10}
-        height={barHeight + 5}
-        style={styles.barBackground}
-      >
-        <Path
-          fill={theme["bottom-bar-surface"]}
-          stroke={theme["color-primary-200"]}
-          {...{ d }}
-        />
-      </Svg>
-    </SafeAreaView>
+    <View>
+      <SafeAreaView>
+        <Svg
+          width={viewWidth + 10}
+          height={barHeight}
+          style={styles.barBackground}
+        >
+          <Path
+            fill={theme["bottom-bar-surface"]}
+            stroke={theme["color-primary-200"]}
+            {...{ d }}
+          />
+        </Svg>
+      </SafeAreaView>
+
+      <SafeAreaView
+        style={{
+          position: "absolute",
+
+          bottom: -insets.bottom,
+
+          paddingTop: -barHeight,
+
+          maxHeight: insets.bottom,
+          width: viewWidth,
+
+          backgroundColor: theme["bottom-bar-surface"],
+
+          zIndex: 0,
+        }}
+      />
+    </View>
   );
 };
 
@@ -93,7 +116,7 @@ const styles = StyleSheet.create({
     margin: 0,
     padding: 0,
 
-    bottom: -5,
+    bottom: 0,
     left: 0,
 
     elevation: 0,

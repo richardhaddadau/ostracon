@@ -1,5 +1,5 @@
 import React, { useState, useContext, createContext } from "react";
-import { Platform, View, StatusBar } from "react-native";
+import { View, StatusBar } from "react-native";
 
 // Import Theme Libraries
 import * as eva from "@eva-design/eva";
