@@ -24,12 +24,14 @@ import {
   Moon as MoonStd,
   Settings as SettingsStd,
   Sun as SunStd,
+  Ostracon,
 } from "../../components/Ostracon-Std";
 
 import { Divider, useTheme } from "@ui-kitten/components";
 
 // Import Constants
 import { DRAWER_NAVIGATION_ICON_SIZE } from "../../constants/constants";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const CustomDrawerContent = (props) => {
   const themeContext = useContext(ThemeContext);
@@ -99,7 +101,15 @@ const CustomDrawerContent = (props) => {
       <DrawerItem
         label="Ostracon Gold"
         onPress={() => navigate("Chapters")}
+        icon={() => (
+          <Ostracon
+            size={DRAWER_NAVIGATION_ICON_SIZE}
+            color={"#937741"}
+            style={{ margin: -2 }}
+          />
+        )}
         labelStyle={{
+          marginLeft: -20,
           color:
             themeContext.theme === "light"
               ? theme["color-primary-500"]
@@ -142,7 +152,7 @@ const CustomDrawerContent = (props) => {
       />
       <Divider />
 
-      <View
+      <SafeAreaView
         style={{
           position: "absolute",
 
@@ -154,8 +164,8 @@ const CustomDrawerContent = (props) => {
         <DrawerItem
           label={
             themeContext.theme === "light"
-              ? "Switch to Dark"
-              : "Switch to Light"
+              ? "Switch to Dark Mode"
+              : "Switch to Light Mode"
           }
           onPress={themeContext.toggleTheme}
           icon={() =>
@@ -189,7 +199,7 @@ const CustomDrawerContent = (props) => {
                 : theme["color-primary-100"],
           }}
         />
-      </View>
+      </SafeAreaView>
     </View>
   );
 };

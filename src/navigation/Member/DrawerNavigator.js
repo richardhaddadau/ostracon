@@ -1,3 +1,4 @@
+import "react-native-gesture-handler/src/web/GestureHandler";
 import React from "react";
 import { Platform, Dimensions } from "react-native";
 
