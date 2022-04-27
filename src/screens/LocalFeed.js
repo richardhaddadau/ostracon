@@ -7,8 +7,9 @@ import posts from "../data/posts";
 import { Divider, useTheme } from "@ui-kitten/components";
 import BottomSheet from "reanimated-bottom-sheet";
 import PostMenu from "../components/Post/PostMenu";
+import ListFooter from "../components/ListFooter";
 
-const FollowersFeed = ({ navigation }) => {
+const LocalFeed = ({ navigation }) => {
   // States
   const [feedData, setFeedData] = useState({});
 
@@ -36,6 +37,7 @@ const FollowersFeed = ({ navigation }) => {
         renderItem={renderItem}
         keyExtractor={(item) => item["id"]}
         ItemSeparatorComponent={Divider}
+        ListFooterComponent={ListFooter}
         style={{ backgroundColor: theme["base-background"] }}
       />
 
@@ -49,4 +51,4 @@ const FollowersFeed = ({ navigation }) => {
   );
 };
 
-export default FollowersFeed;
+export default LocalFeed;

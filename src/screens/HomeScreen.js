@@ -10,7 +10,7 @@ import CustomHeader from "../navigation/Member/CustomHeader";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
 // Import Screens
-import FollowersFeed from "./FollowersFeed";
+import LocalFeed from "./LocalFeed";
 import SearchFeed from "./SearchFeed";
 
 // Import Icons
@@ -63,7 +63,7 @@ const HomeScreen = ({ navigation }) => {
       >
         <TopTabs.Screen
           name="My Feed"
-          component={FollowersFeed}
+          component={LocalFeed}
           options={{
             lazy: true,
             tabBarIcon: ({ focused }) => {

@@ -19,7 +19,7 @@ const ProfileHeader = () => {
 
   const ProfileFeed = () => {
     return (
-      <View>
+      <View style={{ backgroundColor: "red" }}>
         {posts.map((item, index) => (
           <Text key={index}>{item["user"]["name"]}</Text>
         ))}
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
   profileHandle: {},
   profileBio: {
     marginVertical: 10,
-    fontSize: 11,
+    fontSize: 14,
   },
   profileStats: {
     flexDirection: "row",
@@ -169,12 +169,12 @@ const styles = StyleSheet.create({
   },
   profileStatNumber: {
     textAlign: "center",
-    fontSize: 11.5,
+    fontSize: 13,
     fontWeight: "700",
   },
   profileStatDescription: {
     marginLeft: 5,
-    fontSize: 11,
+    fontSize: 14,
   },
 });
 

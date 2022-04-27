@@ -9,9 +9,9 @@ const Tab = createBottomTabNavigator();
 
 const NotificationsScreen = ({ route, navigation }) => {
   return (
-    <SafeAreaView>
+    <View>
       <CustomHeader screenName={"Notifications"} navigation={navigation} />
-    </SafeAreaView>
+    </View>
   );
 };
 
