@@ -1,34 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
-import { View, Text, StyleSheet, SectionList, FlatList } from "react-native";
+import { Animated, View, Text, StyleSheet, FlatList } from "react-native";
+
 import { useTheme } from "@ui-kitten/components";
 
 import ProfileHeader from "../components/Profile/ProfileHeader";
 import posts from "../data/posts";
-import FeedPost from "../components/Post/FeedPost";
 
 import CreateMaterialTopTabNavigator from "@react-navigation/material-top-tabs/src/navigators/createMaterialTopTabNavigator";
 import { TOP_NAVIGATION_FULL_HEIGHT } from "../constants/constants";
 import ListFooter from "../components/ListFooter";
+import { Feather } from "@expo/vector-icons";
 
 const Tabs = CreateMaterialTopTabNavigator();
-
-const ProfileFeed = () => {
-  return (
-    <View style={{ backgroundColor: "red" }}>
-      {posts.map((item, index) => (
-        <Text key={index}>{item["user"]["name"]}</Text>
-      ))}
-    </View>
-  );
-};
-
-const PraisesFeed = () => {
-  return (
-    <View style={{ height: 50 }}>
-      <Text>{posts[0]["user"]["name"]}</Text>
-    </View>
-  );
-};
 
 const ProfileScreen = ({ navigation }) => {
   // States
@@ -42,9 +25,23 @@ const ProfileScreen = ({ navigation }) => {
   const bottomSheetRef = useRef(null);
   const ref = useRef(null);
 
+  const ProfileFeed = () => {
+    return (
+      <View>
+        {/*<ProfileHeader />*/}
+        <FlatList
+          data={DATA}
+          renderItem={renderItem}
+          ListHeaderComponent={ProfileHeader}
+          ListFooterComponent={ListFooter}
+        />
+      </View>
+    );
+  };
+
   const renderItem = ({ item }) => {
     return (
-      <View style={{ padding: 50 }}>
+      <View key={item.id} style={{ padding: 50 }}>
         <Text>{item.title}</Text>
       </View>
     );
@@ -80,18 +77,39 @@ const ProfileScreen = ({ navigation }) => {
       id: "n6",
       title: "item 6",
     },
+
+    {
+      id: "n7",
+      title: "item 7",
+    },
+
+    {
+      id: "n8",
+      title: "item 8",
+    },
+
+    {
+      id: "n9",
+      title: "item 9",
+    },
   ];
 
+  const scrollY = useRef(new Animated.Value(0)).current;
+
   return (
-    <View style={{ flex: 1 }}>
-      <FlatList
-        style={{ backgroundColor: "red" }}
-        data={DATA}
-        renderItem={renderItem}
-        ListHeaderComponent={ProfileHeader}
-        ListFooterComponent={ListFooter}
-      />
-    </View>
+    <Tabs.Navigator
+      screenOptions={{
+        tabBarStyle: {
+          justifyContent: "center",
+          height: TOP_NAVIGATION_FULL_HEIGHT,
+        },
+      }}
+    >
+      <Tabs.Screen name="Posts" component={ProfileFeed} />
+      <Tabs.Screen name="Replies" component={ProfileFeed} />
+      <Tabs.Screen name="Applause" component={ProfileFeed} />
+      <Tabs.Screen name="Praises" component={ProfileFeed} />
+    </Tabs.Navigator>
   );
 };
 

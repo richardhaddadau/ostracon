@@ -9,36 +9,20 @@ import {
 import { Text, useTheme } from "@ui-kitten/components";
 
 import ProfileTriangle from "./ProfileTriangle";
-import CreateMaterialTopTabNavigator from "@react-navigation/material-top-tabs/src/navigators/createMaterialTopTabNavigator";
 import posts from "../../data/posts";
-
-const Tabs = CreateMaterialTopTabNavigator();
+import { BlurView } from "expo-blur";
 
 const ProfileHeader = () => {
   const theme = useTheme();
 
-  const ProfileFeed = () => {
-    return (
-      <View style={{ backgroundColor: "red" }}>
-        {posts.map((item, index) => (
-          <Text key={index}>{item["user"]["name"]}</Text>
-        ))}
-      </View>
-    );
-  };
-
-  const PraisesFeed = () => {
-    return (
-      <View style={{ height: 50 }}>
-        <Text>{posts[0]["user"]["name"]}</Text>
-      </View>
-    );
-  };
-
   return (
-    <>
+    <View style={{ zIndex: 100 }}>
       <TouchableWithoutFeedback>
-        <View style={{ backgroundColor: theme["color-primary-default"] }}>
+        <View
+          style={{
+            backgroundColor: theme["color-primary-default"],
+          }}
+        >
           <Image
             style={{
               width: "100%",
@@ -73,7 +57,7 @@ const ProfileHeader = () => {
           style={[styles.profileHandle, { color: theme["color-primary-400"] }]}
           category="s1"
         >
-          User
+          @User
         </Text>
         <Text style={styles.profileBio} category="c2">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -134,14 +118,7 @@ const ProfileHeader = () => {
           </View>
         </View>
       </View>
-
-      <Tabs.Navigator style={{ minHeight: 100 }}>
-        <Tabs.Screen name="Posts" component={ProfileFeed} />
-        <Tabs.Screen name="Replies" component={PraisesFeed} />
-        <Tabs.Screen name="Applause" component={PraisesFeed} />
-        <Tabs.Screen name="Praises" component={PraisesFeed} />
-      </Tabs.Navigator>
-    </>
+    </View>
   );
 };
 
@@ -152,10 +129,14 @@ const styles = StyleSheet.create({
   profileUsername: {
     fontWeight: "bold",
   },
-  profileHandle: {},
+  profileHandle: {
+    fontWeight: "normal",
+  },
   profileBio: {
-    marginVertical: 10,
+    marginVertical: 20,
+
     fontSize: 14,
+    fontWeight: "400",
   },
   profileStats: {
     flexDirection: "row",
