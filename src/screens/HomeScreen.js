@@ -29,7 +29,6 @@ import {
 
 // Import Constants
 import {
-  POST_ICON_SIZE,
   TOP_NAVIGATION_FULL_HEIGHT,
   TOP_NAVIGATION_ICON_SIZE,
 } from "../constants/constants";

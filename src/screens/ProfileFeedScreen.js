@@ -1,14 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
-import { FlatList, View } from "react-native";
+import { FlatList, Text, View } from "react-native";
 import { useScrollToTop } from "@react-navigation/native";
 
-import FeedPost from "../components/Post/FeedPost";
-import posts from "../data/posts";
+// Import Theme
 import { Divider, useTheme } from "@ui-kitten/components";
+
+// Import Menu Elements
 import BottomSheet from "reanimated-bottom-sheet";
 import PostMenu from "../components/Post/PostMenu";
 
-const ProfileFeed = ({ navigation }) => {
+// Import Feed Components
+import ProfileHeader from "../components/Profile/ProfileHeader";
+import ListFooter from "../components/ListFooter";
+import FeedPost from "../components/Post/FeedPost";
+import posts from "../data/posts";
+
+const ProfileFeedScreen = ({ navigation }) => {
   // States
   const [feedData, setFeedData] = useState({});
 
@@ -29,14 +36,14 @@ const ProfileFeed = ({ navigation }) => {
   useScrollToTop(ref);
 
   return (
-    <View style={{}}>
+    <View>
       <FlatList
         ref={ref}
         data={feedData}
-        scrollEnabled={false}
         renderItem={renderItem}
         keyExtractor={(item) => item["id"]}
         ItemSeparatorComponent={Divider}
+        ListFooterComponent={ListFooter}
         style={{ backgroundColor: theme["base-background"] }}
       />
 
@@ -50,4 +57,4 @@ const ProfileFeed = ({ navigation }) => {
   );
 };
 
-export default ProfileFeed;
+export default ProfileFeedScreen;

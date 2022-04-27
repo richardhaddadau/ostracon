@@ -1,115 +1,142 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Animated, View, Text, StyleSheet, FlatList } from "react-native";
 
+// Import Theme
 import { useTheme } from "@ui-kitten/components";
 
-import ProfileHeader from "../components/Profile/ProfileHeader";
-import posts from "../data/posts";
-
+// Import Navigation
 import CreateMaterialTopTabNavigator from "@react-navigation/material-top-tabs/src/navigators/createMaterialTopTabNavigator";
-import { TOP_NAVIGATION_FULL_HEIGHT } from "../constants/constants";
-import ListFooter from "../components/ListFooter";
-import { Feather } from "@expo/vector-icons";
+
+// Import Icons
+import {
+  Person as PersonStd,
+  Comment as CommentStd,
+  Clap as ClapStd,
+  Award as AwardStd,
+  Location as LocationStd,
+} from "../components/Ostracon-Std";
+import {
+  Person as PersonActive,
+  Comment as CommentActive,
+  Clap as ClapActive,
+  Award as AwardActive,
+  Location as LocationActive,
+} from "../components/Ostracon-Active";
+
+import {
+  TOP_NAVIGATION_FULL_HEIGHT,
+  TOP_NAVIGATION_ICON_SIZE,
+} from "../constants/constants";
+import ProfileFeedScreen from "./ProfileFeedScreen";
+import ProfileRepliesScreen from "./ProfileRepliesScreen";
+import ProfileClapsScreen from "./ProfileClapsScreen";
+import ProfilePraisesScreen from "./ProfilePraisesScreen";
+import ProfileHomeScreen from "./ProfileHomeScreen";
+import CustomHeader from "../navigation/Member/CustomHeader";
 
 const Tabs = CreateMaterialTopTabNavigator();
+const iconSize = TOP_NAVIGATION_ICON_SIZE;
 
 const ProfileScreen = ({ navigation }) => {
-  // States
-  const [feedData, setFeedData] = useState({});
-
-  useEffect(() => {
-    setFeedData(posts);
-  }, [navigation]);
-
-  // Refs
-  const bottomSheetRef = useRef(null);
-  const ref = useRef(null);
-
-  const ProfileFeed = () => {
-    return (
-      <View>
-        {/*<ProfileHeader />*/}
-        <FlatList
-          data={DATA}
-          renderItem={renderItem}
-          ListHeaderComponent={ProfileHeader}
-          ListFooterComponent={ListFooter}
-        />
-      </View>
-    );
-  };
-
-  const renderItem = ({ item }) => {
-    return (
-      <View key={item.id} style={{ padding: 50 }}>
-        <Text>{item.title}</Text>
-      </View>
-    );
-  };
-
   //Theme
   const theme = useTheme();
-
-  const DATA = [
-    {
-      id: "n1",
-      title: "item 1",
-    },
-    {
-      id: "n2",
-      title: "item 2",
-    },
-    {
-      id: "n3",
-      title: "item 3",
-    },
-    {
-      id: "n4",
-      title: "item 4",
-    },
-
-    {
-      id: "n5",
-      title: "item 5",
-    },
-
-    {
-      id: "n6",
-      title: "item 6",
-    },
-
-    {
-      id: "n7",
-      title: "item 7",
-    },
-
-    {
-      id: "n8",
-      title: "item 8",
-    },
-
-    {
-      id: "n9",
-      title: "item 9",
-    },
-  ];
 
   const scrollY = useRef(new Animated.Value(0)).current;
 
   return (
-    <Tabs.Navigator
-      screenOptions={{
-        tabBarStyle: {
-          justifyContent: "center",
-          height: TOP_NAVIGATION_FULL_HEIGHT,
-        },
-      }}
-    >
-      <Tabs.Screen name="Posts" component={ProfileFeed} />
-      <Tabs.Screen name="Replies" component={ProfileFeed} />
-      <Tabs.Screen name="Applause" component={ProfileFeed} />
-      <Tabs.Screen name="Praises" component={ProfileFeed} />
-    </Tabs.Navigator>
+    <View style={{ flex: 1 }}>
+      <CustomHeader screenName={"Username"} navigation={navigation} />
+
+      <Tabs.Navigator
+        screenOptions={{
+          tabBarStyle: {
+            justifyContent: "center",
+            height: TOP_NAVIGATION_FULL_HEIGHT,
+          },
+        }}
+      >
+        <Tabs.Screen
+          name="ProfileHome"
+          component={ProfileHomeScreen}
+          options={{
+            lazy: true,
+            tabBarIcon: ({ focused }) => {
+              return focused ? (
+                <PersonActive
+                  size={iconSize + 3}
+                  color={theme["color-primary-default"]}
+                />
+              ) : (
+                <PersonStd
+                  size={iconSize + 3}
+                  color={theme["color-primary-300"]}
+                />
+              );
+            },
+          }}
+        />
+        <Tabs.Screen
+          name="Posts"
+          component={ProfileFeedScreen}
+          options={{
+            lazy: true,
+            tabBarIcon: ({ focused }) => {
+              return focused ? (
+                <LocationActive
+                  size={iconSize + 3}
+                  color={theme["color-primary-default"]}
+                />
+              ) : (
+                <LocationStd
+                  size={iconSize + 3}
+                  color={theme["color-primary-300"]}
+                />
+              );
+            },
+          }}
+        />
+        <Tabs.Screen
+          name="Replies"
+          component={ProfileRepliesScreen}
+          options={{
+            lazy: true,
+            tabBarIcon: ({ focused }) => {
+              return focused ? (
+                <CommentActive
+                  size={iconSize + 3}
+                  color={theme["color-primary-default"]}
+                />
+              ) : (
+                <CommentStd
+                  size={iconSize + 3}
+                  color={theme["color-primary-300"]}
+                />
+              );
+            },
+          }}
+        />
+        <Tabs.Screen
+          name="Applause"
+          component={ProfileClapsScreen}
+          options={{
+            lazy: true,
+            tabBarIcon: ({ focused }) => {
+              return focused ? (
+                <ClapActive
+                  size={iconSize + 3}
+                  color={theme["color-primary-default"]}
+                />
+              ) : (
+                <ClapStd
+                  size={iconSize + 3}
+                  color={theme["color-primary-300"]}
+                />
+              );
+            },
+          }}
+        />
+      </Tabs.Navigator>
+    </View>
   );
 };
 
