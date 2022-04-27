@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { Dimensions, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 // Import shaping libraries
 import { Svg, Path } from "react-native-svg";
@@ -69,13 +70,19 @@ const TabShape = () => {
   const theme = useTheme();
 
   return (
-    <Svg width={viewWidth + 10} height={barHeight} style={styles.barBackground}>
-      <Path
-        fill={theme["bottom-bar-surface"]}
-        stroke={theme["color-primary-200"]}
-        {...{ d }}
-      />
-    </Svg>
+    <SafeAreaView>
+      <Svg
+        width={viewWidth + 10}
+        height={barHeight + 5}
+        style={styles.barBackground}
+      >
+        <Path
+          fill={theme["bottom-bar-surface"]}
+          stroke={theme["color-primary-200"]}
+          {...{ d }}
+        />
+      </Svg>
+    </SafeAreaView>
   );
 };
 
@@ -86,7 +93,7 @@ const styles = StyleSheet.create({
     margin: 0,
     padding: 0,
 
-    bottom: 0,
+    bottom: -5,
     left: 0,
 
     elevation: 0,

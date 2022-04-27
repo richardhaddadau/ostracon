@@ -1,4 +1,5 @@
 import React, { useState, useContext, createContext } from "react";
+import { Platform, View, StatusBar } from "react-native";
 
 // Import Theme Libraries
 import * as eva from "@eva-design/eva";
@@ -14,12 +15,42 @@ import { NavigationContainer } from "@react-navigation/native";
 import { navigationRef } from "./src/navigation/Member/RootNavigation";
 import { MemberStack } from "./src/navigation/Member/MemberStack";
 import GuestStack from "./src/navigation/Guest/GuestStack";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { SafeAreaProvider } from "react-native-safe-area-context/src/SafeAreaContext";
+
+const CustomStatusBar = ({ backgroundColor, barStyle = "dark-content" }) => {
+  const insets = useSafeAreaInsets();
+
+  return (
+    <View style={{ height: insets.top, backgroundColor }}>
+      <StatusBar
+        animated={true}
+        backgroundColor={backgroundColor}
+        barStyle={barStyle}
+      />
+    </View>
+  );
+};
+
+const CustomBaseBar = ({ backgroundColor, barStyle = "dark-content" }) => {
+  const insets = useSafeAreaInsets();
+
+  return (
+    <View style={{ height: insets.bottom, backgroundColor }}>
+      <StatusBar
+        animated={true}
+        backgroundColor={backgroundColor}
+        barStyle={barStyle}
+      />
+    </View>
+  );
+};
 
 const App = () => {
   // States
   const [theme, setTheme] = useState("light");
   const [myTheme, setMyTheme] = useState(lightOstracon);
-  const [isSignedIn, setIsSignedIn] = useState(false);
+  const [isSignedIn, setIsSignedIn] = useState(true);
 
   const AuthContext = createContext();
 
@@ -32,15 +63,22 @@ const App = () => {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <ApplicationProvider {...eva} theme={{ ...eva[theme], ...myTheme }}>
-        <NavigationContainer ref={navigationRef}>
-          {isSignedIn === true ? (
-            <MemberStack setSigned={setIsSignedIn} />
-          ) : (
-            <GuestStack setSigned={setIsSignedIn} />
-          )}
-        </NavigationContainer>
-      </ApplicationProvider>
+      <SafeAreaProvider>
+        <CustomStatusBar
+          backgroundColor={"#121212"}
+          barStyle={"light-content"}
+        />
+
+        <ApplicationProvider {...eva} theme={{ ...eva[theme], ...myTheme }}>
+          <NavigationContainer ref={navigationRef}>
+            {isSignedIn === true ? (
+              <MemberStack setSigned={setIsSignedIn} />
+            ) : (
+              <GuestStack setSigned={setIsSignedIn} />
+            )}
+          </NavigationContainer>
+        </ApplicationProvider>
+      </SafeAreaProvider>
     </ThemeContext.Provider>
   );
 };

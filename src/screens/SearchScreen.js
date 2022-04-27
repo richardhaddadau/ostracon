@@ -8,7 +8,7 @@ const SearchScreen = ({ route, navigation }) => {
   const [searchText, setSearchText] = useState("");
 
   return (
-    <SafeAreaView>
+    <View>
       <CustomHeader screenName={"Search"} navigation={navigation} />
       <View style={styles.mainWrapper}>
         <View style={styles.searchBlock}>
@@ -20,7 +20,7 @@ const SearchScreen = ({ route, navigation }) => {
           />
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

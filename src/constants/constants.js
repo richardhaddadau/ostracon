@@ -1,9 +1,14 @@
 // Navigation
 export const DRAWER_NAVIGATION_ICON_SIZE = 18;
+
 export const BOTTOM_NAVIGATION_FULL_HEIGHT = 82;
 export const BOTTOM_NAVIGATION_BAR_HEIGHT = 55;
 export const BOTTOM_NAVIGATION_ICON_SIZE = 20;
 export const BOTTOM_NAVIGATION_BUTTON_SIZE = 40;
+
+export const TOP_NAVIGATION_FULL_HEIGHT = 45;
+export const TOP_NAVIGATION_ICON_SIZE = 20;
+
 export const OSTRACON_BUTTON_SPACE = 90;
 export const OSTRACON_ICON_SIZE = 30;
 export const OSTRACON_BUTTON_SIZE = 60;

@@ -19,7 +19,7 @@ const MessagesScreen = ({ navigation }) => {
   const theme = useTheme();
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <View style={{ flex: 1 }}>
       <CustomHeader screenName={"Messages"} navigation={navigation} />
 
       <TopTabs.Navigator
@@ -46,7 +46,7 @@ const MessagesScreen = ({ navigation }) => {
           options={{ lazy: true }}
         />
       </TopTabs.Navigator>
-    </SafeAreaView>
+    </View>
   );
 };
 

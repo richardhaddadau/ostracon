@@ -18,14 +18,7 @@ const CustomHeader = ({ screenName, navigation }) => {
   const theme = useTheme();
 
   return (
-    <View
-      style={[
-        styles.headerWrapper,
-        {
-          backgroundColor: "#121212",
-        },
-      ]}
-    >
+    <View style={styles.headerWrapper}>
       <View style={styles.headerItem}>
         <TouchableWithoutFeedback onPress={() => navigation.openDrawer()}>
           <Image
@@ -55,6 +48,8 @@ const styles = StyleSheet.create({
 
     justifyContent: "space-between",
     alignItems: "stretch",
+
+    backgroundColor: "#121212",
   },
   headerItem: {
     justifyContent: "center",

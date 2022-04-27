@@ -28,19 +28,24 @@ import {
 } from "../components/Ostracon-Active";
 
 // Import Constants
-import { POST_ICON_SIZE } from "../constants/constants";
+import {
+  POST_ICON_SIZE,
+  TOP_NAVIGATION_FULL_HEIGHT,
+  TOP_NAVIGATION_ICON_SIZE,
+} from "../constants/constants";
 
 const GlobalFeed = ({ navigation }) => {
   return <View></View>;
 };
 
 const TopTabs = createMaterialTopTabNavigator();
+const iconSize = TOP_NAVIGATION_ICON_SIZE;
 
 const HomeScreen = ({ navigation }) => {
   const theme = useTheme();
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <View style={{ flex: 1 }}>
       <CustomHeader screenName={"My Feed"} navigation={navigation} />
 
       <TopTabs.Navigator
@@ -51,7 +56,8 @@ const HomeScreen = ({ navigation }) => {
             backgroundColor: theme["color-primary-default"],
           },
           tabBarStyle: {
-            height: 40,
+            height: TOP_NAVIGATION_FULL_HEIGHT,
+            justifyContent: "center",
           },
         }}
       >
@@ -63,12 +69,12 @@ const HomeScreen = ({ navigation }) => {
             tabBarIcon: ({ focused }) => {
               return focused ? (
                 <LocationActive
-                  size={POST_ICON_SIZE}
+                  size={iconSize + 3}
                   color={theme["color-primary-default"]}
                 />
               ) : (
                 <LocationStd
-                  size={POST_ICON_SIZE}
+                  size={iconSize + 3}
                   color={theme["color-primary-300"]}
                 />
               );
@@ -84,14 +90,11 @@ const HomeScreen = ({ navigation }) => {
             tabBarIcon: ({ focused }) => {
               return focused ? (
                 <GlobeActive
-                  size={POST_ICON_SIZE}
+                  size={iconSize}
                   color={theme["color-primary-default"]}
                 />
               ) : (
-                <GlobeStd
-                  size={POST_ICON_SIZE}
-                  color={theme["color-primary-300"]}
-                />
+                <GlobeStd size={iconSize} color={theme["color-primary-300"]} />
               );
             },
           }}
@@ -105,14 +108,11 @@ const HomeScreen = ({ navigation }) => {
             tabBarIcon: ({ focused }) => {
               return focused ? (
                 <FlameActive
-                  size={POST_ICON_SIZE}
+                  size={iconSize}
                   color={theme["color-primary-default"]}
                 />
               ) : (
-                <FlameStd
-                  size={POST_ICON_SIZE}
-                  color={theme["color-primary-300"]}
-                />
+                <FlameStd size={iconSize} color={theme["color-primary-300"]} />
               );
             },
           }}
@@ -126,20 +126,17 @@ const HomeScreen = ({ navigation }) => {
             tabBarIcon: ({ focused }) => {
               return focused ? (
                 <SearchActive
-                  size={POST_ICON_SIZE}
+                  size={iconSize}
                   color={theme["color-primary-default"]}
                 />
               ) : (
-                <SearchStd
-                  size={POST_ICON_SIZE}
-                  color={theme["color-primary-300"]}
-                />
+                <SearchStd size={iconSize} color={theme["color-primary-300"]} />
               );
             },
           }}
         />
       </TopTabs.Navigator>
-    </SafeAreaView>
+    </View>
   );
 };
 

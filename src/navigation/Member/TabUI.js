@@ -7,6 +7,8 @@ import {
   View,
 } from "react-native";
 
+import { SafeAreaView } from "react-native-safe-area-context";
+
 // Import tab navigator main shape
 import TabShape from "./TabShape";
 
@@ -107,104 +109,108 @@ const TabUI = ({ state, navigation }) => {
   };
 
   return (
-    <View style={styles.tabBarLayout}>
+    <SafeAreaView style={styles.tabBarLayout}>
       <TabShape />
 
-      {state.routes.map((route, index) => {
-        const isFocused = state.index === index;
+      <View style={styles.tabBarSpread}>
+        {state.routes.map((route, index) => {
+          const isFocused = state.index === index;
 
-        useEffect(() => {
-          isFocused ? setCurrentScreen(route.name) : null;
-        });
-
-        const onPress = () => {
-          const event = navigation.emit({
-            type: "tabPress",
-            target: route["key"],
-            canPreventDefault: true,
+          useEffect(() => {
+            isFocused ? setCurrentScreen(route.name) : null;
           });
 
-          if (!isFocused && !event.defaultPrevented) {
-            navigation.navigate({ name: route.name, merge: true });
-          }
-        };
+          const onPress = () => {
+            const event = navigation.emit({
+              type: "tabPress",
+              target: route["key"],
+              canPreventDefault: true,
+            });
 
-        const onLongPress = () => {
-          navigation.emit({
-            type: "tabLongPress",
-            target: route["key"],
-          });
-        };
+            if (!isFocused && !event.defaultPrevented) {
+              navigation.navigate({ name: route.name, merge: true });
+            }
+          };
 
-        // In the case of the middle Ostracon Button
-        if (index === Math.floor(state.routes.length / 2)) {
-          return (
-            <TouchableOpacity
-              accessibilityRole="button"
-              accessibilityState={isFocused ? { selected: true } : {}}
-              onPress={() => {
-                currentScreen === "Messages"
-                  ? navigate("New Message")
-                  : navigate("New Post");
-              }}
-              onLongPress={onLongPress}
-              key={route["key"]}
-              style={[
-                styles.ostraconButton,
-                {
-                  backgroundColor: theme["color-primary-default"],
-                },
-              ]}
-            >
-              {currentScreen === "Messages" ? (
-                <NewMessageStd size={ostraconIconSize} color={"white"} />
-              ) : (
-                <NewPostStd size={ostraconIconSize} color={"white"} />
-              )}
-            </TouchableOpacity>
-          );
-        }
+          const onLongPress = () => {
+            navigation.emit({
+              type: "tabLongPress",
+              target: route["key"],
+            });
+          };
 
-        // For the other standard buttons
-        return (
-          <View key={route["key"]} style={styles.tabItem}>
-            <TouchableWithoutFeedback
-              accessibilityRole="button"
-              accessibilityState={isFocused ? { selected: true } : {}}
-              onPress={onPress}
-              onLongPress={onLongPress}
-            >
-              <View
-                style={{
-                  justifyContent: "center",
-                  alignItems: "center",
-
-                  width: buttonSize,
-                  height: buttonSize,
-
-                  backgroundColor: isFocused ? "#937741" : "#fff",
-                  borderRadius: 100,
-
-                  shadowOffset: isFocused ? { width: 2, height: 5 } : "none",
-                  shadowRadius: 5,
-                  shadowOpacity: 0.65,
-                  shadowColor: "black",
-
-                  elevation: isFocused ? 5 : 0,
+          // In the case of the middle Ostracon Button
+          if (index === Math.floor(state.routes.length / 2)) {
+            return (
+              <TouchableOpacity
+                accessibilityRole="button"
+                accessibilityState={isFocused ? { selected: true } : {}}
+                onPress={() => {
+                  currentScreen === "Messages"
+                    ? navigate("New Message")
+                    : navigate("New Post");
                 }}
+                onLongPress={onLongPress}
+                key={route["key"]}
+                style={[
+                  styles.ostraconButton,
+                  {
+                    backgroundColor: theme["color-primary-default"],
+                  },
+                ]}
               >
-                {/* Only show badge for badge buttons*/}
-                {index > 2 ? null : null}
+                {currentScreen === "Messages" ? (
+                  <NewMessageStd size={ostraconIconSize} color={"white"} />
+                ) : (
+                  <NewPostStd size={ostraconIconSize} color={"white"} />
+                )}
+              </TouchableOpacity>
+            );
+          }
 
-                {isFocused
-                  ? focusedIconsObj[route.name]
-                  : unfocusedIconsObj[route.name]}
-              </View>
-            </TouchableWithoutFeedback>
-          </View>
-        );
-      })}
-    </View>
+          // For the other standard buttons
+          return (
+            <View key={route["key"]} style={styles.tabItem}>
+              <TouchableWithoutFeedback
+                accessibilityRole="button"
+                accessibilityState={isFocused ? { selected: true } : {}}
+                onPress={onPress}
+                onLongPress={onLongPress}
+              >
+                <View
+                  style={{
+                    justifyContent: "center",
+                    alignItems: "center",
+
+                    width: buttonSize,
+                    height: buttonSize,
+
+                    backgroundColor: isFocused ? "#937741" : "#fff",
+                    borderRadius: 100,
+
+                    shadowOffset: isFocused
+                      ? { width: 2, height: 2 }
+                      : { width: 0, height: 0 },
+                    shadowRadius: isFocused ? 3 : 0,
+                    shadowOpacity: isFocused ? 0.25 : 0,
+                    shadowColor: "black",
+
+                    elevation: isFocused ? 5 : 0,
+                  }}
+                >
+                  {/* Only show badge for badge buttons*/}
+                  {index > 2 ? null : null}
+
+                  {isFocused
+                    ? focusedIconsObj[route.name]
+                    : unfocusedIconsObj[route.name]}
+                </View>
+              </TouchableWithoutFeedback>
+            </View>
+          );
+        })}
+      </View>
+    </SafeAreaView>
   );
 };
 
@@ -218,16 +224,20 @@ const styles = StyleSheet.create({
 
     bottom: 0,
 
-    justifyContent: "space-evenly",
     alignItems: "flex-end",
 
     height: BOTTOM_NAVIGATION_FULL_HEIGHT,
     width: viewWidth,
 
-    backgroundColor: "transparent",
-    borderWidth: 0,
-
     elevation: 0,
+  },
+  tabBarSpread: {
+    flexDirection: "row",
+
+    justifyContent: "space-evenly",
+    alignItems: "flex-end",
+
+    width: viewWidth,
   },
   ostraconButton: {
     position: "relative",
@@ -242,9 +252,9 @@ const styles = StyleSheet.create({
 
     borderRadius: 100,
 
-    shadowOffset: { width: 2, height: 5 },
-    shadowRadius: 10,
-    shadowOpacity: 0.8,
+    shadowOffset: { width: 2, height: 2 },
+    shadowRadius: 3,
+    shadowOpacity: 0.25,
     shadowColor: "black",
 
     elevation: 5,
