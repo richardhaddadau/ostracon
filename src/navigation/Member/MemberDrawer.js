@@ -5,15 +5,17 @@ import { Platform, Dimensions } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import CustomDrawerContent from "./CustomDrawerContent";
-import BottomTabNavigator from "./BottomTabNavigator";
+import MemberBottomTabs from "./MemberBottomTabs";
+import SettingsScreen from "../../screens/SettingsScreen";
+import ChaptersScreen from "../../screens/ChaptersScreen";
 
 const Drawer = createDrawerNavigator();
 const { width: viewWidth } = Dimensions.get("screen");
 
-const DrawerNavigator = ({ theme }) => {
+const MemberDrawer = () => {
   return (
     <Drawer.Navigator
-      drawerContent={(props) => <CustomDrawerContent {...props} />}
+      drawerContent={(props) => <CustomDrawerContent {...props} navigation />}
       screenOptions={{
         headerShown: false,
         drawerType: Platform.OS === "android" ? "front" : "slide",
@@ -22,7 +24,7 @@ const DrawerNavigator = ({ theme }) => {
     >
       <Drawer.Screen
         name="My Feed"
-        component={BottomTabNavigator}
+        component={MemberBottomTabs}
         options={{
           drawerItemStyle: { display: "none" },
         }}
@@ -31,4 +33,4 @@ const DrawerNavigator = ({ theme }) => {
   );
 };
 
-export default DrawerNavigator;
+export default MemberDrawer;

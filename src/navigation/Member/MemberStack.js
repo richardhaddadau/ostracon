@@ -1,55 +1,38 @@
 import React from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import DrawerNavigator from "./DrawerNavigator";
+// Import Navigation Libraries
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import MemberDrawer from "./MemberDrawer";
+
+// Import Screens
 import ChaptersScreen from "../../screens/ChaptersScreen";
-import ProfileScreen from "../../screens/ProfileScreen";
 import PostNewScreen from "../../screens/PostNewScreen";
 import MessagesNewScreen from "../../screens/MessagesNewScreen";
+import SettingsScreen from "../../screens/SettingsScreen";
+import MessagesSingleScreen from "../../screens/MessagesSingleScreen";
+import PostSingleScreen from "../../screens/PostSingleScreen";
 
 const Stack = createNativeStackNavigator();
 
-const MemberStack = ({ theme }) => {
+const MemberStack = ({ setSigned }) => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Drawer"
-        component={DrawerNavigator}
+        name="MainDrawer"
+        component={MemberDrawer}
         options={{ headerShown: false }}
-        theme={theme}
       />
+
+      {/* The Chapters Page should be a Tab Navigator */}
       <Stack.Screen name="Chapters" component={ChaptersScreen} />
-      <Stack.Screen name="Profile" component={ProfileStack} />
+
+      {/* The Settings Page will be a Stack Navigator */}
+      <Stack.Screen name="Settings" component={SettingsScreen} />
+
       <Stack.Screen name="New Post" component={PostNewScreen} />
-      <Stack.Screen name="New Message" component={MessagesStack} />
-    </Stack.Navigator>
-  );
-};
-
-const ChapterStack = () => {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Chapters Stack" component={ChaptersScreen} />
-    </Stack.Navigator>
-  );
-};
-
-const ProfileStack = () => {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Profile Stack"
-        component={ProfileScreen}
-        options={{ headerShown: false }}
-      />
-    </Stack.Navigator>
-  );
-};
-
-const MessagesStack = () => {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="New Message Stack" component={MessagesNewScreen} />
+      <Stack.Screen name="Single Post" component={PostSingleScreen} />
+      <Stack.Screen name="New Message" component={MessagesNewScreen} />
+      <Stack.Screen name="Single Message" component={MessagesSingleScreen} />
     </Stack.Navigator>
   );
 };

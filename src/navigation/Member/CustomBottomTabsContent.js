@@ -55,11 +55,7 @@ const ostraconSpace = OSTRACON_BUTTON_SPACE;
 const ostraconSize = OSTRACON_BUTTON_SIZE;
 const ostraconIconSize = OSTRACON_ICON_SIZE;
 
-const CustomBaseBar = () => {
-  return <></>;
-};
-
-const TabUI = ({ state, navigation }) => {
+const CustomBottomTabsContent = ({ state, navigation }) => {
   const theme = useTheme();
 
   const [currentScreen, setCurrentScreen] = useState("");
@@ -99,11 +95,13 @@ const TabUI = ({ state, navigation }) => {
 
   const focusedIconsObj = {
     Home: <HomeActive size={BOTTOM_NAVIGATION_ICON_SIZE} color={"white"} />,
+
     Search: <SearchActive size={BOTTOM_NAVIGATION_ICON_SIZE} color={"white"} />,
 
     Notifications: (
       <BellActive size={BOTTOM_NAVIGATION_ICON_SIZE} color={"white"} />
     ),
+
     Messages: (
       <MessageActive size={BOTTOM_NAVIGATION_ICON_SIZE} color={"white"} />
     ),
@@ -146,7 +144,7 @@ const TabUI = ({ state, navigation }) => {
           // In the case of the middle Ostracon Button
           if (index === Math.floor(state.routes.length / 2)) {
             return (
-              <TouchableOpacity
+              <TouchableWithoutFeedback
                 accessibilityRole="button"
                 accessibilityState={isFocused ? { selected: true } : {}}
                 onPress={() => {
@@ -156,19 +154,22 @@ const TabUI = ({ state, navigation }) => {
                 }}
                 onLongPress={onLongPress}
                 key={route["key"]}
-                style={[
-                  styles.ostraconButton,
-                  {
-                    backgroundColor: theme["color-primary-default"],
-                  },
-                ]}
               >
-                {currentScreen === "Messages" ? (
-                  <NewMessageStd size={ostraconIconSize} color={"white"} />
-                ) : (
-                  <NewPostStd size={ostraconIconSize} color={"white"} />
-                )}
-              </TouchableOpacity>
+                <View
+                  style={[
+                    styles.ostraconButton,
+                    {
+                      backgroundColor: theme["color-primary-default"],
+                    },
+                  ]}
+                >
+                  {currentScreen === "Messages" ? (
+                    <NewMessageStd size={ostraconIconSize} color={"white"} />
+                  ) : (
+                    <NewPostStd size={ostraconIconSize} color={"white"} />
+                  )}
+                </View>
+              </TouchableWithoutFeedback>
             );
           }
 
@@ -214,8 +215,6 @@ const TabUI = ({ state, navigation }) => {
           );
         })}
       </View>
-
-      <CustomBaseBar />
     </SafeAreaView>
   );
 };
@@ -283,4 +282,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TabUI;
+export default CustomBottomTabsContent;

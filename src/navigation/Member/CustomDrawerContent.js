@@ -33,14 +33,12 @@ import { Divider, useTheme } from "@ui-kitten/components";
 import { DRAWER_NAVIGATION_ICON_SIZE } from "../../constants/constants";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const CustomDrawerContent = (props) => {
+const CustomDrawerContent = ({ props, navigation }) => {
   const themeContext = useContext(ThemeContext);
-
   const theme = useTheme();
 
   return (
     <View
-      {...props}
       style={{
         flex: 1,
         paddingTop: Platform.OS === "ios" ? 10 : 0,
@@ -50,107 +48,108 @@ const CustomDrawerContent = (props) => {
             : theme["color-primary-default"],
       }}
     >
-      <DrawerItemList {...props} />
-      <DrawerItem
-        label="Chapters"
-        onPress={() => {
-          navigate("Chapters");
-        }}
-        icon={() => (
-          <BookmarkStd
-            size={DRAWER_NAVIGATION_ICON_SIZE}
-            color={
+      <DrawerContentScrollView {...props}>
+        <DrawerItem
+          label="Chapters Stack"
+          onPress={() => {
+            navigation.navigate("Chapter Stack");
+          }}
+          icon={() => (
+            <BookmarkStd
+              size={DRAWER_NAVIGATION_ICON_SIZE}
+              color={
+                themeContext.theme === "light"
+                  ? theme["color-primary-500"]
+                  : theme["color-primary-100"]
+              }
+              style={{ margin: -2 }}
+            />
+          )}
+          labelStyle={{
+            marginLeft: -20,
+            color:
               themeContext.theme === "light"
                 ? theme["color-primary-500"]
-                : theme["color-primary-100"]
-            }
-            style={{ margin: -2 }}
-          />
-        )}
-        labelStyle={{
-          marginLeft: -20,
-          color:
-            themeContext.theme === "light"
-              ? theme["color-primary-500"]
-              : theme["color-primary-100"],
-        }}
-      />
-      <DrawerItem
-        label="Points"
-        onPress={() => navigate("Chapters")}
-        icon={() => (
-          <AwardStd
-            size={DRAWER_NAVIGATION_ICON_SIZE}
-            color={
+                : theme["color-primary-100"],
+          }}
+        />
+        <DrawerItem
+          label="Points"
+          onPress={() => navigate("Chapters")}
+          icon={() => (
+            <AwardStd
+              size={DRAWER_NAVIGATION_ICON_SIZE}
+              color={
+                themeContext.theme === "light"
+                  ? theme["color-primary-500"]
+                  : theme["color-primary-100"]
+              }
+              style={{ margin: -2 }}
+            />
+          )}
+          labelStyle={{
+            marginLeft: -20,
+            color:
               themeContext.theme === "light"
                 ? theme["color-primary-500"]
-                : theme["color-primary-100"]
-            }
-            style={{ margin: -2 }}
-          />
-        )}
-        labelStyle={{
-          marginLeft: -20,
-          color:
-            themeContext.theme === "light"
-              ? theme["color-primary-500"]
-              : theme["color-primary-100"],
-        }}
-      />
+                : theme["color-primary-100"],
+          }}
+        />
 
-      <DrawerItem
-        label="Ostracon Gold"
-        onPress={() => navigate("Chapters")}
-        icon={() => (
-          <Ostracon
-            size={DRAWER_NAVIGATION_ICON_SIZE}
-            color={"#937741"}
-            style={{ margin: -2 }}
-          />
-        )}
-        labelStyle={{
-          marginLeft: -20,
-          color:
-            themeContext.theme === "light"
-              ? theme["color-primary-500"]
-              : theme["color-primary-100"],
-        }}
-      />
-
-      <DrawerItem
-        label="Settings"
-        onPress={() => navigate("Chapters")}
-        icon={() => (
-          <SettingsStd
-            size={DRAWER_NAVIGATION_ICON_SIZE}
-            color={
+        <DrawerItem
+          label="Ostracon Gold"
+          onPress={() => navigate("Chapters")}
+          icon={() => (
+            <Ostracon
+              size={DRAWER_NAVIGATION_ICON_SIZE}
+              color={"#937741"}
+              style={{ margin: -2 }}
+            />
+          )}
+          labelStyle={{
+            marginLeft: -20,
+            color:
               themeContext.theme === "light"
                 ? theme["color-primary-500"]
-                : theme["color-primary-100"]
-            }
-            style={{ margin: -2 }}
-          />
-        )}
-        labelStyle={{
-          marginLeft: -20,
-          color:
-            themeContext.theme === "light"
-              ? theme["color-primary-500"]
-              : theme["color-primary-100"],
-        }}
-      />
-      <Divider />
-      <DrawerItem
-        label="Help & Support"
-        onPress={() => navigate("Chapters")}
-        labelStyle={{
-          color:
-            themeContext.theme === "light"
-              ? theme["color-primary-500"]
-              : theme["color-primary-100"],
-        }}
-      />
-      <Divider />
+                : theme["color-primary-100"],
+          }}
+        />
+
+        <DrawerItem
+          label="Settings"
+          onPress={() => navigate("Settings")}
+          icon={() => (
+            <SettingsStd
+              size={DRAWER_NAVIGATION_ICON_SIZE}
+              color={
+                themeContext.theme === "light"
+                  ? theme["color-primary-500"]
+                  : theme["color-primary-100"]
+              }
+              style={{ margin: -2 }}
+            />
+          )}
+          labelStyle={{
+            marginLeft: -20,
+            color:
+              themeContext.theme === "light"
+                ? theme["color-primary-500"]
+                : theme["color-primary-100"],
+          }}
+        />
+        <Divider />
+        <DrawerItem
+          label="Help & Support"
+          onPress={() => navigate("Chapters")}
+          labelStyle={{
+            color:
+              themeContext.theme === "light"
+                ? theme["color-primary-500"]
+                : theme["color-primary-100"],
+          }}
+        />
+        <Divider />
+      </DrawerContentScrollView>
 
       <SafeAreaView
         style={{
@@ -161,6 +160,17 @@ const CustomDrawerContent = (props) => {
           bottom: 0,
         }}
       >
+        <DrawerItem
+          label="Switch to an Existing Account"
+          onPress={() => navigate("Chapters")}
+          labelStyle={{
+            color:
+              themeContext.theme === "light"
+                ? theme["color-primary-500"]
+                : theme["color-primary-100"],
+          }}
+        />
+        <Divider />
         <DrawerItem
           label={
             themeContext.theme === "light"
