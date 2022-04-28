@@ -120,6 +120,19 @@ const Ellipse = ({ size = 24, color = "black", style }) => {
     </Svg>
   );
 };
+const Feed = ({ size = 24, color = "black", style }) => {
+  return (
+    <Svg
+      width={size}
+      height={size}
+      viewBox="0 0 512 512"
+      fill={color}
+      style={style}
+    >
+      <Path d="M447 0H65C29.1 0 0 29.1 0 65v382c0 35.9 29.1 65 65 65h382c35.9 0 65-29.1 65-65V65c0-35.9-29.1-65-65-65ZM256 376c0 15.19-12.31 27.5-27.5 27.5H102.25c-15.19 0-27.5-12.31-27.5-27.5s12.31-27.5 27.5-27.5H228.5c15.19 0 27.5 12.31 27.5 27.5Zm181.25-120c0 15.19-12.31 27.5-27.5 27.5h-307.5c-15.19 0-27.5-12.31-27.5-27.5s12.31-27.5 27.5-27.5h307.5c15.19 0 27.5 12.31 27.5 27.5Zm0-120c0 15.19-12.31 27.5-27.5 27.5h-307.5c-15.19 0-27.5-12.31-27.5-27.5s12.31-27.5 27.5-27.5h307.5c15.19 0 27.5 12.31 27.5 27.5Z" />
+    </Svg>
+  );
+};
 const Flame = ({ size = 24, color = "black", style }) => {
   return (
     <Svg
@@ -400,10 +413,11 @@ export {
   Award,
   Bell,
   Bookmark,
-  Ellipse,
-  Flame,
   Clap,
   Comment,
+  Ellipse,
+  Feed,
+  Flame,
   Globe,
   Home,
   Location,

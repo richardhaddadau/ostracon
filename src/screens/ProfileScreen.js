@@ -12,15 +12,13 @@ import {
   Person as PersonStd,
   Comment as CommentStd,
   Clap as ClapStd,
-  Award as AwardStd,
-  Location as LocationStd,
+  Feed as FeedStd,
 } from "../components/Ostracon-Std";
 import {
   Person as PersonActive,
   Comment as CommentActive,
   Clap as ClapActive,
-  Award as AwardActive,
-  Location as LocationActive,
+  Feed as FeedActive,
 } from "../components/Ostracon-Active";
 
 import {
@@ -82,12 +80,12 @@ const ProfileScreen = ({ navigation }) => {
             lazy: true,
             tabBarIcon: ({ focused }) => {
               return focused ? (
-                <LocationActive
+                <FeedActive
                   size={iconSize + 3}
                   color={theme["color-primary-default"]}
                 />
               ) : (
-                <LocationStd
+                <FeedStd
                   size={iconSize + 3}
                   color={theme["color-primary-300"]}
                 />
