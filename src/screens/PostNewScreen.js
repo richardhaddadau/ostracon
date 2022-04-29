@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import { View, TextInput, Image, StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, TextInput, Image, StyleSheet, Keyboard } from "react-native";
+
+import { goBack } from "../navigation/Member/RootNavigation";
 
 import { Avatar, Button, ButtonGroup, Divider } from "@ui-kitten/components";
 import * as ImagePicker from "expo-image-picker";
@@ -18,6 +20,16 @@ const PostNewScreen = () => {
   const [postText, setPostText] = useState("");
   const [postImage, setPostImage] = useState(null);
   const [postEmpty, setPostEmpty] = useState(true);
+
+  useEffect(() => {
+    const backAction = () => {
+      goBack();
+    };
+
+    const keyboardHandler = Keyboard.addListener("keyboardDidHide", backAction);
+
+    return () => keyboardHandler.remove();
+  }, []);
 
   return (
     <View style={styles.newPostWrapper}>
@@ -60,6 +72,7 @@ const PostNewScreen = () => {
         <ButtonGroup
           style={{
             marginHorizontal: -NEW_POST_PADDING,
+            backgroundColor: "red",
           }}
           appearance="ghost"
           size={"medium"}
@@ -94,6 +107,8 @@ const PostNewScreen = () => {
 const styles = StyleSheet.create({
   newPostWrapper: {
     flex: 1,
+    justifyContent: "space-between",
+
     padding: NEW_POST_PADDING,
 
     backgroundColor: "white",
@@ -104,6 +119,8 @@ const styles = StyleSheet.create({
     padding: NEW_POST_PADDING,
 
     backgroundColor: "white",
+
+    borderWidth: 1,
 
     fontSize: STANDARD_SIZE,
   },
