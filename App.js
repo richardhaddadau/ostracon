@@ -32,20 +32,6 @@ const CustomStatusBar = ({ backgroundColor, barStyle }) => {
   );
 };
 
-const CustomBaseBar = ({ backgroundColor, barStyle }) => {
-  const insets = useSafeAreaInsets();
-
-  return (
-    <View style={{ height: insets.bottom, backgroundColor }}>
-      <StatusBar
-        animated={true}
-        backgroundColor={backgroundColor}
-        barStyle={barStyle}
-      />
-    </View>
-  );
-};
-
 export const App = () => {
   // States
   const [theme, setTheme] = useState("light");
@@ -77,9 +63,6 @@ export const App = () => {
             )}
           </NavigationContainer>
         </ApplicationProvider>
-
-        {/* Colour bottom safe area inset on iOS */}
-        <CustomBaseBar />
       </SafeAreaProvider>
     </ThemeContext.Provider>
   );

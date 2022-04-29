@@ -41,14 +41,16 @@ const CustomDrawerContent = ({ props, navigation }) => {
     <View
       style={{
         flex: 1,
-        paddingTop: Platform.OS === "ios" ? 10 : 0,
         backgroundColor:
           themeContext.theme === "light"
             ? theme["color-base-background"]
             : theme["color-primary-default"],
       }}
     >
-      <DrawerContentScrollView {...props}>
+      <DrawerContentScrollView
+        {...props}
+        style={{ flex: 1, marginTop: Platform.OS === "ios" ? -30 : 0 }}
+      >
         <DrawerItem
           label="Chapters Stack"
           onPress={() => {
