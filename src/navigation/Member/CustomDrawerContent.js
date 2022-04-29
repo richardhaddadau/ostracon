@@ -100,7 +100,7 @@ const CustomDrawerContent = ({ props, navigation }) => {
           icon={() => (
             <Ostracon
               size={DRAWER_NAVIGATION_ICON_SIZE}
-              color={"#937741"}
+              color={theme["color-secondary-default"]}
               style={{ margin: -2 }}
             />
           )}

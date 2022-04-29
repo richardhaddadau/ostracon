@@ -3,6 +3,7 @@
   "surface": "#FFFFFF",
   "bottom-bar-surface": "#FFFFFF",
   "color-primary-default": "#363744",
+  "color-secondary-default": "#937741",
 
   "color-primary-100": "#EBECF5",
   "color-primary-200": "#D8DAEC",

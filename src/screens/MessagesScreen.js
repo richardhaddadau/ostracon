@@ -9,7 +9,7 @@ import { useTheme } from "@ui-kitten/components";
 import CustomHeader from "../navigation/Member/CustomHeader";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
-import SearchFeed from "./SearchFeed";
+import SearchScreen from "./SearchScreen";
 
 const GlobalFeed = () => <View></View>;
 
@@ -42,7 +42,7 @@ const MessagesScreen = ({ navigation }) => {
         />
         <TopTabs.Screen
           name="Group"
-          component={SearchFeed}
+          component={SearchScreen}
           options={{ lazy: true }}
         />
       </TopTabs.Navigator>

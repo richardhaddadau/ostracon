@@ -11,7 +11,7 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 
 // Import Screens
 import LocalFeed from "./LocalFeed";
-import SearchFeed from "./SearchFeed";
+import SearchScreen from "./SearchScreen";
 
 // Import Icons
 import {
@@ -100,7 +100,7 @@ const HomeScreen = ({ navigation }) => {
         />
         <TopTabs.Screen
           name="Hot"
-          component={SearchFeed}
+          component={SearchScreen}
           options={{
             lazy: true,
 
@@ -118,7 +118,7 @@ const HomeScreen = ({ navigation }) => {
         />
         <TopTabs.Screen
           name="Search"
-          component={SearchFeed}
+          component={SearchScreen}
           options={{
             lazy: true,
 

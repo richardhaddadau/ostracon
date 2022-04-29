@@ -190,7 +190,9 @@ const CustomBottomTabsContent = ({ state, navigation }) => {
                     width: buttonSize,
                     height: buttonSize,
 
-                    backgroundColor: isFocused ? "#937741" : "#fff",
+                    backgroundColor: isFocused
+                      ? theme["color-secondary-default"]
+                      : "#fff",
                     borderRadius: 100,
 
                     shadowOffset: isFocused
