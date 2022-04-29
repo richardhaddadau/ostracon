@@ -6,8 +6,6 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import CustomDrawerContent from "./CustomDrawerContent";
 import MemberBottomTabs from "./MemberBottomTabs";
-import SettingsScreen from "../../screens/SettingsScreen";
-import ChaptersScreen from "../../screens/ChaptersScreen";
 
 const Drawer = createDrawerNavigator();
 const { width: viewWidth } = Dimensions.get("screen");

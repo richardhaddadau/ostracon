@@ -3,11 +3,7 @@ import { Platform, View } from "react-native";
 import { navigate } from "./RootNavigation";
 import { ThemeContext } from "../../context/ThemeContext";
 
-import {
-  DrawerContentScrollView,
-  DrawerItem,
-  DrawerItemList,
-} from "@react-navigation/drawer";
+import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 
 // Import icons
 import {
@@ -52,9 +48,9 @@ const CustomDrawerContent = ({ props, navigation }) => {
         style={{ flex: 1, marginTop: Platform.OS === "ios" ? -30 : 0 }}
       >
         <DrawerItem
-          label="Chapters Stack"
+          label="Chapters"
           onPress={() => {
-            navigation.navigate("Chapter Stack");
+            navigate("Chapters");
           }}
           icon={() => (
             <BookmarkStd
@@ -77,7 +73,7 @@ const CustomDrawerContent = ({ props, navigation }) => {
         />
         <DrawerItem
           label="Points"
-          onPress={() => navigate("Chapters")}
+          onPress={() => navigate("ChaptersStack")}
           icon={() => (
             <AwardStd
               size={DRAWER_NAVIGATION_ICON_SIZE}

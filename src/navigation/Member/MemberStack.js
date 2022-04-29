@@ -5,12 +5,12 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MemberDrawer from "./MemberDrawer";
 
 // Import Screens
-import ChaptersScreen from "../../screens/ChaptersScreen";
 import PostNewScreen from "../../screens/PostNewScreen";
 import MessagesNewScreen from "../../screens/MessagesNewScreen";
 import SettingsScreen from "../../screens/SettingsScreen";
 import MessagesSingleScreen from "../../screens/MessagesSingleScreen";
 import PostSingleScreen from "../../screens/PostSingleScreen";
+import ChaptersScreen from "../../screens/ChaptersScreen";
 
 const Stack = createNativeStackNavigator();
 
