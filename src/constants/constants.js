@@ -31,3 +31,6 @@ export const POST_PADDING = 5;
 // New Post
 export const NEW_POST_MARGIN = 5;
 export const NEW_POST_PADDING = 10;
+
+// Settings
+export const SETTINGS_ITEM_HEIGHT = 60;
