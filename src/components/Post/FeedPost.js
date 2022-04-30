@@ -112,7 +112,7 @@ const FeedPost = ({ item, bottomSheetRef }) => {
   const [postPraiseState, setPostPraiseState] = useState(false);
 
   const [applauseUsed, setApplauseUsed] = useState(0);
-  const applauseLimit = 10;
+  const applauseLimit = 5;
 
   // Theme
   const theme = useTheme();

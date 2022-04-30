@@ -11,6 +11,8 @@ import SettingsScreen from "../../screens/SettingsScreen";
 import MessagesSingleScreen from "../../screens/MessagesSingleScreen";
 import PostSingleScreen from "../../screens/PostSingleScreen";
 import ChaptersScreen from "../../screens/ChaptersScreen";
+import PointsScreen from "../../screens/PointsScreen";
+import OstraconGoldScreen from "../../screens/OstraconGold";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,12 +25,16 @@ const MemberStack = ({ setSigned }) => {
         options={{ headerShown: false }}
       />
 
-      {/* The Chapters Page should be a Tab Navigator */}
+      {/* The Chapters Page is a Tab Navigator */}
       <Stack.Screen name="Chapters" component={ChaptersScreen} />
 
-      {/* The Settings Page will be a Stack Navigator */}
+      {/* The Points Page is a Tab Navigator */}
+      <Stack.Screen name="Points" component={PointsScreen} />
+
+      {/* The Settings Page is a Stack Navigator */}
       <Stack.Screen name="Settings" component={SettingsScreen} />
 
+      <Stack.Screen name="Ostracon Gold" component={OstraconGoldScreen} />
       <Stack.Screen name="New Post" component={PostNewScreen} />
       <Stack.Screen name="Single Post" component={PostSingleScreen} />
       <Stack.Screen name="New Message" component={MessagesNewScreen} />

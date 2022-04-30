@@ -73,7 +73,7 @@ const CustomDrawerContent = ({ props, navigation }) => {
         />
         <DrawerItem
           label="Points"
-          onPress={() => navigate("ChaptersStack")}
+          onPress={() => navigate("Points")}
           icon={() => (
             <AwardStd
               size={DRAWER_NAVIGATION_ICON_SIZE}
@@ -96,7 +96,7 @@ const CustomDrawerContent = ({ props, navigation }) => {
 
         <DrawerItem
           label="Ostracon Gold"
-          onPress={() => navigate("Chapters")}
+          onPress={() => navigate("Ostracon Gold ")}
           icon={() => (
             <Ostracon
               size={DRAWER_NAVIGATION_ICON_SIZE}
