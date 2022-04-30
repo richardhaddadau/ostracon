@@ -10,7 +10,6 @@ import BottomSheet from "reanimated-bottom-sheet";
 import PostMenu from "../components/Post/PostMenu";
 
 // Import Feed Components
-import ProfileHeader from "../components/Profile/ProfileHeader";
 import ListFooter from "../components/ListFooter";
 import FeedPost from "../components/Post/FeedPost";
 import posts from "../data/posts";

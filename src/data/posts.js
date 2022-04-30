@@ -11,7 +11,7 @@ const posts = [
     content:
       "Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.",
     numberOfApplause: 400,
-    numberOfClones: 10,
+    numberOfAttaches: 10,
     numberOfComments: 18,
     numberOfPraises: 8,
   },
@@ -27,7 +27,7 @@ const posts = [
     content:
       "Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.",
     numberOfApplause: 150,
-    numberOfClones: 2,
+    numberOfAttaches: 2,
     numberOfComments: 4,
     numberOfPraises: 3,
   },
@@ -43,7 +43,7 @@ const posts = [
     content:
       "Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.",
     numberOfApplause: 256,
-    numberOfClones: 15,
+    numberOfAttaches: 15,
     numberOfComments: 25,
     numberOfPraises: 12,
   },
@@ -59,7 +59,7 @@ const posts = [
     content:
       "Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.",
     numberOfApplause: 256,
-    numberOfClones: 15,
+    numberOfAttaches: 15,
     numberOfComments: 25,
     numberOfPraises: 12,
   },
@@ -75,7 +75,7 @@ const posts = [
     content:
       "Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.",
     numberOfApplause: 256,
-    numberOfClones: 15,
+    numberOfAttaches: 15,
     numberOfComments: 25,
     numberOfPraises: 12,
   },
@@ -91,7 +91,7 @@ const posts = [
     content:
       "Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.",
     numberOfApplause: 256,
-    numberOfClones: 15,
+    numberOfAttaches: 15,
     numberOfComments: 25,
     numberOfPraises: 12,
   },
@@ -107,7 +107,7 @@ const posts = [
     content:
       "Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.",
     numberOfApplause: 256,
-    numberOfClones: 15,
+    numberOfAttaches: 15,
     numberOfComments: 25,
     numberOfPraises: 12,
   },
@@ -123,7 +123,7 @@ const posts = [
     content:
       "Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.",
     numberOfApplause: 256,
-    numberOfClones: 15,
+    numberOfAttaches: 15,
     numberOfComments: 25,
     numberOfPraises: 12,
   },
@@ -139,7 +139,7 @@ const posts = [
     content:
       "Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.",
     numberOfApplause: 256,
-    numberOfClones: 15,
+    numberOfAttaches: 15,
     numberOfComments: 25,
     numberOfPraises: 12,
   },
@@ -155,7 +155,7 @@ const posts = [
     content:
       "Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.",
     numberOfApplause: 256,
-    numberOfClones: 15,
+    numberOfAttaches: 15,
     numberOfComments: 25,
     numberOfPraises: 12,
   },

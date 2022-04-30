@@ -17,7 +17,6 @@ import {
   Award as AwardActive,
   Clap as ClapActive,
   Comment as CommentActive,
-  Ellipse as EllipseActive,
 } from "../Ostracon-Active";
 
 // Import Constants
@@ -31,6 +30,7 @@ import {
 import {
   FEED_POST_TIME_SIZE,
   FEED_POST_USERNAME_SIZE,
+  FEED_POST_MY_APPLAUSE_SIZE,
   STANDARD_SIZE,
 } from "../../theme/Fonts";
 
@@ -101,7 +101,20 @@ const FeedPost = ({ item, bottomSheetRef }) => {
 
   // States
   const [postedText, setPostedText] = useState("");
+  const [postApplause, setPostApplause] = useState(item["numberOfApplause"]);
+  const [postAttach, setPostAttach] = useState(item["numberOfAttaches"]);
+  const [postComment, setPostComment] = useState(item["numberOfComments"]);
+  const [postPraise, setPostPraise] = useState(item["numberOfPraises"]);
 
+  const [postApplauseState, setPostApplauseState] = useState(false);
+  const [postAttachState, setPostAttachState] = useState(false);
+  const [postCommentState, setPostCommentState] = useState(false);
+  const [postPraiseState, setPostPraiseState] = useState(false);
+
+  const [applauseUsed, setApplauseUsed] = useState(0);
+  const applauseLimit = 10;
+
+  // Theme
   const theme = useTheme();
 
   useEffect(() => {
@@ -156,31 +169,157 @@ const FeedPost = ({ item, bottomSheetRef }) => {
       </View>
 
       <View style={styles.interactionsBar}>
-        <TouchableWithoutFeedback>
+        <TouchableWithoutFeedback
+          onPress={() => {
+            if (applauseLimit - applauseUsed > 0) {
+              setPostApplauseState(true);
+              setPostApplause(postApplause + 1);
+              setApplauseUsed(applauseUsed + 1);
+            }
+          }}
+          onLongPress={() => {
+            if (postApplauseState) {
+              setPostApplauseState(false);
+              setPostApplause(postApplause - applauseUsed);
+              setApplauseUsed(0);
+            }
+          }}
+        >
           <View style={styles.feedInteractions}>
-            <ClapStd size={POST_ICON_SIZE} color={"#b7b7b7"} />
-            <Text style={styles.feedBadge}>{item["numberOfApplause"]}</Text>
+            {postApplauseState ? (
+              <ClapActive
+                size={POST_ICON_SIZE}
+                color={theme["color-primary-default"]}
+              />
+            ) : (
+              <ClapStd size={POST_ICON_SIZE} color={"#b7b7b7"} />
+            )}
+            <Text
+              style={[
+                styles.feedInteractionCount,
+                {
+                  color: postApplauseState
+                    ? theme["color-primary-default"]
+                    : OSTRACON_PLACEHOLDER,
+                },
+              ]}
+            >
+              {postApplause}
+            </Text>
+            <Text
+              style={{
+                marginLeft: 5,
+                fontSize: FEED_POST_MY_APPLAUSE_SIZE,
+                color: OSTRACON_PLACEHOLDER,
+              }}
+            >
+              {applauseUsed > 0 ? `(${applauseUsed})` : null}
+            </Text>
           </View>
         </TouchableWithoutFeedback>
 
-        <TouchableWithoutFeedback>
+        <TouchableWithoutFeedback
+          onPress={() => {
+            if (postAttachState) {
+              setPostAttach(postAttach - 1);
+            } else {
+              setPostAttach(postAttach + 1);
+            }
+
+            setPostAttachState(!postAttachState);
+          }}
+        >
           <View style={styles.feedInteractions}>
-            <AttachStd size={POST_ICON_SIZE} color={"#b7b7b7"} />
-            <Text style={styles.feedBadge}>{item["numberOfClones"]}</Text>
+            {postAttachState ? (
+              <AttachActive
+                size={POST_ICON_SIZE}
+                color={theme["color-primary-default"]}
+              />
+            ) : (
+              <AttachStd size={POST_ICON_SIZE} color={"#b7b7b7"} />
+            )}
+            <Text
+              style={[
+                styles.feedInteractionCount,
+                {
+                  color: postAttachState
+                    ? theme["color-primary-default"]
+                    : OSTRACON_PLACEHOLDER,
+                },
+              ]}
+            >
+              {postAttach}
+            </Text>
           </View>
         </TouchableWithoutFeedback>
 
-        <TouchableWithoutFeedback>
+        <TouchableWithoutFeedback
+          onPress={() => {
+            if (postCommentState) {
+              setPostComment(postComment - 1);
+            } else {
+              setPostComment(postComment + 1);
+            }
+
+            setPostCommentState(!postCommentState);
+          }}
+        >
           <View style={styles.feedInteractions}>
-            <CommentStd size={POST_ICON_SIZE} color={"#b7b7b7"} />
-            <Text style={styles.feedBadge}>{item["numberOfComments"]}</Text>
+            {postCommentState ? (
+              <CommentActive
+                size={POST_ICON_SIZE}
+                color={theme["color-primary-default"]}
+              />
+            ) : (
+              <CommentStd size={POST_ICON_SIZE} color={"#b7b7b7"} />
+            )}
+            <Text
+              style={[
+                styles.feedInteractionCount,
+                {
+                  color: postCommentState
+                    ? theme["color-primary-default"]
+                    : OSTRACON_PLACEHOLDER,
+                },
+              ]}
+            >
+              {postComment}
+            </Text>
           </View>
         </TouchableWithoutFeedback>
 
-        <TouchableWithoutFeedback>
+        <TouchableWithoutFeedback
+          onPress={() => {
+            if (postPraiseState) {
+              setPostPraise(postPraise - 1);
+            } else {
+              setPostPraise(postPraise + 1);
+            }
+
+            setPostPraiseState(!postPraiseState);
+          }}
+        >
           <View style={styles.feedInteractions}>
-            <AwardStd size={POST_ICON_SIZE} color={"#b7b7b7"} />
-            <Text style={styles.feedBadge}>{item["numberOfPraises"]}</Text>
+            {postPraiseState ? (
+              <AwardActive
+                size={POST_ICON_SIZE}
+                color={theme["color-primary-default"]}
+              />
+            ) : (
+              <AwardStd size={POST_ICON_SIZE} color={"#b7b7b7"} />
+            )}
+            <Text
+              style={[
+                styles.feedInteractionCount,
+                {
+                  color: postPraiseState
+                    ? theme["color-primary-default"]
+                    : OSTRACON_PLACEHOLDER,
+                },
+              ]}
+            >
+              {postPraise}
+            </Text>
           </View>
         </TouchableWithoutFeedback>
       </View>
@@ -253,11 +392,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  feedBadge: {
+  feedInteractionCount: {
     marginLeft: POST_PADDING,
 
-    fontSize: 14,
-    color: OSTRACON_PLACEHOLDER,
+    fontSize: STANDARD_SIZE,
   },
 });
 
