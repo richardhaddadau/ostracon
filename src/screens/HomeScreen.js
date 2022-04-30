@@ -10,8 +10,8 @@ import CustomHeader from "../navigation/Member/CustomHeader";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
 // Import Screens
-import LocalFeed from "./LocalFeed";
-import SearchScreen from "./SearchScreen";
+import FeedLocal from "./FeedLocal";
+import FeedSearch from "./FeedSearch";
 
 // Import Icons
 import {
@@ -32,10 +32,8 @@ import {
   TOP_NAVIGATION_FULL_HEIGHT,
   TOP_NAVIGATION_ICON_SIZE,
 } from "../constants/constants";
-
-const GlobalFeed = ({ navigation }) => {
-  return <View></View>;
-};
+import FeedGlobal from "./FeedGlobal";
+import FeedHot from "./FeedHot";
 
 const TopTabs = createMaterialTopTabNavigator();
 const iconSize = TOP_NAVIGATION_ICON_SIZE;
@@ -62,7 +60,7 @@ const HomeScreen = ({ navigation }) => {
       >
         <TopTabs.Screen
           name="My Feed"
-          component={LocalFeed}
+          component={FeedLocal}
           options={{
             lazy: true,
             tabBarIcon: ({ focused }) => {
@@ -82,7 +80,7 @@ const HomeScreen = ({ navigation }) => {
         />
         <TopTabs.Screen
           name="Global"
-          component={GlobalFeed}
+          component={FeedGlobal}
           options={{
             lazy: true,
 
@@ -100,7 +98,7 @@ const HomeScreen = ({ navigation }) => {
         />
         <TopTabs.Screen
           name="Hot"
-          component={SearchScreen}
+          component={FeedHot}
           options={{
             lazy: true,
 
@@ -118,7 +116,7 @@ const HomeScreen = ({ navigation }) => {
         />
         <TopTabs.Screen
           name="Search"
-          component={SearchScreen}
+          component={FeedSearch}
           options={{
             lazy: true,
 

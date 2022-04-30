@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // Import Screens
 import HomeScreen from "../screens/HomeScreen";
-import SearchScreen from "../screens/SearchScreen";
+import FeedSearch from "../screens/FeedSearch";
 import ProfileScreen from "../screens/ProfileScreen";
 import MessagesScreen from "../screens/MessagesScreen";
 import PostNewScreen from "../screens/PostNewScreen";
@@ -30,7 +30,7 @@ const SearchStackNavigator = () => {
         headerShown: false,
       }}
     >
-      <Stack.Screen name="Search" component={SearchScreen} />
+      <Stack.Screen name="Search" component={FeedSearch} />
     </Stack.Navigator>
   );
 };

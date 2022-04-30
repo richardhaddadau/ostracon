@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import HomeScreen from "../screens/HomeScreen";
-import SearchScreen from "../screens/SearchScreen";
+import FeedSearch from "../screens/FeedSearch";
 import MessagesScreen from "../screens/MessagesScreen";
 import NotificationsScreen from "../screens/NotificationsScreen";
 import PostNewScreen from "../screens/PostNewScreen";
@@ -81,7 +81,7 @@ const BottomTabNavigator = () => {
 
       <Tab.Screen
         name="Tab Search"
-        component={SearchScreen}
+        component={FeedSearch}
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={focused ? styles.focusedStyle : styles.unFocusedStyle}>

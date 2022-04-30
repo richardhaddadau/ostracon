@@ -18,7 +18,7 @@ import { useTheme } from "@ui-kitten/components";
 import FeedPost from "../components/Post/FeedPost";
 import { useScrollToTop } from "@react-navigation/native";
 
-const SearchScreen = () => {
+const FeedSearch = () => {
   // States
   const [searchText, setSearchText] = useState("");
   const [feedData, setFeedData] = useState({});
@@ -88,4 +88,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SearchScreen;
+export default FeedSearch;

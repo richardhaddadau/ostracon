@@ -9,7 +9,7 @@ import BottomSheet from "reanimated-bottom-sheet";
 import PostMenu from "../components/Post/PostMenu";
 import ListFooter from "../components/ListFooter";
 
-const LocalFeed = ({ navigation }) => {
+const FeedLocal = ({ navigation }) => {
   // States
   const [feedData, setFeedData] = useState({});
 
@@ -51,4 +51,4 @@ const LocalFeed = ({ navigation }) => {
   );
 };
 
-export default LocalFeed;
+export default FeedLocal;

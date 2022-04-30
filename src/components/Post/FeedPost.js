@@ -136,10 +136,22 @@ const FeedPost = ({ item, bottomSheetRef }) => {
           source={item["user"]["image"]}
         />
         <View style={styles.feedInfo}>
-          <Text style={styles.feedUsername}>
-            {item["user"]["name"]} • {item["user"]["username"]}
-          </Text>
-          <Text style={styles.feedTime}>posted {postedText}</Text>
+          <Text style={styles.feedNickname}>{item["user"]["nickname"]}</Text>
+          <View style={{ flexDirection: "row" }}>
+            <Text
+              style={[
+                styles.feedUsername,
+                { color: theme["color-primary-400"] },
+              ]}
+            >
+              {`@${item["user"]["username"]} • `}
+            </Text>
+            <Text
+              style={[styles.feedTime, { color: theme["color-primary-400"] }]}
+            >
+              posted {postedText}
+            </Text>
+          </View>
         </View>
 
         <TouchableWithoutFeedback
@@ -353,13 +365,15 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     justifyContent: "center",
   },
-  feedUsername: {
+  feedNickname: {
     fontWeight: "bold",
     fontSize: FEED_POST_USERNAME_SIZE,
   },
+  feedUsername: {
+    fontSize: FEED_POST_TIME_SIZE,
+  },
   feedTime: {
     fontSize: FEED_POST_TIME_SIZE,
-    color: "#777",
     fontStyle: "italic",
   },
   menuButton: {

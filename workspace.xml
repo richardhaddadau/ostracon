@@ -13,7 +13,7 @@
       <change beforePath="$PROJECT_DIR$/src/screens/NotificationsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/NotificationsScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/PostNewScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/PostNewScreen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/ProfileScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ProfileScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/SearchScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SearchScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/FeedSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/FeedSearch.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
