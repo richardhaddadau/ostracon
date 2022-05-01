@@ -4,7 +4,7 @@ import { View, Text } from "react-native";
 const PointsDashboard = () => {
   return (
     <View>
-      <Text>Points Dashboard</Text>
+      <Text>Main Points Dashboard</Text>
     </View>
   );
 };
