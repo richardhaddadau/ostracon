@@ -39,6 +39,7 @@ const TopTabs = createMaterialTopTabNavigator();
 const iconSize = TOP_NAVIGATION_ICON_SIZE;
 
 const HomeScreen = ({ navigation }) => {
+  // Theme
   const theme = useTheme();
 
   return (
@@ -50,11 +51,11 @@ const HomeScreen = ({ navigation }) => {
           tabBarShowIcon: true,
           tabBarShowLabel: false,
           tabBarIndicatorStyle: {
-            backgroundColor: theme["color-primary-default"],
+            backgroundColor: theme["color-primary-accent"],
           },
           tabBarStyle: {
-            height: TOP_NAVIGATION_FULL_HEIGHT,
             justifyContent: "center",
+            height: TOP_NAVIGATION_FULL_HEIGHT,
           },
         }}
       >
@@ -63,18 +64,22 @@ const HomeScreen = ({ navigation }) => {
           component={FeedLocal}
           options={{
             lazy: true,
+
             tabBarIcon: ({ focused }) => {
               return focused ? (
                 <LocationActive
                   size={iconSize + 3}
-                  color={theme["color-primary-default"]}
+                  color={theme["color-primary-accent"]}
                 />
               ) : (
                 <LocationStd
                   size={iconSize + 3}
-                  color={theme["color-primary-300"]}
+                  color={theme["color-primary-accent"]}
                 />
               );
+            },
+            tabBarStyle: {
+              backgroundColor: theme["color-bar-surface"],
             },
           }}
         />
@@ -88,11 +93,18 @@ const HomeScreen = ({ navigation }) => {
               return focused ? (
                 <GlobeActive
                   size={iconSize}
-                  color={theme["color-primary-default"]}
+                  color={theme["color-primary-accent"]}
                 />
               ) : (
-                <GlobeStd size={iconSize} color={theme["color-primary-300"]} />
+                <GlobeStd
+                  size={iconSize}
+                  color={theme["color-primary-accent"]}
+                />
               );
+            },
+
+            tabBarStyle: {
+              backgroundColor: theme["color-bar-surface"],
             },
           }}
         />
@@ -106,11 +118,18 @@ const HomeScreen = ({ navigation }) => {
               return focused ? (
                 <FlameActive
                   size={iconSize}
-                  color={theme["color-primary-default"]}
+                  color={theme["color-primary-accent"]}
                 />
               ) : (
-                <FlameStd size={iconSize} color={theme["color-primary-300"]} />
+                <FlameStd
+                  size={iconSize}
+                  color={theme["color-primary-accent"]}
+                />
               );
+            },
+
+            tabBarStyle: {
+              backgroundColor: theme["color-bar-surface"],
             },
           }}
         />
@@ -124,11 +143,18 @@ const HomeScreen = ({ navigation }) => {
               return focused ? (
                 <SearchActive
                   size={iconSize}
-                  color={theme["color-primary-default"]}
+                  color={theme["color-primary-accent"]}
                 />
               ) : (
-                <SearchStd size={iconSize} color={theme["color-primary-300"]} />
+                <SearchStd
+                  size={iconSize}
+                  color={theme["color-primary-accent"]}
+                />
               );
+            },
+
+            tabBarStyle: {
+              backgroundColor: theme["color-bar-surface"],
             },
           }}
         />

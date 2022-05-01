@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   Dimensions,
+  Platform,
   StyleSheet,
   TouchableOpacity,
   TouchableWithoutFeedback,
@@ -10,7 +11,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 // Import tab navigator main shape
-import TabShape from "./TabShape";
+import CustomBottomTabShape from "./CustomBottomTabShape";
 
 // Import Theme
 import { useTheme } from "@ui-kitten/components";
@@ -105,6 +106,7 @@ const CustomBottomTabsContent = ({ state, navigation }) => {
     Messages: (
       <MessageActive size={BOTTOM_NAVIGATION_ICON_SIZE} color={"white"} />
     ),
+
     Profile: (
       <ProfileActive size={BOTTOM_NAVIGATION_ICON_SIZE} color={"white"} />
     ),
@@ -112,7 +114,7 @@ const CustomBottomTabsContent = ({ state, navigation }) => {
 
   return (
     <SafeAreaView style={styles.tabBarLayout}>
-      <TabShape />
+      <CustomBottomTabShape />
 
       <View style={styles.tabBarSpread}>
         {state.routes.map((route, index) => {
@@ -192,7 +194,7 @@ const CustomBottomTabsContent = ({ state, navigation }) => {
 
                     backgroundColor: isFocused
                       ? theme["color-secondary-default"]
-                      : "#fff",
+                      : "white",
                     borderRadius: 100,
 
                     shadowOffset: isFocused
@@ -233,10 +235,11 @@ const styles = StyleSheet.create({
 
     alignItems: "flex-end",
 
-    height: BOTTOM_NAVIGATION_FULL_HEIGHT,
+    height:
+      Platform.OS === "ios"
+        ? BOTTOM_NAVIGATION_FULL_HEIGHT
+        : BOTTOM_NAVIGATION_BAR_HEIGHT,
     width: viewWidth,
-
-    elevation: 0,
   },
   tabBarSpread: {
     flexDirection: "row",

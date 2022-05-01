@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Animated, ScrollView } from "react-native";
+import { Animated } from "react-native";
 import { useTheme } from "@ui-kitten/components";
 import ProfileHeader from "../components/Profile/ProfileHeader";
 import ListFooter from "../components/ListFooter";
@@ -11,7 +11,7 @@ const ProfileHomeScreen = () => {
   return (
     <Animated.ScrollView
       showsVerticalScrollIndicator={false}
-      style={{ flex: 1, backgroundColor: theme["bottom-bar-surface"] }}
+      style={{ flex: 1, backgroundColor: theme["color-bar-surface"] }}
       onScroll={Animated.event(
         [
           {

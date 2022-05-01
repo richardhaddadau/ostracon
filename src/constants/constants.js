@@ -1,7 +1,7 @@
 // Navigation
 export const DRAWER_NAVIGATION_ICON_SIZE = 18;
 
-export const BOTTOM_NAVIGATION_FULL_HEIGHT = 82;
+export const BOTTOM_NAVIGATION_FULL_HEIGHT = 87;
 export const BOTTOM_NAVIGATION_BAR_HEIGHT = 55;
 export const BOTTOM_NAVIGATION_ICON_SIZE = 20;
 export const BOTTOM_NAVIGATION_BUTTON_SIZE = 40;
@@ -24,9 +24,12 @@ export const FEED_GUTTER = 10;
 export const POST_IMAGE_SIZE = 45;
 export const POST_USERNAME_BAR = 30;
 export const POST_MIN_HEIGHT = 110;
-export const POST_ICON_SIZE = 16;
-export const POST_MARGIN = 10;
-export const POST_PADDING = 5;
+export const POST_ICON_SIZE = 20;
+export const POST_VERTICAL_MARGIN = 5;
+export const POST_HORIZONTAL_MARGIN = 7;
+export const POST_VERTICAL_PADDING = 15;
+export const POST_HORIZONTAL_PADDING = 15;
+export const POST_INTERACTIONS_PADDING = 5;
 
 // New Post
 export const NEW_POST_MARGIN = 5;

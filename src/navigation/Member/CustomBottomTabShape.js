@@ -49,15 +49,15 @@ const hole = shapePattern.curve(curveBasis)([
   },
   {
     x: (viewWidth - buttonSpace) / 2 + 25,
-    y: barHeight * 0.635,
+    y: barHeight * 0.65,
   },
   {
     x: viewWidth / 2,
-    y: barHeight * 0.7,
+    y: barHeight * 0.725,
   },
   {
     x: (viewWidth + buttonSpace) / 2 - 25,
-    y: barHeight * 0.635,
+    y: barHeight * 0.65,
   },
   {
     x: (viewWidth + buttonSpace) / 2 - 12,
@@ -69,7 +69,7 @@ const hole = shapePattern.curve(curveBasis)([
 
 const d = `${rectLeft} ${hole} ${rectRight}`;
 
-const TabShape = () => {
+const CustomBottomTabShape = () => {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
 
@@ -82,8 +82,8 @@ const TabShape = () => {
           style={styles.barBackground}
         >
           <Path
-            fill={theme["bottom-bar-surface"]}
-            stroke={theme["color-primary-200"]}
+            fill={theme["color-bar-surface"]}
+            stroke={theme["color-primary-300"]}
             {...{ d }}
           />
         </Svg>
@@ -100,7 +100,7 @@ const TabShape = () => {
           maxHeight: insets.bottom,
           width: viewWidth,
 
-          backgroundColor: theme["bottom-bar-surface"],
+          backgroundColor: theme["color-bar-surface"],
 
           zIndex: 0,
         }}
@@ -124,4 +124,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TabShape;
+export default CustomBottomTabShape;

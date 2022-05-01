@@ -80,7 +80,7 @@ const ProfileHeader = ({ scrollY }) => {
       <View
         style={[
           styles.profileContent,
-          { backgroundColor: theme["bottom-bar-surface"] },
+          { backgroundColor: theme["colour-bar-surface"] },
         ]}
       >
         <Text
@@ -191,22 +191,22 @@ const ProfileHeader = ({ scrollY }) => {
 
       <Modal
         visible={showModal}
-        backdropStyle={{ backgroundColor: "rgba(0,0,0,0.5", zIndex: 10 }}
+        backdropStyle={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
         onBackdropPress={() => setShowModal(false)}
       >
-        <Card disabled={true}>
+        <TouchableWithoutFeedback onPress={() => setShowModal(false)}>
           <Image
+            onPress={() => setShowModal(false)}
             style={{
               width: viewWidth,
-              height: viewHeight,
-              opacity: 1,
+              height: viewHeight * 0.5,
             }}
-            resizeMode="contain"
+            resizeMode="cover"
             source={{
               uri: "https://img.freepik.com/free-photo/modern-woman-taking-selfie_23-2147893976.jpg?w=1380&t=st=1650044937~exp=1650045537~hmac=a506f318de9ee55a645ebc2d871e85a63ab33855b93cad76f206e965d16dc1e3",
             }}
           />
-        </Card>
+        </TouchableWithoutFeedback>
       </Modal>
     </View>
   );

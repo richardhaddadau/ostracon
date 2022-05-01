@@ -1,9 +1,19 @@
 {
-  "base-background": "#F7F7F7",
-  "surface": "#FFFFFF",
-  "bottom-bar-surface": "#FFFFFF",
+  "base-background": "#E7E7E7",
+  "color-surface": "#F7F7F7",
+  "color-bar-surface": "#FFFFFF",
+  "color-header-surface": "#121212",
+
   "color-primary-default": "#363744",
   "color-secondary-default": "#937741",
+
+  "color-primary-accent": "#363744",
+  "color-secondary-accent": "#937741",
+
+  "color-font-primary": "#363744",
+  "color-font-secondary": "#AEB0C6",
+
+  "color-post-border": "#FFFFFF",
 
   "color-primary-100": "#EBECF5",
   "color-primary-200": "#D8DAEC",
@@ -14,6 +24,7 @@
   "color-primary-700": "#1B1C30",
   "color-primary-800": "#111227",
   "color-primary-900": "#0A0B20",
+
   "color-success-100": "#C8F8CD",
   "color-success-200": "#94F1A6",
   "color-success-300": "#5AD77F",
@@ -23,6 +34,7 @@
   "color-success-700": "#02573E",
   "color-success-800": "#014638",
   "color-success-900": "#003A34",
+
   "color-info-100": "#C6F8E8",
   "color-info-200": "#91F1DA",
   "color-info-300": "#56D7C3",
@@ -32,6 +44,7 @@
   "color-info-700": "#004757",
   "color-info-800": "#003346",
   "color-info-900": "#00253A",
+
   "color-warning-100": "#FAEBC8",
   "color-warning-200": "#F6D394",
   "color-warning-300": "#E4AD5C",
@@ -41,6 +54,7 @@
   "color-warning-700": "#783000",
   "color-warning-800": "#612100",
   "color-warning-900": "#501700",
+
   "color-danger-100": "#F9CED1",
   "color-danger-200": "#F3A0AD",
   "color-danger-300": "#DD6C88",

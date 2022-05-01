@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { TouchableWithoutFeedback, View, Text, StyleSheet } from "react-native";
 
-import { Avatar, useTheme } from "@ui-kitten/components";
+import { Avatar, Divider, useTheme } from "@ui-kitten/components";
 
 // Import Icons
 import {
@@ -22,16 +22,20 @@ import {
 // Import Constants
 import {
   POST_USERNAME_BAR,
-  POST_MARGIN,
-  POST_PADDING,
   POST_ICON_SIZE,
+  POST_VERTICAL_PADDING,
+  POST_HORIZONTAL_PADDING,
+  POST_VERTICAL_MARGIN,
+  POST_HORIZONTAL_MARGIN,
+  POST_INTERACTIONS_PADDING,
 } from "../../constants/constants";
 
 import {
+  STANDARD_SIZE,
   FEED_POST_TIME_SIZE,
+  FEED_POST_NICKNAME_SIZE,
   FEED_POST_USERNAME_SIZE,
   FEED_POST_MY_APPLAUSE_SIZE,
-  STANDARD_SIZE,
 } from "../../theme/Fonts";
 
 import { OSTRACON_PLACEHOLDER } from "../../theme/Colours";
@@ -125,29 +129,50 @@ const FeedPost = ({ item, bottomSheetRef }) => {
     <View
       style={[
         styles.feedWrapper,
-        { backgroundColor: theme["base-background"] },
+        {
+          backgroundColor: theme["color-surface"],
+          borderColor: theme["color-post-border"],
+        },
       ]}
     >
-      <View style={styles.feedHeader}>
+      <View
+        style={[
+          styles.feedHeader,
+          {
+            borderBottomWidth: 0.5,
+            borderBottomColor: theme["color-font-secondary"],
+          },
+        ]}
+      >
         <Avatar
           style={styles.feedImage}
-          size="medium"
+          size="large"
           shape="rounded"
           source={item["user"]["image"]}
         />
         <View style={styles.feedInfo}>
-          <Text style={styles.feedNickname}>{item["user"]["nickname"]}</Text>
+          <Text
+            style={[
+              styles.feedNickname,
+              { color: theme["color-font-primary"] },
+            ]}
+          >
+            {item["user"]["nickname"]}
+          </Text>
           <View style={{ flexDirection: "row" }}>
             <Text
               style={[
                 styles.feedUsername,
-                { color: theme["color-primary-400"] },
+                { color: theme["color-font-secondary"] },
               ]}
             >
               {`@${item["user"]["username"]} • `}
             </Text>
             <Text
-              style={[styles.feedTime, { color: theme["color-primary-400"] }]}
+              style={[
+                styles.feedTime,
+                { color: theme["color-font-secondary"] },
+              ]}
             >
               posted {postedText}
             </Text>
@@ -171,7 +196,7 @@ const FeedPost = ({ item, bottomSheetRef }) => {
             <Text
               style={{
                 fontSize: STANDARD_SIZE,
-                color: theme["color-primary-500"],
+                color: theme["color-font-primary"],
               }}
             >
               {item["content"]}
@@ -201,18 +226,21 @@ const FeedPost = ({ item, bottomSheetRef }) => {
             {postApplauseState ? (
               <ClapActive
                 size={POST_ICON_SIZE}
-                color={theme["color-primary-default"]}
+                color={theme["color-font-primary"]}
               />
             ) : (
-              <ClapStd size={POST_ICON_SIZE} color={"#b7b7b7"} />
+              <ClapStd
+                size={POST_ICON_SIZE}
+                color={theme["color-font-secondary"]}
+              />
             )}
             <Text
               style={[
                 styles.feedInteractionCount,
                 {
                   color: postApplauseState
-                    ? theme["color-primary-default"]
-                    : OSTRACON_PLACEHOLDER,
+                    ? theme["color-font-primary"]
+                    : theme["color-font-secondary"],
                 },
               ]}
             >
@@ -222,7 +250,7 @@ const FeedPost = ({ item, bottomSheetRef }) => {
               style={{
                 marginLeft: 5,
                 fontSize: FEED_POST_MY_APPLAUSE_SIZE,
-                color: OSTRACON_PLACEHOLDER,
+                color: theme["color-font-secondary"],
               }}
             >
               {applauseUsed > 0 ? `(${applauseUsed})` : null}
@@ -245,18 +273,21 @@ const FeedPost = ({ item, bottomSheetRef }) => {
             {postAttachState ? (
               <AttachActive
                 size={POST_ICON_SIZE}
-                color={theme["color-primary-default"]}
+                color={theme["color-font-primary"]}
               />
             ) : (
-              <AttachStd size={POST_ICON_SIZE} color={"#b7b7b7"} />
+              <AttachStd
+                size={POST_ICON_SIZE}
+                color={theme["color-font-secondary"]}
+              />
             )}
             <Text
               style={[
                 styles.feedInteractionCount,
                 {
                   color: postAttachState
-                    ? theme["color-primary-default"]
-                    : OSTRACON_PLACEHOLDER,
+                    ? theme["color-font-primary"]
+                    : theme["color-font-secondary"],
                 },
               ]}
             >
@@ -280,18 +311,21 @@ const FeedPost = ({ item, bottomSheetRef }) => {
             {postCommentState ? (
               <CommentActive
                 size={POST_ICON_SIZE}
-                color={theme["color-primary-default"]}
+                color={theme["color-font-primary"]}
               />
             ) : (
-              <CommentStd size={POST_ICON_SIZE} color={"#b7b7b7"} />
+              <CommentStd
+                size={POST_ICON_SIZE}
+                color={theme["color-font-secondary"]}
+              />
             )}
             <Text
               style={[
                 styles.feedInteractionCount,
                 {
                   color: postCommentState
-                    ? theme["color-primary-default"]
-                    : OSTRACON_PLACEHOLDER,
+                    ? theme["color-font-primary"]
+                    : theme["color-font-secondary"],
                 },
               ]}
             >
@@ -315,18 +349,21 @@ const FeedPost = ({ item, bottomSheetRef }) => {
             {postPraiseState ? (
               <AwardActive
                 size={POST_ICON_SIZE}
-                color={theme["color-primary-default"]}
+                color={theme["color-font-primary"]}
               />
             ) : (
-              <AwardStd size={POST_ICON_SIZE} color={"#b7b7b7"} />
+              <AwardStd
+                size={POST_ICON_SIZE}
+                color={theme["color-font-secondary"]}
+              />
             )}
             <Text
               style={[
                 styles.feedInteractionCount,
                 {
                   color: postPraiseState
-                    ? theme["color-primary-default"]
-                    : OSTRACON_PLACEHOLDER,
+                    ? theme["color-font-primary"]
+                    : theme["color-font-secondary"],
                 },
               ]}
             >
@@ -342,42 +379,51 @@ const FeedPost = ({ item, bottomSheetRef }) => {
 const styles = StyleSheet.create({
   feedWrapper: {
     flex: 1,
-    margin: POST_MARGIN,
-    padding: POST_PADDING,
+    marginVertical: POST_VERTICAL_MARGIN,
+    marginHorizontal: POST_HORIZONTAL_MARGIN,
+    paddingHorizontal: POST_HORIZONTAL_PADDING,
+
+    borderRadius: 20,
+
+    borderWidth: 2,
   },
   feedHeader: {
     flex: 1,
     flexDirection: "row",
     alignItems: "stretch",
+
+    paddingVertical: POST_VERTICAL_PADDING,
+    marginBottom: POST_VERTICAL_MARGIN,
   },
   feedBody: {
     flex: 1,
 
     flexDirection: "row",
-
     alignItems: "flex-start",
+
+    marginVertical: POST_VERTICAL_MARGIN,
   },
   feedImage: {},
   feedInfo: {
     flexGrow: 1,
     flexDirection: "column",
+    justifyContent: "center",
 
     paddingLeft: 10,
-    justifyContent: "center",
   },
   feedNickname: {
     fontWeight: "bold",
-    fontSize: FEED_POST_USERNAME_SIZE,
+    fontSize: FEED_POST_NICKNAME_SIZE,
   },
   feedUsername: {
-    fontSize: FEED_POST_TIME_SIZE,
+    fontSize: FEED_POST_USERNAME_SIZE,
   },
   feedTime: {
     fontSize: FEED_POST_TIME_SIZE,
     fontStyle: "italic",
   },
   menuButton: {
-    marginRight: POST_MARGIN,
+    marginRight: POST_HORIZONTAL_MARGIN,
 
     alignItems: "center",
     justifyContent: "center",
@@ -386,14 +432,13 @@ const styles = StyleSheet.create({
   },
   feedPost: {
     flex: 1,
-
-    paddingBottom: POST_MARGIN,
-    marginVertical: POST_MARGIN,
   },
   interactionsBar: {
     flex: 1,
     flexDirection: "row",
-    paddingHorizontal: 10,
+
+    paddingVertical: POST_VERTICAL_PADDING,
+    paddingHorizontal: 0,
 
     justifyContent: "flex-start",
   },
@@ -401,13 +446,13 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
 
-    paddingVertical: POST_PADDING,
+    paddingVertical: POST_INTERACTIONS_PADDING,
 
     justifyContent: "center",
     alignItems: "center",
   },
   feedInteractionCount: {
-    marginLeft: POST_PADDING,
+    marginLeft: POST_INTERACTIONS_PADDING,
 
     fontSize: STANDARD_SIZE,
   },

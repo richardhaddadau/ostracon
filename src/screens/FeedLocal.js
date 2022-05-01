@@ -36,7 +36,7 @@ const FeedLocal = ({ navigation }) => {
         data={feedData}
         renderItem={renderItem}
         keyExtractor={(item) => item["id"]}
-        ItemSeparatorComponent={Divider}
+        // ItemSeparatorComponent={Divider}
         ListFooterComponent={ListFooter}
         style={{ backgroundColor: theme["base-background"] }}
       />

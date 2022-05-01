@@ -4,6 +4,9 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MemberDrawer from "./MemberDrawer";
 
+// Import Theme
+import { useTheme } from "@ui-kitten/components";
+
 // Import Screens
 import PostNewScreen from "../../screens/PostNewScreen";
 import MessagesNewScreen from "../../screens/MessagesNewScreen";
@@ -17,12 +20,17 @@ import OstraconGoldScreen from "../../screens/OstraconGold";
 const Stack = createNativeStackNavigator();
 
 const MemberStack = ({ setSigned }) => {
+  // Theme
+  const theme = useTheme();
+
   return (
     <Stack.Navigator>
       <Stack.Screen
         name="MainDrawer"
         component={MemberDrawer}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+        }}
       />
 
       {/* The Chapters Page is a Tab Navigator */}
@@ -32,7 +40,16 @@ const MemberStack = ({ setSigned }) => {
       <Stack.Screen name="Points" component={PointsScreen} />
 
       {/* The Settings Page is a Stack Navigator */}
-      <Stack.Screen name="Settings" component={SettingsScreen} />
+      <Stack.Screen
+        name="Settings"
+        component={SettingsScreen}
+        options={{
+          headerStyle: {
+            backgroundColor: theme["color-header-surface"],
+          },
+          headerTintColor: "white",
+        }}
+      />
 
       <Stack.Screen name="Ostracon Gold" component={OstraconGoldScreen} />
       <Stack.Screen name="New Post" component={PostNewScreen} />

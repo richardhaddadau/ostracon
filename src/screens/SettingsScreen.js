@@ -126,7 +126,7 @@ const SettingsScreen = () => {
 
   return (
     <ScrollView
-      style={{ padding: 10, backgroundColor: theme["bottom-bar-surface"] }}
+      style={{ padding: 10, backgroundColor: theme["color-bar-surface"] }}
     >
       <SettingsSectionTitle sectionTitle={"Account Settings"} />
       <SettingsNavigateItem

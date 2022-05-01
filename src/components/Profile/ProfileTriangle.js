@@ -30,7 +30,7 @@ const ProfileTriangle = () => {
 
   return (
     <Svg width={viewWidth + 10} height={headerHeight} style={styles.header}>
-      <Path fill={theme["bottom-bar-surface"]} {...{ d }} />
+      <Path fill={theme["color-bar-surface"]} {...{ d }} />
     </Svg>
   );
 };

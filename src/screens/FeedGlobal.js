@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-const FeedGlobal = () => {
+const FeedGlobal = ({ navigation }) => {
   return (
     <View>
       <Text>Global</Text>
