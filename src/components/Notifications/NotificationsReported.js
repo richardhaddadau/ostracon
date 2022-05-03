@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import {
   POST_HORIZONTAL_MARGIN,
@@ -6,9 +6,9 @@ import {
   POST_VERTICAL_MARGIN,
   POST_VERTICAL_PADDING,
 } from "../../constants/constants";
-import { Avatar, useTheme } from "@ui-kitten/components";
+import { useTheme } from "@ui-kitten/components";
 
-const NotificationsPraiseReceived = () => {
+const NotificationsReported = ({ message, status }) => {
   const theme = useTheme();
 
   return (
@@ -24,20 +24,18 @@ const NotificationsPraiseReceived = () => {
       <View
         style={[
           styles.notificationHeader,
-          { borderBottomColor: theme["color-font-secondary"] },
+          {
+            backgroundColor: theme["color-danger-400"],
+          },
         ]}
       >
-        <Avatar />
-        <Avatar />
-        <Avatar />
+        <Text style={{ fontWeight: "bold" }}>You were reported</Text>
       </View>
-
       <View style={styles.notificationBody}>
-        <Text>
-          <Text style={{ fontWeight: "bold", fontStyle: "italic" }}>
-            name, and others
-          </Text>{" "}
-          has praised you.
+        <Text>{message}</Text>
+        <Text style={{ paddingTop: POST_VERTICAL_PADDING }}>
+          If you would like to dispute our judgement, please tap on this
+          notification."
         </Text>
       </View>
     </View>
@@ -48,18 +46,22 @@ const styles = StyleSheet.create({
   notificationWrapper: {
     marginVertical: POST_VERTICAL_MARGIN,
     marginHorizontal: POST_HORIZONTAL_MARGIN,
+
+    borderRadius: 20,
+    borderWidth: 2,
+
+    overflow: "hidden",
+  },
+  notificationHeader: {
     paddingHorizontal: POST_HORIZONTAL_PADDING,
     paddingVertical: POST_VERTICAL_PADDING,
 
-    borderRadius: 20,
-
-    borderWidth: 2,
-  },
-  notificationHeader: {
     flexDirection: "row",
-    borderBottomWidth: 0.5,
   },
-  notificationBody: { paddingTop: POST_VERTICAL_PADDING },
+  notificationBody: {
+    paddingVertical: POST_VERTICAL_PADDING,
+    paddingHorizontal: POST_HORIZONTAL_PADDING,
+  },
 });
 
-export default NotificationsPraiseReceived;
+export default NotificationsReported;

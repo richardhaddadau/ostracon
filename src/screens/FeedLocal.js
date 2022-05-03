@@ -30,13 +30,12 @@ const FeedLocal = ({ navigation }) => {
   useScrollToTop(ref);
 
   return (
-    <View style={{}}>
+    <View>
       <FlatList
         ref={ref}
         data={feedData}
         renderItem={renderItem}
         keyExtractor={(item) => item["id"]}
-        // ItemSeparatorComponent={Divider}
         ListFooterComponent={ListFooter}
         style={{ backgroundColor: theme["base-background"] }}
       />
