@@ -2,7 +2,7 @@ import React, { useState, useContext, createContext } from "react";
 import { View, StatusBar } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { SafeAreaProvider } from "react-native-safe-area-context/src/SafeAreaContext";
-// import { FAUNA_OSTRACON_SECRET } from "@env";
+import { FAUNA_OSTRACON_SECRET } from "@env";
 
 // Import Theme Libraries
 import * as eva from "@eva-design/eva";
@@ -34,16 +34,16 @@ const CustomStatusBar = ({ backgroundColor, barStyle }) => {
 };
 
 // Fauna Connection
-// const faunadb = require("faunadb");
-// const q = faunadb.query;
+// const faunaDB = require("faunadb");
+// const q = faunaDB.query;
 //
-// const client = new faunadb.Client({
+// const client = new faunaDB.Client({
 //   secret: FAUNA_OSTRACON_SECRET,
 //   domain: "db.fauna.com",
 //   port: 443,
 //   scheme: "https",
 // });
-
+//
 // let testQuery = client.query(
 //   q.Create(q.Collection("accounts"), {
 //     data: {
