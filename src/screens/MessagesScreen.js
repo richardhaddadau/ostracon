@@ -10,6 +10,8 @@ import CustomHeader from "../navigation/Member/CustomHeader";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
 import FeedSearch from "./FeedSearch";
+import MessagesPrivate from "./MessagesPrivate";
+import MessagesGroup from "./MessagesGroup";
 
 const GlobalFeed = () => <View></View>;
 
@@ -37,12 +39,12 @@ const MessagesScreen = ({ navigation }) => {
       >
         <TopTabs.Screen
           name="Private"
-          component={GlobalFeed}
+          component={MessagesPrivate}
           options={{ lazy: true }}
         />
         <TopTabs.Screen
           name="Group"
-          component={FeedSearch}
+          component={MessagesGroup}
           options={{ lazy: true }}
         />
       </TopTabs.Navigator>
