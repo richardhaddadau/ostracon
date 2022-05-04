@@ -5,7 +5,6 @@ import { SafeAreaProvider } from "react-native-safe-area-context/src/SafeAreaCon
 
 // Import Database Data
 import { FAUNA_OSTRACON_SECRET } from "@env";
-import { openDatabase } from "react-native-sqlite-storage";
 
 // Import Theme Libraries
 import * as eva from "@eva-design/eva";
@@ -59,9 +58,6 @@ const CustomStatusBar = ({ backgroundColor, barStyle }) => {
 // testQuery.then((response) => {
 //   console.log(response.ref);
 // });
-
-// SQLite
-// File settingsDB = new File('./src/data/local-settings.sqlite');
 
 export const App = () => {
   // States
