@@ -2,6 +2,8 @@ import React, { useState, useContext, createContext } from "react";
 import { View, StatusBar } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { SafeAreaProvider } from "react-native-safe-area-context/src/SafeAreaContext";
+
+// Import Database Data
 import { FAUNA_OSTRACON_SECRET } from "@env";
 
 // Import Theme Libraries
