@@ -4,8 +4,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { SafeAreaProvider } from "react-native-safe-area-context/src/SafeAreaContext";
 import { FAUNA_OSTRACON_SECRET } from "@env";
 
-import "faunadb";
-
 // Import Theme Libraries
 import * as eva from "@eva-design/eva";
 import { ApplicationProvider } from "@ui-kitten/components";
@@ -36,16 +34,16 @@ const CustomStatusBar = ({ backgroundColor, barStyle }) => {
 };
 
 // Fauna Connection
-const faunadb = require("faunadb");
-const q = faunadb.query;
-
-const client = new faunadb.Client({
-  secret: FAUNA_OSTRACON_SECRET,
-  domain: "db.fauna.com",
-  port: 443,
-  scheme: "https",
-});
-
+// const faunaDB = require("faunadb");
+// const q = faunaDB.query;
+//
+// const client = new faunaDB.Client({
+//   secret: FAUNA_OSTRACON_SECRET,
+//   domain: "db.fauna.com",
+//   port: 443,
+//   scheme: "https",
+// });
+//
 // let testQuery = client.query(
 //   q.Create(q.Collection("accounts"), {
 //     data: {

@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TouchableWithoutFeedback, View, Text, StyleSheet } from "react-native";
 
-import { Avatar, Divider, useTheme } from "@ui-kitten/components";
+import { Avatar, useTheme } from "@ui-kitten/components";
 
 // Import Icons
 import {
@@ -37,8 +37,6 @@ import {
   FEED_POST_USERNAME_SIZE,
   FEED_POST_MY_APPLAUSE_SIZE,
 } from "../../theme/Fonts";
-
-import { OSTRACON_PLACEHOLDER } from "../../theme/Colours";
 
 const FeedPost = ({ item, bottomSheetRef }) => {
   const updateTime = () => {
@@ -139,7 +137,7 @@ const FeedPost = ({ item, bottomSheetRef }) => {
         style={[
           styles.feedHeader,
           {
-            borderBottomWidth: 0.5,
+            borderBottomWidth: 0.75,
             borderBottomColor: theme["color-font-secondary"],
           },
         ]}

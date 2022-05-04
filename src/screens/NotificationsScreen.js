@@ -1,16 +1,53 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { ScrollView, View, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import CustomHeader from "../navigation/Member/CustomHeader";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import NotificationsPostInteraction from "../components/Notifications/NotificationsPostInteraction";
+import NotificationsPraiseReceived from "../components/Notifications/NotificationsPraiseReceived";
+import NotificationsReportReceived from "../components/Notifications/NotificationsReportReceived";
+import NotificationsReportResponse from "../components/Notifications/NotificationsReportResponse";
+import NotificationsReported from "../components/Notifications/NotificationsReported";
+import ListFooter from "../components/ListFooter";
+import { useTheme } from "@ui-kitten/components";
 
 const Tab = createBottomTabNavigator();
 
 const NotificationsScreen = ({ route, navigation }) => {
+  const theme = useTheme();
+
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <CustomHeader screenName={"Notifications"} navigation={navigation} />
+
+      <ScrollView
+        style={{ flex: 1, backgroundColor: theme["base-background"] }}
+      >
+        <NotificationsPostInteraction />
+        <NotificationsPraiseReceived />
+        <NotificationsReportReceived />
+        <NotificationsReportResponse
+          message={
+            "Thank you for your report. We agree that the user you report has violated our rules and will address" +
+            " this."
+          }
+          status={"success"}
+        />
+        <NotificationsReportResponse
+          message={
+            "Thank you for your report. In this case, we do not believe the user you reported has violated" +
+            " our rules."
+          }
+        />
+        <NotificationsReported
+          message={
+            "In this case, we found that the report was valid and you have violated our rules. At this stage, this" +
+            " is only a warning but continued violation will lead to suspension."
+          }
+        />
+        <ListFooter />
+      </ScrollView>
     </View>
   );
 };
