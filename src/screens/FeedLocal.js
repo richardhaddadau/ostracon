@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FlatList, View } from "react-native";
-import { useScrollToTop } from "@react-navigation/native";
+import { useFocusEffect, useScrollToTop } from "@react-navigation/native";
 
 import FeedPost from "../components/Post/FeedPost";
 import posts from "../data/posts";
@@ -9,9 +9,13 @@ import BottomSheet from "reanimated-bottom-sheet";
 import PostMenu from "../components/Post/PostMenu";
 import ListFooter from "../components/ListFooter";
 
-const FeedLocal = ({ navigation }) => {
+const FeedLocal = ({ navigation, setScreen }) => {
   // States
   const [feedData, setFeedData] = useState({});
+
+  useFocusEffect(() => {
+    setScreen("My Feed");
+  });
 
   useEffect(() => {
     setFeedData(posts);

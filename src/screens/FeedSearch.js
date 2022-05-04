@@ -16,9 +16,9 @@ import posts from "../data/posts";
 import { useTheme } from "@ui-kitten/components";
 
 import FeedPost from "../components/Post/FeedPost";
-import { useScrollToTop } from "@react-navigation/native";
+import { useFocusEffect, useScrollToTop } from "@react-navigation/native";
 
-const FeedSearch = () => {
+const FeedSearch = ({ navigation, setScreen }) => {
   // States
   const [searchText, setSearchText] = useState("");
   const [feedData, setFeedData] = useState({});
@@ -29,6 +29,10 @@ const FeedSearch = () => {
 
   // Theme
   const theme = useTheme();
+
+  useFocusEffect(() => {
+    setScreen("Search");
+  });
 
   const renderItem = ({ item }) => {
     return <FeedPost item={item} bottomSheetRef={bottomSheetRef} />;

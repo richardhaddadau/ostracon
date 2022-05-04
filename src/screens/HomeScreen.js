@@ -42,9 +42,12 @@ const HomeScreen = ({ navigation }) => {
   // Theme
   const theme = useTheme();
 
+  // States
+  const [tabScreen, setTabScreen] = useState("My Feed");
+
   return (
     <View style={{ flex: 1 }}>
-      <CustomHeader screenName={"My Feed"} navigation={navigation} />
+      <CustomHeader screenName={tabScreen} navigation={navigation} />
 
       <TopTabs.Navigator
         screenOptions={{
@@ -61,7 +64,6 @@ const HomeScreen = ({ navigation }) => {
       >
         <TopTabs.Screen
           name="My Feed"
-          component={FeedLocal}
           options={{
             lazy: true,
 
@@ -82,10 +84,13 @@ const HomeScreen = ({ navigation }) => {
               backgroundColor: theme["color-bar-surface"],
             },
           }}
-        />
+        >
+          {(props) => (
+            <FeedLocal {...props} setScreen={(value) => setTabScreen(value)} />
+          )}
+        </TopTabs.Screen>
         <TopTabs.Screen
           name="Global"
-          component={FeedGlobal}
           options={{
             lazy: true,
 
@@ -107,10 +112,13 @@ const HomeScreen = ({ navigation }) => {
               backgroundColor: theme["color-bar-surface"],
             },
           }}
-        />
+        >
+          {(props) => (
+            <FeedGlobal {...props} setScreen={(value) => setTabScreen(value)} />
+          )}
+        </TopTabs.Screen>
         <TopTabs.Screen
           name="Hot"
-          component={FeedHot}
           options={{
             lazy: true,
 
@@ -132,10 +140,13 @@ const HomeScreen = ({ navigation }) => {
               backgroundColor: theme["color-bar-surface"],
             },
           }}
-        />
+        >
+          {(props) => (
+            <FeedHot {...props} setScreen={(value) => setTabScreen(value)} />
+          )}
+        </TopTabs.Screen>
         <TopTabs.Screen
           name="Search"
-          component={FeedSearch}
           options={{
             lazy: true,
 
@@ -157,7 +168,11 @@ const HomeScreen = ({ navigation }) => {
               backgroundColor: theme["color-bar-surface"],
             },
           }}
-        />
+        >
+          {(props) => (
+            <FeedSearch {...props} setScreen={(value) => setTabScreen(value)} />
+          )}
+        </TopTabs.Screen>
       </TopTabs.Navigator>
     </View>
   );
