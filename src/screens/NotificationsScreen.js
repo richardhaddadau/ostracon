@@ -1,18 +1,19 @@
 import React from "react";
 import { ScrollView, View, Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
-import CustomHeader from "../navigation/Member/CustomHeader";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+// Import Screens
 import NotificationsPostInteraction from "../components/Notifications/NotificationsPostInteraction";
 import NotificationsPraiseReceived from "../components/Notifications/NotificationsPraiseReceived";
 import NotificationsReportReceived from "../components/Notifications/NotificationsReportReceived";
 import NotificationsReportResponse from "../components/Notifications/NotificationsReportResponse";
 import NotificationsReported from "../components/Notifications/NotificationsReported";
-import ListFooter from "../components/ListFooter";
-import { useTheme } from "@ui-kitten/components";
 
-const Tab = createBottomTabNavigator();
+// Import Components
+import CustomHeader from "../navigation/Member/CustomHeader";
+import ListFooter from "../components/ListFooter";
+
+// Import Theme
+import { useTheme } from "@ui-kitten/components";
 
 const NotificationsScreen = ({ route, navigation }) => {
   const theme = useTheme();
