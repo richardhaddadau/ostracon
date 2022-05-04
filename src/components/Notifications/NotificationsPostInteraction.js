@@ -14,6 +14,15 @@ const NotificationsPostInteraction = () => {
 
   const user = "randy";
 
+  const images = [
+    { name: "cool-dude" },
+    { name: "space-alien" },
+    { name: "dangerous-girl" },
+    { name: "spider-gwen" },
+    { name: "superman" },
+    { name: "superwoman" },
+  ];
+
   return (
     <View
       style={[
@@ -30,10 +39,59 @@ const NotificationsPostInteraction = () => {
           { borderBottomColor: theme["color-font-secondary"] },
         ]}
       >
-        <Avatar />
-        <Avatar />
-        <Avatar />
-        <Avatar />
+        {/*{images.map((item, index) => {*/}
+        {/*  let currentImage = `../../../assets/fake-data/avatars/${item.name}.jpg`;*/}
+        {/*  console.log(`${index}: ${currentImage}`);*/}
+        {/*  return (*/}
+        {/*    <Avatar*/}
+        {/*      key={index}*/}
+        {/*      size={"small"}*/}
+        {/*      shape={"rounded"}*/}
+        {/*      source={currentImage}*/}
+        {/*    />*/}
+        {/*  );*/}
+        {/*})}*/}
+
+        <Avatar
+          size={"small"}
+          shape={"rounded"}
+          source={require("../../../assets/fake-data/avatars/cool-dude.jpg")}
+        />
+
+        <Avatar
+          style={styles.notificationAvatar}
+          size={"small"}
+          shape={"rounded"}
+          source={require("../../../assets/fake-data/avatars/space-alien.jpg")}
+        />
+
+        <Avatar
+          style={styles.notificationAvatar}
+          size={"small"}
+          shape={"rounded"}
+          source={require("../../../assets/fake-data/avatars/dangerous-girl.jpg")}
+        />
+
+        <Avatar
+          style={styles.notificationAvatar}
+          size={"small"}
+          shape={"rounded"}
+          source={require("../../../assets/fake-data/avatars/spider-gwen.jpg")}
+        />
+
+        <Avatar
+          style={styles.notificationAvatar}
+          size={"small"}
+          shape={"rounded"}
+          source={require("../../../assets/fake-data/avatars/superman.jpg")}
+        />
+
+        <Avatar
+          style={styles.notificationAvatar}
+          size={"small"}
+          shape={"rounded"}
+          source={require("../../../assets/fake-data/avatars/superman.jpg")}
+        />
       </View>
 
       <View style={styles.notificationBody}>
@@ -69,12 +127,18 @@ const styles = StyleSheet.create({
   },
   notificationHeader: {
     flexDirection: "row",
+    paddingBottom: POST_VERTICAL_PADDING,
+
     borderBottomWidth: 0.5,
   },
   notificationBody: { paddingVertical: POST_VERTICAL_PADDING },
   notificationSample: {
     paddingTop: POST_VERTICAL_PADDING,
     fontSize: NOTIFICATIONS_SAMPLE_SIZE,
+  },
+  notificationAvatar: {
+    marginLeft: 5,
+    borderWidth: 1,
   },
 });
 
