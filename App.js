@@ -106,7 +106,7 @@ export const App = () => {
       <SafeAreaProvider>
         {/* Colour status bar on iOS and Android */}
         <CustomStatusBar
-          backgroundColor={"#121212"}
+          backgroundColor={isSignedIn ? "#121212" : "#363744"}
           barStyle={"light-content"}
         />
 
