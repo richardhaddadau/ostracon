@@ -17,7 +17,7 @@ const WelcomeScreen = ({ navigation }) => {
   const theme = useTheme();
 
   return (
-    <SafeAreaView
+    <View
       style={{
         flex: 1,
       }}
@@ -25,7 +25,7 @@ const WelcomeScreen = ({ navigation }) => {
       <ImageBackground
         source={require("../../assets/welcome-screen.jpg")}
         resizeMode={"cover"}
-        style={{ flex: 1, justifyContent: "center" }}
+        style={{ flex: 1, height: "100%", justifyContent: "center" }}
       >
         <Text style={{ marginLeft: 50, color: "#fff" }} category={"h4"}>
           Welcome to
@@ -72,7 +72,7 @@ const WelcomeScreen = ({ navigation }) => {
           </View>
         </TouchableWithoutFeedback>
       </ImageBackground>
-    </SafeAreaView>
+    </View>
   );
 };
 

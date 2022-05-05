@@ -54,7 +54,10 @@ const SignInScreen = ({ navigation }) => {
             <Image
               source={require("../../assets/Ostracon-Logo.png")}
               style={{
-                width: 180,
+                top: 20,
+                left: -10,
+
+                width: 170,
                 height: 100,
 
                 resizeMode: "contain",

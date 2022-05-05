@@ -74,8 +74,8 @@ export const App = () => {
   const appState = useRef(AppState.currentState);
   const [appStateVisible, setAppStateVisible] = useState(appState.current);
 
-  const [appStateTimeOut, setAppStateTimeOut] = useState(0);
-  const [appStateTimeIn, setAppStateTimeIn] = useState(0);
+  const [appStateTimeOut, setAppStateTimeOut] = useState(Date.now);
+  const [appStateTimeIn, setAppStateTimeIn] = useState(Date.now);
 
   const time = 3000;
 
@@ -86,10 +86,6 @@ export const App = () => {
         let currentTime = Date.now();
         console.log(`App State is: ${nextAppState}`);
         setAppStateVisible(nextAppState);
-        nextAppState === "background"
-          ? setAppStateTimeOut(currentTime)
-          : setAppStateTimeIn(currentTime);
-        console.log(`Diff: ${appStateTimeOut - appStateTimeIn}`);
       }
     );
 
