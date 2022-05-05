@@ -17,7 +17,7 @@ const MemberDrawer = () => {
       screenOptions={{
         headerShown: false,
         drawerType: Platform.OS === "android" ? "front" : "slide",
-        swipeEdgeWidth: viewWidth * 0.25,
+        swipeEdgeWidth: viewWidth * 0.2,
       }}
     >
       <Drawer.Screen
