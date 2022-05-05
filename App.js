@@ -1,5 +1,11 @@
-import React, { useState, useContext, createContext } from "react";
-import { View, StatusBar } from "react-native";
+import React, {
+  useState,
+  useContext,
+  createContext,
+  useRef,
+  useEffect,
+} from "react";
+import { View, StatusBar, AppState } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { SafeAreaProvider } from "react-native-safe-area-context/src/SafeAreaContext";
 
@@ -63,7 +69,34 @@ export const App = () => {
   // States
   const [theme, setTheme] = useState("light");
   const [myTheme, setMyTheme] = useState(lightOstracon);
-  const [isSignedIn, setIsSignedIn] = useState(true);
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
+  const appState = useRef(AppState.currentState);
+  const [appStateVisible, setAppStateVisible] = useState(appState.current);
+
+  const [appStateTimeOut, setAppStateTimeOut] = useState(0);
+  const [appStateTimeIn, setAppStateTimeIn] = useState(0);
+
+  const time = 3000;
+
+  useEffect(() => {
+    const appStateListener = AppState.addEventListener(
+      "change",
+      (nextAppState) => {
+        let currentTime = Date.now();
+        console.log(`App State is: ${nextAppState}`);
+        setAppStateVisible(nextAppState);
+        nextAppState === "background"
+          ? setAppStateTimeOut(currentTime)
+          : setAppStateTimeIn(currentTime);
+        console.log(`Diff: ${appStateTimeOut - appStateTimeIn}`);
+      }
+    );
+
+    return () => {
+      appStateListener?.remove();
+    };
+  }, []);
 
   const toggleTheme = () => {
     const nextTheme = theme === "light" ? "dark" : "light";
