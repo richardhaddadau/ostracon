@@ -4,6 +4,10 @@ export const FEED_POST_USERNAME_SIZE = 13;
 export const FEED_POST_TIME_SIZE = 12;
 export const FEED_POST_MY_APPLAUSE_SIZE = 12;
 
+// Login and Registration
+export const LOGIN_STANDARD_SIZE = 14;
+export const LOGIN_FOOTNOTE_SIZE = 13;
+
 export const SETTINGS_TITLE_SIZE = 15;
 export const SETTINGS_SUBTITLE_SIZE = 12;
 

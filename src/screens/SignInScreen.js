@@ -2,16 +2,25 @@ import React, { useState } from "react";
 import {
   View,
   Text,
+  Image,
   TextInput,
+  ImageBackground,
   TouchableWithoutFeedback,
   KeyboardAvoidingView,
   StyleSheet,
   Platform,
   Keyboard,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
-import { useTheme } from "@ui-kitten/components";
+// Import Constants
+import { LOGIN_FOOTNOTE_SIZE, LOGIN_STANDARD_SIZE } from "../theme/Fonts";
+import {
+  LOGIN_VERTICAL_PADDING,
+  LOGIN_VERTICAL_MARGIN,
+  LOGIN_HORIZONTAL_PADDING,
+} from "../constants/constants";
+
+import { Button, useTheme } from "@ui-kitten/components";
 
 const SignInScreen = ({ navigation }) => {
   // States
@@ -27,77 +36,122 @@ const SignInScreen = ({ navigation }) => {
       style={{ flex: 1 }}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: theme["color-primary-default"],
-          }}
+        <ImageBackground
+          source={require("../../assets/login-screen.jpg")}
+          resizeMode={"cover"}
+          style={{ flex: 1 }}
         >
-          <Text>Login</Text>
-          <TextInput
-            style={[
-              styles.InputField,
-              { backgroundColor: theme["color-primary-400"] },
-            ]}
-            onChangeText={(value) => setLoginUser(value)}
-            value={loginUser}
-            placeholder="Username or Email"
-            placeholderTextColor={theme["color-primary-300"]}
-            keyboardType={"email-address"}
-          />
-
-          <TextInput
-            style={[
-              styles.InputField,
-              { backgroundColor: theme["color-primary-400"] },
-            ]}
-            onChangeText={(value) => setLoginPass(value)}
-            value={loginPass}
-            placeholder="Password"
-            placeholderTextColor={theme["color-primary-300"]}
-            keyboardType={"default"}
-            secureTextEntry={true}
-          />
           <View
             style={{
-              position: "absolute",
-              flexDirection: "row",
+              flex: 1,
               justifyContent: "center",
-              alignItems: "center",
-              bottom: 0,
-              height: 50,
-              width: "100%",
+              alignItems: "flex-start",
+
+              paddingLeft: 30,
+              paddingRight: 50,
             }}
           >
-            <Text style={{ color: "white" }}>Don't have an account? </Text>
-            <TouchableWithoutFeedback
-              onPress={() => navigation.navigate("Register")}
+            <Image
+              source={require("../../assets/Ostracon-Logo.png")}
+              style={{
+                width: 180,
+                height: 100,
+
+                resizeMode: "contain",
+              }}
+            />
+            <Text
+              style={{
+                marginBottom: 20,
+                fontSize: LOGIN_STANDARD_SIZE,
+                color: theme["color-primary-default"],
+              }}
             >
-              <Text style={{ fontWeight: "bold", color: "white" }}>
-                Sign up
-              </Text>
-            </TouchableWithoutFeedback>
+              Please login to your account
+            </Text>
+            <TextInput
+              style={[
+                styles.inputField,
+                {
+                  backgroundColor: theme["color-surface"],
+                  borderColor: theme["color-post-border"],
+                  color: theme["color-primary-default"],
+                },
+              ]}
+              onChangeText={(value) => setLoginUser(value)}
+              value={loginUser}
+              placeholder="Username or Email"
+              placeholderTextColor={theme["color-primary-200"]}
+              keyboardType={"email-address"}
+            />
+
+            <TextInput
+              style={[
+                styles.inputField,
+                {
+                  backgroundColor: theme["color-surface"],
+                  borderColor: theme["color-post-border"],
+                  color: theme["color-primary-default"],
+                },
+              ]}
+              onChangeText={(value) => setLoginPass(value)}
+              value={loginPass}
+              placeholder="Password"
+              placeholderTextColor={theme["color-primary-200"]}
+              keyboardType={"default"}
+              secureTextEntry={true}
+            />
+            <Button
+              style={{
+                marginVertical: LOGIN_VERTICAL_MARGIN,
+                borderRadius: 100,
+                width: "100%",
+                borderColor: theme["base-background"],
+                borderWidth: 7,
+              }}
+            >
+              Login
+            </Button>
+            <Text
+              style={{
+                paddingTop: LOGIN_VERTICAL_PADDING,
+                fontSize: LOGIN_FOOTNOTE_SIZE,
+                color: theme["color-primary-400"],
+              }}
+            >
+              Don't have an account?{" "}
+              <TouchableWithoutFeedback
+                onPress={() => navigation.navigate("Register")}
+              >
+                <Text
+                  style={{
+                    fontWeight: "bold",
+                    color: theme["color-primary-400"],
+                  }}
+                >
+                  Sign up
+                </Text>
+              </TouchableWithoutFeedback>
+            </Text>
           </View>
-        </View>
+        </ImageBackground>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
-  InputField: {
-    padding: 10,
-    margin: 5,
+  inputField: {
+    paddingVertical: LOGIN_VERTICAL_PADDING,
+    paddingHorizontal: LOGIN_HORIZONTAL_PADDING,
+    marginVertical: LOGIN_VERTICAL_MARGIN,
 
-    width: "80%",
+    width: "100%",
 
-    borderRadius: 10,
+    borderRadius: 20,
 
-    color: "white",
-
-    elevation: 5,
+    elevation: 7,
+    borderWidth: 0,
   },
 });
 

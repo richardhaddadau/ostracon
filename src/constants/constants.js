@@ -14,6 +14,11 @@ export const OSTRACON_ICON_SIZE = 30;
 export const OSTRACON_BUTTON_SIZE = 60;
 export const OSTRACON_BUTTON_BOTTOM_GAP = 22;
 
+// Login and Registration
+export const LOGIN_VERTICAL_PADDING = 10;
+export const LOGIN_HORIZONTAL_PADDING = 15;
+export const LOGIN_VERTICAL_MARGIN = 5;
+
 // Header
 export const HEADER_HEIGHT = 50;
 export const HEADER_ICON_SIZE = 18;
