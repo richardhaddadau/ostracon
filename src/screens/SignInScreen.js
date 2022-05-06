@@ -26,6 +26,14 @@ const SignInScreen = ({ navigation }) => {
   // States
   const [loginUser, setLoginUser] = useState(null);
   const [loginPass, setLoginPass] = useState(null);
+  const [] = useState({
+    email: "",
+    password: "",
+    handle: "",
+    nickname: "",
+    date: new Date(),
+    location: "",
+  });
 
   // Theme
   const theme = useTheme();
@@ -152,6 +160,10 @@ const styles = StyleSheet.create({
     width: "100%",
 
     borderRadius: 20,
+
+    shadowOffset: { horizontal: 5, vertical: 5 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
 
     elevation: 7,
     borderWidth: 0,

@@ -20,20 +20,29 @@ import {
   LOGIN_VERTICAL_PADDING,
 } from "../constants/constants";
 import { LOGIN_FOOTNOTE_SIZE, LOGIN_STANDARD_SIZE } from "../theme/Fonts";
+import StepperLegend from "../components/Register/StepperLegend";
+
+import SignUpOne from "../components/Register/SignUpOne";
+import SignUpTwo from "../components/Register/SignUpTwo";
+import SignUpThree from "../components/Register/SignUpThree";
+import SignUpFour from "../components/Register/SignUpFour";
 
 const SignUpScreen = ({ navigation }) => {
   // States
-  const [nickname, setSignUpNickname] = useState(null);
-  const [signUpHandle, setSignUpHandle] = useState(null);
-  const [signUpEmail, setSignUpEmail] = useState(null);
-  const [signUpPass, setSignUpPass] = useState(null);
-  const [signUpLocation, setSignUpLocation] = useState(null);
-  const [signUpDOBText, setSignUpDOBText] = useState(null);
-  const [signUpDateOfBirth, setSignUpDateOfBirth] = useState(new Date());
-  const [openDate, setOpenDate] = useState(false);
+  const [screenStep, setScreenStep] = useState(1);
 
   // Theme
   const theme = useTheme();
+
+  // Step Screens
+  const screenSteps = [
+    <SignUpOne />,
+    <SignUpTwo />,
+    <SignUpThree />,
+    <SignUpFour />,
+  ];
+
+  const completeSteps = 4;
 
   return (
     <KeyboardAvoidingView
@@ -77,125 +86,48 @@ const SignUpScreen = ({ navigation }) => {
             >
               Register a new account
             </Text>
-            <TextInput
-              style={[
-                styles.inputField,
-                {
-                  backgroundColor: theme["color-surface"],
-                  borderColor: theme["color-post-border"],
-                  color: theme["color-primary-default"],
-                },
-              ]}
-              onChangeText={(value) => setSignUpEmail(value)}
-              value={signUpEmail}
-              placeholder="Email"
-              placeholderTextColor={theme["color-primary-300"]}
-              keyboardType={"email-address"}
-            />
-            <TextInput
-              style={[
-                styles.inputField,
-                {
-                  backgroundColor: theme["color-surface"],
-                  borderColor: theme["color-post-border"],
-                  color: theme["color-primary-default"],
-                },
-              ]}
-              onChangeText={(value) => setSignUpNickname(value)}
-              value={nickname}
-              placeholder="Nickname"
-              placeholderTextColor={theme["color-primary-300"]}
-              keyboardType={"default"}
-            />
-            <TextInput
-              style={[
-                styles.inputField,
-                {
-                  backgroundColor: theme["color-surface"],
-                  borderColor: theme["color-post-border"],
-                  color: theme["color-primary-default"],
-                },
-              ]}
-              onChangeText={(value) => setSignUpHandle(value)}
-              value={signUpHandle}
-              placeholder="Handle"
-              placeholderTextColor={theme["color-primary-300"]}
-              keyboardType={"default"}
-            />
-            <TextInput
-              style={[
-                styles.inputField,
-                {
-                  backgroundColor: theme["color-surface"],
-                  borderColor: theme["color-post-border"],
-                  color: theme["color-primary-default"],
-                },
-              ]}
-              onChangeText={(value) => setSignUpPass(value)}
-              value={signUpPass}
-              placeholder="Password"
-              placeholderTextColor={theme["color-primary-300"]}
-              keyboardType={"default"}
-              secureTextEntry={true}
-            />
-            <TextInput
-              style={[
-                styles.inputField,
-                {
-                  backgroundColor: theme["color-surface"],
-                  borderColor: theme["color-post-border"],
-                  color: theme["color-primary-default"],
-                },
-              ]}
-              onChangeText={(value) => setSignUpLocation(value)}
-              value={signUpLocation}
-              placeholder="Location"
-              placeholderTextColor={theme["color-primary-300"]}
-              keyboardType={"default"}
-            />
-            <TextInput
-              style={[
-                styles.inputField,
-                {
-                  backgroundColor: theme["color-surface"],
-                  borderColor: theme["color-post-border"],
-                  color: theme["color-primary-default"],
-                },
-              ]}
-              onChangeText={(value) => setSignUpDOBText(value)}
-              onPress={() => {
-                setOpenDate(true);
-              }}
-              value={signUpDOBText}
-              placeholder="Date of Birth"
-              placeholderTextColor={theme["color-primary-300"]}
-              keyboardType={"default"}
-            />
-            <DatePicker
-              modal
-              open={openDate}
-              date={signUpDateOfBirth}
-              onConfirm={(date) => {
-                setOpenDate(false);
-                setSignUpDateOfBirth(date);
-                setSignUpDOBText(date);
-              }}
-              onCancel={() => {
-                setOpenDate(false);
-              }}
+
+            <StepperLegend
+              currentStep={screenStep}
+              totalSteps={completeSteps}
+              size={35}
+              gapStyle={"dotted"}
+              setScreenStep={(value) => setScreenStep(value)}
             />
 
-            <Button
-              style={{
-                marginVertical: LOGIN_VERTICAL_MARGIN,
-                borderRadius: 100,
-                width: "100%",
-                borderColor: theme["base-background"],
-                borderWidth: 7,
-              }}
-            >
-              Register
-            </Button>
+            {screenSteps[screenStep - 1]}
+
+            {screenStep < completeSteps ? (
+              <Button
+                style={{
+                  marginVertical: LOGIN_VERTICAL_MARGIN,
+                  borderRadius: 100,
+                  width: "100%",
+                  backgroundColor: theme["color-primary-default"],
+                  borderColor: theme["base-background"],
+                  borderWidth: 7,
+                }}
+                onPress={() => {
+                  setScreenStep(screenStep + 1);
+                }}
+              >
+                Next
+              </Button>
+            ) : (
+              <Button
+                style={{
+                  marginVertical: LOGIN_VERTICAL_MARGIN,
+                  borderRadius: 100,
+                  width: "100%",
+                  backgroundColor: theme["color-danger-400"],
+                  borderColor: theme["base-background"],
+                  borderWidth: 7,
+                }}
+              >
+                Register
+              </Button>
+            )}
+
             <Text
               style={{
                 paddingTop: LOGIN_VERTICAL_PADDING,
@@ -233,6 +165,10 @@ const styles = StyleSheet.create({
     width: "100%",
 
     borderRadius: 20,
+
+    shadowOffset: { horizontal: 5, vertical: 5 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
 
     elevation: 7,
     borderWidth: 0,
