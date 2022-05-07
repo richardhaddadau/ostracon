@@ -123,27 +123,29 @@ const SignInScreen = ({ navigation }) => {
             >
               Login
             </Button>
-            <Text
-              style={{
-                paddingTop: LOGIN_VERTICAL_PADDING,
-                fontSize: LOGIN_FOOTNOTE_SIZE,
-                color: theme["color-primary-400"],
-              }}
-            >
-              Don't have an account?{" "}
-              <TouchableWithoutFeedback
-                onPress={() => navigation.navigate("Register")}
+
+            <View style={{ marginTop: LOGIN_VERTICAL_MARGIN }}>
+              <Text
+                style={{
+                  fontSize: LOGIN_FOOTNOTE_SIZE,
+                  color: theme["color-primary-400"],
+                }}
               >
-                <Text
-                  style={{
-                    fontWeight: "bold",
-                    color: theme["color-primary-400"],
-                  }}
+                Don't have an account?{" "}
+                <TouchableWithoutFeedback
+                  onPress={() => navigation.navigate("Register")}
                 >
-                  Sign up
-                </Text>
-              </TouchableWithoutFeedback>
-            </Text>
+                  <Text
+                    style={{
+                      fontWeight: "bold",
+                      color: theme["color-primary-400"],
+                    }}
+                  >
+                    Sign up
+                  </Text>
+                </TouchableWithoutFeedback>
+              </Text>
+            </View>
           </View>
         </ImageBackground>
       </TouchableWithoutFeedback>
