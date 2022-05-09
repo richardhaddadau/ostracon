@@ -6,6 +6,7 @@ import {
   LOGIN_VERTICAL_PADDING,
 } from "../../constants/constants";
 import { useTheme } from "@ui-kitten/components";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const signUpFour = () => {
   // Theme
@@ -13,6 +14,20 @@ const signUpFour = () => {
 
   // States
   const [signUpLocation, setSignUpLocation] = useState(null);
+
+  // AsyncStorage Procedures
+  const saveRegistrationData = async (registrationObject) => {
+    try {
+      await AsyncStorage.clear();
+      const registrationString = JSON.stringify(registrationObject);
+      await AsyncStorage.setItem(
+        "@current_registration_details",
+        registrationString
+      );
+    } catch (e) {
+      // store nothing
+    }
+  };
 
   return (
     <View style={{ width: "100%" }}>

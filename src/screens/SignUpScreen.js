@@ -11,7 +11,6 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import DatePicker from "react-native-date-picker";
 
 import { useTheme, Button } from "@ui-kitten/components";
 import {
@@ -26,6 +25,9 @@ import SignUpOne from "../components/Register/SignUpOne";
 import SignUpTwo from "../components/Register/SignUpTwo";
 import SignUpThree from "../components/Register/SignUpThree";
 import SignUpFour from "../components/Register/SignUpFour";
+
+// import AsyncStorage
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SignUpScreen = ({ navigation }) => {
   // States
@@ -43,6 +45,19 @@ const SignUpScreen = ({ navigation }) => {
   ];
 
   const completeSteps = 4;
+
+  // AsyncStorage Procedures
+  const getRegistrationData = async () => {
+    try {
+      const registrationObject = await AsyncStorage.getItem(
+        "@current_registration_details"
+      );
+      console.log(JSON.parse(registrationObject));
+      return registrationObject != null ? JSON.parse(registrationObject) : null;
+    } catch (e) {
+      // Error Reading
+    }
+  };
 
   return (
     <KeyboardAvoidingView
@@ -93,6 +108,7 @@ const SignUpScreen = ({ navigation }) => {
               size={35}
               gapStyle={"dotted"}
               setScreenStep={(value) => setScreenStep(value)}
+              currentRegistrationDetails={getRegistrationData()}
             />
 
             {screenSteps[screenStep - 1]}
@@ -109,6 +125,7 @@ const SignUpScreen = ({ navigation }) => {
                 }}
                 onPress={() => {
                   setScreenStep(screenStep + 1);
+                  let thing = getRegistrationData();
                 }}
               >
                 Next
@@ -122,6 +139,9 @@ const SignUpScreen = ({ navigation }) => {
                   backgroundColor: theme["color-danger-400"],
                   borderColor: theme["base-background"],
                   borderWidth: 7,
+                }}
+                onPress={() => {
+                  let thing = getRegistrationData();
                 }}
               >
                 Register

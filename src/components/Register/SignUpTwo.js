@@ -6,6 +6,7 @@ import {
   LOGIN_VERTICAL_MARGIN,
   LOGIN_VERTICAL_PADDING,
 } from "../../constants/constants";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SignUpTwo = () => {
   // Theme
@@ -14,6 +15,20 @@ const SignUpTwo = () => {
   // States
   const [nickname, setSignUpNickname] = useState(null);
   const [signUpHandle, setSignUpHandle] = useState(null);
+
+  // AsyncStorage Procedures
+  const saveRegistrationData = async (registrationObject) => {
+    try {
+      await AsyncStorage.clear();
+      const registrationString = JSON.stringify(registrationObject);
+      await AsyncStorage.setItem(
+        "@current_registration_details",
+        registrationString
+      );
+    } catch (e) {
+      // store nothing
+    }
+  };
 
   return (
     <View style={{ width: "100%" }}>

@@ -7,6 +7,7 @@ import {
 } from "../../constants/constants";
 import DatePicker from "react-native-date-picker";
 import { useTheme } from "@ui-kitten/components";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SignUpThree = () => {
   // Theme
@@ -16,6 +17,20 @@ const SignUpThree = () => {
   const [openDate, setOpenDate] = useState(false);
   const [signUpDateOfBirth, setSignUpDateOfBirth] = useState(new Date());
   const [signUpDOBText, setSignUpDOBText] = useState(null);
+
+  // AsyncStorage Procedures
+  const saveRegistrationData = async (registrationObject) => {
+    try {
+      await AsyncStorage.clear();
+      const registrationString = JSON.stringify(registrationObject);
+      await AsyncStorage.setItem(
+        "@current_registration_details",
+        registrationString
+      );
+    } catch (e) {
+      // store nothing
+    }
+  };
 
   return (
     <View style={{ width: "100%" }}>
