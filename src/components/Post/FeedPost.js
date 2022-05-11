@@ -133,60 +133,60 @@ const FeedPost = ({ item, bottomSheetRef }) => {
         },
       ]}
     >
-      <View
-        style={[
-          styles.feedHeader,
-          {
-            borderBottomWidth: 0.75,
-            borderBottomColor: theme["color-font-secondary"],
-          },
-        ]}
-      >
-        <Avatar
-          style={styles.feedImage}
-          size="large"
-          shape="rounded"
-          source={item["user"]["image"]}
-        />
-        <View style={styles.feedInfo}>
-          <Text
-            style={[
-              styles.feedNickname,
-              { color: theme["color-font-primary"] },
-            ]}
-          >
-            {item["user"]["nickname"]}
-          </Text>
-          <View style={{ flexDirection: "row" }}>
-            <Text
-              style={[
-                styles.feedUsername,
-                { color: theme["color-font-secondary"] },
-              ]}
-            >
-              {`@${item["user"]["username"]} • `}
-            </Text>
-            <Text
-              style={[
-                styles.feedTime,
-                { color: theme["color-font-secondary"] },
-              ]}
-            >
-              posted {postedText}
-            </Text>
-          </View>
-        </View>
+      {/*<View*/}
+      {/*  style={[*/}
+      {/*    styles.feedHeader,*/}
+      {/*    {*/}
+      {/*      borderBottomWidth: 0.75,*/}
+      {/*      borderBottomColor: theme["color-font-secondary"],*/}
+      {/*    },*/}
+      {/*  ]}*/}
+      {/*>*/}
+      {/*  <Avatar*/}
+      {/*    style={styles.feedImage}*/}
+      {/*    size="large"*/}
+      {/*    shape="rounded"*/}
+      {/*    source={item["user"]["image"]}*/}
+      {/*  />*/}
+      {/*  <View style={styles.feedInfo}>*/}
+      {/*    <Text*/}
+      {/*      style={[*/}
+      {/*        styles.feedNickname,*/}
+      {/*        { color: theme["color-font-primary"] },*/}
+      {/*      ]}*/}
+      {/*    >*/}
+      {/*      {item["user"]["nickname"]}*/}
+      {/*    </Text>*/}
+      {/*    <View style={{ flexDirection: "row" }}>*/}
+      {/*      <Text*/}
+      {/*        style={[*/}
+      {/*          styles.feedUsername,*/}
+      {/*          { color: theme["color-font-secondary"] },*/}
+      {/*        ]}*/}
+      {/*      >*/}
+      {/*        {`@${item["user"]["username"]} • `}*/}
+      {/*      </Text>*/}
+      {/*      <Text*/}
+      {/*        style={[*/}
+      {/*          styles.feedTime,*/}
+      {/*          { color: theme["color-font-secondary"] },*/}
+      {/*        ]}*/}
+      {/*      >*/}
+      {/*        posted {postedText}*/}
+      {/*      </Text>*/}
+      {/*    </View>*/}
+      {/*  </View>*/}
 
-        <TouchableWithoutFeedback
-          onPress={() => {
-            bottomSheetRef.current.snapTo(0);
-          }}
-        >
-          <View style={styles.menuButton}>
-            <EllipseStd size={POST_ICON_SIZE} color={"#b7b7b7"} />
-          </View>
-        </TouchableWithoutFeedback>
-      </View>
+      {/*  <TouchableWithoutFeedback*/}
+      {/*    onPress={() => {*/}
+      {/*      bottomSheetRef.current.snapTo(0);*/}
+      {/*    }}*/}
+      {/*  >*/}
+      {/*    <View style={styles.menuButton}>*/}
+      {/*      <EllipseStd size={POST_ICON_SIZE} color={"#b7b7b7"} />*/}
+      {/*    </View>*/}
+      {/*  </TouchableWithoutFeedback>*/}
+      {/*</View>*/}
 
       <View style={styles.feedBody}>
         <View style={styles.feedPost}>
@@ -391,7 +391,6 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
 
     paddingVertical: POST_VERTICAL_PADDING,
-    marginBottom: POST_VERTICAL_MARGIN,
   },
   feedBody: {
     flex: 1,
@@ -400,6 +399,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
 
     marginVertical: POST_VERTICAL_MARGIN,
+    paddingTop: POST_VERTICAL_PADDING,
   },
   feedImage: {},
   feedInfo: {
