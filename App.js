@@ -41,30 +41,6 @@ const CustomStatusBar = ({ backgroundColor, barStyle }) => {
   );
 };
 
-// Fauna Connection
-// const faunaDB = require("faunadb");
-// const q = faunaDB.query;
-//
-// const client = new faunaDB.Client({
-//   secret: FAUNA_OSTRACON_SECRET,
-//   domain: "db.fauna.com",
-//   port: 443,
-//   scheme: "https",
-// });
-//
-// let testQuery = client.query(
-//   q.Create(q.Collection("accounts"), {
-//     data: {
-//       nickname: "randy.randleman",
-//       handle: "archer",
-//     },
-//   })
-// );
-//
-// testQuery.then((response) => {
-//   console.log(response.ref);
-// });
-
 export const App = () => {
   // States
   const [theme, setTheme] = useState("light");
