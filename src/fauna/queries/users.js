@@ -21,7 +21,7 @@ const UpdateUser = (nickname, handle, avatar) => {
       accountRef: CurrentIdentity(),
       userRef: Select(["data", "account"], Get(Var("accountRef"))),
     },
-    Update(Var("accountRef"), {
+    Update(Var("userRef"), {
       data: {
         nickname: nickname,
         handle: handle,
