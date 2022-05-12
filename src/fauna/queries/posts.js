@@ -31,7 +31,7 @@ const {
   Now,
 } = q;
 
-// Create a new post using a User Defind Function (UDF)
+// Create a new post using a User Defined Function (UDF)
 const CreatePost = (message, tags, asset) => {
   const FQLStatement = Let(
     {
