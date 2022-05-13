@@ -28,10 +28,11 @@ const MemberBottomTabs = () => {
       }}
     >
       <Tabs.Screen name="Home" component={HomeScreen} />
-      <Tabs.Screen name="Notifications" component={NotificationsScreen} />
+      <Tabs.Screen name="Feed" component={HomeScreen} />
       <Tabs.Screen name="OstraconButton" component={DummyComponent} />
+      <Tabs.Screen name="Notifications" component={NotificationsScreen} />
       <Tabs.Screen name="Messages" component={MessagesScreen} />
-      <Tabs.Screen name="Profile" component={ProfileScreen} />
+      {/*<Tabs.Screen name="Profile" component={ProfileScreen} />*/}
     </Tabs.Navigator>
   );
 };

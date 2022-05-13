@@ -10,9 +10,10 @@ import {
 // Import Icons
 
 // Import Constants
-import { HEADER_HEIGHT } from "../../constants/constants";
+import { HEADER_HEIGHT, HEADER_ICON_SIZE } from "../../constants/constants";
 
 import { useTheme } from "@ui-kitten/components";
+import { Profile } from "../../components/Ostracon-Std";
 
 const CustomHeader = ({ screenName, navigation }) => {
   const theme = useTheme();
@@ -31,6 +32,16 @@ const CustomHeader = ({ screenName, navigation }) => {
 
       <View style={styles.headerTitle}>
         <Text style={styles.headerText}>{screenName}</Text>
+      </View>
+
+      <View style={styles.headerItem}>
+        <TouchableWithoutFeedback
+          onPress={() => navigation.navigate("Profile Screen")}
+        >
+          <View>
+            <Profile size={HEADER_ICON_SIZE} color={"white"} />
+          </View>
+        </TouchableWithoutFeedback>
       </View>
     </View>
   );

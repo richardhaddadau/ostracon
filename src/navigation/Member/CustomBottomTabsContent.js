@@ -37,6 +37,7 @@ import {
   NewMessage as NewMessageStd,
   NewPost as NewPostStd,
   Profile as ProfileStd,
+  Feed as FeedStd,
 } from "../../components/Ostracon-Std";
 
 import {
@@ -45,6 +46,7 @@ import {
   Bell as BellActive,
   Message as MessageActive,
   Profile as ProfileActive,
+  Feed as FeedActive,
 } from "../../components/Ostracon-Active";
 
 import { navigate } from "./RootNavigation";
@@ -74,6 +76,12 @@ const CustomBottomTabsContent = ({ state, navigation }) => {
         color={theme["color-primary-default"]}
       />
     ),
+    Feed: (
+      <FeedStd
+        size={BOTTOM_NAVIGATION_ICON_SIZE}
+        color={theme["color-primary-default"]}
+      />
+    ),
     Notifications: (
       <BellStd
         size={BOTTOM_NAVIGATION_ICON_SIZE}
@@ -98,6 +106,8 @@ const CustomBottomTabsContent = ({ state, navigation }) => {
     Home: <HomeActive size={BOTTOM_NAVIGATION_ICON_SIZE} color={"white"} />,
 
     Search: <SearchActive size={BOTTOM_NAVIGATION_ICON_SIZE} color={"white"} />,
+
+    Feed: <FeedActive size={BOTTOM_NAVIGATION_ICON_SIZE} color={"white"} />,
 
     Notifications: (
       <BellActive size={BOTTOM_NAVIGATION_ICON_SIZE} color={"white"} />

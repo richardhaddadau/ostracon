@@ -16,6 +16,7 @@ import PostSingleScreen from "../../screens/PostSingleScreen";
 import ChaptersScreen from "../../screens/ChaptersScreen";
 import PointsScreen from "../../screens/PointsScreen";
 import OstraconGoldScreen from "../../screens/OstraconGold";
+import ProfileScreen from "../../screens/ProfileScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -56,6 +57,7 @@ const MemberStack = ({ setSigned }) => {
       <Stack.Screen name="Single Post" component={PostSingleScreen} />
       <Stack.Screen name="New Message" component={MessagesNewScreen} />
       <Stack.Screen name="Single Message" component={MessagesSingleScreen} />
+      <Stack.Screen name="Profile Screen" component={ProfileScreen} />
     </Stack.Navigator>
   );
 };

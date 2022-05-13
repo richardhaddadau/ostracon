@@ -1,13 +1,8 @@
-import React, {
-  useState,
-  useContext,
-  createContext,
-  useRef,
-  useEffect,
-} from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import { View, StatusBar, AppState } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { SafeAreaProvider } from "react-native-safe-area-context/src/SafeAreaContext";
+import checkForIdle from "./src/services/checkForIdle";
 
 // Import Database Data
 import { FAUNA_OSTRACON_SECRET } from "@env";
@@ -30,6 +25,8 @@ import GuestStack from "./src/navigation/Guest/GuestStack";
 const CustomStatusBar = ({ backgroundColor, barStyle }) => {
   const insets = useSafeAreaInsets();
 
+  checkForIdle();
+
   return (
     <View style={{ height: insets.top, backgroundColor }}>
       <StatusBar
@@ -46,29 +43,6 @@ export const App = () => {
   const [theme, setTheme] = useState("light");
   const [myTheme, setMyTheme] = useState(lightOstracon);
   const [isSignedIn, setIsSignedIn] = useState(true);
-
-  const appState = useRef(AppState.currentState);
-  const [appStateVisible, setAppStateVisible] = useState(appState.current);
-
-  const [appStateTimeOut, setAppStateTimeOut] = useState(Date.now);
-  const [appStateTimeIn, setAppStateTimeIn] = useState(Date.now);
-
-  const time = 3000;
-
-  useEffect(() => {
-    const appStateListener = AppState.addEventListener(
-      "change",
-      (nextAppState) => {
-        let currentTime = Date.now();
-        console.log(`App State is: ${nextAppState}`);
-        setAppStateVisible(nextAppState);
-      }
-    );
-
-    return () => {
-      appStateListener?.remove();
-    };
-  }, []);
 
   const toggleTheme = () => {
     const nextTheme = theme === "light" ? "dark" : "light";
