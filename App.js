@@ -1,17 +1,18 @@
-import React, { useState, useContext, useRef, useEffect } from "react";
-import { View, StatusBar, AppState } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StatusBar } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { SafeAreaProvider } from "react-native-safe-area-context/src/SafeAreaContext";
 import checkForIdle from "./src/services/checkForIdle";
 
 // Import Database Data
-import { FAUNA_OSTRACON_SECRET } from "@env";
+// import { FAUNA_OSTRACON_SECRET } from "@env";
 
 // Import Theme Libraries
-import * as eva from "@eva-design/eva";
-import { ApplicationProvider } from "@ui-kitten/components";
-import { default as lightOstracon } from "./src/theme/lightOstracon.json";
-import { default as darkOstracon } from "./src/theme/darkOstracon.json";
+import { NativeBaseProvider, Box } from "native-base";
+// import { default as lightOstracon } from "./src/theme/lightOstracon.json";
+// import { default as darkOstracon } from "./src/theme/darkOstracon.json";
+import lightOstracon from "./src/theme/lightOstracon";
+import darkOstracon from "./src/theme/darkOstracon";
 import { ThemeContext } from "./src/context/ThemeContext";
 
 // Import Navigation Libraries
@@ -25,8 +26,6 @@ import GuestStack from "./src/navigation/Guest/GuestStack";
 const CustomStatusBar = ({ backgroundColor, barStyle }) => {
   const insets = useSafeAreaInsets();
 
-  checkForIdle();
-
   return (
     <View style={{ height: insets.top, backgroundColor }}>
       <StatusBar
@@ -39,10 +38,12 @@ const CustomStatusBar = ({ backgroundColor, barStyle }) => {
 };
 
 export const App = () => {
+  checkForIdle();
+
   // States
   const [theme, setTheme] = useState("light");
   const [myTheme, setMyTheme] = useState(lightOstracon);
-  const [isSignedIn, setIsSignedIn] = useState(true);
+  const [isSignedIn, setIsSignedIn] = useState(false);
 
   const toggleTheme = () => {
     const nextTheme = theme === "light" ? "dark" : "light";
@@ -52,25 +53,23 @@ export const App = () => {
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <SafeAreaProvider>
-        {/* Colour status bar on iOS and Android */}
-        <CustomStatusBar
-          backgroundColor={isSignedIn ? "#121212" : "#363744"}
-          barStyle={"light-content"}
-        />
+    <SafeAreaProvider>
+      {/* Colour status bar on iOS and Android */}
+      <CustomStatusBar
+        backgroundColor={isSignedIn ? "#121212" : "#363744"}
+        barStyle={"light-content"}
+      />
 
-        <ApplicationProvider {...eva} theme={{ ...eva[theme], ...myTheme }}>
-          <NavigationContainer ref={navigationRef}>
-            {isSignedIn === true ? (
-              <MemberStack setSigned={(value) => setIsSignedIn(value)} />
-            ) : (
-              <GuestStack setSigned={setIsSignedIn} />
-            )}
-          </NavigationContainer>
-        </ApplicationProvider>
-      </SafeAreaProvider>
-    </ThemeContext.Provider>
+      <NativeBaseProvider theme={myTheme}>
+        <NavigationContainer ref={navigationRef}>
+          {isSignedIn === true ? (
+            <MemberStack setSigned={(value) => setIsSignedIn(value)} />
+          ) : (
+            <GuestStack setSigned={setIsSignedIn} />
+          )}
+        </NavigationContainer>
+      </NativeBaseProvider>
+    </SafeAreaProvider>
   );
 };
 
