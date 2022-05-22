@@ -1,4 +1,7 @@
-import faunadb, {
+import faunadb from "faunadb";
+
+const q = faunadb.query;
+const {
   Collection,
   CreateCollection,
   CreateIndex,
@@ -10,9 +13,7 @@ import faunadb, {
   Lambda,
   Paginate,
   Var,
-} from "faunadb";
-
-const q = faunadb.query;
+} = q;
 
 // Collection Query
 const CreateCollectionAccounts = CreateCollection({ name: "accounts" });
@@ -78,7 +79,7 @@ const DeleteAllAccounts = If(
   q.Map(
     Paginate(Documents(Collection("accounts"))),
 
-    // Lambda(param, function(param) equivalent to (param) => function(param)
+    // Lambda(param, function(param)) is equivalent to (param) => function(param)
     Lambda("ref", Delete(Var("ref")))
   ),
   true
