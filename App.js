@@ -70,6 +70,11 @@ export const App = () => {
     );
 
     console.log(new Date("1987-09-17"));
+
+    // Epoch the TS from the Document creation time
+    // ToString the Epoch to return the time in String format
+    // Use Expo Localization to get TimeZone
+    // Use new Date() to set the TimeZone using EN-GB time
   }, []);
 
   return (
