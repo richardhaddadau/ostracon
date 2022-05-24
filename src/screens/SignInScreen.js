@@ -23,6 +23,7 @@ import {
 import { Button, useTheme } from "@ui-kitten/components";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { LoginUser } from "../utils/LoginUser";
 
 const SignInScreen = ({ navigation }) => {
   // States
@@ -129,6 +130,7 @@ const SignInScreen = ({ navigation }) => {
               secureTextEntry={true}
             />
             <Button
+              onPress={() => LoginUser(loginUser, loginPass)}
               style={{
                 marginVertical: LOGIN_VERTICAL_MARGIN,
                 borderRadius: 100,
