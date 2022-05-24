@@ -54,6 +54,7 @@
     "react-native-tab-view": "^3.1.1",
     "react-native-vector-icons": "*",
     "react-native-web": "0.17.1",
+    "react-native-wheel-scroll-picker": "^0.2.4",
     "reanimated-bottom-sheet": "^1.0.0-alpha.22",
     "uuid": "^8.3.2",
     "webpack": "^5.70.0"
