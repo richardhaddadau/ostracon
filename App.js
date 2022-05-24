@@ -1,5 +1,5 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
-import { View, StatusBar, AppState } from "react-native";
+import { View, StatusBar, AppState, Platform } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { SafeAreaProvider } from "react-native-safe-area-context/src/SafeAreaContext";
 import * as Localization from "expo-localization";
@@ -22,6 +22,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { navigationRef } from "./src/navigation/Member/RootNavigation";
 import { MemberStack } from "./src/navigation/Member/MemberStack";
 import GuestStack from "./src/navigation/Guest/GuestStack";
+
+// Import Moment
+import moment from "moment";
 
 const CustomStatusBar = ({ backgroundColor, barStyle }) => {
   const insets = useSafeAreaInsets();
@@ -54,22 +57,31 @@ export const App = () => {
 
   useEffect(() => {
     const userTimezone = Localization.timezone;
-    console.log(userTimezone);
-    console.log(
-      new Date("2022-05-23T14:17:33.430Z").toLocaleString("en-us", {
-        userTimezone,
-      })
-    );
 
-    console.log(
-      new Date("2022-05-23T14:17:33.430Z").toLocaleString("en-gb", {
-        userTimezone,
-        dateStyle: "full",
-        timeStyle: "full",
-      })
-    );
+    // console.log(userTimezone);
 
-    console.log(new Date("1987-09-17"));
+    moment.locale("en-au");
+
+    // const thisDate =
+    //   Platform.OS === "ios"
+    //     ? `iOS: ${new Date("2022-05-23T14:17:33.430Z").toLocaleDateString(
+    //         "en-gb",
+    //         {
+    //           year: "numeric",
+    //           month: "long",
+    //           day: "2-digit",
+    //           timeZone: userTimezone,
+    //         }
+    //       )}`
+    //     : `Android: ${moment("2022-05-23T14:17:33.430Z").format(
+    //         "D MMMM YYYY"
+    //       )}`;
+
+    const thisDate = moment("2022-05-23T14:17:33.430Z").format("D MMMM YYYY");
+
+    console.log(`This: ${thisDate}`);
+
+    // console.log(new Date("1987-09-17"));
 
     // Epoch the TS from the Document creation time
     // ToString the Epoch to return the time in String format

@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TextInput } from "react-native";
+import { View, StyleSheet, TextInput } from "react-native";
 import {
   LOGIN_HORIZONTAL_PADDING,
   LOGIN_VERTICAL_MARGIN,
   LOGIN_VERTICAL_PADDING,
 } from "../../constants/constants";
-import DatePicker from "react-native-date-picker";
 import { useTheme } from "@ui-kitten/components";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import DateTimePicker from "react-native-modal-datetime-picker";
+import moment from "moment";
 
 const SignUpThree = () => {
   // Theme
@@ -15,7 +16,7 @@ const SignUpThree = () => {
 
   // States
   const [openDate, setOpenDate] = useState(false);
-  const [signUpDateOfBirth, setSignUpDateOfBirth] = useState(new Date());
+  const [signUpDateOfBirth, setSignUpDateOfBirth] = useState(moment());
   const [signUpDOBText, setSignUpDOBText] = useState(null);
 
   // AsyncStorage Procedures
@@ -44,26 +45,19 @@ const SignUpThree = () => {
           },
         ]}
         onChangeText={(value) => setSignUpDOBText(value)}
-        onPress={() => {
+        onFocus={() => {
           setOpenDate(true);
+          console.log("Clicked");
         }}
         value={signUpDOBText}
         placeholder="Date of Birth"
         placeholderTextColor={theme["color-primary-300"]}
         keyboardType={"default"}
       />
-      <DatePicker
-        modal
-        open={openDate}
-        date={signUpDateOfBirth}
-        onConfirm={(date) => {
-          setOpenDate(false);
-          setSignUpDateOfBirth(date);
-          setSignUpDOBText(date);
-        }}
-        onCancel={() => {
-          setOpenDate(false);
-        }}
+      <DateTimePicker
+        isVisible={openDate}
+        mode={"date"}
+        onConfirm={(value) => console.log(value)}
       />
     </View>
   );
