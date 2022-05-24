@@ -5,9 +5,6 @@ import { SafeAreaProvider } from "react-native-safe-area-context/src/SafeAreaCon
 import * as Localization from "expo-localization";
 import checkForIdle from "./src/services/checkForIdle";
 
-// Import Database Data
-import { FAUNA_OSTRACON_SECRET } from "@env";
-
 // Import Theme Libraries
 import * as eva from "@eva-design/eva";
 import { ApplicationProvider } from "@ui-kitten/components";
