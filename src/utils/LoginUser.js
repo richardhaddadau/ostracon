@@ -1,11 +1,10 @@
 // Import Database Data
-import faunadb from "faunadb";
-import { FAUNA_OSTRACON_SECRET } from "@env";
 
+const faunadb = require("faunadb");
 const q = faunadb.query;
 const { Map, Paginate, Match, Lambda, Get, Var, Documents, Index } = q;
 
-const faunaSecret = FAUNA_OSTRACON_SECRET;
+const faunaSecret = "fnAEkzcE5gACVHjVgPTF4HSF3fI2vW63cKgZI94H";
 const faunaDomain = "db.fauna.com";
 const faunaPort = 443;
 const faunaScheme = "https";
