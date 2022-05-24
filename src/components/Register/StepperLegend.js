@@ -9,6 +9,7 @@ const StepperLegend = ({
   totalSteps = 4,
   size = 35,
   setScreenStep,
+  currentRegistrationDetails = "",
 }) => {
   const theme = useTheme();
 
