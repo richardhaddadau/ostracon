@@ -1,6 +1,6 @@
 // Import Database Data
+import faunadb from "faunadb";
 
-const faunadb = require("faunadb");
 const q = faunadb.query;
 const { Map, Paginate, Match, Lambda, Get, Var, Documents, Index } = q;
 
@@ -26,7 +26,7 @@ export const LoginUser = (username, password) => {
       .query(
         Map(Paginate(Match(Index("all_accounts"))), Lambda("X", Get(Var("X"))))
       )
-      .then((result) => console.log(result));
+      .then(() => console.log("done"));
   } else {
     // Username is Handle
   }
