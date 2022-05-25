@@ -23,6 +23,11 @@ import GuestStack from "./src/navigation/Guest/GuestStack";
 // Import Moment
 import moment from "moment";
 
+import faunadb from "faunadb";
+
+const q = faunadb.query;
+const { Map, Paginate, Match, Lambda, Get, Var, Index } = q;
+
 const CustomStatusBar = ({ backgroundColor, barStyle }) => {
   const insets = useSafeAreaInsets();
 
@@ -54,6 +59,30 @@ export const App = () => {
 
   useEffect(() => {
     const userTimezone = Localization.timezone;
+
+    const faunaSecret = "fnAEkzcE5gACVHjVgPTF4HSF3fI2vW63cKgZI94H";
+    const faunaDomain = "db.fauna.com";
+    const faunaPort = 443;
+    const faunaScheme = "http";
+
+    const client = new faunadb.Client({
+      secret: faunaSecret,
+      domain: faunaDomain,
+      // port: faunaPort,
+      scheme: faunaScheme,
+    });
+
+    client
+      .query(
+        Map(
+          Paginate(Match(Index("accounts_by_email"), "hello@ostracon.app")),
+          Lambda("x", Get(Var("x")))
+        )
+      )
+      .then((res) => {
+        console.log(res.data[0].data);
+      })
+      .catch((e) => console.log(e));
 
     // console.log(userTimezone);
 
