@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -29,14 +29,6 @@ const SignInScreen = ({ navigation }) => {
   // States
   const [loginUser, setLoginUser] = useState(null);
   const [loginPass, setLoginPass] = useState(null);
-  const [] = useState({
-    email: "",
-    password: "",
-    handle: "",
-    nickname: "",
-    date: new Date(),
-    location: "",
-  });
 
   // Theme
   const theme = useTheme();
@@ -54,6 +46,10 @@ const SignInScreen = ({ navigation }) => {
       // store nothing
     }
   };
+
+  useEffect(() => {
+    LoginUser("aa", "11");
+  }, []);
 
   return (
     <KeyboardAvoidingView

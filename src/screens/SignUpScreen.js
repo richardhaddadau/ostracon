@@ -26,8 +26,8 @@ import SignUpTwo from "../components/Register/SignUpTwo";
 import SignUpThree from "../components/Register/SignUpThree";
 import SignUpFour from "../components/Register/SignUpFour";
 
-// import AsyncStorage
-import AsyncStorage from "@react-native-async-storage/async-storage";
+// import AsyncStorage Operations
+import { getRegistrationData, saveRegistrationData } from "../utils/AsyncOps";
 
 const SignUpScreen = ({ navigation }) => {
   // States
@@ -35,44 +35,20 @@ const SignUpScreen = ({ navigation }) => {
 
   let dataState = false;
 
+  let inputEmail, inputPassword;
+
   // Theme
   const theme = useTheme();
 
   // Step Screens
   const screenSteps = [
-    <SignUpOne />,
+    <SignUpOne inputEmail={inputEmail} inputPassword={inputPassword} />,
     <SignUpTwo />,
     <SignUpThree />,
     <SignUpFour />,
   ];
 
   const completeSteps = 4;
-
-  // AsyncStorage Procedures
-  const getRegistrationData = async () => {
-    const screenSchedule = {
-      1: ["email", "password"],
-      2: ["handle", "nickname"],
-      3: ["dateOfBirth"],
-      4: ["location"],
-    };
-
-    try {
-      const registrationObject = await AsyncStorage.getItem(
-        "@current_registration_details"
-      );
-
-      console.log(`Step: ${screenStep}`);
-
-      console.log(registrationObject[screenSchedule]);
-
-      console.log(JSON.parse(registrationObject[screenSchedule["1"][0]]));
-      return false;
-      return registrationObject != null;
-    } catch (e) {
-      // Error Reading
-    }
-  };
 
   return (
     <KeyboardAvoidingView
@@ -124,6 +100,7 @@ const SignUpScreen = ({ navigation }) => {
               gapStyle={"dotted"}
               setScreenStep={(value) => setScreenStep(value)}
               currentRegistrationDetails={getRegistrationData()}
+              saveRegistrationData={saveRegistrationData}
             />
 
             {screenSteps[screenStep - 1]}
@@ -138,11 +115,18 @@ const SignUpScreen = ({ navigation }) => {
                   borderColor: theme["base-background"],
                   borderWidth: 7,
                 }}
-                onPress={() => {
-                  console.log(getRegistrationData());
+                onPress={async () => {
+                  try {
+                    console.log(await getRegistrationData());
 
-                  if (getRegistrationData) {
-                    setScreenStep(screenStep + 1);
+                    if (getRegistrationData) {
+                      if (screenStep === 1) {
+                        console.log(inputPassword);
+                      }
+                      setScreenStep(screenStep + 1);
+                    }
+                  } catch (e) {
+                    //
                   }
                 }}
               >

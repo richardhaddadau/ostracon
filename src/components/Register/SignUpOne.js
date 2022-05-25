@@ -7,29 +7,19 @@ import {
 } from "../../constants/constants";
 
 import { useTheme } from "@ui-kitten/components";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const SignUpOne = () => {
+import {
+  getRegistrationData,
+  saveRegistrationData,
+} from "../../utils/AsyncOps";
+
+const SignUpOne = ({ inputEmail, inputPassword }) => {
   // Theme
   const theme = useTheme();
 
   // States
   const [signUpEmail, setSignUpEmail] = useState(null);
   const [signUpPass, setSignUpPass] = useState(null);
-
-  // AsyncStorage Procedures
-  const saveRegistrationData = async (registrationObject) => {
-    try {
-      await AsyncStorage.clear();
-      const registrationString = JSON.stringify(registrationObject);
-      await AsyncStorage.setItem(
-        "@current_registration_details",
-        registrationString
-      );
-    } catch (e) {
-      // store nothing
-    }
-  };
 
   return (
     <View style={{ width: "100%" }}>
@@ -57,10 +47,18 @@ const SignUpOne = () => {
             color: theme["color-primary-default"],
           },
         ]}
-        onChangeText={(value) => {
+        onChangeText={async (value) => {
           setSignUpPass(value);
+          inputPassword = value;
 
-          let registrationObject = JSON.parse(currentRegistrationDetails);
+          try {
+            let currentData = await getRegistrationData();
+            currentData["password"] = value;
+
+            console.log(currentData);
+          } catch (e) {
+            //
+          }
         }}
         value={signUpPass}
         placeholder="Password"
