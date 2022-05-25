@@ -23,8 +23,6 @@ import GuestStack from "./src/navigation/Guest/GuestStack";
 // Import Moment
 import moment from "moment";
 
-import faunadb from "faunadb";
-
 const CustomStatusBar = ({ backgroundColor, barStyle }) => {
   const insets = useSafeAreaInsets();
 
