@@ -17,16 +17,24 @@ const client = new faunadb.Client({
   scheme: faunaScheme,
 });
 
-export const LoginUser = async (username, password) => {
+export const LoginUser = (username, password) => {
   if (username === null) return undefined;
 
   if (username.includes("@")) {
     // Username is Email
     console.log("Try Again");
 
-    await client.query(
-      Map(Paginate(Match(Index("all_accounts"))), Lambda("x", Get(Var("x"))))
-    );
+    client
+      .query(
+        Map(
+          Paginate(Match(Index("accounts_by_email"), "hello@ostracon.app")),
+          Lambda("x", Get(Var("x")))
+        )
+      )
+      .then((res) => {
+        console.log(res.data[0].data);
+      })
+      .catch((e) => console.log(e));
   } else {
     // Username is Handle
   }

@@ -33,6 +33,8 @@ const SignUpScreen = ({ navigation }) => {
   // States
   const [screenStep, setScreenStep] = useState(1);
 
+  let dataState = false;
+
   // Theme
   const theme = useTheme();
 
@@ -48,12 +50,25 @@ const SignUpScreen = ({ navigation }) => {
 
   // AsyncStorage Procedures
   const getRegistrationData = async () => {
+    const screenSchedule = {
+      1: ["email", "password"],
+      2: ["handle", "nickname"],
+      3: ["dateOfBirth"],
+      4: ["location"],
+    };
+
     try {
       const registrationObject = await AsyncStorage.getItem(
         "@current_registration_details"
       );
-      console.log(JSON.parse(registrationObject));
-      return registrationObject != null ? JSON.parse(registrationObject) : null;
+
+      console.log(`Step: ${screenStep}`);
+
+      console.log(registrationObject[screenSchedule]);
+
+      console.log(JSON.parse(registrationObject[screenSchedule["1"][0]]));
+      return false;
+      return registrationObject != null;
     } catch (e) {
       // Error Reading
     }
@@ -124,8 +139,11 @@ const SignUpScreen = ({ navigation }) => {
                   borderWidth: 7,
                 }}
                 onPress={() => {
-                  setScreenStep(screenStep + 1);
-                  let thing = getRegistrationData();
+                  console.log(getRegistrationData());
+
+                  if (getRegistrationData) {
+                    setScreenStep(screenStep + 1);
+                  }
                 }}
               >
                 Next
@@ -141,7 +159,7 @@ const SignUpScreen = ({ navigation }) => {
                   borderWidth: 7,
                 }}
                 onPress={() => {
-                  let thing = getRegistrationData();
+                  let dataState = getRegistrationData();
                 }}
               >
                 Register
