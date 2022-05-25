@@ -17,7 +17,7 @@ export const OSTRACON_BUTTON_BOTTOM_GAP = 22;
 // Login and Registration
 export const LOGIN_VERTICAL_PADDING = 10;
 export const LOGIN_HORIZONTAL_PADDING = 15;
-export const LOGIN_VERTICAL_MARGIN = 5;
+export const LOGIN_VERTICAL_MARGIN = 10;
 
 // Header
 export const HEADER_HEIGHT = 50;
