@@ -60,14 +60,11 @@ node_modules/
 npm-debug.log
 yarn-error.log
 
-# Android
-/android/app/debug.keystore
-
 # BUCK
 buck-out/
 \.buckd/
 *.keystore
-!debug.keystore
+#debug.keystore
 
 # Bundle artifacts
 *.jsbundle
