@@ -61,7 +61,7 @@ npm-debug.log
 yarn-error.log
 
 # Android
-/android/app/*.keystore
+/android/app/debug.keystore
 
 # BUCK
 buck-out/
