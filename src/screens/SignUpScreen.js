@@ -27,11 +27,7 @@ import SignUpThree from "../components/Register/SignUpThree";
 import SignUpFour from "../components/Register/SignUpFour";
 
 // import AsyncStorage Operations
-import {
-  getRegistrationData,
-  saveRegistrationData,
-  SignUpNext,
-} from "../utils/AsyncOps";
+import { SignUpNext } from "../utils/AsyncOps";
 
 const SignUpScreen = ({ navigation }) => {
   useEffect(() => {

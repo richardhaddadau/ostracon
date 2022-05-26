@@ -33,22 +33,8 @@ const SignInScreen = ({ navigation }) => {
   // Theme
   const theme = useTheme();
 
-  // AsyncStorage Procedures
-  const saveRegistrationData = async (registrationObject) => {
-    try {
-      await AsyncStorage.clear();
-      const registrationString = JSON.stringify(registrationObject);
-      await AsyncStorage.setItem(
-        "@current_registration_details",
-        registrationString
-      );
-    } catch (e) {
-      // store nothing
-    }
-  };
-
   useEffect(() => {
-    LoginUser("aa", "11");
+    // LoginUser("aa", "11");
   }, []);
 
   return (
@@ -147,20 +133,7 @@ const SignInScreen = ({ navigation }) => {
               >
                 Don't have an account?{" "}
                 <TouchableWithoutFeedback
-                  onPress={() => {
-                    let createNewObject = {
-                      handle: "",
-                      email: "",
-                      nickname: "",
-                      password: "",
-                      dateOfBirth: "",
-                      location: "",
-                    };
-
-                    saveRegistrationData(createNewObject);
-
-                    navigation.navigate("Register");
-                  }}
+                  onPress={() => navigation.navigate("Register")}
                 >
                   <Text
                     style={{

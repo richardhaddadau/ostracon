@@ -8,10 +8,7 @@ import {
 
 import { useTheme } from "@ui-kitten/components";
 
-import {
-  getRegistrationData,
-  saveRegistrationData,
-} from "../../utils/AsyncOps";
+import { getSecureStore, setSecureStore } from "../../utils/AsyncOps";
 
 const SignUpOne = ({
   signUpEmail,
