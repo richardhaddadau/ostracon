@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Image,
   Keyboard,
@@ -28,21 +28,32 @@ import SignUpFour from "../components/Register/SignUpFour";
 
 // import AsyncStorage Operations
 import {
+  getMMKV,
   getRegistrationData,
   saveRegistrationData,
+  setMMKV,
   SignUpNext,
 } from "../utils/AsyncOps";
 
 const SignUpScreen = ({ navigation }) => {
+  useEffect(() => {
+    const newSignUpObject = {
+      email: "",
+      password: "",
+      handle: "",
+      nickname: "",
+      dateOfBirth: "",
+      location: "",
+    };
+
+    if (!getMMKV("signup")) setMMKV("signup", newSignUpObject);
+  }, []);
+
   // States
   const [screenStep, setScreenStep] = useState(1);
 
   const [signUpEmail, setSignUpEmail] = useState(null);
   const [signUpPass, setSignUpPass] = useState(null);
-
-  let dataState = false;
-
-  let inputEmail, inputPassword;
 
   // Theme
   const theme = useTheme();
