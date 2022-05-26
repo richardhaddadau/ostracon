@@ -10,28 +10,17 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import moment from "moment";
 
-const SignUpThree = () => {
+const SignUpThree = ({
+  signUpDOBText,
+  setSignUpDOBText,
+  signUpDateOfBirth,
+  setSignUpDateOfBirth,
+}) => {
   // Theme
   const theme = useTheme();
 
   // States
   const [openDate, setOpenDate] = useState(false);
-  const [signUpDateOfBirth, setSignUpDateOfBirth] = useState(moment());
-  const [signUpDOBText, setSignUpDOBText] = useState(null);
-
-  // AsyncStorage Procedures
-  const saveRegistrationData = async (registrationObject) => {
-    try {
-      await AsyncStorage.clear();
-      const registrationString = JSON.stringify(registrationObject);
-      await AsyncStorage.setItem(
-        "@current_registration_details",
-        registrationString
-      );
-    } catch (e) {
-      // store nothing
-    }
-  };
 
   return (
     <View style={{ width: "100%" }}>

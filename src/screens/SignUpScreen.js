@@ -27,25 +27,31 @@ import SignUpThree from "../components/Register/SignUpThree";
 import SignUpFour from "../components/Register/SignUpFour";
 
 // import AsyncStorage Operations
-import { SignUpNext } from "../utils/AsyncOps";
+import { cleanSecureStore, SignUpNext } from "../utils/AsyncOps";
+import moment from "moment";
 
 const SignUpScreen = ({ navigation }) => {
   useEffect(() => {
-    const newSignUpObject = {
-      email: "",
-      password: "",
-      handle: "",
-      nickname: "",
-      dateOfBirth: "",
-      location: "",
-    };
+    cleanSecureStore("signup");
   }, []);
 
   // States
   const [screenStep, setScreenStep] = useState(1);
 
+  // Step 1 States
   const [signUpEmail, setSignUpEmail] = useState(null);
   const [signUpPass, setSignUpPass] = useState(null);
+
+  // Step 2 States
+  const [signUpNickname, setSignUpSignUpNickname] = useState(null);
+  const [signUpHandle, setSignUpHandle] = useState(null);
+
+  // Step 3 States
+  const [signUpDateOfBirth, setSignUpDateOfBirth] = useState(moment());
+  const [signUpDOBText, setSignUpDOBText] = useState(null);
+
+  // Step 4 States
+  const [signUpLocation, setSignUpLocation] = useState(null);
 
   // Theme
   const theme = useTheme();
@@ -58,9 +64,22 @@ const SignUpScreen = ({ navigation }) => {
       signUpPass={signUpPass}
       setSignUpPass={setSignUpPass}
     />,
-    <SignUpTwo />,
-    <SignUpThree />,
-    <SignUpFour />,
+    <SignUpTwo
+      signUpNickname={signUpNickname}
+      setSignUpSignUpNickname={setSignUpSignUpNickname}
+      signUpHandle={signUpHandle}
+      setSignUpHandle={setSignUpHandle}
+    />,
+    <SignUpThree
+      signUpDateOfBirth={signUpDateOfBirth}
+      setSignUpDateOfBirth={setSignUpDateOfBirth}
+      signUpDOBText={signUpDOBText}
+      setSignUpDOBText={setSignUpDOBText}
+    />,
+    <SignUpFour
+      signUpLocation={signUpLocation}
+      setSignUpLocation={setSignUpLocation}
+    />,
   ];
 
   const completeSteps = 4;
@@ -114,8 +133,6 @@ const SignUpScreen = ({ navigation }) => {
               size={35}
               gapStyle={"dotted"}
               setScreenStep={(value) => setScreenStep(value)}
-              currentRegistrationDetails={getRegistrationData()}
-              saveRegistrationData={saveRegistrationData}
             />
 
             {screenSteps[screenStep - 1]}
@@ -131,19 +148,20 @@ const SignUpScreen = ({ navigation }) => {
                   borderWidth: 7,
                 }}
                 onPress={() => {
-                  SignUpNext(screenStep);
-                  // try {
-                  //   let currentData = await getRegistrationData();
-                  //
-                  //   if (getRegistrationData) {
-                  //     if (screenStep === 1) {
-                  //       console.log(inputPassword);
-                  //     }
-                  //     setScreenStep(screenStep + 1);
-                  //   }
-                  // } catch (e) {
-                  //   //
-                  // }
+                  const signUpObject = {
+                    email: signUpEmail,
+                    password: signUpPass,
+                    nickname: signUpNickname,
+                    handle: signUpHandle,
+                    dateOfBirth: signUpDateOfBirth,
+                    location: signUpLocation,
+                  };
+
+                  SignUpNext(screenStep, signUpObject).then((r) => {
+                    if (r) {
+                      setScreenStep(screenStep + 1);
+                    }
+                  });
                 }}
               >
                 Next

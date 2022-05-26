@@ -8,26 +8,9 @@ import {
 import { useTheme } from "@ui-kitten/components";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const signUpFour = () => {
+const SignUpFour = ({ signUpLocation, setSignUpLocation }) => {
   // Theme
   const theme = useTheme();
-
-  // States
-  const [signUpLocation, setSignUpLocation] = useState(null);
-
-  // AsyncStorage Procedures
-  const saveRegistrationData = async (registrationObject) => {
-    try {
-      await AsyncStorage.clear();
-      const registrationString = JSON.stringify(registrationObject);
-      await AsyncStorage.setItem(
-        "@current_registration_details",
-        registrationString
-      );
-    } catch (e) {
-      // store nothing
-    }
-  };
 
   return (
     <View style={{ width: "100%" }}>
@@ -69,4 +52,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default signUpFour;
+export default SignUpFour;

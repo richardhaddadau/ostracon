@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 import { useTheme } from "@ui-kitten/components";
 import {
@@ -6,29 +6,15 @@ import {
   LOGIN_VERTICAL_MARGIN,
   LOGIN_VERTICAL_PADDING,
 } from "../../constants/constants";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const SignUpTwo = () => {
+const SignUpTwo = ({
+  signUpHandle,
+  setSignUpHandle,
+  signUpNickname,
+  setSignUpSignUpNickname,
+}) => {
   // Theme
   const theme = useTheme();
-
-  // States
-  const [nickname, setSignUpNickname] = useState(null);
-  const [signUpHandle, setSignUpHandle] = useState(null);
-
-  // AsyncStorage Procedures
-  const saveRegistrationData = async (registrationObject) => {
-    try {
-      await AsyncStorage.clear();
-      const registrationString = JSON.stringify(registrationObject);
-      await AsyncStorage.setItem(
-        "@current_registration_details",
-        registrationString
-      );
-    } catch (e) {
-      // store nothing
-    }
-  };
 
   return (
     <View style={{ width: "100%" }}>
@@ -57,7 +43,7 @@ const SignUpTwo = () => {
           },
         ]}
         onChangeText={(value) => setSignUpNickname(value)}
-        value={nickname}
+        value={signUpNickname}
         placeholder="Nickname"
         placeholderTextColor={theme["color-primary-300"]}
         keyboardType={"default"}

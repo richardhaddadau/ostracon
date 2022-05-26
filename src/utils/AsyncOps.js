@@ -1,7 +1,11 @@
 import * as SecureStore from "expo-secure-store";
 
 // Process Next Screen
-const SignUpNext = (screen) => {
+const SignUpNext = async (screen, dataObject) => {
+  let valid = true;
+
+  console.log(dataObject);
+
   const screenSchedule = {
     1: ["email", "password"],
     2: ["handle", "nickname"],
@@ -9,25 +13,62 @@ const SignUpNext = (screen) => {
     4: ["location"],
   };
 
-  const currentData = getSecureStore("signup");
+  // Using Object.assign to copy object
+  const currentData = Object.assign({}, await getSecureStore("signup"));
 
-  console.log(`Screen: ${screen}`);
-  // console.log(getRegistrationData());
+  const onThisScreen = screenSchedule[screen];
+  for (let x = 0; x < onThisScreen.length; x++) {
+    let currentKey = screenSchedule[screen][x];
+
+    // low level validation
+    if (dataObject[currentKey] === null) valid = false;
+
+    currentData[currentKey] = dataObject[currentKey];
+  }
+
+  if (valid) {
+    await setSecureStore("signup", currentData);
+    return true;
+  } else {
+    return false;
+  }
 };
 
 // Expo Secure Store
 const getSecureStore = async (key) => {
-  const strFrom = await SecureStore.getItemAsync(key);
-  return JSON.parse(strFrom);
+  try {
+    const strFrom = await SecureStore.getItemAsync(key);
+    return await JSON.parse(strFrom);
+  } catch (e) {
+    console.log(`Error: ${e}`);
+  }
 };
 
 const setSecureStore = async (key, valueObj) => {
   if (!key || !valueObj) return undefined;
 
   const strTo = JSON.stringify(valueObj);
-  await SecureStore.setItemAsync(key, strTo);
+
+  try {
+    await SecureStore.setItemAsync(key, strTo);
+  } catch (e) {
+    console.log(`Error: ${e}`);
+  }
 
   return true;
 };
 
-export { SignUpNext, getSecureStore, setSecureStore };
+const cleanSecureStore = (key) => {
+  const freshObject = {
+    email: "",
+    password: "",
+    handle: "",
+    nickname: "",
+    dateOfBirth: "",
+    location: "",
+  };
+
+  setSecureStore(key, freshObject);
+};
+
+export { SignUpNext, getSecureStore, setSecureStore, cleanSecureStore };
