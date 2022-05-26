@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { MMKV } from "react-native-mmkv";
+// import { MMKV } from "react-native-mmkv";
 
-export const storage = new MMKV();
+// export const storage = new MMKV();
 
 // Process Next Screen
 const SignUpNext = (screen) => {
@@ -12,28 +12,28 @@ const SignUpNext = (screen) => {
     4: ["location"],
   };
 
-  const currentData = getMMKV("signup");
+  // const currentData = getMMKV("signup");
 
   console.log(`Screen: ${screen}`);
   console.log(getRegistrationData());
 };
 
 // MMKV Procedures
-const getMMKV = (key) => {
-  const strFrom = storage.getString(key);
-  const objFrom = JSON.parse(strFrom);
-
-  return objFrom;
-};
-
-const setMMKV = (key, valueObj) => {
-  if (!key || !valueObj) return undefined;
-
-  const strTo = JSON.stringify(valueObj);
-  storage.set(key, strTo);
-
-  return true;
-};
+// const getMMKV = (key) => {
+//   const strFrom = storage.getString(key);
+//   const objFrom = JSON.parse(strFrom);
+//
+//   return objFrom;
+// };
+//
+// const setMMKV = (key, valueObj) => {
+//   if (!key || !valueObj) return undefined;
+//
+//   const strTo = JSON.stringify(valueObj);
+//   storage.set(key, strTo);
+//
+//   return true;
+// };
 
 // AsyncStorage Procedures
 const getRegistrationData = async () => {
@@ -61,10 +61,4 @@ const saveRegistrationData = async (registrationObject) => {
   }
 };
 
-export {
-  SignUpNext,
-  getMMKV,
-  setMMKV,
-  getRegistrationData,
-  saveRegistrationData,
-};
+export { SignUpNext, getRegistrationData, saveRegistrationData };

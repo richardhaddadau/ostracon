@@ -28,10 +28,8 @@ import SignUpFour from "../components/Register/SignUpFour";
 
 // import AsyncStorage Operations
 import {
-  getMMKV,
   getRegistrationData,
   saveRegistrationData,
-  setMMKV,
   SignUpNext,
 } from "../utils/AsyncOps";
 
@@ -45,8 +43,6 @@ const SignUpScreen = ({ navigation }) => {
       dateOfBirth: "",
       location: "",
     };
-
-    if (!getMMKV("signup")) setMMKV("signup", newSignUpObject);
   }, []);
 
   // States
