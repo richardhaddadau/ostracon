@@ -13,13 +13,14 @@ import {
   saveRegistrationData,
 } from "../../utils/AsyncOps";
 
-const SignUpOne = ({ inputEmail, inputPassword }) => {
+const SignUpOne = ({
+  signUpEmail,
+  setSignUpEmail,
+  signUpPass,
+  setSignUpPass,
+}) => {
   // Theme
   const theme = useTheme();
-
-  // States
-  const [signUpEmail, setSignUpEmail] = useState(null);
-  const [signUpPass, setSignUpPass] = useState(null);
 
   return (
     <View style={{ width: "100%" }}>
@@ -49,16 +50,6 @@ const SignUpOne = ({ inputEmail, inputPassword }) => {
         ]}
         onChangeText={async (value) => {
           setSignUpPass(value);
-          inputPassword = value;
-
-          try {
-            let currentData = await getRegistrationData();
-            currentData["password"] = value;
-
-            console.log(currentData);
-          } catch (e) {
-            //
-          }
         }}
         value={signUpPass}
         placeholder="Password"

@@ -27,11 +27,18 @@ import SignUpThree from "../components/Register/SignUpThree";
 import SignUpFour from "../components/Register/SignUpFour";
 
 // import AsyncStorage Operations
-import { getRegistrationData, saveRegistrationData } from "../utils/AsyncOps";
+import {
+  getRegistrationData,
+  saveRegistrationData,
+  SignUpNext,
+} from "../utils/AsyncOps";
 
 const SignUpScreen = ({ navigation }) => {
   // States
   const [screenStep, setScreenStep] = useState(1);
+
+  const [signUpEmail, setSignUpEmail] = useState(null);
+  const [signUpPass, setSignUpPass] = useState(null);
 
   let dataState = false;
 
@@ -42,7 +49,12 @@ const SignUpScreen = ({ navigation }) => {
 
   // Step Screens
   const screenSteps = [
-    <SignUpOne inputEmail={inputEmail} inputPassword={inputPassword} />,
+    <SignUpOne
+      signUpEmail={signUpEmail}
+      setSignUpEmail={setSignUpEmail}
+      signUpPass={signUpPass}
+      setSignUpPass={setSignUpPass}
+    />,
     <SignUpTwo />,
     <SignUpThree />,
     <SignUpFour />,
@@ -115,19 +127,20 @@ const SignUpScreen = ({ navigation }) => {
                   borderColor: theme["base-background"],
                   borderWidth: 7,
                 }}
-                onPress={async () => {
-                  try {
-                    console.log(await getRegistrationData());
-
-                    if (getRegistrationData) {
-                      if (screenStep === 1) {
-                        console.log(inputPassword);
-                      }
-                      setScreenStep(screenStep + 1);
-                    }
-                  } catch (e) {
-                    //
-                  }
+                onPress={() => {
+                  SignUpNext(screenStep);
+                  // try {
+                  //   let currentData = await getRegistrationData();
+                  //
+                  //   if (getRegistrationData) {
+                  //     if (screenStep === 1) {
+                  //       console.log(inputPassword);
+                  //     }
+                  //     setScreenStep(screenStep + 1);
+                  //   }
+                  // } catch (e) {
+                  //   //
+                  // }
                 }}
               >
                 Next

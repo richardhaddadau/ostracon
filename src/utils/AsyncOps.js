@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-// AsyncStorage Procedures
-const getRegistrationData = async () => {
+// Process Next Screen
+const SignUpNext = (screen) => {
   const screenSchedule = {
     1: ["email", "password"],
     2: ["handle", "nickname"],
@@ -9,15 +9,18 @@ const getRegistrationData = async () => {
     4: ["location"],
   };
 
+  console.log(`Screen: ${screen}`);
+  console.log(getRegistrationData());
+};
+
+// AsyncStorage Procedures
+const getRegistrationData = async () => {
   try {
-    const registrationObject = await AsyncStorage.getItem(
+    const registrationObject = AsyncStorage.getItem(
       "@current_registration_details"
     );
 
-    // console.log(registrationObject[screenSchedule]);
-    // console.log(JSON.parse(registrationObject));
-
-    return registrationObject != null ? JSON.parse(registrationObject) : false;
+    return JSON.parse(await registrationObject);
   } catch (e) {
     // Error Reading
   }
@@ -36,4 +39,4 @@ const saveRegistrationData = async (registrationObject) => {
   }
 };
 
-export { getRegistrationData, saveRegistrationData };
+export { SignUpNext, getRegistrationData, saveRegistrationData };
