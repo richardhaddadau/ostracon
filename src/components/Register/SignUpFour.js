@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, TextInput } from "react-native";
 import {
   LOGIN_HORIZONTAL_PADDING,
@@ -10,6 +10,12 @@ import { useTheme } from "@ui-kitten/components";
 const SignUpFour = ({ signUpLocation, setSignUpLocation, isValid }) => {
   // Theme
   const theme = useTheme();
+
+  useEffect(() => {
+    isValid = [true, true];
+  }, []);
+
+  console.log(isValid);
 
   return (
     <View style={{ width: "100%" }}>

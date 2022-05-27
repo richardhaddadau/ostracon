@@ -37,7 +37,7 @@ const SignUpScreen = ({ navigation }) => {
 
   // States
   const [screenStep, setScreenStep] = useState(1);
-  const [isValid, setIsValid] = useState([]);
+  const [isValid, setIsValid] = useState([true, true]);
 
   // Step 1 States
   const [signUpEmail, setSignUpEmail] = useState(null);

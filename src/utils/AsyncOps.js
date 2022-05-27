@@ -40,6 +40,10 @@ const SignUpNext = async (screen, dataObject) => {
   }
 };
 
+const resetIsValid = () => {
+  return [true, true];
+};
+
 // Expo Secure Store
 const getSecureStore = async (key) => {
   try {
@@ -77,4 +81,10 @@ const cleanSecureStore = (key) => {
   setSecureStore(key, freshObject);
 };
 
-export { SignUpNext, getSecureStore, setSecureStore, cleanSecureStore };
+export {
+  SignUpNext,
+  getSecureStore,
+  setSecureStore,
+  cleanSecureStore,
+  resetIsValid,
+};

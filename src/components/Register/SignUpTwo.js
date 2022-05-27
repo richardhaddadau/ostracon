@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 import { useTheme } from "@ui-kitten/components";
 import {
@@ -16,6 +16,12 @@ const SignUpTwo = ({
 }) => {
   // Theme
   const theme = useTheme();
+
+  useEffect(() => {
+    isValid = [true, true];
+  }, []);
+
+  console.log(isValid);
 
   return (
     <View style={{ width: "100%" }}>

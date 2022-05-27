@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, TextInput, StyleSheet } from "react-native";
 import {
   LOGIN_HORIZONTAL_PADDING,
@@ -7,6 +7,7 @@ import {
 } from "../../constants/constants";
 
 import { useTheme } from "@ui-kitten/components";
+import { resetIsValid } from "../../utils/AsyncOps";
 
 const SignUpOne = ({
   signUpEmail,
@@ -17,6 +18,12 @@ const SignUpOne = ({
 }) => {
   // Theme
   const theme = useTheme();
+
+  useEffect(() => {
+    isValid = [true, true];
+  }, []);
+
+  console.log(isValid);
 
   return (
     <View style={{ width: "100%" }}>

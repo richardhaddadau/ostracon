@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, StyleSheet, TextInput } from "react-native";
 import {
   LOGIN_HORIZONTAL_PADDING,
@@ -19,6 +19,12 @@ const SignUpThree = ({
 }) => {
   // Theme
   const theme = useTheme();
+
+  useEffect(() => {
+    isValid = [true, true];
+  }, []);
+
+  console.log(isValid);
 
   // States
   const [openDate, setOpenDate] = useState(false);
