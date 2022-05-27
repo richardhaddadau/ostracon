@@ -3,6 +3,7 @@ import * as SecureStore from "expo-secure-store";
 // Process Next Screen
 const SignUpNext = async (screen, dataObject) => {
   let valid = true;
+  let validArr = [];
 
   console.log(dataObject);
 
@@ -21,7 +22,12 @@ const SignUpNext = async (screen, dataObject) => {
     let currentKey = screenSchedule[screen][x];
 
     // low level validation
-    if (dataObject[currentKey] === null) valid = false;
+    if (dataObject[currentKey] === null) {
+      valid = false;
+      validArr[x] = false;
+    } else {
+      validArr[x] = true;
+    }
 
     currentData[currentKey] = dataObject[currentKey];
   }
@@ -30,7 +36,7 @@ const SignUpNext = async (screen, dataObject) => {
     await setSecureStore("signup", currentData);
     return true;
   } else {
-    return false;
+    return validArr;
   }
 };
 

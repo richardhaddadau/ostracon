@@ -23,7 +23,7 @@ import {
 import { Button, useTheme } from "@ui-kitten/components";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { LoginUser } from "../utils/LoginUser";
+import { Auth } from "../utils/Auth";
 
 const SignInScreen = ({ navigation }) => {
   // States
@@ -34,7 +34,7 @@ const SignInScreen = ({ navigation }) => {
   const theme = useTheme();
 
   useEffect(() => {
-    // LoginUser("aa", "11");
+    // Auth("aa", "11");
   }, []);
 
   return (
@@ -112,7 +112,7 @@ const SignInScreen = ({ navigation }) => {
               secureTextEntry={true}
             />
             <Button
-              onPress={() => LoginUser(loginUser, loginPass)}
+              onPress={() => Auth(loginUser, loginPass)}
               style={{
                 marginVertical: LOGIN_VERTICAL_MARGIN,
                 borderRadius: 100,

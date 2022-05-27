@@ -4,7 +4,7 @@ import faunadb from "faunadb";
 const q = faunadb.query;
 const { Map, Paginate, Match, Lambda, Get, Var, Documents, Index } = q;
 
-const faunaSecret = "fnAEkzcE5gACVHjVgPTF4HSF3fI2vW63cKgZI94H";
+const faunaSecret = "";
 const faunaDomain = "db.fauna.com";
 const faunaPort = 443;
 const faunaScheme = "https";
@@ -17,7 +17,7 @@ const client = new faunadb.Client({
   scheme: faunaScheme,
 });
 
-const LoginUser = async (username, password) => {
+const Auth = async (username, password) => {
   if (username === null) return undefined;
 
   if (username.includes("@")) {
@@ -37,4 +37,4 @@ const LoginUser = async (username, password) => {
   }
 };
 
-export { LoginUser };
+export { Auth };

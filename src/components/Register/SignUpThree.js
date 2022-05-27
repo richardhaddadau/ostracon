@@ -15,6 +15,7 @@ const SignUpThree = ({
   setSignUpDOBText,
   signUpDateOfBirth,
   setSignUpDateOfBirth,
+  isValid,
 }) => {
   // Theme
   const theme = useTheme();
@@ -29,8 +30,10 @@ const SignUpThree = ({
           styles.inputField,
           {
             backgroundColor: theme["color-surface"],
-            borderColor: theme["color-post-border"],
             color: theme["color-primary-default"],
+
+            borderColor: theme["color-danger-400"],
+            borderWidth: isValid[0] ? 0 : 3,
           },
         ]}
         onChangeText={(value) => setSignUpDOBText(value)}
@@ -60,14 +63,13 @@ const styles = StyleSheet.create({
 
     width: "100%",
 
-    borderRadius: 20,
+    borderRadius: 100,
 
     shadowOffset: { horizontal: 5, vertical: 5 },
     shadowOpacity: 0.25,
     shadowRadius: 4,
 
     elevation: 7,
-    borderWidth: 0,
   },
 });
 

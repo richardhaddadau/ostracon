@@ -37,6 +37,7 @@ const SignUpScreen = ({ navigation }) => {
 
   // States
   const [screenStep, setScreenStep] = useState(1);
+  const [isValid, setIsValid] = useState([]);
 
   // Step 1 States
   const [signUpEmail, setSignUpEmail] = useState(null);
@@ -63,22 +64,26 @@ const SignUpScreen = ({ navigation }) => {
       setSignUpEmail={setSignUpEmail}
       signUpPass={signUpPass}
       setSignUpPass={setSignUpPass}
+      isValid={isValid}
     />,
     <SignUpTwo
       signUpNickname={signUpNickname}
       setSignUpSignUpNickname={setSignUpSignUpNickname}
       signUpHandle={signUpHandle}
       setSignUpHandle={setSignUpHandle}
+      isValid={isValid}
     />,
     <SignUpThree
       signUpDateOfBirth={signUpDateOfBirth}
       setSignUpDateOfBirth={setSignUpDateOfBirth}
       signUpDOBText={signUpDOBText}
       setSignUpDOBText={setSignUpDOBText}
+      isValid={isValid}
     />,
     <SignUpFour
       signUpLocation={signUpLocation}
       setSignUpLocation={setSignUpLocation}
+      isValid={isValid}
     />,
   ];
 
@@ -158,8 +163,11 @@ const SignUpScreen = ({ navigation }) => {
                   };
 
                   SignUpNext(screenStep, signUpObject).then((r) => {
-                    if (r) {
+                    if (r === true) {
+                      setIsValid([]);
                       setScreenStep(screenStep + 1);
+                    } else {
+                      setIsValid(r);
                     }
                   });
                 }}
@@ -177,7 +185,7 @@ const SignUpScreen = ({ navigation }) => {
                   borderWidth: 7,
                 }}
                 onPress={() => {
-                  let dataState = getRegistrationData();
+                  //
                 }}
               >
                 Register
