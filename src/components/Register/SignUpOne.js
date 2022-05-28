@@ -15,15 +15,14 @@ const SignUpOne = ({
   signUpPass,
   setSignUpPass,
   isValid,
+  setIsValid,
 }) => {
   // Theme
   const theme = useTheme();
 
   useEffect(() => {
-    isValid = [true, true];
+    setIsValid([true, true]);
   }, []);
-
-  console.log(isValid);
 
   return (
     <View style={{ width: "100%" }}>
@@ -38,7 +37,14 @@ const SignUpOne = ({
             borderWidth: isValid[0] ? 0 : 3,
           },
         ]}
-        onChangeText={(value) => setSignUpEmail(value)}
+        onChangeText={(value) => {
+          setSignUpEmail(value);
+          value !== null && value.includes("@")
+            ? (isValid[0] = true)
+            : (isValid[0] = false);
+
+          console.log(isValid);
+        }}
         value={signUpEmail}
         placeholder="Email"
         placeholderTextColor={theme["color-primary-300"]}
@@ -52,11 +58,12 @@ const SignUpOne = ({
             color: theme["color-primary-default"],
 
             borderColor: theme["color-danger-400"],
-            borderWidth: isValid[1] ? 0 : 3,
+            borderWidth: isValid[1] || signUpPass !== null ? 0 : 3,
           },
         ]}
-        onChangeText={async (value) => {
+        onChangeText={(value) => {
           setSignUpPass(value);
+          value.length > 0 ? (isValid[1] = true) : (isValid[1] = false);
         }}
         value={signUpPass}
         placeholder="Password"

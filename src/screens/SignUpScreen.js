@@ -44,7 +44,7 @@ const SignUpScreen = ({ navigation }) => {
   const [signUpPass, setSignUpPass] = useState(null);
 
   // Step 2 States
-  const [signUpNickname, setSignUpSignUpNickname] = useState(null);
+  const [signUpNickname, setSignUpNickname] = useState(null);
   const [signUpHandle, setSignUpHandle] = useState(null);
 
   // Step 3 States
@@ -65,13 +65,15 @@ const SignUpScreen = ({ navigation }) => {
       signUpPass={signUpPass}
       setSignUpPass={setSignUpPass}
       isValid={isValid}
+      setIsValid={setIsValid}
     />,
     <SignUpTwo
       signUpNickname={signUpNickname}
-      setSignUpSignUpNickname={setSignUpSignUpNickname}
+      setSignUpNickname={setSignUpNickname}
       signUpHandle={signUpHandle}
       setSignUpHandle={setSignUpHandle}
       isValid={isValid}
+      setIsValid={setIsValid}
     />,
     <SignUpThree
       signUpDateOfBirth={signUpDateOfBirth}
@@ -79,11 +81,13 @@ const SignUpScreen = ({ navigation }) => {
       signUpDOBText={signUpDOBText}
       setSignUpDOBText={setSignUpDOBText}
       isValid={isValid}
+      setIsValid={setIsValid}
     />,
     <SignUpFour
       signUpLocation={signUpLocation}
       setSignUpLocation={setSignUpLocation}
       isValid={isValid}
+      setIsValid={setIsValid}
     />,
   ];
 
@@ -163,8 +167,11 @@ const SignUpScreen = ({ navigation }) => {
                   };
 
                   SignUpNext(screenStep, signUpObject).then((r) => {
+                    console.log("Update:");
+                    console.log(isValid);
+                    console.log(r);
                     if (r === true) {
-                      setIsValid([]);
+                      setIsValid([true, true]);
                       setScreenStep(screenStep + 1);
                     } else {
                       setIsValid(r);

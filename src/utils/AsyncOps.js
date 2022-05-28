@@ -21,6 +21,12 @@ const SignUpNext = async (screen, dataObject) => {
   for (let x = 0; x < onThisScreen.length; x++) {
     let currentKey = screenSchedule[screen][x];
 
+    if (currentKey === "email" && !dataObject[currentKey].includes("@")) {
+      valid = false;
+      validArr[x] = false;
+      continue;
+    }
+
     // low level validation
     if (dataObject[currentKey] === null) {
       valid = false;

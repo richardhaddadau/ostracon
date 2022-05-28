@@ -23,7 +23,7 @@ const StepperLegend = ({
         >
           <TouchableWithoutFeedback
             onPress={() => {
-              setScreenStep(count);
+              count <= currentStep ? setScreenStep(count) : null;
             }}
           >
             <View

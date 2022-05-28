@@ -7,15 +7,18 @@ import {
 } from "../../constants/constants";
 import { useTheme } from "@ui-kitten/components";
 
-const SignUpFour = ({ signUpLocation, setSignUpLocation, isValid }) => {
+const SignUpFour = ({
+  signUpLocation,
+  setSignUpLocation,
+  isValid,
+  setIsValid,
+}) => {
   // Theme
   const theme = useTheme();
 
   useEffect(() => {
-    isValid = [true, true];
+    setIsValid([true, true]);
   }, []);
-
-  console.log(isValid);
 
   return (
     <View style={{ width: "100%" }}>
@@ -30,7 +33,10 @@ const SignUpFour = ({ signUpLocation, setSignUpLocation, isValid }) => {
             borderWidth: isValid[0] ? 0 : 3,
           },
         ]}
-        onChangeText={(value) => setSignUpLocation(value)}
+        onChangeText={(value) => {
+          setSignUpLocation(value);
+          value.length > 0 ? (isValid[0] = true) : (isValid[0] = false);
+        }}
         value={signUpLocation}
         placeholder="Location"
         placeholderTextColor={theme["color-primary-300"]}

@@ -16,15 +16,14 @@ const SignUpThree = ({
   signUpDateOfBirth,
   setSignUpDateOfBirth,
   isValid,
+  setIsValid,
 }) => {
   // Theme
   const theme = useTheme();
 
   useEffect(() => {
-    isValid = [true, true];
+    setIsValid([true, true]);
   }, []);
-
-  console.log(isValid);
 
   // States
   const [openDate, setOpenDate] = useState(false);
@@ -42,7 +41,10 @@ const SignUpThree = ({
             borderWidth: isValid[0] ? 0 : 3,
           },
         ]}
-        onChangeText={(value) => setSignUpDOBText(value)}
+        onChangeText={(value) => {
+          setSignUpDOBText(value);
+          value.length > 0 ? (isValid[0] = true) : (isValid[0] = false);
+        }}
         onFocus={() => {
           setOpenDate(true);
           console.log("Clicked");

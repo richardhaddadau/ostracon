@@ -11,14 +11,15 @@ const SignUpTwo = ({
   signUpHandle,
   setSignUpHandle,
   signUpNickname,
-  setSignUpSignUpNickname,
+  setSignUpNickname,
   isValid,
+  setIsValid,
 }) => {
   // Theme
   const theme = useTheme();
 
   useEffect(() => {
-    isValid = [true, true];
+    setIsValid([true, true]);
   }, []);
 
   console.log(isValid);
@@ -36,7 +37,10 @@ const SignUpTwo = ({
             borderWidth: isValid[0] ? 0 : 3,
           },
         ]}
-        onChangeText={(value) => setSignUpHandle(value)}
+        onChangeText={(value) => {
+          setSignUpHandle(value);
+          value.length > 0 ? (isValid[0] = true) : (isValid[0] = false);
+        }}
         value={signUpHandle}
         placeholder="Handle"
         placeholderTextColor={theme["color-primary-300"]}
@@ -53,7 +57,10 @@ const SignUpTwo = ({
             borderWidth: isValid[0] ? 0 : 3,
           },
         ]}
-        onChangeText={(value) => setSignUpNickname(value)}
+        onChangeText={(value) => {
+          setSignUpNickname(value);
+          value.length > 0 ? (isValid[1] = true) : (isValid[1] = false);
+        }}
         value={signUpNickname}
         placeholder="Nickname"
         placeholderTextColor={theme["color-primary-300"]}
