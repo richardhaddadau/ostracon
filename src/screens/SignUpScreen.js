@@ -26,7 +26,11 @@ import SignUpThree from "../components/Register/SignUpThree";
 import SignUpFour from "../components/Register/SignUpFour";
 
 // Import AsyncStorage Operations
-import { cleanSecureStore, SignUpNext } from "../utils/AsyncOps";
+import {
+  cleanSecureStore,
+  getSecureStore,
+  SignUpNext,
+} from "../utils/AsyncOps";
 
 // Import Moment for Time
 import moment from "moment";
@@ -195,8 +199,8 @@ const SignUpScreen = ({ navigation }) => {
                   borderColor: theme["base-background"],
                   borderWidth: 7,
                 }}
-                onPress={() => {
-                  //
+                onPress={async () => {
+                  AuthRegister(await getSecureStore("signup")).then(() => true);
                 }}
               >
                 Register
