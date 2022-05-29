@@ -84,7 +84,7 @@ const cleanSecureStore = (key) => {
     location: "",
   };
 
-  setSecureStore(key, freshObject);
+  setSecureStore(key, freshObject).then(() => true);
 };
 
 export {

@@ -4,7 +4,7 @@ import faunadb from "faunadb";
 const q = faunadb.query;
 const { Map, Paginate, Match, Lambda, Get, Var, Documents, Index } = q;
 
-const faunaSecret = "";
+const faunaSecret = "fnAEkzcE5gACVHjVgPTF4HSF3fI2vW63cKgZI94H";
 const faunaDomain = "db.fauna.com";
 const faunaPort = 443;
 const faunaScheme = "https";
@@ -17,18 +17,22 @@ const client = new faunadb.Client({
   scheme: faunaScheme,
 });
 
-const Auth = async (username, password) => {
-  if (username === null) return undefined;
+const AuthLogin = async (username, password) => {
+  if (!username && !password) return undefined;
+
+  console.log("Let's try");
 
   if (username.includes("@")) {
     try {
       // Username is Email
-      await client.query(
-        Map(
-          Paginate(Match(Index("accounts_by_email"), "hello@ostracon.app")),
-          Lambda("x", Get(Var("x")))
+      await client
+        .query(
+          Map(
+            Paginate(Match(Index("accounts_by_email"), "hello@ostracon.app")),
+            Lambda("x", Get(Var("x")))
+          )
         )
-      );
+        .then((res) => console.log(res));
     } catch (e) {
       console.log(e);
     }
@@ -37,4 +41,6 @@ const Auth = async (username, password) => {
   }
 };
 
-export { Auth };
+const AuthRegister = async (registrationObj) => {};
+
+export { AuthLogin, AuthRegister };

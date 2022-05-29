@@ -7,7 +7,6 @@ import {
   StyleSheet,
   ImageBackground,
   Text,
-  TextInput,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
@@ -26,9 +25,14 @@ import SignUpTwo from "../components/Register/SignUpTwo";
 import SignUpThree from "../components/Register/SignUpThree";
 import SignUpFour from "../components/Register/SignUpFour";
 
-// import AsyncStorage Operations
+// Import AsyncStorage Operations
 import { cleanSecureStore, SignUpNext } from "../utils/AsyncOps";
+
+// Import Moment for Time
 import moment from "moment";
+
+// Import Authentication
+import { AuthRegister } from "../utils/Auth";
 
 const SignUpScreen = ({ navigation }) => {
   useEffect(() => {

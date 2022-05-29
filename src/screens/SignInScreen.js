@@ -23,19 +23,17 @@ import {
 import { Button, useTheme } from "@ui-kitten/components";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Auth } from "../utils/Auth";
+import { AuthLogin } from "../utils/Auth";
 
 const SignInScreen = ({ navigation }) => {
   // States
   const [loginUser, setLoginUser] = useState(null);
   const [loginPass, setLoginPass] = useState(null);
 
+  const [isValid, setIsValid] = useState([true, true]);
+
   // Theme
   const theme = useTheme();
-
-  useEffect(() => {
-    // Auth("aa", "11");
-  }, []);
 
   return (
     <KeyboardAvoidingView
@@ -73,6 +71,7 @@ const SignInScreen = ({ navigation }) => {
             <Text
               style={{
                 marginBottom: 20,
+
                 fontSize: LOGIN_STANDARD_SIZE,
                 color: theme["color-primary-default"],
               }}
@@ -84,11 +83,15 @@ const SignInScreen = ({ navigation }) => {
                 styles.inputField,
                 {
                   backgroundColor: theme["color-surface"],
-                  borderColor: theme["color-post-border"],
                   color: theme["color-primary-default"],
+
+                  borderColor: theme["color-danger-400"],
+                  borderWidth: isValid[0] ? 0 : 3,
                 },
               ]}
-              onChangeText={(value) => setLoginUser(value)}
+              onChangeText={(value) => {
+                setLoginUser(value);
+              }}
               value={loginUser}
               placeholder="Username or Email"
               placeholderTextColor={theme["color-primary-200"]}
@@ -100,8 +103,10 @@ const SignInScreen = ({ navigation }) => {
                 styles.inputField,
                 {
                   backgroundColor: theme["color-surface"],
-                  borderColor: theme["color-post-border"],
                   color: theme["color-primary-default"],
+
+                  borderColor: theme["color-danger-400"],
+                  borderWidth: isValid[1] ? 0 : 3,
                 },
               ]}
               onChangeText={(value) => setLoginPass(value)}
@@ -112,7 +117,18 @@ const SignInScreen = ({ navigation }) => {
               secureTextEntry={true}
             />
             <Button
-              onPress={() => Auth(loginUser, loginPass)}
+              onPress={() => {
+                const validateArr = [true, true];
+
+                validateArr[0] = loginUser !== null && loginUser.length > 0;
+                validateArr[1] = loginPass !== null && loginPass.length > 0;
+
+                setIsValid(validateArr);
+
+                if (isValid[0] && isValid[1]) {
+                  AuthLogin(loginUser, loginPass).then(() => true);
+                }
+              }}
               style={{
                 marginVertical: LOGIN_VERTICAL_MARGIN,
                 borderRadius: 100,
@@ -161,7 +177,7 @@ const styles = StyleSheet.create({
 
     width: "100%",
 
-    borderRadius: 20,
+    borderRadius: 100,
 
     shadowOffset: { horizontal: 5, vertical: 5 },
     shadowOpacity: 0.25,
