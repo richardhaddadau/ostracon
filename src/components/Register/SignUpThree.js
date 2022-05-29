@@ -57,7 +57,16 @@ const SignUpThree = ({
       <DateTimePicker
         isVisible={openDate}
         mode={"date"}
-        onConfirm={(value) => console.log(value)}
+        onConfirm={(value) => {
+          setSignUpDateOfBirth(value);
+          setSignUpDOBText(
+            new Date(value).toLocaleDateString("en-gb", {
+              year: "numeric",
+              month: "short",
+              day: "2-digit",
+            })
+          );
+        }}
       />
     </View>
   );
