@@ -43,7 +43,7 @@ export const App = () => {
   // States
   const [theme, setTheme] = useState("light");
   const [myTheme, setMyTheme] = useState(lightOstracon);
-  const [isSignedIn, setIsSignedIn] = useState(false);
+  const [isSignedIn, setIsSignedIn] = useState(true);
 
   const toggleTheme = () => {
     const nextTheme = theme === "light" ? "dark" : "light";
