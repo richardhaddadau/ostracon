@@ -67,6 +67,7 @@ const SignUpThree = ({
             })
           );
         }}
+        onCancel={() => console.log("Cancelled")}
       />
     </View>
   );
