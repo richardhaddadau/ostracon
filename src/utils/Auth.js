@@ -15,6 +15,9 @@ const client = new faunadb.Client({
   domain: faunaDomain,
   port: faunaPort,
   scheme: faunaScheme,
+  headers: {
+    'content-type': 'application/json'
+  }
 });
 
 const AuthLogin = async (username, password) => {
@@ -23,16 +26,17 @@ const AuthLogin = async (username, password) => {
   if (username.includes("@")) {
     // Username is Email
     await client
-      .query(
-        Paginate(Match(Index("all_accounts"))),
+      .query(q.Map(
+        Paginate(Match(Index("accounts_by_email"), username)),
         Lambda("x", Get(Var("x")))
-        // Map(
-        //   Paginate(Match(Index("accounts_by_email"), "hello@ostracon.app")),
-        //   Lambda("x", Get(Var("x")))
-        // )
+      ))
+      .then((r) => {
+        r.data.length > 0 ? console.log(r.data[0].data) : null;
+      })
+      .catch((e) => {
+        console.log(e);
+      }
       )
-      .then((r) => console.log(r))
-      .catch((e) => console.log(e));
   } else {
     // Username is Handle
   }
