@@ -45,7 +45,7 @@ const WelcomeScreen = ({ navigation }) => {
         </Text>
         <TouchableWithoutFeedback
           onPress={() => {
-            navigation.navigate("Login");
+            navigation.navigate("OnBoardingOneScreen");
           }}
         >
           <View

@@ -40,11 +40,11 @@ const OnBoardingOneScreen = ({ navigation }) => {
           }}
           category={"h1"}
         >
-          Ostracon
+          One
         </Text>
         <TouchableWithoutFeedback
           onPress={() => {
-            navigation.navigate("Login");
+            navigation.navigate("OnBoardingTwoScreen");
           }}
         >
           <View

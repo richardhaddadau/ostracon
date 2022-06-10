@@ -40,7 +40,7 @@ const OnBoardingFourScreen = ({ navigation }) => {
           }}
           category={"h1"}
         >
-          Ostracon
+          Four
         </Text>
         <TouchableWithoutFeedback
           onPress={() => {
