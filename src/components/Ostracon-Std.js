@@ -332,6 +332,19 @@ const Profile = ({ size = 24, color = "black", style }) => {
     </Svg>
   );
 };
+const Ring = ({ size = 24, color = "black", style }) => {
+  return (
+    <Svg
+      width={size}
+      height={size}
+      viewBox="0 0 512 512"
+      fill={color}
+      style={style}
+    >
+      <Path d="M251.8 126c-71.8 0-130 58.2-130 130s58.2 130 130 130 130-58.2 130-130-58.2-130-130-130zm0 225c-52.4 0-95-42.6-95-95s42.6-95 95-95 95 42.6 95 95-42.6 95-95 95z" />
+    </Svg>
+  );
+};
 const Search = ({ size = 24, color = "black", style }) => {
   return (
     <Svg
@@ -473,6 +486,7 @@ export {
   Ostracon,
   Person,
   Profile,
+  Ring,
   Search,
   Send,
   Settings,

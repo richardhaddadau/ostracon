@@ -10,7 +10,10 @@ import {
 } from "../constants/constants";
 
 // Import Icons
-import { Next as NextActive } from "../components/Ostracon-Active";
+import {
+  Next as NextActive,
+  Ring as RingActive,
+} from "../components/Ostracon-Active";
 
 const OnBoardingThreeScreen = ({ navigation }) => {
   // Theme
@@ -42,9 +45,42 @@ const OnBoardingThreeScreen = ({ navigation }) => {
         >
           Three
         </Text>
+        <RingActive
+          size={30}
+          color={"#ffffff"}
+          style={{
+            position: "absolute",
+            alignSelf: "center",
+            bottom: 38,
+            translateX: -100,
+            transform: [{ translateX: -100 }],
+          }}
+        />
+        <RingActive
+          size={30}
+          color={"#ffffff"}
+          style={{
+            position: "absolute",
+            alignSelf: "center",
+            bottom: 38,
+            translateX: -75,
+            transform: [{ translateX: -75 }],
+          }}
+        />
+        <RingActive
+          size={30}
+          color={"#ffffff"}
+          style={{
+            position: "absolute",
+            alignSelf: "center",
+            bottom: 38,
+            translateX: -50,
+            transform: [{ translateX: -50 }],
+          }}
+        />
         <TouchableWithoutFeedback
           onPress={() => {
-            navigation.navigate("OnBoardingFourScreen");
+            navigation.navigate("Login");
           }}
         >
           <View

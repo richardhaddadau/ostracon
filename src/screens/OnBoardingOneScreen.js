@@ -10,7 +10,11 @@ import {
 } from "../constants/constants";
 
 // Import Icons
-import { Next as NextActive } from "../components/Ostracon-Active";
+import {
+  Next as NextActive,
+  Ring as RingActive,
+} from "../components/Ostracon-Active";
+import { Ring as RingStd } from "../components/Ostracon-Std";
 
 const OnBoardingOneScreen = ({ navigation }) => {
   // Theme
@@ -42,6 +46,17 @@ const OnBoardingOneScreen = ({ navigation }) => {
         >
           One
         </Text>
+        <RingActive
+          size={30}
+          color={"#ffffff"}
+          style={{
+            position: "absolute",
+            alignSelf: "center",
+            bottom: 38,
+            translateX: -50,
+            transform: [{ translateX: -50 }],
+          }}
+        />
         <TouchableWithoutFeedback
           onPress={() => {
             navigation.navigate("OnBoardingTwoScreen");
@@ -69,6 +84,28 @@ const OnBoardingOneScreen = ({ navigation }) => {
             <NextActive size={26} color={"#363744"} />
           </View>
         </TouchableWithoutFeedback>
+        <RingStd
+          size={30}
+          color={"#ffffff"}
+          style={{
+            position: "absolute",
+            alignSelf: "center",
+            bottom: 38,
+            translateX: 50,
+            transform: [{ translateX: 50 }],
+          }}
+        />
+        <RingStd
+          size={30}
+          color={"#ffffff"}
+          style={{
+            position: "absolute",
+            alignSelf: "center",
+            bottom: 38,
+            translateX: 75,
+            transform: [{ translateX: 75 }],
+          }}
+        />
       </ImageBackground>
     </View>
   );

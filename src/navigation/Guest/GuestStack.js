@@ -4,6 +4,7 @@ import React from "react";
 import {
   createStackNavigator,
   CardStyleInterpolators,
+  TransitionPresets,
 } from "@react-navigation/stack";
 
 // Import Screens
@@ -25,7 +26,7 @@ const GuestStack = () => {
         headerShown: false,
         gestureEnabled: true,
         gestureDirection: "horizontal",
-        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        ...TransitionPresets.SlideFromRightIOS,
       }}
     >
       <Stack.Screen name="Welcome" component={WelcomeScreen} />

@@ -1,6 +1,5 @@
 import React from "react";
 import { View, ImageBackground, TouchableWithoutFeedback } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { Text, useTheme } from "@ui-kitten/components";
 
 // Import Constants
@@ -12,6 +11,8 @@ import {
 
 // Import Icons
 import { Next as NextActive } from "../components/Ostracon-Active";
+
+import { Ring as RingStd } from "../components/Ostracon-Std";
 
 const WelcomeScreen = ({ navigation }) => {
   // Theme
@@ -70,6 +71,39 @@ const WelcomeScreen = ({ navigation }) => {
             <NextActive size={26} color={"#363744"} />
           </View>
         </TouchableWithoutFeedback>
+        <RingStd
+          size={30}
+          color={"#ffffff"}
+          style={{
+            position: "absolute",
+            alignSelf: "center",
+            bottom: 38,
+            translateX: 50,
+            transform: [{ translateX: 50 }],
+          }}
+        />
+        <RingStd
+          size={30}
+          color={"#ffffff"}
+          style={{
+            position: "absolute",
+            alignSelf: "center",
+            bottom: 38,
+            translateX: 75,
+            transform: [{ translateX: 75 }],
+          }}
+        />
+        <RingStd
+          size={30}
+          color={"#ffffff"}
+          style={{
+            position: "absolute",
+            alignSelf: "center",
+            bottom: 38,
+            translateX: 100,
+            transform: [{ translateX: 100 }],
+          }}
+        />
       </ImageBackground>
     </View>
   );

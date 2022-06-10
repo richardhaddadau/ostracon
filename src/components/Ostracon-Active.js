@@ -316,6 +316,19 @@ const RemoveFollow = ({ size = 24, color = "black", style }) => {
     </Svg>
   );
 };
+const Ring = ({ size = 24, color = "black", style }) => {
+  return (
+    <Svg
+      width={size}
+      height={size}
+      viewBox="0 0 512 512"
+      fill={color}
+      style={style}
+    >
+      <Circle cx={251.8} cy={256} r={130} />
+    </Svg>
+  );
+};
 const Search = ({ size = 24, color = "black", style }) => {
   return (
     <Svg
@@ -443,6 +456,7 @@ export {
   Play,
   Profile,
   RemoveFollow,
+  Ring,
   Search,
   Settings,
   Sun,
