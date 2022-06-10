@@ -5,12 +5,13 @@ import { Text, useTheme } from "@ui-kitten/components";
 
 // Import Constants
 import {
+  OSTRACON_BUTTON_BOTTOM_GAP,
   OSTRACON_BUTTON_SIZE,
   OSTRACON_ICON_SIZE,
 } from "../constants/constants";
 
 // Import Icons
-import { Play as PlayActive } from "../components/Ostracon-Active";
+import { Next as NextActive } from "../components/Ostracon-Active";
 
 const WelcomeScreen = ({ navigation }) => {
   // Theme
@@ -57,9 +58,7 @@ const WelcomeScreen = ({ navigation }) => {
 
               alignSelf: "center",
 
-              paddingLeft: 5,
-
-              bottom: 40,
+              bottom: 23,
 
               width: OSTRACON_BUTTON_SIZE,
               height: OSTRACON_BUTTON_SIZE,
@@ -68,7 +67,7 @@ const WelcomeScreen = ({ navigation }) => {
               borderRadius: 100,
             }}
           >
-            <PlayActive size={26} color={"#363744"} />
+            <NextActive size={26} color={"#363744"} />
           </View>
         </TouchableWithoutFeedback>
       </ImageBackground>
