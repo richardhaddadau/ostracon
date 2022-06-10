@@ -1,7 +1,7 @@
 import React from "react";
 
 // Import Navigation Libraries
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createStackNavigator } from "@react-navigation/stack";
 import MemberDrawer from "./MemberDrawer";
 
 // Import Theme
@@ -18,7 +18,7 @@ import PointsScreen from "../../screens/PointsScreen";
 import OstraconGoldScreen from "../../screens/OstraconGold";
 import ProfileScreen from "../../screens/ProfileScreen";
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 const MemberStack = ({ setSigned }) => {
   // Theme
