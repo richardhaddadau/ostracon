@@ -58,6 +58,7 @@ const SignUpThree = ({
         isVisible={openDate}
         mode={"date"}
         onConfirm={(value) => {
+          console.log("Confirmed");
           setSignUpDateOfBirth(value);
           setSignUpDOBText(
             new Date(value).toLocaleDateString("en-gb", {
@@ -66,6 +67,7 @@ const SignUpThree = ({
               day: "2-digit",
             })
           );
+          setOpenDate(false);
         }}
         onCancel={() => console.log("Cancelled")}
       />

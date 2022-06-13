@@ -29,6 +29,7 @@ import SignUpFour from "../components/Register/SignUpFour";
 import {
   cleanSecureStore,
   getSecureStore,
+  setSecureStore,
   SignUpNext,
 } from "../utils/AsyncOps";
 
@@ -175,9 +176,6 @@ const SignUpScreen = ({ navigation }) => {
                   };
 
                   SignUpNext(screenStep, signUpObject).then((r) => {
-                    console.log("Update:");
-                    console.log(isValid);
-                    console.log(r);
                     if (r === true) {
                       setIsValid([true, true]);
                       setScreenStep(screenStep + 1);
@@ -200,6 +198,16 @@ const SignUpScreen = ({ navigation }) => {
                   borderWidth: 7,
                 }}
                 onPress={async () => {
+                  const signUpObject = {
+                    email: signUpEmail,
+                    password: signUpPass,
+                    nickname: signUpNickname,
+                    handle: signUpHandle,
+                    dateOfBirth: signUpDateOfBirth,
+                    location: signUpLocation,
+                  };
+
+                  await setSecureStore("signup", signUpObject);
                   AuthRegister(await getSecureStore("signup")).then(() => true);
                 }}
               >

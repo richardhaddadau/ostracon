@@ -5,8 +5,6 @@ const SignUpNext = async (screen, dataObject) => {
   let valid = true;
   let validArr = [];
 
-  console.log(dataObject);
-
   const screenSchedule = {
     1: ["email", "password"],
     2: ["handle", "nickname"],
