@@ -50,7 +50,7 @@ const AuthRegister = async (registrationObj) => {
         credentials: { password: registrationObj.password },
         data: {
           email: registrationObj.email,
-          handle: registrationObj,
+          handle: registrationObj.handle,
           nickname: registrationObj.nickname,
           dob: registrationObj.dateOfBirth,
           location: registrationObj.location,
