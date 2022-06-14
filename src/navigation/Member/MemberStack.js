@@ -20,7 +20,7 @@ import ProfileScreen from "../../screens/ProfileScreen";
 
 const Stack = createStackNavigator();
 
-const MemberStack = ({ setSigned }) => {
+const MemberStack = ({ setIsSignedIn }) => {
   // Theme
   const theme = useTheme();
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -22,10 +22,10 @@ import {
 
 import { Button, useTheme } from "@ui-kitten/components";
 
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthLogin } from "../utils/Auth";
+import { cleanSecureStore, getSecureStore } from "../utils/AsyncOps";
 
-const SignInScreen = ({ navigation }) => {
+const SignInScreen = ({ navigation, setSigned }) => {
   // States
   const [loginUser, setLoginUser] = useState(null);
   const [loginPass, setLoginPass] = useState(null);
@@ -117,7 +117,7 @@ const SignInScreen = ({ navigation }) => {
               secureTextEntry={true}
             />
             <Button
-              onPress={() => {
+              onPress={async () => {
                 const validateArr = [true, true];
 
                 validateArr[0] = loginUser !== null && loginUser.length > 0;
@@ -126,7 +126,9 @@ const SignInScreen = ({ navigation }) => {
                 setIsValid(validateArr);
 
                 if (isValid[0] && isValid[1]) {
-                  AuthLogin(loginUser, loginPass).then(() => true);
+                  const loginObject = await AuthLogin(loginUser, loginPass);
+                  setIsSignedIn(true);
+                  console.log(await getSecureStore("savedAccount"));
                 }
               }}
               style={{
@@ -149,7 +151,10 @@ const SignInScreen = ({ navigation }) => {
               >
                 Don't have an account?{" "}
                 <TouchableWithoutFeedback
-                  onPress={() => navigation.navigate("Register")}
+                  onPress={() => {
+                    cleanSecureStore("signup");
+                    navigation.navigate("Register");
+                  }}
                 >
                   <Text
                     style={{

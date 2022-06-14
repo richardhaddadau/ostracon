@@ -21,6 +21,7 @@ import GuestStack from "./src/navigation/Guest/GuestStack";
 
 // Import Moment
 import moment from "moment";
+import { getSecureStore } from "./src/utils/AsyncOps";
 
 const CustomStatusBar = ({ backgroundColor, barStyle }) => {
   const insets = useSafeAreaInsets();
@@ -42,7 +43,7 @@ export const App = () => {
   // States
   const [theme, setTheme] = useState("light");
   const [myTheme, setMyTheme] = useState(lightOstracon);
-  const [isSignedIn, setIsSignedIn] = useState(true);
+  const [isSignedIn, setIsSignedIn] = useState(false);
 
   const toggleTheme = () => {
     const nextTheme = theme === "light" ? "dark" : "light";
@@ -50,6 +51,10 @@ export const App = () => {
     setTheme(nextTheme);
     setMyTheme(myNextTheme);
   };
+
+  useEffect(async () => {
+    console.log(await getSecureStore("savedAccount"));
+  }, []);
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
@@ -63,9 +68,9 @@ export const App = () => {
         <ApplicationProvider {...eva} theme={{ ...eva[theme], ...myTheme }}>
           <NavigationContainer ref={navigationRef}>
             {isSignedIn === true ? (
-              <MemberStack setSigned={(value) => setIsSignedIn(value)} />
+              <MemberStack setIsSignedIn={(value) => setIsSignedIn(value)} />
             ) : (
-              <GuestStack setSigned={setIsSignedIn} />
+              <GuestStack setIsSignedIn={(value) => setIsSignedIn(value)} />
             )}
           </NavigationContainer>
         </ApplicationProvider>

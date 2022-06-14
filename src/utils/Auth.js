@@ -1,8 +1,8 @@
 // Import Database Data
-import faunadb, { Collection, Create } from "faunadb";
+import faunadb from "faunadb";
+import { setSecureStore } from "./AsyncOps";
 
 const q = faunadb.query;
-const { Map, Paginate, Match, Lambda, Get, Var, Documents, Index } = q;
 
 const faunaSecret = "fnAEnxdW8sACU2tkeieaUlbAv1hcZouhAZ3IlnW7";
 const faunaDomain = "db.fauna.com";
@@ -24,27 +24,39 @@ const AuthLogin = async (username, password) => {
   if (!username && !password) return undefined;
 
   if (username.includes("@")) {
+    console.log("email");
     // Username is Email
     await client
       .query(
         q.If(
           q.Identify(q.Match(q.Index("accounts_by_email"), username), password),
           // If email and password match an account
-          // Paginate(Match(Index("accounts_by_email"), username)),
-          q.Login(q.Match(q.Index("accounts_by_email"), username), {
-            password: password,
-          }),
-          // If handle and password do not match an account
+          q.Let(
+            {
+              result: q.Login(q.Match(q.Index("accounts_by_email"), username), {
+                password: password,
+              }),
+              account: q.Get(q.Select(["instance"], q.Var("result"))),
+              secret: q.Select(["secret"], q.Var("result")),
+            },
+            {
+              account: q.Var("account"),
+              secret: q.Var("secret"),
+            }
+          ),
+          // If email and password do not match an account
           false
         )
       )
-      .then((r) => {
-        r.data.length > 0 ? console.log(r.data[0].data) : null;
+      .then((res) => {
+        return res;
       })
       .catch((e) => {
         console.log(e);
+        return false;
       });
   } else {
+    console.log("handle");
     // Username is Handle
     await client
       .query(
@@ -55,18 +67,31 @@ const AuthLogin = async (username, password) => {
           ),
           // If handle and password match an account
           // Paginate(Match(Index("accounts_by_handle"), username))
-          q.Login(q.Match(q.Index("accounts_by_handle"), username), {
-            password: password,
-          }),
+          q.Let(
+            {
+              result: q.Login(
+                q.Match(q.Index("accounts_by_handle"), username),
+                { password: password }
+              ),
+              account: q.Get(q.Select(["instance"], q.Var("result"))),
+              secret: q.Select(["secret"], q.Var("result")),
+            },
+            {
+              account: q.Var("account"),
+              secret: q.Var("secret"),
+            }
+          ),
           // If handle and password do not match an account
           false
         )
       )
-      .then((r) => {
-        r.data.length > 0 ? console.log(r.data[0].data) : null;
+      .then((res) => {
+        setSecureStore("savedAccount", res);
+        return res;
       })
       .catch((e) => {
         console.log(e);
+        return false;
       });
   }
 };
