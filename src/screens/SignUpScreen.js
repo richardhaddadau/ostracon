@@ -198,7 +198,7 @@ const SignUpScreen = ({ navigation }) => {
                   borderWidth: 7,
                 }}
                 onPress={async () => {
-                  const signUpObject = {
+                  let signUpObject = {
                     email: signUpEmail,
                     password: signUpPass,
                     nickname: signUpNickname,
@@ -209,6 +209,10 @@ const SignUpScreen = ({ navigation }) => {
 
                   await setSecureStore("signup", signUpObject);
                   AuthRegister(await getSecureStore("signup")).then(() => true);
+
+                  // Clear Registration Objects
+                  await setSecureStore("signup", {});
+                  signUpObject = {};
                 }}
               >
                 Register

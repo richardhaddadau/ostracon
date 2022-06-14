@@ -24,89 +24,86 @@ const OnBoardingOneScreen = ({ navigation }) => {
     <View
       style={{
         flex: 1,
+        backgroundColor: "#e7e7e7",
+        height: "100%",
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
-      <ImageBackground
-        source={require("../../assets/welcome-screen.jpg")}
-        resizeMode={"cover"}
-        style={{ flex: 1, height: "100%", justifyContent: "center" }}
+      <Text style={{ color: theme["color-primary-default"] }} category={"h4"}>
+        Welcome to
+      </Text>
+
+      <Text
+        style={{
+          marginTop: -10,
+          fontWeight: "700",
+          color: theme["color-primary-default"],
+        }}
+        category={"h1"}
       >
-        <Text style={{ marginLeft: 50, color: "#fff" }} category={"h4"}>
-          Welcome to
-        </Text>
-
-        <Text
+        One
+      </Text>
+      <RingActive
+        size={30}
+        color={"#ffffff"}
+        style={{
+          position: "absolute",
+          alignSelf: "center",
+          bottom: 38,
+          translateX: -50,
+          transform: [{ translateX: -50 }],
+        }}
+      />
+      <TouchableWithoutFeedback
+        onPress={() => {
+          navigation.navigate("OnBoardingTwoScreen");
+        }}
+      >
+        <View
           style={{
-            marginLeft: 50,
-            marginTop: -10,
-            fontWeight: "700",
-            color: "#fff",
+            position: "absolute",
+            flexDirection: "row",
+
+            justifyContent: "center",
+            alignItems: "center",
+
+            alignSelf: "center",
+
+            bottom: 23,
+
+            width: OSTRACON_BUTTON_SIZE,
+            height: OSTRACON_BUTTON_SIZE,
+
+            backgroundColor: "#fff",
+            borderRadius: 100,
           }}
-          category={"h1"}
         >
-          One
-        </Text>
-        <RingActive
-          size={30}
-          color={"#ffffff"}
-          style={{
-            position: "absolute",
-            alignSelf: "center",
-            bottom: 38,
-            translateX: -50,
-            transform: [{ translateX: -50 }],
-          }}
-        />
-        <TouchableWithoutFeedback
-          onPress={() => {
-            navigation.navigate("OnBoardingTwoScreen");
-          }}
-        >
-          <View
-            style={{
-              position: "absolute",
-              flexDirection: "row",
-
-              justifyContent: "center",
-              alignItems: "center",
-
-              alignSelf: "center",
-
-              bottom: 23,
-
-              width: OSTRACON_BUTTON_SIZE,
-              height: OSTRACON_BUTTON_SIZE,
-
-              backgroundColor: "#fff",
-              borderRadius: 100,
-            }}
-          >
-            <NextActive size={26} color={"#363744"} />
-          </View>
-        </TouchableWithoutFeedback>
-        <RingStd
-          size={30}
-          color={"#ffffff"}
-          style={{
-            position: "absolute",
-            alignSelf: "center",
-            bottom: 38,
-            translateX: 50,
-            transform: [{ translateX: 50 }],
-          }}
-        />
-        <RingStd
-          size={30}
-          color={"#ffffff"}
-          style={{
-            position: "absolute",
-            alignSelf: "center",
-            bottom: 38,
-            translateX: 75,
-            transform: [{ translateX: 75 }],
-          }}
-        />
-      </ImageBackground>
+          <NextActive size={26} color={"#363744"} />
+        </View>
+      </TouchableWithoutFeedback>
+      <RingStd
+        size={30}
+        color={"#ffffff"}
+        style={{
+          position: "absolute",
+          alignSelf: "center",
+          bottom: 38,
+          translateX: 50,
+          transform: [{ translateX: 50 }],
+        }}
+      />
+      <RingStd
+        size={30}
+        color={"#ffffff"}
+        style={{
+          position: "absolute",
+          alignSelf: "center",
+          bottom: 38,
+          translateX: 75,
+          transform: [{ translateX: 75 }],
+        }}
+      />
     </View>
   );
 };
