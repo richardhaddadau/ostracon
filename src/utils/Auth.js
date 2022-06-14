@@ -27,9 +27,15 @@ const AuthLogin = async (username, password) => {
     // Username is Email
     await client
       .query(
-        q.Map(
-          Paginate(Match(Index("accounts_by_email"), username)),
-          Lambda("x", Get(Var("x")))
+        q.If(
+          q.Identify(q.Match(q.Index("accounts_by_email"), username), password),
+          // If email and password match an account
+          // Paginate(Match(Index("accounts_by_email"), username)),
+          q.Login(q.Match(q.Index("accounts_by_email"), username), {
+            password: password,
+          }),
+          // If handle and password do not match an account
+          false
         )
       )
       .then((r) => {
@@ -40,6 +46,28 @@ const AuthLogin = async (username, password) => {
       });
   } else {
     // Username is Handle
+    await client
+      .query(
+        q.If(
+          q.Identify(
+            q.Match(q.Index("accounts_by_handle"), username),
+            password
+          ),
+          // If handle and password match an account
+          // Paginate(Match(Index("accounts_by_handle"), username))
+          q.Login(q.Match(q.Index("accounts_by_handle"), username), {
+            password: password,
+          }),
+          // If handle and password do not match an account
+          false
+        )
+      )
+      .then((r) => {
+        r.data.length > 0 ? console.log(r.data[0].data) : null;
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }
 };
 
@@ -68,4 +96,11 @@ const AuthRegister = async (registrationObj) => {
     .catch((e) => console.log(e));
 };
 
-export { AuthLogin, AuthRegister };
+const AuthLogout = async () => {
+  await client
+    .query(q.Logout(true))
+    .then((r) => console.log(r))
+    .catch((e) => console.log(e));
+};
+
+export { AuthLogin, AuthRegister, AuthLogout };
