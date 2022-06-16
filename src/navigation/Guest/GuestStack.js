@@ -19,7 +19,7 @@ import OnBoardingFourScreen from "../../screens/OnBoardingFourScreen";
 
 const Stack = createStackNavigator();
 
-const GuestStack = ({ setIsSignedIn }) => {
+const GuestStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -46,11 +46,7 @@ const GuestStack = ({ setIsSignedIn }) => {
         name="OnBoardingFourScreen"
         component={OnBoardingFourScreen}
       />
-      <Stack.Screen
-        name="Login"
-        component={SignInScreen}
-        setSigned={setIsSignedIn}
-      />
+      <Stack.Screen name="Login" component={SignInScreen} />
       <Stack.Screen name="Register" component={SignUpScreen} />
       <Stack.Screen name="Log Out" component={SignOutScreen} />
     </Stack.Navigator>

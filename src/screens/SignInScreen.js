@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   View,
   Text,
@@ -20,17 +20,23 @@ import {
   LOGIN_HORIZONTAL_PADDING,
 } from "../constants/constants";
 
+// Import Theme Libraries
 import { Button, useTheme } from "@ui-kitten/components";
 
-import { AuthLogin } from "../utils/Auth";
+// Import Authentication
+import { AuthLogin, GetCurrentUser } from "../utils/Auth";
 import { cleanSecureStore, getSecureStore } from "../utils/AsyncOps";
+import SessionContext, {
+  SessionContextProvider,
+  SessionContextConsumer,
+} from "../context/SessionContext";
 
-const SignInScreen = ({ navigation, setSigned }) => {
+const SignInScreen = ({ navigation }) => {
   // States
   const [loginUser, setLoginUser] = useState(null);
   const [loginPass, setLoginPass] = useState(null);
-
   const [isValid, setIsValid] = useState([true, true]);
+  const [isSignedIn, setIsSignedIn] = useContext(SessionContext);
 
   // Theme
   const theme = useTheme();
@@ -126,9 +132,12 @@ const SignInScreen = ({ navigation, setSigned }) => {
                 setIsValid(validateArr);
 
                 if (isValid[0] && isValid[1]) {
-                  const loginObject = await AuthLogin(loginUser, loginPass);
-                  setIsSignedIn(true);
-                  console.log(await getSecureStore("savedAccount"));
+                  await AuthLogin(loginUser, loginPass);
+                  if (await getSecureStore("savedAccount")) {
+                    setIsSignedIn(true);
+                  }
+
+                  await GetCurrentUser;
                 }
               }}
               style={{

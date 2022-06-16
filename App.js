@@ -18,9 +18,12 @@ import { NavigationContainer } from "@react-navigation/native";
 import { navigationRef } from "./src/navigation/Member/RootNavigation";
 import { MemberStack } from "./src/navigation/Member/MemberStack";
 import GuestStack from "./src/navigation/Guest/GuestStack";
+import SessionContext, {
+  SessionContextProvider,
+  SessionContextConsumer,
+} from "./src/context/SessionContext";
 
 // Import Moment
-import moment from "moment";
 import { getSecureStore } from "./src/utils/AsyncOps";
 
 const CustomStatusBar = ({ backgroundColor, barStyle }) => {
@@ -58,23 +61,21 @@ export const App = () => {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <SafeAreaProvider>
-        {/* Colour status bar on iOS and Android */}
-        <CustomStatusBar
-          backgroundColor={isSignedIn ? "#121212" : "#363744"}
-          barStyle={"light-content"}
-        />
+      <SessionContextProvider value={[isSignedIn, setIsSignedIn]}>
+        <SafeAreaProvider>
+          {/* Colour status bar on iOS and Android */}
+          <CustomStatusBar
+            backgroundColor={isSignedIn ? "#121212" : "#363744"}
+            barStyle={"light-content"}
+          />
 
-        <ApplicationProvider {...eva} theme={{ ...eva[theme], ...myTheme }}>
-          <NavigationContainer ref={navigationRef}>
-            {isSignedIn === true ? (
-              <MemberStack setIsSignedIn={(value) => setIsSignedIn(value)} />
-            ) : (
-              <GuestStack setIsSignedIn={(value) => setIsSignedIn(value)} />
-            )}
-          </NavigationContainer>
-        </ApplicationProvider>
-      </SafeAreaProvider>
+          <ApplicationProvider {...eva} theme={{ ...eva[theme], ...myTheme }}>
+            <NavigationContainer ref={navigationRef}>
+              {isSignedIn === true ? <MemberStack /> : <GuestStack />}
+            </NavigationContainer>
+          </ApplicationProvider>
+        </SafeAreaProvider>
+      </SessionContextProvider>
     </ThemeContext.Provider>
   );
 };
