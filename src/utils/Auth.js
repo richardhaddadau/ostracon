@@ -23,6 +23,8 @@ const client = new faunadb.Client({
 const AuthLogin = async (username, password) => {
   if (!username && !password) return undefined;
 
+  await setSecureStore("savedAccount", null);
+
   if (username.includes("@")) {
     console.log("email");
     // Username is Email
@@ -49,10 +51,12 @@ const AuthLogin = async (username, password) => {
         )
       )
       .then((res) => {
+        setSecureStore("savedAccount", res);
         return res;
       })
       .catch((e) => {
         console.log(e);
+        setSecureStore("savedAccount", null);
         return false;
       });
   } else {
@@ -91,12 +95,34 @@ const AuthLogin = async (username, password) => {
       })
       .catch((e) => {
         console.log(e);
+        setSecureStore("savedAccount", null);
         return false;
       });
   }
 };
 
 const AuthRegister = async (registrationObj) => {
+  // Create User
+  const createUser = await client.query(
+    q.Create(q.Collection("users"), {
+      data: {
+        nickname: registrationObj.nickname,
+        dob: registrationObj.dateOfBirth,
+        location: registrationObj.location,
+        bio: "",
+        followersCount: 0,
+        followingCount: 0,
+        postsCount: 0,
+        verified: false,
+        ostraconGold: false,
+        monetised: false,
+      },
+    })
+  );
+
+  console.log(createUser);
+
+  // Create Local Account
   await client
     .query(
       q.Create(q.Collection("accounts"), {
@@ -104,20 +130,11 @@ const AuthRegister = async (registrationObj) => {
         data: {
           email: registrationObj.email,
           handle: registrationObj.handle,
-          nickname: registrationObj.nickname,
-          dob: registrationObj.dateOfBirth,
-          location: registrationObj.location,
-          bio: "",
-          followersCount: 0,
-          followingCount: 0,
-          postsCount: 0,
-          verified: false,
-          ostraconGold: false,
-          monetised: false,
+          user: q.Select(["ref"], createUser),
         },
       })
     )
-    .then((r) => console.log(r.ref))
+    .then((r) => true)
     .catch((e) => console.log(e));
 };
 
@@ -128,4 +145,11 @@ const AuthLogout = async () => {
     .catch((e) => console.log(e));
 };
 
-export { AuthLogin, AuthRegister, AuthLogout };
+const GetCurrentUser = async () => {
+  await client
+    .query(q.CurrentIdentity())
+    .then((res) => console.log(res))
+    .catch((e) => console.log(e));
+};
+
+export { AuthLogin, AuthRegister, AuthLogout, GetCurrentUser };
