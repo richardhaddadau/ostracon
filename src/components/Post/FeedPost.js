@@ -1,5 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { TouchableWithoutFeedback, View, Text, StyleSheet } from "react-native";
+
+import SessionContext, {
+  SessionContextConsumer,
+  SessionContextProvider,
+} from "../../context/SessionContext";
 
 import { Avatar, useTheme } from "@ui-kitten/components";
 
@@ -39,6 +44,9 @@ import {
 } from "../../theme/Fonts";
 
 const FeedPost = ({ item, bottomSheetRef }) => {
+  // States
+  const sessionContext = useContext(SessionContext);
+
   const updateTime = () => {
     const createdAt = new Date(item["createdAt"]);
     const rightNow = new Date();
@@ -190,7 +198,7 @@ const FeedPost = ({ item, bottomSheetRef }) => {
 
       <View style={styles.feedBody}>
         <View style={styles.feedPost}>
-          <TouchableWithoutFeedback onPress={() => console.log(item["id"])}>
+          <TouchableWithoutFeedback onPress={() => console.log(sessionContext)}>
             <Text
               style={{
                 fontSize: STANDARD_SIZE,
