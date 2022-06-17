@@ -25,7 +25,11 @@ import { Button, useTheme } from "@ui-kitten/components";
 
 // Import Authentication
 import { AuthLogin, GetCurrentUser } from "../utils/Auth";
-import { cleanSecureStore, getSecureStore } from "../utils/AsyncOps";
+import {
+  cleanSecureStore,
+  getSecureStore,
+  setSecureStore,
+} from "../utils/AsyncOps";
 import SessionContext, {
   SessionContextProvider,
   SessionContextConsumer,
@@ -130,6 +134,8 @@ const SignInScreen = ({ navigation }) => {
                 validateArr[1] = loginPass !== null && loginPass.length > 0;
 
                 setIsValid(validateArr);
+
+                await setSecureStore("savedAccount", null);
 
                 if (isValid[0] && isValid[1]) {
                   await AuthLogin(loginUser, loginPass);

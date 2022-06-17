@@ -9,6 +9,7 @@ import BottomSheet from "reanimated-bottom-sheet";
 import PostMenu from "../components/Post/PostMenu";
 import ListFooter from "../components/ListFooter";
 import { POST_VERTICAL_PADDING } from "../constants/constants";
+import { GetCurrentUser } from "../utils/Auth";
 
 const FeedLocal = ({ navigation, setScreen }) => {
   // States
@@ -34,6 +35,10 @@ const FeedLocal = ({ navigation, setScreen }) => {
   };
 
   useScrollToTop(ref);
+
+  useEffect(async () => {
+    await GetCurrentUser();
+  }, []);
 
   return (
     <View>

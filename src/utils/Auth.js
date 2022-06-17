@@ -1,6 +1,6 @@
 // Import Database Data
 import faunadb from "faunadb";
-import { setSecureStore } from "./AsyncOps";
+import { getSecureStore, setSecureStore } from "./AsyncOps";
 
 const q = faunadb.query;
 
@@ -23,15 +23,15 @@ const client = new faunadb.Client({
 const AuthLogin = async (username, password) => {
   if (!username && !password) return undefined;
 
-  await setSecureStore("savedAccount", null);
-
   if (username.includes("@")) {
-    console.log("email");
     // Username is Email
     await client
       .query(
         q.If(
-          q.Identify(q.Match(q.Index("accounts_by_email"), username), password),
+          q.Identify(
+            q.Match(q.Index("accounts_by_email"), q.LowerCase(username)),
+            password
+          ),
           // If email and password match an account
           q.Let(
             {
@@ -51,8 +51,8 @@ const AuthLogin = async (username, password) => {
         )
       )
       .then((res) => {
+        res["savedPass"] = password;
         setSecureStore("savedAccount", res);
-        return res;
       })
       .catch((e) => {
         console.log(e);
@@ -60,7 +60,6 @@ const AuthLogin = async (username, password) => {
         return false;
       });
   } else {
-    console.log("handle");
     // Username is Handle
     await client
       .query(
@@ -70,7 +69,6 @@ const AuthLogin = async (username, password) => {
             password
           ),
           // If handle and password match an account
-          // Paginate(Match(Index("accounts_by_handle"), username))
           q.Let(
             {
               result: q.Login(
@@ -90,8 +88,8 @@ const AuthLogin = async (username, password) => {
         )
       )
       .then((res) => {
+        res["savedPass"] = password;
         setSecureStore("savedAccount", res);
-        return res;
       })
       .catch((e) => {
         console.log(e);
@@ -120,15 +118,13 @@ const AuthRegister = async (registrationObj) => {
     })
   );
 
-  console.log(createUser);
-
-  // Create Local Account
+  // Create Internal-Authentication Account
   await client
     .query(
       q.Create(q.Collection("accounts"), {
         credentials: { password: registrationObj.password },
         data: {
-          email: registrationObj.email,
+          email: registrationObj.email.toLowerCase(),
           handle: registrationObj.handle,
           user: q.Select(["ref"], createUser),
         },
@@ -152,4 +148,22 @@ const GetCurrentUser = async () => {
     .catch((e) => console.log(e));
 };
 
-export { AuthLogin, AuthRegister, AuthLogout, GetCurrentUser };
+const CheckIfUserExists = async (email, password) => {
+  client
+    .query(
+      q.Identify(
+        q.Match(q.Index("accounts_by_email"), q.LowerCase(email)),
+        password
+      )
+    )
+    .then((res) => res)
+    .catch((e) => console.log(e));
+};
+
+export {
+  AuthLogin,
+  AuthRegister,
+  AuthLogout,
+  GetCurrentUser,
+  CheckIfUserExists,
+};

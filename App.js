@@ -25,6 +25,7 @@ import SessionContext, {
 
 // Import Moment
 import { getSecureStore } from "./src/utils/AsyncOps";
+import { AuthLogin, CheckIfUserExists } from "./src/utils/Auth";
 
 const CustomStatusBar = ({ backgroundColor, barStyle }) => {
   const insets = useSafeAreaInsets();
@@ -47,6 +48,7 @@ export const App = () => {
   const [theme, setTheme] = useState("light");
   const [myTheme, setMyTheme] = useState(lightOstracon);
   const [isSignedIn, setIsSignedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const toggleTheme = () => {
     const nextTheme = theme === "light" ? "dark" : "light";
@@ -56,7 +58,20 @@ export const App = () => {
   };
 
   useEffect(async () => {
-    console.log(await getSecureStore("savedAccount"));
+    setIsLoading(true);
+    const savedUser = await getSecureStore("savedAccount");
+
+    if (savedUser) {
+      await AuthLogin(
+        savedUser["account"]["data"]["email"],
+        savedUser["savedPass"]
+      );
+
+      setIsSignedIn(true);
+    }
+    setIsLoading(false);
+
+    // console.log(CheckIfUserExists(savedUser[("account", "data", "email")]));
   }, []);
 
   return (
