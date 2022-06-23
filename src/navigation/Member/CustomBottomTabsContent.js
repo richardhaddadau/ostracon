@@ -245,11 +245,10 @@ const styles = StyleSheet.create({
 
     alignItems: "flex-end",
 
-    height:
-      Platform.OS === "ios"
-        ? BOTTOM_NAVIGATION_FULL_HEIGHT
-        : BOTTOM_NAVIGATION_BAR_HEIGHT,
+    height: BOTTOM_NAVIGATION_FULL_HEIGHT,
     width: viewWidth,
+
+    borderWidth: 1,
   },
   tabBarSpread: {
     flexDirection: "row",
