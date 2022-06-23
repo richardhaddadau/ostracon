@@ -1,19 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { View, TextInput, Image, StyleSheet, Keyboard } from "react-native";
+import {
+  View,
+  TextInput,
+  Image,
+  StyleSheet,
+  Keyboard,
+  ScrollView,
+  TouchableWithoutFeedback,
+} from "react-native";
 
 import { goBack } from "../navigation/Member/RootNavigation";
 
-import { Avatar, Button, ButtonGroup, Divider } from "@ui-kitten/components";
-import * as ImagePicker from "expo-image-picker";
-
 import {
-  NEW_POST_MARGIN,
-  NEW_POST_PADDING,
-  POST_ICON_SIZE,
+  Avatar,
+  Button,
+  ButtonGroup,
+  Divider,
+  useTheme,
+} from "@ui-kitten/components";
+import * as ImagePicker from "expo-image-picker";
+import {
+  ADD_IMAGE_ICON_SIZE,
+  ADD_IMAGE_DELETE_SIZE,
 } from "../constants/constants";
 
-import { STANDARD_SIZE } from "../theme/Fonts";
-import { NewImage } from "../components/Ostracon-Std";
+import { NEW_POST_MARGIN, NEW_POST_PADDING } from "../constants/constants";
+
+import { INPUT_SIZE, STANDARD_SIZE } from "../theme/Fonts";
+import { NewImage, Person } from "../components/Ostracon-Std";
 import PostHeader from "../navigation/Member/PostHeader";
 
 const PostNewScreen = () => {
@@ -21,13 +35,14 @@ const PostNewScreen = () => {
   const [postText, setPostText] = useState("");
   const [postImage, setPostImage] = useState(null);
   const [postEmpty, setPostEmpty] = useState(true);
+  const [imageAspectRatio, setImageAspectRatio] = useState([1, 1]);
 
-  useEffect(() => {}, []);
+  const theme = useTheme();
 
   return (
     <View style={styles.fullScreenWrap}>
       <PostHeader headerTitle="New Post" GoBack={goBack} />
-      <View style={styles.newPostWrapper}>
+      <ScrollView style={styles.newPostWrapper}>
         <Avatar
           size="small"
           shape="rounded"
@@ -57,43 +72,70 @@ const PostNewScreen = () => {
             }}
           />
           {postImage ? (
-            <Image
-              source={{ uri: postImage }}
-              style={{ width: 300, height: 300, borderRadius: 10 }}
-            />
+            <View>
+              <Image
+                source={{ uri: postImage }}
+                style={{
+                  marginBottom: NEW_POST_MARGIN,
+                  width: "100%",
+                  aspectRatio: imageAspectRatio[0] / imageAspectRatio[1],
+                  borderRadius: 10,
+                }}
+              />
+              <TouchableWithoutFeedback onPress={() => setPostImage(null)}>
+                <View
+                  style={{
+                    position: "absolute",
+                    margin: NEW_POST_PADDING,
+                    right: 0,
+                  }}
+                >
+                  <Person size={ADD_IMAGE_DELETE_SIZE} />
+                </View>
+              </TouchableWithoutFeedback>
+            </View>
           ) : null}
         </View>
-      </View>
-      <ButtonGroup
-        style={{
-          marginHorizontal: -NEW_POST_PADDING,
-          backgroundColor: "red",
-        }}
-        appearance="ghost"
-        size={"medium"}
-      >
-        <Button
-          accessoryLeft={<NewImage size={POST_ICON_SIZE} />}
-          onPress={async () => {
-            let result = await ImagePicker.launchImageLibraryAsync({
-              mediaTypes: ImagePicker.MediaTypeOptions.Images,
-              allowsEditing: true,
-              aspect: [4, 3],
-              quality: 1,
-            });
-
-            console.log(result);
-            if (result.cancelled) {
-              setPostImage(null);
-
-              postText === "" ? setPostEmpty(true) : setPostEmpty(false);
-            } else {
-              setPostImage(result["uri"]);
-              setPostEmpty(false);
-            }
+      </ScrollView>
+      {postImage ? null : (
+        <ButtonGroup
+          style={{
+            backgroundColor: "white",
+            borderWidth: 0,
           }}
-        />
-      </ButtonGroup>
+          appearance="ghost"
+          size="medium"
+        >
+          <Button
+            accessoryLeft={
+              <NewImage
+                size={ADD_IMAGE_ICON_SIZE}
+                color={theme["color-primary-500"]}
+              />
+            }
+            onPress={async () => {
+              let result = await ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                allowsEditing: false,
+                quality: undefined,
+              });
+
+              if (result.cancelled) {
+                await setPostImage(null);
+
+                postText === "" ? setPostEmpty(true) : setPostEmpty(false);
+              } else {
+                await setPostImage(result["uri"]);
+
+                await setImageAspectRatio([result["width"], result["height"]]);
+
+                console.log(await imageAspectRatio);
+                setPostEmpty(false);
+              }
+            }}
+          />
+        </ButtonGroup>
+      )}
     </View>
   );
 };
@@ -101,10 +143,10 @@ const PostNewScreen = () => {
 const styles = StyleSheet.create({
   fullScreenWrap: {
     flex: 1,
+    justifyContent: "space-between",
   },
   newPostWrapper: {
     flex: 1,
-    justifyContent: "space-between",
 
     padding: NEW_POST_PADDING,
 
@@ -116,7 +158,7 @@ const styles = StyleSheet.create({
 
     backgroundColor: "white",
 
-    fontSize: STANDARD_SIZE,
+    fontSize: INPUT_SIZE,
   },
 });
 

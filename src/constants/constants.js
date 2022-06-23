@@ -37,8 +37,10 @@ export const POST_HORIZONTAL_PADDING = 15;
 export const POST_INTERACTIONS_PADDING = 5;
 
 // New Post
-export const NEW_POST_MARGIN = 5;
+export const NEW_POST_MARGIN = 20;
 export const NEW_POST_PADDING = 10;
+export const ADD_IMAGE_ICON_SIZE = 40;
+export const ADD_IMAGE_DELETE_SIZE = 25;
 
 // Settings
 export const SETTINGS_ITEM_HEIGHT = 60;

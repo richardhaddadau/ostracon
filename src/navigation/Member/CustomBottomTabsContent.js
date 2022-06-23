@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   Dimensions,
-  Platform,
   StyleSheet,
-  TouchableOpacity,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
@@ -247,8 +245,6 @@ const styles = StyleSheet.create({
 
     height: BOTTOM_NAVIGATION_FULL_HEIGHT,
     width: viewWidth,
-
-    borderWidth: 1,
   },
   tabBarSpread: {
     flexDirection: "row",
