@@ -4,7 +4,7 @@ import { useFocusEffect } from "@react-navigation/native";
 
 const FeedHot = ({ navigation, setScreen }) => {
   useFocusEffect(() => {
-    setScreen("What's Hot");
+    setScreen("Popular");
   });
 
   return (

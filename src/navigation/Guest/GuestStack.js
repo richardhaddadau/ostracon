@@ -3,7 +3,6 @@ import React from "react";
 // Import Navigation Libraries
 import {
   createStackNavigator,
-  CardStyleInterpolators,
   TransitionPresets,
 } from "@react-navigation/stack";
 

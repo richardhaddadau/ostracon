@@ -1,7 +1,10 @@
 import React from "react";
 
 // Import Navigation Libraries
-import { createStackNavigator } from "@react-navigation/stack";
+import {
+  createStackNavigator,
+  CardStyleInterpolators,
+} from "@react-navigation/stack";
 import MemberDrawer from "./MemberDrawer";
 
 // Import Theme
@@ -27,7 +30,7 @@ const MemberStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="MainDrawer"
+        name="Home"
         component={MemberDrawer}
         options={{
           headerShown: false,
@@ -53,7 +56,16 @@ const MemberStack = () => {
       />
 
       <Stack.Screen name="Ostracon Gold" component={OstraconGoldScreen} />
-      <Stack.Screen name="New Post" component={PostNewScreen} />
+      <Stack.Screen
+        name="New Post"
+        component={PostNewScreen}
+        options={{
+          headerShown: false,
+          gestureEnabled: true,
+          gestureDirection: "vertical",
+          cardStyleInterpolator: CardStyleInterpolators.forBottomSheetAndroid,
+        }}
+      />
       <Stack.Screen name="Single Post" component={PostSingleScreen} />
       <Stack.Screen name="New Message" component={MessagesNewScreen} />
       <Stack.Screen name="Single Message" component={MessagesSingleScreen} />

@@ -14,6 +14,7 @@ import {
 
 import { STANDARD_SIZE } from "../theme/Fonts";
 import { NewImage } from "../components/Ostracon-Std";
+import PostHeader from "../navigation/Member/PostHeader";
 
 const PostNewScreen = () => {
   //   States
@@ -21,90 +22,86 @@ const PostNewScreen = () => {
   const [postImage, setPostImage] = useState(null);
   const [postEmpty, setPostEmpty] = useState(true);
 
-  useEffect(() => {
-    const backAction = () => {
-      goBack();
-    };
-
-    const keyboardHandler = Keyboard.addListener("keyboardDidHide", backAction);
-
-    return () => keyboardHandler.remove();
-  }, []);
+  useEffect(() => {}, []);
 
   return (
-    <View style={styles.newPostWrapper}>
-      <Avatar
-        size="small"
-        shape="rounded"
-        source={{ uri: "https://randomuser.me/api/portraits/men/73.jpg" }}
-        style={{ marginBottom: 20 }}
-      />
-      <Divider />
-      <View
-        style={{
-          flex: 1,
-          marginBottom: 0,
-
-          justifyContent: "space-between",
-        }}
-      >
-        <TextInput
-          style={styles.newPostInput}
-          multiline
-          autoFocus={true}
-          placeholder="What do you want to share today?"
-          value={postText}
-          onChangeText={(value) => {
-            setPostText(value);
-            if (postText.length > 0) {
-              setPostEmpty(false);
-            } else {
-              postImage === null ? setPostEmpty(true) : setPostEmpty(false);
-            }
-          }}
+    <View style={styles.fullScreenWrap}>
+      <PostHeader headerTitle="New Post" GoBack={goBack} />
+      <View style={styles.newPostWrapper}>
+        <Avatar
+          size="small"
+          shape="rounded"
+          source={{ uri: "https://randomuser.me/api/portraits/men/73.jpg" }}
+          style={{ marginBottom: NEW_POST_PADDING }}
         />
-        {postImage ? (
-          <Image
-            source={{ uri: postImage }}
-            style={{ width: 300, height: 300, borderRadius: 10 }}
-          />
-        ) : null}
-        <ButtonGroup
+        <Divider style={{ marginBottom: NEW_POST_PADDING }} />
+        <View
           style={{
-            marginHorizontal: -NEW_POST_PADDING,
-            backgroundColor: "red",
+            flex: 1,
+            justifyContent: "space-between",
           }}
-          appearance="ghost"
-          size={"medium"}
         >
-          <Button
-            accessoryLeft={<NewImage size={POST_ICON_SIZE} />}
-            onPress={async () => {
-              let result = await ImagePicker.launchImageLibraryAsync({
-                mediaTypes: ImagePicker.MediaTypeOptions.Images,
-                allowsEditing: true,
-                aspect: [4, 3],
-                quality: 1,
-              });
-
-              console.log(result);
-              if (result.cancelled) {
-                setPostImage(null);
-
-                postText === "" ? setPostEmpty(true) : setPostEmpty(false);
-              } else {
-                setPostImage(result["uri"]);
+          <TextInput
+            style={styles.newPostInput}
+            multiline
+            autoFocus={true}
+            placeholder="What do you want to share today?"
+            value={postText}
+            onChangeText={(value) => {
+              setPostText(value);
+              if (postText.length > 0) {
                 setPostEmpty(false);
+              } else {
+                postImage === null ? setPostEmpty(true) : setPostEmpty(false);
               }
             }}
           />
-        </ButtonGroup>
+          {postImage ? (
+            <Image
+              source={{ uri: postImage }}
+              style={{ width: 300, height: 300, borderRadius: 10 }}
+            />
+          ) : null}
+        </View>
       </View>
+      <ButtonGroup
+        style={{
+          marginHorizontal: -NEW_POST_PADDING,
+          backgroundColor: "red",
+        }}
+        appearance="ghost"
+        size={"medium"}
+      >
+        <Button
+          accessoryLeft={<NewImage size={POST_ICON_SIZE} />}
+          onPress={async () => {
+            let result = await ImagePicker.launchImageLibraryAsync({
+              mediaTypes: ImagePicker.MediaTypeOptions.Images,
+              allowsEditing: true,
+              aspect: [4, 3],
+              quality: 1,
+            });
+
+            console.log(result);
+            if (result.cancelled) {
+              setPostImage(null);
+
+              postText === "" ? setPostEmpty(true) : setPostEmpty(false);
+            } else {
+              setPostImage(result["uri"]);
+              setPostEmpty(false);
+            }
+          }}
+        />
+      </ButtonGroup>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  fullScreenWrap: {
+    flex: 1,
+  },
   newPostWrapper: {
     flex: 1,
     justifyContent: "space-between",
@@ -114,13 +111,10 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   newPostInput: {
-    marginTop: NEW_POST_MARGIN,
-    marginLeft: -NEW_POST_PADDING,
     padding: NEW_POST_PADDING,
+    paddingLeft: 0,
 
     backgroundColor: "white",
-
-    borderWidth: 1,
 
     fontSize: STANDARD_SIZE,
   },

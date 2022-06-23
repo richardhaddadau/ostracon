@@ -1,43 +1,51 @@
 import React from "react";
+import { View, Text, StyleSheet, TouchableWithoutFeedback } from "react-native";
+
+// Import Icons
 import {
-  View,
-  Image,
-  Text,
-  StyleSheet,
-  TouchableWithoutFeedback,
-} from "react-native";
+  Clap as ClapStd,
+  Send as SendStd,
+} from "../../components/Ostracon-Std";
+
+import { Send as SendAct } from "../../components/Ostracon-Active";
 
 // Import Constants
 import { HEADER_HEIGHT, HEADER_ICON_SIZE } from "../../constants/constants";
 
 import { useTheme } from "@ui-kitten/components";
-import { Profile } from "../../components/Ostracon-Std";
 
-const CustomHeader = ({ screenName, navigation }) => {
+const PostHeader = ({ headerTitle, GoBack }) => {
   const theme = useTheme();
 
   return (
-    <View style={styles.headerWrapper}>
+    <View
+      style={[
+        styles.headerWrapper,
+        {
+          backgroundColor: theme["color-primary-default"],
+        },
+      ]}
+    >
       <View style={styles.headerItem}>
-        <TouchableWithoutFeedback onPress={() => navigation.openDrawer()}>
-          <Image
-            source={require("../../../assets/ostracon-o-logo.png")}
-            resizeMode="contain"
-            style={styles.logoImage}
-          />
+        <TouchableWithoutFeedback
+          onPress={() => {
+            GoBack();
+          }}
+        >
+          <View>
+            <ClapStd size={HEADER_ICON_SIZE} color={"white"} />
+          </View>
         </TouchableWithoutFeedback>
       </View>
 
       <View style={styles.headerTitle}>
-        <Text style={styles.headerText}>{screenName}</Text>
+        <Text style={styles.headerText}>{headerTitle}</Text>
       </View>
 
       <View style={styles.headerItem}>
-        <TouchableWithoutFeedback
-          onPress={() => navigation.navigate("Profile Screen")}
-        >
+        <TouchableWithoutFeedback onPress={() => console.log("Create Post")}>
           <View>
-            <Profile size={HEADER_ICON_SIZE} color={"white"} />
+            <SendAct size={HEADER_ICON_SIZE} color={"white"} />
           </View>
         </TouchableWithoutFeedback>
       </View>
@@ -57,8 +65,6 @@ const styles = StyleSheet.create({
 
     justifyContent: "space-between",
     alignItems: "stretch",
-
-    backgroundColor: "#121212",
   },
   headerItem: {
     justifyContent: "center",
@@ -82,7 +88,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#fff",
   },
-  headerButton: {},
 });
 
-export default CustomHeader;
+export default PostHeader;
