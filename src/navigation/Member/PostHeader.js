@@ -7,7 +7,10 @@ import {
   Send as SendStd,
 } from "../../components/Ostracon-Std";
 
-import { Send as SendAct } from "../../components/Ostracon-Active";
+import {
+  Close as CloseActive,
+  Send as SendActive,
+} from "../../components/Ostracon-Active";
 
 // Import Constants
 import { HEADER_HEIGHT, HEADER_ICON_SIZE } from "../../constants/constants";
@@ -33,7 +36,7 @@ const PostHeader = ({ headerTitle, GoBack }) => {
           }}
         >
           <View>
-            <ClapStd size={HEADER_ICON_SIZE} color={"white"} />
+            <CloseActive size={HEADER_ICON_SIZE} color={"white"} />
           </View>
         </TouchableWithoutFeedback>
       </View>
@@ -45,7 +48,7 @@ const PostHeader = ({ headerTitle, GoBack }) => {
       <View style={styles.headerItem}>
         <TouchableWithoutFeedback onPress={() => console.log("Create Post")}>
           <View>
-            <SendAct size={HEADER_ICON_SIZE} color={"white"} />
+            <SendActive size={HEADER_ICON_SIZE} color={"white"} />
           </View>
         </TouchableWithoutFeedback>
       </View>

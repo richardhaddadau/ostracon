@@ -19,6 +19,7 @@ import {
   useTheme,
 } from "@ui-kitten/components";
 import * as ImagePicker from "expo-image-picker";
+
 import {
   ADD_IMAGE_ICON_SIZE,
   ADD_IMAGE_DELETE_SIZE,
@@ -28,6 +29,7 @@ import { NEW_POST_MARGIN, NEW_POST_PADDING } from "../constants/constants";
 
 import { INPUT_SIZE, STANDARD_SIZE } from "../theme/Fonts";
 import { NewImage, Person } from "../components/Ostracon-Std";
+import { Close as CloseActive } from "../components/Ostracon-Active";
 import PostHeader from "../navigation/Member/PostHeader";
 
 const PostNewScreen = () => {
@@ -90,7 +92,7 @@ const PostNewScreen = () => {
                     right: 0,
                   }}
                 >
-                  <Person size={ADD_IMAGE_DELETE_SIZE} />
+                  <CloseActive size={ADD_IMAGE_DELETE_SIZE} />
                 </View>
               </TouchableWithoutFeedback>
             </View>

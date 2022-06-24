@@ -43,6 +43,19 @@ const Award = ({ size = 24, color = "black", style }) => {
     </Svg>
   );
 };
+const Back = ({ size = 24, color = "black", style }) => {
+  return (
+    <Svg
+      width={size}
+      height={size}
+      viewBox="0 0 512 512"
+      fill={color}
+      style={style}
+    >
+      <Path d="M494.5 238.5H37.6c3.1-10.3 8.7-19.7 16.4-27.4L201.8 63.3c6.8-6.8 6.8-17.9 0-24.7-6.8-6.8-17.9-6.8-24.7 0L28.6 187.1c-38.1 38.1-38.1 99.8 0 137.9L177 473.4c6.8 6.8 17.9 6.8 24.7 0 6.8-6.8 6.8-17.9 0-24.7L53.3 300.2c-7.6-7.6-12.9-16.7-15.8-26.7h457c9.7 0 17.5-7.8 17.5-17.5s-7.8-17.5-17.5-17.5z" />
+    </Svg>
+  );
+};
 const Bell = ({ size = 24, color = "black", style }) => {
   return (
     <Svg
@@ -467,6 +480,7 @@ export {
   AddFollower,
   Attach,
   Award,
+  Back,
   Bell,
   Bookmark,
   Clap,
