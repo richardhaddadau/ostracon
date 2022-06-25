@@ -12,6 +12,7 @@ import {
   Moon as MoonActive,
   Settings as SettingsActive,
   Sun as SunActive,
+  Flame as FlameActive,
 } from "../../components/Ostracon-Active";
 
 import {
@@ -20,6 +21,7 @@ import {
   Moon as MoonStd,
   Settings as SettingsStd,
   Sun as SunStd,
+  Flame as FlameStd,
   Ostracon,
 } from "../../components/Ostracon-Std";
 
@@ -72,7 +74,31 @@ const CustomDrawerContent = ({ props, navigation }) => {
           }}
         />
         <DrawerItem
-          label="Points"
+          label="Trending"
+          onPress={() => {
+            navigate("Chapters");
+          }}
+          icon={() => (
+            <FlameStd
+              size={DRAWER_NAVIGATION_ICON_SIZE}
+              color={
+                themeContext.theme === "light"
+                  ? theme["color-primary-500"]
+                  : theme["color-primary-100"]
+              }
+              style={{ margin: -2 }}
+            />
+          )}
+          labelStyle={{
+            marginLeft: -20,
+            color:
+              themeContext.theme === "light"
+                ? theme["color-primary-500"]
+                : theme["color-primary-100"],
+          }}
+        />
+        <DrawerItem
+          label="Praise"
           onPress={() => navigate("Points")}
           icon={() => (
             <AwardStd
