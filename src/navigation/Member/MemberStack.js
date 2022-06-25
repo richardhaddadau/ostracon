@@ -67,7 +67,16 @@ const MemberStack = () => {
         }}
       />
       <Stack.Screen name="Single Post" component={PostSingleScreen} />
-      <Stack.Screen name="New Message" component={MessagesNewScreen} />
+      <Stack.Screen
+        name="New Message"
+        component={MessagesNewScreen}
+        options={{
+          headerShown: false,
+          gestureEnabled: true,
+          gestureDirection: "vertical",
+          cardStyleInterpolator: CardStyleInterpolators.forBottomSheetAndroid,
+        }}
+      />
       <Stack.Screen name="Single Message" component={MessagesSingleScreen} />
       <Stack.Screen name="Profile Screen" component={ProfileScreen} />
     </Stack.Navigator>

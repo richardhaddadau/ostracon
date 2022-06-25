@@ -17,7 +17,7 @@ import { HEADER_HEIGHT, HEADER_ICON_SIZE } from "../../constants/constants";
 
 import { useTheme } from "@ui-kitten/components";
 
-const PostHeader = ({ headerTitle, GoBack }) => {
+const PostHeader = ({ headerTitle, GoBack, SendButton = true }) => {
   const theme = useTheme();
 
   return (
@@ -45,13 +45,15 @@ const PostHeader = ({ headerTitle, GoBack }) => {
         <Text style={styles.headerText}>{headerTitle}</Text>
       </View>
 
-      <View style={styles.headerItem}>
-        <TouchableWithoutFeedback onPress={() => console.log("Create Post")}>
-          <View>
-            <SendActive size={HEADER_ICON_SIZE} color={"white"} />
-          </View>
-        </TouchableWithoutFeedback>
-      </View>
+      {SendButton ? (
+        <View style={styles.headerItem}>
+          <TouchableWithoutFeedback onPress={() => console.log("Create Post")}>
+            <View>
+              <SendActive size={HEADER_ICON_SIZE} color={"white"} />
+            </View>
+          </TouchableWithoutFeedback>
+        </View>
+      ) : null}
     </View>
   );
 };
