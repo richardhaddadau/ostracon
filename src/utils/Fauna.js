@@ -1,4 +1,8 @@
-import faunadb, { Class } from "faunadb";
+import faunadb from "faunadb";
+import { FAUNA_SECRET } from "./AuthConstants";
+import { cleanSecureStore, setSecureStore } from "./AsyncOps";
+
+const q = faunadb.query;
 
 class Fauna {
   constructor(secret) {
@@ -6,10 +10,17 @@ class Fauna {
       "content-type": "application/json",
     };
 
+    this.domain = "db.fauna.com";
+    this.port = 443;
+    this.scheme = "https";
+
     // Client Config
     this.client = new faunadb.Client({
       headers: this.headers,
-      secret: secret,
+      domain: this.domain,
+      port: this.port,
+      scheme: this.scheme,
+      secret: FAUNA_SECRET,
     });
   }
 
@@ -21,10 +32,51 @@ class Fauna {
 
   // Login
   Login = async (username, password) => {
+    // Check if a username and a password are passed
+    if (!username || !password) return undefined;
+
     // Check if Username is Email or Handle
+    const checkIndex = username.includes("@")
+      ? "accounts_by_email"
+      : "accounts_by_handle";
+
     // Match details with Accounts Document
-    // Load User pertaining to Account
-    // Store Credentials in Expo
+    await this.client
+      .query(
+        q.If(
+          q.Identify(
+            q.Match(q.Index(checkIndex), q.LowerCase(username)),
+            password
+          ),
+          q.Let(
+            {
+              result: q.Login(
+                q.Match(q.Index(checkIndex), q.LowerCase(username)),
+                {
+                  password: password,
+                }
+              ),
+              account: q.Get(q.Select(["instance"], q.Var("result"))),
+              secret: q.Select(["secret"], q.Var("result")),
+            },
+            {
+              account: q.Var("account"),
+              secret: q.Var("secret"),
+            }
+          ),
+          false
+        )
+      )
+      .then((res) => {
+        // Store Credentials in Expo
+        res["savedPass"] = password;
+        setSecureStore("savedAccount", res);
+      })
+      .catch((e) => {
+        console.log(e);
+        cleanSecureStore("savedAccount");
+        return false;
+      });
   };
 
   // Logout

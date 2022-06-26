@@ -1,10 +1,11 @@
 // Import Database Data
 import faunadb from "faunadb";
 import { getSecureStore, setSecureStore } from "./AsyncOps";
+import { FAUNA_SECRET } from "./AuthConstants";
 
 const q = faunadb.query;
 
-const faunaSecret = "fnAEnxdW8sACU2tkeieaUlbAv1hcZouhAZ3IlnW7";
+const faunaSecret = FAUNA_SECRET;
 const faunaDomain = "db.fauna.com";
 const faunaPort = 443;
 const faunaScheme = "https";
