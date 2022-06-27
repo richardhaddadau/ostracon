@@ -87,7 +87,7 @@ class Fauna {
 
   // Get All Posts
   GetPosts = () => {
-    //
+    // Return all posts paginated
   };
 
   // Get Post by Age

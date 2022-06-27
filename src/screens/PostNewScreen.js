@@ -43,7 +43,12 @@ const PostNewScreen = () => {
 
   return (
     <View style={styles.fullScreenWrap}>
-      <PostHeader headerTitle="New Post" GoBack={goBack} />
+      <PostHeader
+        headerTitle="New Post"
+        GoBack={goBack}
+        postText={postText}
+        postImage={postImage}
+      />
       <ScrollView style={styles.newPostWrapper}>
         <Avatar
           size="small"
@@ -131,7 +136,6 @@ const PostNewScreen = () => {
 
                 await setImageAspectRatio([result["width"], result["height"]]);
 
-                console.log(await imageAspectRatio);
                 setPostEmpty(false);
               }
             }}
