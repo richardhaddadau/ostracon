@@ -16,6 +16,7 @@ import {
 import { HEADER_HEIGHT, HEADER_ICON_SIZE } from "../../constants/constants";
 
 import { useTheme } from "@ui-kitten/components";
+import OText from "../../config/OText";
 
 const PostHeader = ({
   headerTitle,
@@ -53,7 +54,12 @@ const PostHeader = ({
 
       {SendButton ? (
         <View style={styles.headerItem}>
-          <TouchableWithoutFeedback onPress={() => console.log(postText)}>
+          <TouchableWithoutFeedback
+            onPress={() => {
+              // Step 01
+              OText(postText);
+            }}
+          >
             <View>
               <SendActive size={HEADER_ICON_SIZE} color={"white"} />
             </View>
