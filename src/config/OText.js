@@ -12,9 +12,13 @@ const OText = (props) => {
       return [text];
     }
 
-    // add each mention and hashtag to our array
+    // add standard text, mentions and hashtags to our array as separate items
     for (const tag of tagList) {
       processedText.push(text.substring(0, text.indexOf(tag)));
     }
+
+    return processedText;
   };
 };
+
+export default OText;

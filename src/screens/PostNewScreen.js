@@ -31,6 +31,7 @@ import { INPUT_SIZE, STANDARD_SIZE } from "../theme/Fonts";
 import { NewImage, Person } from "../components/Ostracon-Std";
 import { Close as CloseActive } from "../components/Ostracon-Active";
 import PostHeader from "../navigation/Member/PostHeader";
+import OText from "../config/OText";
 
 const PostNewScreen = () => {
   //   States
@@ -71,6 +72,7 @@ const PostNewScreen = () => {
             value={postText}
             onChangeText={(value) => {
               setPostText(value);
+
               if (postText.length > 0) {
                 setPostEmpty(false);
               } else {
