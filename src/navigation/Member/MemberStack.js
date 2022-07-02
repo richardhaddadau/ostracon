@@ -20,6 +20,7 @@ import ChaptersScreen from "../../screens/ChaptersScreen";
 import PointsScreen from "../../screens/PointsScreen";
 import OstraconGoldScreen from "../../screens/OstraconGold";
 import ProfileScreen from "../../screens/ProfileScreen";
+import ChapterNewScreen from "../../screens/ChapterNewScreen";
 
 const Stack = createStackNavigator();
 
@@ -70,6 +71,16 @@ const MemberStack = () => {
       <Stack.Screen
         name="New Message"
         component={MessagesNewScreen}
+        options={{
+          headerShown: false,
+          gestureEnabled: true,
+          gestureDirection: "vertical",
+          cardStyleInterpolator: CardStyleInterpolators.forBottomSheetAndroid,
+        }}
+      />
+      <Stack.Screen
+        name="New Chapter"
+        component={ChapterNewScreen}
         options={{
           headerShown: false,
           gestureEnabled: true,
