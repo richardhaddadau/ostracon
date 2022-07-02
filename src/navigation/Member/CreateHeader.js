@@ -18,7 +18,7 @@ import { HEADER_HEIGHT, HEADER_ICON_SIZE } from "../../constants/constants";
 import { useTheme } from "@ui-kitten/components";
 import OText from "../../config/OText";
 
-const PostHeader = ({
+const CreateHeader = ({
   headerTitle,
   GoBack,
   SendButton = true,
@@ -107,4 +107,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PostHeader;
+export default CreateHeader;

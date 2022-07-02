@@ -31,7 +31,7 @@ import { NEW_POST_MARGIN, NEW_POST_PADDING } from "../constants/constants";
 import { INPUT_SIZE, STANDARD_SIZE } from "../theme/Fonts";
 import { NewImage, Person } from "../components/Ostracon-Std";
 import { Close as CloseActive } from "../components/Ostracon-Active";
-import PostHeader from "../navigation/Member/PostHeader";
+import CreateHeader from "../navigation/Member/CreateHeader";
 import OText from "../config/OText";
 
 const PostNewScreen = ({ route }) => {
@@ -51,7 +51,7 @@ const PostNewScreen = ({ route }) => {
   return (
     <View style={styles.fullScreenWrap}>
       {/* Header for New Posts */}
-      <PostHeader
+      <CreateHeader
         headerTitle="New Post"
         GoBack={goBack}
         postText={postText}

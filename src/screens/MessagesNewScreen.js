@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View } from "react-native";
 import { goBack } from "../navigation/Member/RootNavigation";
-import CreateHeader from "../navigation/Member/PostHeader";
+import CreateHeader from "../navigation/Member/CreateHeader";
 
 const MessagesNewScreen = () => {
   return (

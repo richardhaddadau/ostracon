@@ -24,9 +24,7 @@ const ChaptersMain = () => {
         <TouchableWithoutFeedback
           accessibilityRole="button"
           onPress={() => {
-            navigate("New Post", {
-              chapter: "test",
-            });
+            navigate("New Chapter");
           }}
         >
           <View
