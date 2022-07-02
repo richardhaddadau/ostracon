@@ -4,6 +4,7 @@ import { View, Text } from "react-native";
 import { useTheme } from "@ui-kitten/components";
 
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+
 import ChaptersMain from "./ChaptersMain";
 import ChapterSearch from "./ChapterSearch";
 
@@ -12,6 +13,7 @@ import {
   Bookmark as BookmarkStd,
   Search as SearchStd,
 } from "../components/Ostracon-Std";
+
 import {
   Bookmark as BookmarkActive,
   Search as SearchActive,

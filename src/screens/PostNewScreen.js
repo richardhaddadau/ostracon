@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   View,
+  Text,
   TextInput,
   Image,
   StyleSheet,
@@ -33,7 +34,7 @@ import { Close as CloseActive } from "../components/Ostracon-Active";
 import PostHeader from "../navigation/Member/PostHeader";
 import OText from "../config/OText";
 
-const PostNewScreen = () => {
+const PostNewScreen = ({ route }) => {
   //   States
   const [postText, setPostText] = useState("");
   const [postImage, setPostImage] = useState(null);
@@ -42,14 +43,23 @@ const PostNewScreen = () => {
 
   const theme = useTheme();
 
+  const chapter =
+    typeof route.params === "object" ? route.params.chapter : null;
+
+  console.log(typeof route.params);
+
   return (
     <View style={styles.fullScreenWrap}>
+      {/* Header for New Posts */}
       <PostHeader
         headerTitle="New Post"
         GoBack={goBack}
         postText={postText}
         postImage={postImage}
       />
+
+      <Text>{chapter}</Text>
+
       <ScrollView style={styles.newPostWrapper}>
         <Avatar
           size="small"
@@ -57,7 +67,9 @@ const PostNewScreen = () => {
           source={{ uri: "https://randomuser.me/api/portraits/men/73.jpg" }}
           style={{ marginBottom: NEW_POST_PADDING }}
         />
+
         <Divider style={{ marginBottom: NEW_POST_PADDING }} />
+
         <View
           style={{
             flex: 1,
