@@ -42,5 +42,9 @@ export const NEW_POST_PADDING = 10;
 export const ADD_IMAGE_ICON_SIZE = 40;
 export const ADD_IMAGE_DELETE_SIZE = 25;
 
+// New Chapter
+export const NEW_CHAPTER_MARGIN = 5;
+export const NEW_CHAPTER_PADDING = 10;
+
 // Settings
 export const SETTINGS_ITEM_HEIGHT = 60;
