@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import {
   View,
   Text,
@@ -8,6 +9,7 @@ import {
   StyleSheet,
 } from "react-native";
 
+// Navigate
 import { navigate } from "../navigation/Member/RootNavigation";
 
 // Import Theme
@@ -16,99 +18,11 @@ import { Divider, Toggle, useTheme } from "@ui-kitten/components";
 // Import Constants
 import { SETTINGS_TITLE_SIZE, SETTINGS_SUBTITLE_SIZE } from "../theme/Fonts";
 import ListFooter from "../components/ListFooter";
-
-// Settings Navigate Item
-const SettingsNavigateItem = ({
-  itemLabel,
-  itemDescription = "",
-  navigateTo,
-}) => {
-  // Theme
-  const theme = useTheme();
-
-  return (
-    <View>
-      <TouchableWithoutFeedback onPress={() => navigate(navigateTo)}>
-        <View style={styles.navigateItemWrapper}>
-          <Text
-            style={[
-              styles.itemMainTitle,
-              { color: theme["color-primary-500"] },
-            ]}
-          >
-            {itemLabel}
-          </Text>
-          {itemDescription === "" ? null : (
-            <Text
-              style={[
-                styles.itemSubtitle,
-                { color: theme["color-primary-400"] },
-              ]}
-            >
-              {itemDescription}
-            </Text>
-          )}
-        </View>
-      </TouchableWithoutFeedback>
-      <Divider />
-    </View>
-  );
-};
-
-// Settings Option Item
-const SettingsOptionItem = ({
-  itemLabel,
-  itemDescription = "",
-  option = null,
-}) => {
-  // Theme
-  const theme = useTheme();
-
-  return (
-    <View>
-      <View style={styles.optionItemWrapper}>
-        <View>
-          <Text
-            style={[
-              styles.itemMainTitle,
-              { color: theme["color-primary-500"] },
-            ]}
-          >
-            {itemLabel}
-          </Text>
-          {itemDescription === "" ? null : (
-            <Text
-              style={[
-                styles.itemSubtitle,
-                { color: theme["color-primary-400"] },
-              ]}
-            >
-              {itemDescription}
-            </Text>
-          )}
-        </View>
-        <View>{option}</View>
-      </View>
-      <Divider />
-    </View>
-  );
-};
-
-// Settings Section Title
-const SettingsSectionTitle = ({ sectionTitle }) => {
-  // Theme
-  const theme = useTheme();
-
-  return (
-    <View>
-      <Text
-        style={[styles.sectionTitle, { color: theme["color-primary-500"] }]}
-      >
-        {sectionTitle}
-      </Text>
-    </View>
-  );
-};
+import {
+  SettingsNavigateItem,
+  SettingsOptionItem,
+  SettingsSectionTitle,
+} from "../components/SettingsItems";
 
 // Settings Screen Component
 const SettingsScreen = () => {
@@ -250,39 +164,5 @@ const SettingsScreen = () => {
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  navigateItemWrapper: {
-    justifyContent: "center",
-
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-
-    width: "100%",
-  },
-  optionItemWrapper: {
-    flexDirection: "row",
-
-    justifyContent: "space-between",
-    alignItems: "center",
-
-    paddingVertical: 15,
-    paddingHorizontal: 20,
-
-    width: "100%",
-  },
-  itemMainTitle: {
-    fontSize: SETTINGS_TITLE_SIZE,
-  },
-  itemSubtitle: {
-    fontSize: SETTINGS_SUBTITLE_SIZE,
-  },
-  sectionTitle: {
-    paddingTop: 20,
-    fontSize: SETTINGS_SUBTITLE_SIZE,
-    fontWeight: "700",
-    textTransform: "uppercase",
-  },
-});
 
 export default SettingsScreen;
