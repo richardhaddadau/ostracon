@@ -11,10 +11,9 @@ const checkForIdle = () => {
 
     if (lastState === "active") {
       let timeAway = Math.floor((Date.now() - lastTime) / 1000);
-      console.log(`Difference: ${timeAway}`);
+      timeAway <= 3 ? console.log(`Difference: ${timeAway}`) : null;
     } else {
       lastTime = Date.now();
-      console.log(`Background: ${lastTime}`);
     }
   });
 
