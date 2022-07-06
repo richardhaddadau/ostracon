@@ -53,6 +53,7 @@ const CreateHeader = ({
             onPress={() => {
               // Step 01
               console.log(postText);
+              GoBack();
             }}
           >
             <View>
