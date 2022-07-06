@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
   TextInput,
   Image,
   StyleSheet,
-  Keyboard,
   ScrollView,
   TouchableWithoutFeedback,
 } from "react-native";
@@ -33,6 +32,7 @@ import { NewImage, Person } from "../components/Ostracon-Std";
 import { Close as CloseActive } from "../components/Ostracon-Active";
 import CreateHeader from "../navigation/Member/CreateHeader";
 import OText from "../config/OText";
+import { ProcessMentions } from "../utils/ProcessMentions";
 
 const PostNewScreen = ({ route }) => {
   //   States
@@ -46,8 +46,6 @@ const PostNewScreen = ({ route }) => {
   const chapter =
     typeof route.params === "object" ? route.params.chapter : null;
 
-  console.log(typeof route.params);
-
   return (
     <View style={styles.fullScreenWrap}>
       {/* Header for New Posts */}
@@ -57,8 +55,6 @@ const PostNewScreen = ({ route }) => {
         postText={postText}
         postImage={postImage}
       />
-
-      <Text>{chapter}</Text>
 
       <ScrollView style={styles.newPostWrapper}>
         <Avatar
@@ -81,7 +77,6 @@ const PostNewScreen = ({ route }) => {
             multiline
             autoFocus={true}
             placeholder="What do you want to share today?"
-            value={postText}
             onChangeText={(value) => {
               setPostText(value);
 
@@ -91,7 +86,10 @@ const PostNewScreen = ({ route }) => {
                 postImage === null ? setPostEmpty(true) : setPostEmpty(false);
               }
             }}
-          />
+          >
+            {ProcessMentions(postText)}
+          </TextInput>
+
           {postImage ? (
             <View>
               <Image

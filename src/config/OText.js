@@ -5,10 +5,10 @@ import { useTheme } from "@ui-kitten/components";
 const OText = (props) => {
   const processText = (text, action, colour) => {
     const processedText = [];
-    const textCopy = text;
+    let textCopy = text;
 
     // find all mentions and hashtags in text
-    let tagList = props.children.match(/[@#][a-z0-9_\.]+/gi);
+    let tagList = props.children.match(/[@#][a-z0-9_\.]{2,}/gi);
 
     // if text has no mentions or hashtags, return as is
     if (tagList == null) {
@@ -17,15 +17,18 @@ const OText = (props) => {
 
     // if text has mentions and/or hashtags, process further
     for (const tag of tagList) {
-      processedText.push(text.substring(0, text.indexOf(tag)));
+      processedText.push(textCopy.substring(0, textCopy.indexOf(tag)));
       processedText.push(
         <Tag tagColour={colour} tagAction={action} text={tag} />
       );
-      text = text.substring(text.indexOf(tag) + tag.length, text.length);
+      textCopy = textCopy.substring(
+        textCopy.indexOf(tag) + tag.length,
+        textCopy.length
+      );
     }
 
-    if (text.length > 0) {
-      processedText.push(text);
+    if (textCopy.length > 0) {
+      processedText.push(textCopy);
     }
 
     return processedText;

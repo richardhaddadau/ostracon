@@ -1,12 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from "react-native";
 
-// Import Icons
-import {
-  Clap as ClapStd,
-  Send as SendStd,
-} from "../../components/Ostracon-Std";
-
 import {
   Close as CloseActive,
   Send as SendActive,
@@ -16,7 +10,8 @@ import {
 import { HEADER_HEIGHT, HEADER_ICON_SIZE } from "../../constants/constants";
 
 import { useTheme } from "@ui-kitten/components";
-import OText from "../../config/OText";
+
+import { ProcessMentions } from "../../utils/ProcessMentions";
 
 const CreateHeader = ({
   headerTitle,
@@ -57,7 +52,7 @@ const CreateHeader = ({
           <TouchableWithoutFeedback
             onPress={() => {
               // Step 01
-              OText(postText);
+              console.log(postText);
             }}
           >
             <View>
