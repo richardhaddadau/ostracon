@@ -18,7 +18,7 @@ import MessagesSingleScreen from "../../screens/MessagesSingleScreen";
 import PostSingleScreen from "../../screens/PostSingleScreen";
 import ChaptersScreen from "../../screens/ChaptersScreen";
 import PointsScreen from "../../screens/PointsScreen";
-import OstraconGoldScreen from "../../screens/OstraconGold";
+import OstraconPlusScreen from "../../screens/OstraconPlus";
 import ProfileScreen from "../../screens/ProfileScreen";
 import ChapterNewScreen from "../../screens/ChapterNewScreen";
 
@@ -29,14 +29,8 @@ const MemberStack = () => {
   const theme = useTheme();
 
   return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Home"
-        component={MemberDrawer}
-        options={{
-          headerShown: false,
-        }}
-      />
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Home" component={MemberDrawer} />
 
       {/* The Chapters Page is a Tab Navigator */}
       <Stack.Screen name="Chapters" component={ChaptersScreen} />
@@ -56,7 +50,7 @@ const MemberStack = () => {
         }}
       />
 
-      <Stack.Screen name="Ostracon Gold" component={OstraconGoldScreen} />
+      <Stack.Screen name="Ostracon Plus" component={OstraconPlusScreen} />
       <Stack.Screen
         name="New Post"
         component={PostNewScreen}

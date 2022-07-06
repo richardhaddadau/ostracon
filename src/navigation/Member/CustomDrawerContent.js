@@ -121,8 +121,8 @@ const CustomDrawerContent = ({ props, navigation }) => {
         />
 
         <DrawerItem
-          label="Ostracon Gold"
-          onPress={() => navigate("Ostracon Gold ")}
+          label="Ostracon Plus"
+          onPress={() => navigate("Ostracon Plus")}
           icon={() => (
             <Ostracon
               size={DRAWER_NAVIGATION_ICON_SIZE}

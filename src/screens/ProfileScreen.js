@@ -5,8 +5,8 @@ import { Animated, View, Text, StyleSheet, FlatList } from "react-native";
 import { useTheme } from "@ui-kitten/components";
 
 // Import Navigation
+import StackHeader from "../navigation/Member/StackHeader";
 import CreateMaterialTopTabNavigator from "@react-navigation/material-top-tabs/src/navigators/createMaterialTopTabNavigator";
-
 // Import Icons
 import {
   Person as PersonStd,
@@ -14,13 +14,13 @@ import {
   Clap as ClapStd,
   Feed as FeedStd,
 } from "../components/Ostracon-Std";
+
 import {
   Person as PersonActive,
   Comment as CommentActive,
   Clap as ClapActive,
   Feed as FeedActive,
 } from "../components/Ostracon-Active";
-
 import {
   TOP_NAVIGATION_FULL_HEIGHT,
   TOP_NAVIGATION_ICON_SIZE,
@@ -30,7 +30,6 @@ import ProfileRepliesScreen from "./ProfileRepliesScreen";
 import ProfileClapsScreen from "./ProfileClapsScreen";
 import ProfilePraisesScreen from "./ProfilePraisesScreen";
 import ProfileHomeScreen from "./ProfileHomeScreen";
-import CustomHeader from "../navigation/Member/CustomHeader";
 
 const Tabs = CreateMaterialTopTabNavigator();
 const iconSize = TOP_NAVIGATION_ICON_SIZE;
@@ -43,7 +42,7 @@ const ProfileScreen = ({ navigation }) => {
 
   return (
     <View style={{ flex: 1 }}>
-      <CustomHeader screenName={"Username"} navigation={navigation} />
+      <StackHeader screenName={"Username"} navigation={navigation} />
 
       <Tabs.Navigator
         screenOptions={{
