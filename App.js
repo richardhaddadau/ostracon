@@ -24,8 +24,8 @@ import SessionContext, {
 } from "./src/context/SessionContext";
 
 // Import Moment
-import { getSecureStore } from "./src/utils/AsyncOps";
-import { AuthLogin, CheckIfUserExists } from "./src/utils/Auth";
+import { getSecureStore, cleanSecureStore } from "./src/utils/AsyncOps";
+import { faunaDriver } from "./src/utils/Fauna";
 
 const CustomStatusBar = ({ backgroundColor, barStyle }) => {
   const insets = useSafeAreaInsets();
@@ -47,7 +47,7 @@ export const App = () => {
   // States
   const [theme, setTheme] = useState("light");
   const [myTheme, setMyTheme] = useState(lightOstracon);
-  const [isSignedIn, setIsSignedIn] = useState(true);
+  const [isSignedIn, setIsSignedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const toggleTheme = () => {
@@ -59,19 +59,16 @@ export const App = () => {
 
   useEffect(async () => {
     setIsLoading(true);
-    const savedUser = await getSecureStore("savedAccount");
+    // const savedUser = await getSecureStore("savedAccount");
 
-    if (savedUser) {
-      await AuthLogin(
-        savedUser["account"]["data"]["email"],
-        savedUser["savedPass"]
-      );
-
-      setIsSignedIn(true);
-    }
+    // if (savedUser) {
+    // await faunaDriver.Login(
+    //   savedUser["account"]["data"]["email"],
+    //   savedUser["savedPass"]
+    // );
+    // setIsSignedIn(true);
+    // }
     setIsLoading(false);
-
-    // console.log(CheckIfUserExists(savedUser[("account", "data", "email")]));
   }, []);
 
   return (

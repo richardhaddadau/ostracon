@@ -24,7 +24,7 @@ import {
 import { Button, useTheme } from "@ui-kitten/components";
 
 // Import Authentication
-import { AuthLogin, GetCurrentUser } from "../utils/Auth";
+import { faunaDriver } from "../utils/Fauna";
 import {
   cleanSecureStore,
   getSecureStore,
@@ -135,15 +135,15 @@ const SignInScreen = ({ navigation }) => {
 
                 setIsValid(validateArr);
 
-                await setSecureStore("savedAccount", null);
+                await cleanSecureStore("savedAccount");
 
                 if (isValid[0] && isValid[1]) {
-                  await AuthLogin(loginUser, loginPass);
+                  await faunaDriver.Login(loginUser, loginPass);
                   if (await getSecureStore("savedAccount")) {
                     setIsSignedIn(true);
                   }
 
-                  await GetCurrentUser;
+                  // await console.log(faunaDriver.GetCurrentUser());
                 }
               }}
               style={{

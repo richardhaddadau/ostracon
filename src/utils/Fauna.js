@@ -1,6 +1,6 @@
 import faunadb from "faunadb";
 import { FAUNA_SECRET } from "./AuthConstants";
-import { cleanSecureStore, setSecureStore } from "./AsyncOps";
+import { cleanSecureStore, getSecureStore, setSecureStore } from "./AsyncOps";
 
 const q = faunadb.query;
 
@@ -9,7 +9,6 @@ class Fauna {
     this.headers = {
       "content-type": "application/json",
     };
-
     this.domain = "db.fauna.com";
     this.port = 443;
     this.scheme = "https";
@@ -20,7 +19,7 @@ class Fauna {
       domain: this.domain,
       port: this.port,
       scheme: this.scheme,
-      secret: FAUNA_SECRET,
+      secret: secret || FAUNA_SECRET,
     });
   }
 
@@ -35,6 +34,8 @@ class Fauna {
     // Check if a username and a password are passed
     if (!username || !password) return undefined;
 
+    username = username.toLowerCase();
+
     // Check if Username is Email or Handle
     const checkIndex = username.includes("@")
       ? "accounts_by_email"
@@ -44,18 +45,14 @@ class Fauna {
     await this.client
       .query(
         q.If(
-          q.Identify(
-            q.Match(q.Index(checkIndex), q.LowerCase(username)),
-            password
-          ),
+          q.Identify(q.Match(q.Index(checkIndex), username), password),
+
+          // if identity found, try to log in
           q.Let(
             {
-              result: q.Login(
-                q.Match(q.Index(checkIndex), q.LowerCase(username)),
-                {
-                  password: password,
-                }
-              ),
+              result: q.Login(q.Match(q.Index(checkIndex), username), {
+                password: password,
+              }),
               account: q.Get(q.Select(["instance"], q.Var("result"))),
               secret: q.Select(["secret"], q.Var("result")),
             },
@@ -64,6 +61,8 @@ class Fauna {
               secret: q.Var("secret"),
             }
           ),
+
+          // if identity not found, return false
           false
         )
       )
@@ -71,6 +70,8 @@ class Fauna {
         // Store Credentials in Expo
         res["savedPass"] = password;
         setSecureStore("savedAccount", res);
+
+        console.log(res);
       })
       .catch((e) => {
         console.log(e);
@@ -81,8 +82,28 @@ class Fauna {
 
   // Logout
   Logout = () => {
-    // Get Current User
     // Logout Current User
+    q.Logout(true);
+  };
+
+  // Get Current User
+  GetCurrentUser = async () => {
+    const currentUser = await getSecureStore("savedAccount");
+    if (!currentUser["account"]) return false;
+
+    await this.client
+      .query(
+        q.Get(
+          q.Ref(q.Collection("users"), currentUser["account"]["user"]["id"])
+        )
+      )
+      .then(() => {
+        return true;
+      })
+      .catch(() => {
+        cleanSecureStore("savedAccount");
+        return false;
+      });
   };
 
   // Get All Posts
@@ -145,5 +166,4 @@ class Fauna {
 }
 
 const faunaDriver = new Fauna();
-
 export { faunaDriver, Fauna };

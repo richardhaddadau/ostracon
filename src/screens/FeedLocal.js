@@ -36,10 +36,6 @@ const FeedLocal = ({ navigation, setScreen }) => {
 
   useScrollToTop(ref);
 
-  useEffect(async () => {
-    await GetCurrentUser();
-  }, []);
-
   return (
     <View>
       {loading ? (
