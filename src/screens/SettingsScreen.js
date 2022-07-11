@@ -1,19 +1,30 @@
 import React, { useState } from "react";
 
-import { SafeAreaView, View, TextInput, ScrollView } from "react-native";
+// Import Native Components
+import {
+  SafeAreaView,
+  ScrollView,
+  View,
+  Text,
+  TextInput,
+  TouchableWithoutFeedback,
+} from "react-native";
 
 // Import Theme
 import { Divider, Toggle, useTheme } from "@ui-kitten/components";
 
-// Import Constants
-import { SETTINGS_TITLE_SIZE, SETTINGS_SUBTITLE_SIZE } from "../theme/Fonts";
-import ListFooter from "../components/ListFooter";
+// Import Custom Components
 import {
+  SettingsActionItem,
   SettingsNavigateItem,
   SettingsOptionItem,
   SettingsSectionTitle,
 } from "../components/SettingsItems";
 import StackHeader from "../navigation/Member/StackHeader";
+import ListFooter from "../components/ListFooter";
+
+// Import Fauna
+import { faunaDriver } from "../utils/Fauna";
 
 // Settings Screen Component
 const SettingsScreen = ({ navigation }) => {
@@ -157,6 +168,26 @@ const SettingsScreen = ({ navigation }) => {
           }
           navigateTo={"Chapters"}
         />
+
+        <SettingsSectionTitle sectionTitle={"Session"} />
+        <SettingsActionItem
+          itemLabel={"Current User"}
+          itemDescription={"Temporary Only"}
+          action={faunaDriver.GetCurrentUser()}
+        />
+        <SettingsActionItem
+          itemLabel={"Logout"}
+          itemDescription={"Logout from account"}
+          action={faunaDriver.Logout}
+          status={"danger"}
+        />
+        <SettingsActionItem
+          itemLabel={"Delete Account"}
+          itemDescription={"Completely remove account"}
+          action={faunaDriver.Logout}
+          status={"danger"}
+        />
+
         <ListFooter />
       </ScrollView>
     </SafeAreaView>

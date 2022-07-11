@@ -67,11 +67,21 @@ class Fauna {
         )
       )
       .then((res) => {
-        // Store Credentials in Expo
-        res["savedPass"] = password;
-        setSecureStore("savedAccount", res);
+        if (res) {
+          // Store Credentials in Expo
+          res["savedPass"] = password;
+          setSecureStore("savedAccount", res);
 
-        console.log(res);
+          this.client = new faunadb.Client({
+            headers: this.headers,
+            domain: this.domain,
+            port: this.port,
+            scheme: this.scheme,
+            secret: res.secret,
+          });
+
+          console.log(res);
+        }
       })
       .catch((e) => {
         console.log(e);
@@ -81,29 +91,43 @@ class Fauna {
   };
 
   // Logout
-  Logout = () => {
+  Logout = async () => {
     // Logout Current User
-    q.Logout(true);
+    await this.client.query(q.Logout(true)).then((res) => {
+      this.client = new faunadb.Client({
+        headers: this.headers,
+        domain: this.domain,
+        port: this.port,
+        scheme: this.scheme,
+        secret: FAUNA_SECRET,
+      });
+    });
   };
 
   // Get Current User
   GetCurrentUser = async () => {
-    const currentUser = await getSecureStore("savedAccount");
-    if (!currentUser["account"]) return false;
+    // Temporary but unsafe method
+    // const currentUser = await getSecureStore("savedAccount");
+    // if (!currentUser["account"]) return false;
+    //
+    // await this.client
+    //   .query(
+    //     q.Get(
+    //       q.Ref(q.Collection("users"), currentUser["account"]["user"]["id"])
+    //     )
+    //   )
+    //   .then(() => {
+    //     return true;
+    //   })
+    //   .catch(() => {
+    //     cleanSecureStore("savedAccount");
+    //     return false;
+    //   });
 
     await this.client
-      .query(
-        q.Get(
-          q.Ref(q.Collection("users"), currentUser["account"]["user"]["id"])
-        )
-      )
-      .then(() => {
-        return true;
-      })
-      .catch(() => {
-        cleanSecureStore("savedAccount");
-        return false;
-      });
+      .query(q.HasCurrentIdentity())
+      .then((res) => console.log(res))
+      .catch((e) => console.log(e));
   };
 
   // Get All Posts

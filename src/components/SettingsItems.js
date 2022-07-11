@@ -8,6 +8,7 @@ import { navigate } from "../navigation/Member/RootNavigation";
 import { Divider, useTheme } from "@ui-kitten/components";
 import { SETTINGS_SUBTITLE_SIZE, SETTINGS_TITLE_SIZE } from "../theme/Fonts";
 
+// Settings Items with Navigation
 const SettingsNavigateItem = ({
   itemLabel,
   itemDescription = "",
@@ -45,7 +46,7 @@ const SettingsNavigateItem = ({
   );
 };
 
-// Settings Option Item
+// Settings Item with Options
 const SettingsOptionItem = ({
   itemLabel,
   itemDescription = "",
@@ -108,6 +109,51 @@ const SettingsSectionTitle = ({ sectionTitle }) => {
   );
 };
 
+// Setttings Item with Action
+const SettingsActionItem = ({
+  itemLabel,
+  itemDescription = "",
+  action,
+  param = null,
+  status = null,
+}) => {
+  // Theme
+  const theme = useTheme();
+
+  return (
+    <View>
+      <TouchableWithoutFeedback onPress={(param) => action}>
+        <View style={styles.navigateItemWrapper}>
+          <Text
+            style={[
+              styles.itemMainTitle,
+              {
+                color:
+                  status === "danger"
+                    ? theme["color-danger-500"]
+                    : theme["color-primary-500"],
+              },
+            ]}
+          >
+            {itemLabel}
+          </Text>
+          {itemDescription === "" ? null : (
+            <Text
+              style={[
+                styles.itemSubtitle,
+                { color: theme["color-primary-400"] },
+              ]}
+            >
+              {itemDescription}
+            </Text>
+          )}
+        </View>
+      </TouchableWithoutFeedback>
+      <Divider />
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
   navigateItemWrapper: {
     justifyContent: "center",
@@ -141,4 +187,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export { SettingsOptionItem, SettingsSectionTitle, SettingsNavigateItem };
+export {
+  SettingsOptionItem,
+  SettingsSectionTitle,
+  SettingsNavigateItem,
+  SettingsActionItem,
+};
