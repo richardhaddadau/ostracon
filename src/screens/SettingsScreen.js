@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 // Import Native Components
 import {
@@ -25,6 +25,7 @@ import ListFooter from "../components/ListFooter";
 
 // Import Fauna
 import { faunaDriver } from "../utils/Fauna";
+import SessionContext from "../context/SessionContext";
 
 // Settings Screen Component
 const SettingsScreen = ({ navigation }) => {
@@ -37,6 +38,7 @@ const SettingsScreen = ({ navigation }) => {
   const [allowSensitive, setAllowSensitive] = useState(false);
   const [openDM, setOpenDM] = useState(true);
   const [receiveNotifications, setReceiveNotifications] = useState(true);
+  const [isSignedIn, setIsSignedIn] = useContext(SessionContext);
 
   const [pinValue, setPinValue] = useState("");
 
@@ -173,18 +175,24 @@ const SettingsScreen = ({ navigation }) => {
         <SettingsActionItem
           itemLabel={"Current User"}
           itemDescription={"Temporary Only"}
-          action={faunaDriver.GetCurrentUser()}
+          process={() => faunaDriver.GetUsers()}
         />
         <SettingsActionItem
           itemLabel={"Logout"}
           itemDescription={"Logout from account"}
-          action={faunaDriver.Logout}
+          process={() => {
+            faunaDriver.Logout().then((res) => console.log(res));
+            setIsSignedIn(false);
+          }}
           status={"danger"}
         />
         <SettingsActionItem
           itemLabel={"Delete Account"}
           itemDescription={"Completely remove account"}
-          action={faunaDriver.Logout}
+          process={() => {
+            faunaDriver.Logout().then((res) => console.log(res));
+            setIsSignedIn(false);
+          }}
           status={"danger"}
         />
 

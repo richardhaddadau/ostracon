@@ -81,6 +81,11 @@ class Fauna {
           });
 
           console.log(res);
+
+          this.client
+            .query(q.Paginate(q.Roles()))
+            .then((result) => console.log(result))
+            .catch((e) => console.log(e));
         }
       })
       .catch((e) => {
@@ -123,9 +128,14 @@ class Fauna {
     //     cleanSecureStore("savedAccount");
     //     return false;
     //   });
+    // console.log(this.client.query(q.Get());
+  };
 
+  // Get All Users
+  GetUsers = async () => {
+    // Return data object of all users
     await this.client
-      .query(q.HasCurrentIdentity())
+      .query(q.Paginate(q.Documents(q.Collection("users"))))
       .then((res) => console.log(res))
       .catch((e) => console.log(e));
   };

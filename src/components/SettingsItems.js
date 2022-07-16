@@ -109,12 +109,11 @@ const SettingsSectionTitle = ({ sectionTitle }) => {
   );
 };
 
-// Setttings Item with Action
+// Settings Item with Action
 const SettingsActionItem = ({
   itemLabel,
   itemDescription = "",
-  action,
-  param = null,
+  process,
   status = null,
 }) => {
   // Theme
@@ -122,7 +121,7 @@ const SettingsActionItem = ({
 
   return (
     <View>
-      <TouchableWithoutFeedback onPress={(param) => action}>
+      <TouchableWithoutFeedback onPress={() => process()}>
         <View style={styles.navigateItemWrapper}>
           <Text
             style={[
