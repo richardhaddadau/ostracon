@@ -12,6 +12,7 @@ import { HEADER_HEIGHT, HEADER_ICON_SIZE } from "../../constants/constants";
 import { useTheme } from "@ui-kitten/components";
 
 import { ProcessMentions } from "../../utils/ProcessMentions";
+import { faunaDriver } from "../../utils/Fauna";
 
 const CreateHeader = ({
   headerTitle,
@@ -19,6 +20,7 @@ const CreateHeader = ({
   SendButton = true,
   postText = null,
   postImage = null,
+  chapter = null,
 }) => {
   const theme = useTheme();
 
@@ -50,9 +52,23 @@ const CreateHeader = ({
       {SendButton ? (
         <View style={styles.headerItem}>
           <TouchableWithoutFeedback
-            onPress={() => {
-              // Step 01
-              console.log(postText);
+            onPress={async () => {
+              // Create Post Object
+              const postObject = {
+                author: "",
+                content: postText,
+                chapter: chapter,
+                commentsAllowed: true,
+                private: false,
+                postApplause: 0,
+                postAttaches: 0,
+                postComments: 0,
+                postHashtags: {},
+                created: null,
+              };
+
+              // Save Post
+              await faunaDriver.CreatePost(postObject);
               GoBack();
             }}
           >
