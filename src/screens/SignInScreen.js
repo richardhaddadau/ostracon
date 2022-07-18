@@ -129,21 +129,24 @@ const SignInScreen = ({ navigation }) => {
             <Button
               onPress={async () => {
                 const validateArr = [true, true];
+                await cleanSecureStore("savedAccount");
+
+                let savedDetails = await getSecureStore("savedAccount");
+                console.log(savedDetails);
 
                 validateArr[0] = loginUser !== null && loginUser.length > 0;
                 validateArr[1] = loginPass !== null && loginPass.length > 0;
 
                 setIsValid(validateArr);
 
-                await cleanSecureStore("savedAccount");
-
                 if (isValid[0] && isValid[1]) {
                   await faunaDriver.Login(loginUser, loginPass);
-                  if (await getSecureStore("savedAccount")) {
+                  let savedDetails = await getSecureStore("savedAccount");
+                  console.log(savedDetails);
+
+                  if (savedDetails["account"]) {
                     setIsSignedIn(true);
                   }
-
-                  // await console.log(faunaDriver.GetCurrentUser());
                 }
               }}
               style={{
