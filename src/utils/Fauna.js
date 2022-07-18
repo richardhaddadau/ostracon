@@ -1,8 +1,12 @@
-import faunadb from "faunadb";
+import faunadb, { Now } from "faunadb";
 import { FAUNA_SECRET } from "./AuthConstants";
 import { cleanSecureStore, getSecureStore, setSecureStore } from "./AsyncOps";
 
 const q = faunadb.query;
+(async function () {
+  const savedAccount = await getSecureStore("savedAccount");
+  const savedPass = savedAccount["secret"];
+})();
 
 class Fauna {
   constructor(secret) {
@@ -22,6 +26,22 @@ class Fauna {
       secret: secret || FAUNA_SECRET,
     });
   }
+
+  // Try For Token
+  TryForToken = async () => {
+    const savedAccount = await getSecureStore("savedAccount");
+    const savedPass = savedAccount["secret"];
+
+    if (savedPass) {
+      this.client = new faunadb.Client({
+        headers: this.headers,
+        domain: this.domain,
+        port: this.port,
+        scheme: this.scheme,
+        secret: savedPass,
+      });
+    }
+  };
 
   // Register
   Register = async (objRegistration) => {
@@ -80,12 +100,7 @@ class Fauna {
             secret: res.secret,
           });
 
-          console.log(res);
-
-          this.client
-            .query(q.Paginate(q.Roles()))
-            .then((result) => console.log(result))
-            .catch((e) => console.log(e));
+          return res;
         }
       })
       .catch((e) => {
@@ -97,6 +112,8 @@ class Fauna {
 
   // Logout
   Logout = async () => {
+    await this.TryForToken();
+
     // Logout Current User
     await this.client.query(q.Logout(true)).then((res) => {
       this.client = new faunadb.Client({
@@ -111,38 +128,36 @@ class Fauna {
 
   // Get Current User
   GetCurrentUser = async () => {
-    // Temporary but unsafe method
-    // const currentUser = await getSecureStore("savedAccount");
-    // if (!currentUser["account"]) return false;
-    //
-    // await this.client
-    //   .query(
-    //     q.Get(
-    //       q.Ref(q.Collection("users"), currentUser["account"]["user"]["id"])
-    //     )
-    //   )
-    //   .then(() => {
-    //     return true;
-    //   })
-    //   .catch(() => {
-    //     cleanSecureStore("savedAccount");
-    //     return false;
-    //   });
-    // console.log(this.client.query(q.Get());
+    await this.TryForToken();
+
+    await this.client
+      .query(q.CurrentIdentity())
+      .then((res) => console.log(res))
+      .catch((e) => console.log(e));
   };
 
   // Get All Users
   GetUsers = async () => {
+    await this.TryForToken();
+
     // Return data object of all users
     await this.client
-      .query(q.Paginate(q.Documents(q.Collection("users"))))
+      .query(q.Paginate(q.Documents(q.Collection("accounts"))))
       .then((res) => console.log(res))
       .catch((e) => console.log(e));
   };
 
   // Get All Posts
-  GetPosts = () => {
+  GetPosts = async () => {
+    await this.TryForToken();
+
     // Return all posts paginated
+    await this.client
+      .query(q.Paginate(q.Match(q.Index("all_posts"))))
+      .then((res) => {
+        console.log(res["data"].length);
+        return res;
+      });
   };
 
   // Get Post by Age
@@ -169,7 +184,35 @@ class Fauna {
   // Get Trending Posts
 
   // Create Post
-  CreatePost = () => {};
+  CreatePost = async (postObject) => {
+    if (!postObject) return false;
+
+    await this.TryForToken();
+
+    // author will come from CurrentIdentity
+    postObject["author"] = "test";
+    postObject["created"] = Now();
+
+    await this.client
+      .query(
+        q.Create(q.Collection("posts"), {
+          data: {
+            author: postObject["author"],
+            content: postObject["content"],
+            chapter: postObject["chapter"],
+            commentsAllowed: postObject["commentsAllowed"],
+            private: postObject["private"],
+            postApplause: postObject["postApplause"],
+            postAttaches: postObject["postAttached"],
+            postComments: postObject["postComments"],
+            postHashtags: postObject["postHashtags"],
+            created: q.Now(),
+          },
+        })
+      )
+      .then((res) => true)
+      .catch((e) => false);
+  };
 
   // Edit Post
   EditPost = () => {};
