@@ -175,7 +175,7 @@ const SettingsScreen = ({ navigation }) => {
         <SettingsActionItem
           itemLabel={"Current User"}
           itemDescription={"Temporary Only"}
-          process={() => faunaDriver.GetUsers()}
+          process={() => faunaDriver.GetCurrentUser()}
         />
         <SettingsActionItem
           itemLabel={"Logout"}
@@ -190,10 +190,17 @@ const SettingsScreen = ({ navigation }) => {
           itemLabel={"Delete Account"}
           itemDescription={"Completely remove account"}
           process={() => {
-            faunaDriver.Logout().then((res) => console.log(res));
-            setIsSignedIn(false);
+            faunaDriver.GetUsers();
           }}
           status={"danger"}
+        />
+
+        <SettingsActionItem
+          itemLabel={"Temporary Action"}
+          itemDescription={"Get Posts"}
+          process={() => {
+            faunaDriver.GetPosts();
+          }}
         />
 
         <ListFooter />
