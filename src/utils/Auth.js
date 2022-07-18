@@ -115,6 +115,7 @@ const AuthRegister = async (registrationObj) => {
         verified: false,
         ostraconGold: false,
         monetised: false,
+        private: false,
       },
     })
   );
