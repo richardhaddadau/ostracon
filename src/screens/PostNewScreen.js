@@ -54,6 +54,7 @@ const PostNewScreen = ({ route }) => {
         GoBack={goBack}
         postText={postText}
         postImage={postImage}
+        chapter={chapter}
       />
 
       <ScrollView style={styles.newPostWrapper}>
