@@ -155,7 +155,10 @@ class Fauna {
     await this.client
       .query(q.Paginate(q.Match(q.Index("all_posts"))))
       .then((res) => {
-        console.log(res["data"].length);
+        for (const post of res["data"]) {
+          const postId = post["id"];
+        }
+
         return res;
       });
   };
