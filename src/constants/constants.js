@@ -1,3 +1,9 @@
+// Typical
+export const TYPICAL_MARGIN = 15;
+export const MEDIUM_MARGIN = 30;
+export const LARGE_MARGIN = 60;
+export const TYPICAL_PADDING = 15;
+
 // Navigation
 export const DRAWER_NAVIGATION_ICON_SIZE = 18;
 
