@@ -6,7 +6,10 @@ import { navigate } from "../navigation/Member/RootNavigation";
 
 // Import Theme
 import { Divider, useTheme } from "@ui-kitten/components";
-import { SETTINGS_SUBTITLE_SIZE, SETTINGS_TITLE_SIZE } from "../theme/Fonts";
+import {
+  SETTINGS_SUBTITLE_SIZE,
+  SETTINGS_TITLE_SIZE,
+} from "../constants/Fonts";
 
 // Settings Items with Navigation
 const SettingsNavigateItem = ({

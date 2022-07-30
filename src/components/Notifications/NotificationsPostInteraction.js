@@ -7,7 +7,10 @@ import {
   POST_VERTICAL_PADDING,
 } from "../../constants/constants";
 import { Avatar, useTheme } from "@ui-kitten/components";
-import { NOTIFICATIONS_SAMPLE_SIZE, STANDARD_SIZE } from "../../theme/Fonts";
+import {
+  NOTIFICATIONS_SAMPLE_SIZE,
+  STANDARD_SIZE,
+} from "../../constants/Fonts";
 
 const NotificationsPostInteraction = () => {
   const theme = useTheme();

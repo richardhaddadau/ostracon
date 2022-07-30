@@ -41,7 +41,7 @@ import {
   FEED_POST_NICKNAME_SIZE,
   FEED_POST_USERNAME_SIZE,
   FEED_POST_MY_APPLAUSE_SIZE,
-} from "../../theme/Fonts";
+} from "../../constants/Fonts";
 
 const FeedPost = ({ item, bottomSheetRef }) => {
   // States

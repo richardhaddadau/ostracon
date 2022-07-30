@@ -27,7 +27,7 @@ import {
 
 import { NEW_POST_MARGIN, NEW_POST_PADDING } from "../constants/constants";
 
-import { INPUT_SIZE, STANDARD_SIZE } from "../theme/Fonts";
+import { INPUT_SIZE, STANDARD_SIZE } from "../constants/Fonts";
 import { NewImage, Person } from "../components/Ostracon-Std";
 import { Close as CloseActive } from "../components/Ostracon-Active";
 import CreateHeader from "../navigation/Member/CreateHeader";

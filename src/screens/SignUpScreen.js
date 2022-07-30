@@ -17,7 +17,7 @@ import {
   LOGIN_VERTICAL_MARGIN,
   LOGIN_VERTICAL_PADDING,
 } from "../constants/constants";
-import { LOGIN_FOOTNOTE_SIZE, LOGIN_STANDARD_SIZE } from "../theme/Fonts";
+import { LOGIN_FOOTNOTE_SIZE, LOGIN_STANDARD_SIZE } from "../constants/Fonts";
 import StepperLegend from "../components/Register/StepperLegend";
 
 import SignUpOne from "../components/Register/SignUpOne";

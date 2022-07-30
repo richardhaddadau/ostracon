@@ -13,7 +13,7 @@ import {
 } from "react-native";
 
 // Import Constants
-import { LOGIN_FOOTNOTE_SIZE, LOGIN_STANDARD_SIZE } from "../theme/Fonts";
+import { LOGIN_FOOTNOTE_SIZE, LOGIN_STANDARD_SIZE } from "../constants/Fonts";
 import {
   LOGIN_VERTICAL_PADDING,
   LOGIN_VERTICAL_MARGIN,
