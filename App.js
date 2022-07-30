@@ -23,6 +23,7 @@ import GuestStack from "./src/navigation/Guest/GuestStack";
 // Import Database Libraries
 import { faunaDriver } from "./src/utils/Fauna";
 import { getSecureStore } from "./src/utils/AsyncOps";
+import SecurityScreen from "./src/screens/SecurityScreen";
 
 export const App = () => {
   // States
@@ -30,6 +31,7 @@ export const App = () => {
   const [myTheme, setMyTheme] = useState(lightOstracon);
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isAppSecured, setIsAppSecured] = useState(true);
 
   // Theme switch control
   const toggleTheme = () => {
@@ -44,6 +46,8 @@ export const App = () => {
     setIsLoading(true);
 
     const savedUser = await getSecureStore("savedAccount");
+
+    console.log(savedUser);
 
     // If saved details have an account, attempt a login
     if (savedUser["account"]) {
@@ -76,13 +80,16 @@ export const App = () => {
               backgroundColor={isSignedIn ? "#121212" : "#363744"}
               barStyle={"light-content"}
             />
-
-            {/* Wrap App with theme provider */}
+            {/* Wrap main app with theme provider */}
             <ApplicationProvider {...eva} theme={{ ...eva[theme], ...myTheme }}>
               {/* Provide navigation reference */}
               <NavigationContainer ref={navigationRef}>
+                {/* Show pincode security if app should be secured */}
+                <SessionContextProvider value={[isAppSecured, setIsAppSecured]}>
+                  <SecurityScreen />
+                </SessionContextProvider>
                 {/* Deliver navigation stack based on login status */}
-                {isSignedIn === true ? <MemberStack /> : <GuestStack />}
+                {isSignedIn ? <MemberStack /> : <GuestStack />}
               </NavigationContainer>
             </ApplicationProvider>
           </SafeAreaProvider>
