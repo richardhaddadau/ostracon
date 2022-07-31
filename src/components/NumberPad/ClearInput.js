@@ -1,16 +1,14 @@
 import React from "react";
-import { View, Text, TouchableHighlight, StyleSheet } from "react-native";
 import { useTheme } from "@ui-kitten/components";
+import { StyleSheet, Text, TouchableHighlight, View } from "react-native";
 import { SECURITY_NUMBER_SIZE } from "../../constants/Fonts";
 
-const NumberInput = ({
-  number,
-  padSize = "large",
-  disabled = false,
+const ClearInput = ({
   currentPos,
   setCurrentPos,
   pinValue,
   setPinValue,
+  disabled,
 }) => {
   // Theme
   const theme = useTheme();
@@ -27,14 +25,14 @@ const NumberInput = ({
       ]}
       underlayColor={theme["color-secondary-400"]}
       onPress={() => {
-        if (currentPos < pinValue.length) {
-          const position = currentPos;
+        if (currentPos > 0) {
+          const position = currentPos - 1;
 
           const tempArray = pinValue.map((x) => x);
-          tempArray[position] = number;
+          tempArray[position] = "-";
           setPinValue(tempArray);
 
-          setCurrentPos(position + 1);
+          setCurrentPos(position);
         }
       }}
     >
@@ -49,7 +47,7 @@ const NumberInput = ({
             },
           ]}
         >
-          {number}
+          back
         </Text>
       </View>
     </TouchableHighlight>
@@ -69,4 +67,4 @@ const styles = StyleSheet.create({
   numberText: { fontSize: SECURITY_NUMBER_SIZE },
 });
 
-export default NumberInput;
+export default ClearInput;

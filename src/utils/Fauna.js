@@ -124,6 +124,9 @@ class Fauna {
         secret: FAUNA_SECRET,
       });
     });
+
+    await setSecureStore("settingsSecureApp", "0");
+    console.log(await getSecureStore("savedSettings"));
   };
 
   // Get Current User

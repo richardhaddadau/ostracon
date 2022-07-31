@@ -44,10 +44,12 @@ export const App = () => {
   // On load, check if a user account is saved on the device
   useEffect(async () => {
     setIsLoading(true);
-
+    const secured = await getSecureStore("settingsSecureApp");
     const savedUser = await getSecureStore("savedAccount");
 
+    // setIsAppSecured(secured);
     console.log(savedUser);
+    console.log(typeof secured);
 
     // If saved details have an account, attempt a login
     if (savedUser["account"]) {

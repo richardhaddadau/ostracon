@@ -11,7 +11,7 @@ export const LOGIN_FOOTNOTE_SIZE = 13;
 
 // Security Screen
 export const SECURITY_PIN_SIZE = 30;
-export const SECURITY_PIN_SPACING = 20;
+export const SECURITY_PIN_SPACING = 30;
 export const SECURITY_NUMBER_SIZE = 26;
 
 // Settings
