@@ -125,8 +125,10 @@ class Fauna {
       });
     });
 
-    await setSecureStore("settingsSecureApp", "0");
-    console.log(await getSecureStore("savedSettings"));
+    const settingsObject = await getSecureStore("savedSettings");
+    console.log(settingsObject);
+    // settingsObject["secureApp"] = false;
+    await setSecureStore("settingsSecureApp", settingsObject);
   };
 
   // Get Current User

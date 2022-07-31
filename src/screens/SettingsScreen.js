@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 // Import Native Components
 import {
@@ -26,6 +26,7 @@ import ListFooter from "../components/ListFooter";
 // Import Fauna
 import { faunaDriver } from "../utils/Fauna";
 import SessionContext from "../context/SessionContext";
+import { getSecureStore } from "../utils/AsyncOps";
 
 // Settings Screen Component
 const SettingsScreen = ({ navigation }) => {
@@ -42,6 +43,17 @@ const SettingsScreen = ({ navigation }) => {
 
   const [pinValue, setPinValue] = useState("");
 
+  useEffect(() => {
+    let settingsObject = getSecureStore("savedSettings");
+
+    setPinValue(settingsObject["securePin"]);
+    setAllowSensitive(settingsObject["allowSensitive"]);
+    setOpenDM(settingsObject["openDM"]);
+    setReceiveNotifications(settingsObject["receiveNotifications"]);
+
+    console.log(pinValue);
+  }, []);
+
   return (
     <SafeAreaView>
       <StackHeader
@@ -52,6 +64,7 @@ const SettingsScreen = ({ navigation }) => {
       <ScrollView
         style={{ padding: 10, backgroundColor: theme["color-bar-surface"] }}
       >
+        {/* ACCOUNT */}
         <SettingsSectionTitle sectionTitle={"Account Settings"} />
         <SettingsNavigateItem
           itemLabel={"Change nickname"}
@@ -83,6 +96,8 @@ const SettingsScreen = ({ navigation }) => {
             />
           }
         />
+
+        {/* APP PRIVACY */}
         <SettingsSectionTitle sectionTitle={"Privacy Settings"} />
         <SettingsOptionItem
           itemLabel={"Secure app with pin"}
@@ -145,6 +160,8 @@ const SettingsScreen = ({ navigation }) => {
             />
           }
         />
+
+        {/* APP NOTIFICATIONS */}
         <SettingsSectionTitle sectionTitle={"Notifications"} />
         <SettingsOptionItem
           itemLabel={"Receive Notifications"}

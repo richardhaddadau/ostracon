@@ -73,14 +73,7 @@ const setSecureStore = async (key, valueObj) => {
 };
 
 const cleanSecureStore = (key) => {
-  const freshObject = {
-    email: "",
-    password: "",
-    handle: "",
-    nickname: "",
-    dateOfBirth: "",
-    location: "",
-  };
+  const freshObject = {};
 
   setSecureStore(key, freshObject).then(() => true);
 };

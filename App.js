@@ -22,6 +22,7 @@ import GuestStack from "./src/navigation/Guest/GuestStack";
 
 // Import Database Libraries
 import { faunaDriver } from "./src/utils/Fauna";
+import { ostraconDriver } from "./src/utils/Ostracon";
 import { getSecureStore } from "./src/utils/AsyncOps";
 import SecurityScreen from "./src/screens/SecurityScreen";
 
@@ -31,7 +32,7 @@ export const App = () => {
   const [myTheme, setMyTheme] = useState(lightOstracon);
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [isAppSecured, setIsAppSecured] = useState(true);
+  const [isAppSecured, setIsAppSecured] = useState(false);
 
   // Theme switch control
   const toggleTheme = () => {
@@ -44,12 +45,19 @@ export const App = () => {
   // On load, check if a user account is saved on the device
   useEffect(async () => {
     setIsLoading(true);
-    const secured = await getSecureStore("settingsSecureApp");
+
+    await ostraconDriver.RunSetup();
+
+    console.log(await getSecureStore("savedSettings"));
+
+    const settingsObject = await getSecureStore("settingsSecureApp");
+    const secureApp = settingsObject["secureApp"];
+
     const savedUser = await getSecureStore("savedAccount");
 
     // setIsAppSecured(secured);
     console.log(savedUser);
-    console.log(typeof secured);
+    console.log(secureApp);
 
     // If saved details have an account, attempt a login
     if (savedUser["account"]) {
@@ -88,7 +96,7 @@ export const App = () => {
               <NavigationContainer ref={navigationRef}>
                 {/* Show pincode security if app should be secured */}
                 <SessionContextProvider value={[isAppSecured, setIsAppSecured]}>
-                  <SecurityScreen />
+                  {isAppSecured ? <SecurityScreen /> : null}
                 </SessionContextProvider>
                 {/* Deliver navigation stack based on login status */}
                 {isSignedIn ? <MemberStack /> : <GuestStack />}
