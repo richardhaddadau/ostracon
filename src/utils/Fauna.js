@@ -155,11 +155,29 @@ class Fauna {
     await this.client
       .query(q.Paginate(q.Match(q.Index("all_posts"))))
       .then((res) => {
+        console.log(res);
         for (const post of res["data"]) {
           const postId = post["id"];
-        }
 
-        return res;
+          let postObject = {};
+
+          this.client
+            .query(q.Get(q.Ref(q.Collection("posts"), postId)))
+            .then((postRes) => {
+              console.log(postRes);
+
+              postObject = {
+                handle: postRes["data"],
+                username: postRes["data"],
+                posted: postRes["data"]["created"]["ts"],
+                content: postRes["data"]["content"],
+                postApplause: postRes["data"],
+                postAttaches: postRes["data"],
+                postComments: postRes["data"],
+                postPraises: postRes["data"],
+              };
+            });
+        }
       });
   };
 

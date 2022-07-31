@@ -111,10 +111,10 @@ const FeedPost = ({ item, bottomSheetRef }) => {
 
   // States
   const [postedText, setPostedText] = useState("");
-  const [postApplause, setPostApplause] = useState(item["numberOfApplause"]);
-  const [postAttach, setPostAttach] = useState(item["numberOfAttaches"]);
-  const [postComment, setPostComment] = useState(item["numberOfComments"]);
-  const [postPraise, setPostPraise] = useState(item["numberOfPraises"]);
+  const [postApplause, setPostApplause] = useState(item["postApplause"]);
+  const [postAttach, setPostAttach] = useState(item["postAttaches"]);
+  const [postComment, setPostComment] = useState(item["postComments"]);
+  const [postPraise, setPostPraise] = useState(item["postPraises"]);
 
   const [postApplauseState, setPostApplauseState] = useState(false);
   const [postAttachState, setPostAttachState] = useState(false);
@@ -163,7 +163,7 @@ const FeedPost = ({ item, bottomSheetRef }) => {
               { color: theme["color-font-primary"] },
             ]}
           >
-            {item["user"]["nickname"]}
+            {item["handle"]}
           </Text>
           <View style={{ flexDirection: "row" }}>
             <Text
@@ -172,7 +172,7 @@ const FeedPost = ({ item, bottomSheetRef }) => {
                 { color: theme["color-font-secondary"] },
               ]}
             >
-              {`@${item["user"]["username"]} • `}
+              {`@${item["username"]} • `}
             </Text>
             <Text
               style={[
