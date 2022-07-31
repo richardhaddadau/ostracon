@@ -46,6 +46,19 @@ const Back = ({ size = 24, color = "black", style }) => {
     </Svg>
   );
 };
+const Backspace = ({ size = 24, color = "black", style }) => {
+  return (
+    <Svg
+      width={size}
+      height={size}
+      viewBox="0 0 512 512"
+      fill={color}
+      style={style}
+    >
+      <Path d="M457 61H148.3c-18.4 0-35.6 9.2-45.8 24.5l-93.3 140a55.033 55.033 0 0 0 0 61l93.3 140c10.2 15.3 27.4 24.5 45.8 24.5H457c30.4 0 55-24.6 55-55V116c0-30.4-24.6-55-55-55zm-74.4 258.2-35.4 35.4-62.8-62.8-62.8 62.8-35.4-35.4 62.8-62.8-62.8-62.8 35.4-35.4 62.8 62.8 62.8-62.8 35.4 35.4-62.8 62.8 62.8 62.8z" />
+    </Svg>
+  );
+};
 const Bell = ({ size = 24, color = "black", style }) => {
   return (
     <Svg
@@ -492,6 +505,7 @@ export {
   Attach,
   Award,
   Back,
+  Backspace,
   Bell,
   Bookmark,
   Clap,

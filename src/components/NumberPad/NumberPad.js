@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Text } from "react-native";
-import NumberInput from "./NumberInput";
 import { SECURITY_PIN_SIZE, SECURITY_PIN_SPACING } from "../../constants/Fonts";
 import { MEDIUM_MARGIN } from "../../constants/constants";
+
+import NumberInput from "./NumberInput";
 import ClearInput from "./ClearInput";
+import EmptyBlock from "./EmptyBlock";
 
 const NumberPad = ({ size = "large", pinLength = 4 }) => {
   // Constants
@@ -111,25 +113,17 @@ const NumberPad = ({ size = "large", pinLength = 4 }) => {
           setPinValue={setPinValue}
           disabled={disabled}
         />
+        <EmptyBlock />
+        <NumberInput
+          number={0}
+          padSize={padSize[size]}
+          currentPos={currentPos}
+          setCurrentPos={setCurrentPos}
+          pinValue={pinValue}
+          setPinValue={setPinValue}
+          disabled={disabled}
+        />
         <ClearInput
-          padSize={padSize[size]}
-          currentPos={currentPos}
-          setCurrentPos={setCurrentPos}
-          pinValue={pinValue}
-          setPinValue={setPinValue}
-          disabled={disabled}
-        />
-        <NumberInput
-          number={0}
-          padSize={padSize[size]}
-          currentPos={currentPos}
-          setCurrentPos={setCurrentPos}
-          pinValue={pinValue}
-          setPinValue={setPinValue}
-          disabled={disabled}
-        />
-        <NumberInput
-          number={0}
           padSize={padSize[size]}
           currentPos={currentPos}
           setCurrentPos={setCurrentPos}
@@ -144,8 +138,6 @@ const NumberPad = ({ size = "large", pinLength = 4 }) => {
 
 const styles = StyleSheet.create({
   pincode: {
-    marginRight: -SECURITY_PIN_SPACING,
-
     fontSize: SECURITY_PIN_SIZE,
     fontWeight: "bold",
     letterSpacing: SECURITY_PIN_SPACING,

@@ -2,14 +2,9 @@ import React, { useState } from "react";
 import { Text, StyleSheet, View, TouchableHighlight } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context/src/SafeAreaContext";
 import { useTheme } from "@ui-kitten/components";
-import {
-  SECURITY_PIN_SIZE,
-  SECURITY_PIN_SPACING,
-  STANDARD_SIZE,
-} from "../constants/Fonts";
+
 import NumberPad from "../components/NumberPad/NumberPad";
 import { faunaDriver } from "../utils/Fauna";
-import { getSecureStore, setSecureStore } from "../utils/AsyncOps";
 
 const SecurityScreen = () => {
   // Theme
@@ -53,7 +48,7 @@ const SecurityScreen = () => {
               { color: theme["color-secondary-300"] },
             ]}
           >
-            Sign Out
+            Switch User
           </Text>
         </View>
       </TouchableHighlight>

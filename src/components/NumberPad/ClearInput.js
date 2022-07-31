@@ -2,6 +2,7 @@ import React from "react";
 import { useTheme } from "@ui-kitten/components";
 import { StyleSheet, Text, TouchableHighlight, View } from "react-native";
 import { SECURITY_NUMBER_SIZE } from "../../constants/Fonts";
+import { Backspace } from "../Ostracon-Active";
 
 const ClearInput = ({
   currentPos,
@@ -17,7 +18,6 @@ const ClearInput = ({
       style={[
         styles.numberBlock,
         {
-          margin: "2%",
           backgroundColor: disabled
             ? "rgba(255, 255, 255, 0.1)"
             : "rgba(255, 255, 255, 0.95)",
@@ -37,18 +37,9 @@ const ClearInput = ({
       }}
     >
       <View>
-        <Text
-          style={[
-            styles.numberText,
-            {
-              color: disabled
-                ? theme["color-primary-500"]
-                : theme["color-secondary-400"],
-            },
-          ]}
-        >
-          back
-        </Text>
+        <View style={{ marginLeft: -3 }}>
+          <Backspace color={theme["color-secondary-default"]} size={30} />
+        </View>
       </View>
     </TouchableHighlight>
   );
@@ -56,9 +47,13 @@ const ClearInput = ({
 
 const styles = StyleSheet.create({
   numberBlock: {
+    // this margin fits perfectly with the width below
+    margin: "3%",
+
     alignItems: "center",
     justifyContent: "center",
 
+    // this width allows for 3 columns
     width: "27%",
     aspectRatio: 1,
 

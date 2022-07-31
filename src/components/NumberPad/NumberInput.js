@@ -19,7 +19,6 @@ const NumberInput = ({
       style={[
         styles.numberBlock,
         {
-          margin: "2%",
           backgroundColor: disabled
             ? "rgba(255, 255, 255, 0.1)"
             : "rgba(255, 255, 255, 0.95)",
@@ -58,9 +57,13 @@ const NumberInput = ({
 
 const styles = StyleSheet.create({
   numberBlock: {
+    // this margin fits perfectly with the width below
+    margin: "3%",
+
     alignItems: "center",
     justifyContent: "center",
 
+    // this width allows for 3 columns
     width: "27%",
     aspectRatio: 1,
 
