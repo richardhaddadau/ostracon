@@ -70,7 +70,7 @@ export const App = () => {
     // Could be temporary: give at least a second before switching splash screen off
     setTimeout(() => {
       setIsLoading(false);
-    }, 500);
+    }, 750);
   }, []);
 
   return (

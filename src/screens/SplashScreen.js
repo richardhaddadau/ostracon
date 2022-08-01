@@ -20,7 +20,7 @@ const SplashScreen = () => {
         justifyContent: "center",
       }}
     >
-      <CustomStatusBar backgroundColor={"#363744"} barStyle={"light-content"} />
+      <CustomStatusBar backgroundColor={"white"} barStyle={"dark-content"} />
       <Image
         source={require("../../assets/Ostracon-Logo.png")}
         style={{
