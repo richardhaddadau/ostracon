@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Text, TouchableHighlight, StyleSheet } from "react-native";
 import { useTheme } from "@ui-kitten/components";
+import { getSecureStore } from "../../utils/AsyncOps";
 import { SECURITY_NUMBER_SIZE } from "../../constants/Fonts";
+import SessionContext from "../../context/SessionContext";
 
 const NumberInput = ({
   number,
@@ -10,10 +12,15 @@ const NumberInput = ({
   currentPos,
   setCurrentPos,
   pinValue,
+  pinSize,
   setPinValue,
 }) => {
   // Theme
   const theme = useTheme();
+
+  // States
+  const [isAppSecured, setIsAppSecured] = useContext(SessionContext);
+
   return (
     <TouchableHighlight
       style={[
@@ -25,15 +32,21 @@ const NumberInput = ({
         },
       ]}
       underlayColor={theme["color-secondary-400"]}
-      onPress={() => {
-        if (currentPos < pinValue.length) {
-          const position = currentPos;
-
+      onPress={async () => {
+        const position = currentPos;
+        if (position < pinSize) {
           const tempArray = pinValue.map((x) => x);
           tempArray[position] = number;
           setPinValue(tempArray);
 
           setCurrentPos(position + 1);
+
+          if (position + 1 === pinSize) {
+            const settingsObject = await getSecureStore("savedSettings");
+            const securePin = settingsObject["securePin"];
+
+            setIsAppSecured(tempArray.join("") !== securePin);
+          }
         }
       }}
     >

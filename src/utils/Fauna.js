@@ -3,10 +3,10 @@ import { FAUNA_SECRET } from "./AuthConstants";
 import { cleanSecureStore, getSecureStore, setSecureStore } from "./AsyncOps";
 
 const q = faunadb.query;
-(async function () {
-  const savedAccount = await getSecureStore("savedAccount");
-  const savedPass = savedAccount["secret"];
-})();
+// (async function () {
+//   const savedAccount = await getSecureStore("savedAccount");
+//   const savedPass = savedAccount["secret"];
+// })();
 
 class Fauna {
   constructor(secret) {
@@ -30,7 +30,8 @@ class Fauna {
   // Try For Token
   TryForToken = async () => {
     const savedAccount = await getSecureStore("savedAccount");
-    const savedPass = savedAccount["secret"];
+
+    const savedPass = savedAccount !== null ? savedAccount["secret"] : null;
 
     if (savedPass) {
       this.client = new faunadb.Client({

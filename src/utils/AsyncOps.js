@@ -75,7 +75,7 @@ const setSecureStore = async (key, valueObj) => {
 const cleanSecureStore = (key) => {
   const freshObject = {};
 
-  setSecureStore(key, freshObject).then(() => true);
+  SecureStore.deleteItemAsync(key).then(() => true);
 };
 
 export {

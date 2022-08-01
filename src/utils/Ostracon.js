@@ -1,18 +1,20 @@
-import { getSecureStore, setSecureStore } from "./AsyncOps";
+import { cleanSecureStore, getSecureStore, setSecureStore } from "./AsyncOps";
 
 class Ostracon {
   RunSetup = async () => {
     const settingsObject = await getSecureStore("savedSettings");
 
-    if (settingsObject === null) {
+    if (!settingsObject) {
+      console.log("found null");
       await this.InitiateSettings();
     }
   };
 
   InitiateSettings = async () => {
     const newSettingsObject = {
+      showDOB: true,
       secureApp: false,
-      securePin: "1234",
+      securePin: "",
       secureTimeout: 0,
       allowSensitive: false,
       openDM: true,
@@ -21,7 +23,14 @@ class Ostracon {
 
     await setSecureStore("savedSettings", newSettingsObject);
   };
+
+  ChangeSettings = async (settingKey, settingValue) => {
+    const newSettingsObject = await getSecureStore("savedSettings");
+    newSettingsObject[settingKey] = settingValue;
+
+    await setSecureStore("savedSettings", newSettingsObject);
+  };
 }
 
 const ostraconDriver = new Ostracon();
-export { ostraconDriver };
+export { ostraconDriver, Ostracon };

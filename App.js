@@ -47,26 +47,24 @@ export const App = () => {
     setIsLoading(true);
 
     await ostraconDriver.RunSetup();
+    const settingsObject = await getSecureStore("savedSettings");
 
-    console.log(await getSecureStore("savedSettings"));
-
-    const settingsObject = await getSecureStore("settingsSecureApp");
-    const secureApp = settingsObject["secureApp"];
-
+    const secureApp = settingsObject ? settingsObject["secureApp"] : null;
     const savedUser = await getSecureStore("savedAccount");
 
-    // setIsAppSecured(secured);
-    console.log(savedUser);
-    console.log(secureApp);
+    setIsAppSecured(secureApp);
+    setIsSignedIn(true);
 
     // If saved details have an account, attempt a login
-    if (savedUser["account"]) {
+    if (savedUser && savedUser["account"]) {
       await faunaDriver.Login(
         savedUser["account"]["data"]["email"],
         savedUser["savedPass"]
       );
 
       setIsSignedIn(true);
+      // } else {
+      //   setIsSignedIn(false);
     }
 
     // Could be temporary: give at least a second before switching splash screen off
@@ -94,7 +92,7 @@ export const App = () => {
             <ApplicationProvider {...eva} theme={{ ...eva[theme], ...myTheme }}>
               {/* Provide navigation reference */}
               <NavigationContainer ref={navigationRef}>
-                {/* Show pincode security if app should be secured */}
+                {/* Show pinCode security if app should be secured */}
                 <SessionContextProvider value={[isAppSecured, setIsAppSecured]}>
                   {isAppSecured ? <SecurityScreen /> : null}
                 </SessionContextProvider>

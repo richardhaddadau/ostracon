@@ -27,6 +27,7 @@ import ListFooter from "../components/ListFooter";
 import { faunaDriver } from "../utils/Fauna";
 import SessionContext from "../context/SessionContext";
 import { getSecureStore } from "../utils/AsyncOps";
+import { ostraconDriver } from "../utils/Ostracon";
 
 // Settings Screen Component
 const SettingsScreen = ({ navigation }) => {
@@ -43,15 +44,19 @@ const SettingsScreen = ({ navigation }) => {
 
   const [pinValue, setPinValue] = useState("");
 
-  useEffect(() => {
-    let settingsObject = getSecureStore("savedSettings");
+  useEffect(async () => {
+    let settingsObject = await getSecureStore("savedSettings");
 
+    if (!settingsObject) {
+      await ostraconDriver.InitiateSettings;
+      settingsObject = await getSecureStore("savedSettings");
+    }
+
+    setShowDOB(settingsObject["showDOB"]);
     setPinValue(settingsObject["securePin"]);
     setAllowSensitive(settingsObject["allowSensitive"]);
     setOpenDM(settingsObject["openDM"]);
     setReceiveNotifications(settingsObject["receiveNotifications"]);
-
-    console.log(pinValue);
   }, []);
 
   return (
@@ -90,7 +95,8 @@ const SettingsScreen = ({ navigation }) => {
           option={
             <Toggle
               checked={showDOB}
-              onChange={(checked) => {
+              onChange={async (checked) => {
+                await ostraconDriver.ChangeSettings("showDOB", checked);
                 setShowDOB(checked);
               }}
             />
@@ -101,15 +107,23 @@ const SettingsScreen = ({ navigation }) => {
         <SettingsSectionTitle sectionTitle={"Privacy Settings"} />
         <SettingsOptionItem
           itemLabel={"Secure app with pin"}
+          itemDescription={"An empty pin will turn Ostracon lock off"}
           option={
             <TextInput
               value={pinValue}
-              onChange={(value) => {
+              onChangeText={async (value) => {
                 setPinValue(value);
+              }}
+              onEndEditing={async () => {
+                await ostraconDriver.ChangeSettings(
+                  "secureApp",
+                  pinValue.length > 0
+                );
+                await ostraconDriver.ChangeSettings("securePin", pinValue);
               }}
               keyboardType={"numeric"}
               secureTextEntry={true}
-              maxLength={4}
+              maxLength={6}
               style={{
                 padding: 3,
                 paddingHorizontal: 20,
@@ -119,11 +133,6 @@ const SettingsScreen = ({ navigation }) => {
               }}
             />
           }
-        />
-        <SettingsOptionItem
-          itemLabel={"Secure Timeout"}
-          itemDescription={"Ostracon will lock when the app is closed for:"}
-          option={<View />}
         />
         <SettingsOptionItem
           itemLabel={"Make profile private"}
@@ -154,7 +163,8 @@ const SettingsScreen = ({ navigation }) => {
           option={
             <Toggle
               checked={openDM}
-              onChange={(checked) => {
+              onChange={async (checked) => {
+                await ostraconDriver.ChangeSettings("openDM", checked);
                 setOpenDM(checked);
               }}
             />
@@ -169,7 +179,11 @@ const SettingsScreen = ({ navigation }) => {
           option={
             <Toggle
               checked={receiveNotifications}
-              onChange={(checked) => {
+              onChange={async (checked) => {
+                await ostraconDriver.ChangeSettings(
+                  "receiveNotifications",
+                  checked
+                );
                 setReceiveNotifications(checked);
               }}
             />
